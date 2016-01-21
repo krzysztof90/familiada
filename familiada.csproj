@@ -44,12 +44,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Functions.cs" />
+    <Compile Include="Odpowiedź.cs" />
     <Compile Include="ForShow.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ForShow.Designer.cs">
       <DependentUpon>ForShow.cs</DependentUpon>
     </Compile>
+    <Compile Include="Pytanie.cs" />
     <Compile Include="NotForShow.cs">
       <SubType>Form</SubType>
     </Compile>

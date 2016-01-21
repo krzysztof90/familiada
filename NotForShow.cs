@@ -15,125 +15,10 @@ namespace familiada
 	{
 		static string nazwaPliku = "pytania.txt";
 
-		List<Pytanie> pytania = new List<Pytanie>();
-		int obecnePytanie = -1;
-
 		ForShow główny;
 
-		class Odpowiedź
-		{
-			public string odpowiedź;
-			public int punkty;
-			public int nrOdpowiedzi;
-			CheckBox checkBox;
-			Label nrOdpowiedziLabel;
-			Label odpowiedźLabel;
-
-			public Odpowiedź(string linia, int nrOdpowiedzi)
-			{
-				this.nrOdpowiedzi = nrOdpowiedzi;
-				int gdziePrzerwa = linia.LastIndexOfAny(new char[] { ' ', '\t' });
-				if (gdziePrzerwa == -1)
-					exit(String.Format("niepoprawna linia: {0}", linia));
-				odpowiedź = linia.Substring(0, gdziePrzerwa).TrimEnd();
-				try
-				{
-					punkty = Int32.Parse(linia.Substring(gdziePrzerwa + 1));
-				}
-				catch (FormatException)
-				{
-					exit("niepoprawna liczba punktów");
-				}
-			}
-
-			public void dodajCheckBox(NotForShow form)
-			{
-				checkBox = new CheckBox();
-				//checkBox.AutoSize = true;
-				checkBox.Location = new Point(100, nrOdpowiedzi * 30);
-				//checkBox.Size = new Size(80, 17);
-				checkBox.Text = odpowiedź;
-				checkBox.CheckedChanged += new EventHandler(checkBoxCheckedChanged);
-
-				form.Controls.Add(checkBox);
-			}
-			public void usuńCheckBox()
-			{
-				checkBox.Dispose();
-			}
-			public void pokażNrPytania(ForShow form)
-			{
-				nrOdpowiedziLabel = new Label();
-				nrOdpowiedziLabel.AutoSize = true;
-				nrOdpowiedziLabel.Location = new Point(100, nrOdpowiedzi * 30);
-				//nrOdpowiedziLabel.Size = new Size(10, 17);
-				nrOdpowiedziLabel.Text = nrOdpowiedzi.ToString();
-				form.Controls.Add(nrOdpowiedziLabel);
-
-				// tylko utworzenie
-				odpowiedźLabel = new Label();
-				//checkBox.AutoSize = true;
-				odpowiedźLabel.Location = new Point(120, nrOdpowiedzi * 30);
-				//checkBox.Size = new Size(80, 17);
-				odpowiedźLabel.Text = odpowiedź;
-				odpowiedźLabel.Hide();
-				form.Controls.Add(odpowiedźLabel);
-			}
-			public bool zaznaczona()
-			{
-				return checkBox.Checked;
-			}
-
-			private void checkBoxCheckedChanged(object sender, EventArgs e)
-			{
-				if (checkBox.Checked)
-				{
-					odpowiedźLabel.Show();
-				}
-				else
-				{
-					odpowiedźLabel.Hide();
-				}
-			}
-		}
-
-		class Pytanie
-		{
-			int nrPytania;
-			public List<Odpowiedź> odpowiedzi = new List<Odpowiedź>();
-
-			public Pytanie(int nr)
-			{
-				nrPytania = nr;
-			}
-
-			public void dodajOdpowiedź(Odpowiedź odpowiedź)
-			{
-				odpowiedzi.Add(odpowiedź);
-			}
-			public void dodajCheckBoxy(NotForShow form)
-			{
-				foreach (Odpowiedź odpowiedź in odpowiedzi)
-					odpowiedź.dodajCheckBox(form);
-			}
-			public void usuńCheckBoxy()
-			{
-				foreach (Odpowiedź odpowiedź in odpowiedzi)
-					odpowiedź.usuńCheckBox();
-			}
-			public void pokażNumeryOdpowiedzi(ForShow form)
-			{
-				foreach (Odpowiedź odpowiedź in odpowiedzi)
-					odpowiedź.pokażNrPytania(form);
-			}
-			public bool zaznaczoneWszystkie()
-			{
-				foreach (Odpowiedź odpowiedź in odpowiedzi)
-					if (!odpowiedź.zaznaczona())
-						return false;
-				return true;
-			}
-		}
+		List<Pytanie> pytania = new List<Pytanie>();
+		int obecnePytanie = -1;
 
 		public NotForShow()
 		{
@@ -160,7 +45,7 @@ namespace familiada
 						else
 						{
 							if (pytania.Count == 0)
-								exit("zacznij plik od numeru pytania");
+								Functions.exit("zacznij plik od numeru pytania");
 							pytania.Last().dodajOdpowiedź(new Odpowiedź(linia, nrOdpowiedzi++));
 						}
 					}
@@ -169,7 +54,7 @@ namespace familiada
 			}
 			catch (FileNotFoundException exc)
 			{
-				exit(String.Format("brakuje pliku {0}", exc.FileName));
+				Functions.exit(String.Format("brakuje pliku {0}", exc.FileName));
 			}
 
 			Screen tenEkran = Screen.FromControl(this);
@@ -182,14 +67,8 @@ namespace familiada
 			//główny.TopMost = true;
 
 			if (pytania.Count == 0)
-				exit("brak pytań");
+				Functions.exit("brak pytań");
 
-		}
-
-		static void exit(string message)
-		{
-			MessageBox.Show(message);
-			Environment.Exit(0);
 		}
 
 		static int nrPytania(string linia)
@@ -206,18 +85,17 @@ namespace familiada
 
 		private void następnePytanie_Click(object sender, EventArgs e)
 		{
-
-				if (obecnePytanie != pytania.Count - 1)
-				{
+			if (obecnePytanie != pytania.Count - 1)
+			{
 				if (obecnePytanie != -1)
 				{
 					pytania[obecnePytanie].usuńCheckBoxy();
 					//pytania[obecnePytanie].usuńOdpowiedzi();
 				}
-					obecnePytanie++;
-					pytania[obecnePytanie].dodajCheckBoxy(this);
-					pytania[obecnePytanie].pokażNumeryOdpowiedzi(główny);
-				}
+				obecnePytanie++;
+				pytania[obecnePytanie].dodajCheckBoxy(this);
+				pytania[obecnePytanie].pokażNumeryOdpowiedzi(główny);
+			}
 		}
 	}
 }
