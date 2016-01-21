@@ -15,7 +15,7 @@ namespace familiada
 	{
 		static string nazwaPliku = "pytania.txt";
 
-		ForShow główny;
+		ForShow główny = new ForShow();
 
 		List<Pytanie> pytania = new List<Pytanie>();
 		int obecnePytanie = -1;
@@ -46,7 +46,7 @@ namespace familiada
 						{
 							if (pytania.Count == 0)
 								Functions.exit("zacznij plik od numeru pytania");
-							pytania.Last().dodajOdpowiedź(new Odpowiedź(linia, nrOdpowiedzi++));
+							pytania.Last().dodajOdpowiedź(new Odpowiedź(linia, nrOdpowiedzi++, this, główny));
 						}
 					}
 				}
@@ -57,17 +57,17 @@ namespace familiada
 				Functions.exit(String.Format("brakuje pliku {0}", exc.FileName));
 			}
 
+			if (pytania.Count == 0)
+				Functions.exit("brak pytań");
+
 			Screen tenEkran = Screen.FromControl(this);
 			Screen drugiEkran = Screen.AllScreens.FirstOrDefault(s => !s.Equals(tenEkran)) ?? tenEkran;
-			główny = new ForShow();
 			główny.Show();
 			główny.Location = drugiEkran.WorkingArea.Location;
 			//główny.FormBorderStyle = FormBorderStyle.None;
 			//główny.WindowState = FormWindowState.Maximized;
 			//główny.TopMost = true;
 
-			if (pytania.Count == 0)
-				Functions.exit("brak pytań");
 
 		}
 
@@ -89,12 +89,11 @@ namespace familiada
 			{
 				if (obecnePytanie != -1)
 				{
-					pytania[obecnePytanie].usuńCheckBoxy();
-					//pytania[obecnePytanie].usuńOdpowiedzi();
+					pytania[obecnePytanie].usuńOdpowiedi();
 				}
 				obecnePytanie++;
-				pytania[obecnePytanie].dodajCheckBoxy(this);
-				pytania[obecnePytanie].pokażNumeryOdpowiedzi(główny);
+				pytania[obecnePytanie].pokażCheckBoxy(this);
+				pytania[obecnePytanie].pokażOdpowiedzi();
 			}
 		}
 	}

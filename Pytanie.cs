@@ -19,20 +19,20 @@ namespace familiada
 		{
 			odpowiedzi.Add(odpowiedź);
 		}
-		public void dodajCheckBoxy(NotForShow form)
+		public void pokażCheckBoxy(NotForShow form)
 		{
 			foreach (Odpowiedź odpowiedź in odpowiedzi)
-				odpowiedź.dodajCheckBox(form);
+				odpowiedź.pokażCheckBox();
 		}
-		public void usuńCheckBoxy()
+		public void pokażOdpowiedzi()
 		{
 			foreach (Odpowiedź odpowiedź in odpowiedzi)
-				odpowiedź.usuńCheckBox();
+				odpowiedź.pokażOdpowiedź();
 		}
-		public void pokażNumeryOdpowiedzi(ForShow form)
+		public void usuńOdpowiedi()
 		{
 			foreach (Odpowiedź odpowiedź in odpowiedzi)
-				odpowiedź.pokażNrPytania(form);
+				odpowiedź.usuńOdpowiedź();
 		}
 		public bool zaznaczoneWszystkie()
 		{

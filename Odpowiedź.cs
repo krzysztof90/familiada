@@ -17,7 +17,7 @@ namespace familiada
 		Label nrOdpowiedziLabel;
 		Label odpowiedźLabel;
 
-		public Odpowiedź(string linia, int nrOdpowiedzi)
+		public Odpowiedź(string linia, int nrOdpowiedzi, NotForShow notForShow, ForShow forShow)
 		{
 			this.nrOdpowiedzi = nrOdpowiedzi;
 			int gdziePrzerwa = linia.LastIndexOfAny(new char[] { ' ', '\t' });
@@ -32,31 +32,23 @@ namespace familiada
 			{
 				Functions.exit("niepoprawna liczba punktów");
 			}
-		}
 
-		public void dodajCheckBox(NotForShow form)
-		{
 			checkBox = new CheckBox();
 			//checkBox.AutoSize = true;
 			checkBox.Location = new Point(100, nrOdpowiedzi * 30);
 			//checkBox.Size = new Size(80, 17);
 			checkBox.Text = odpowiedź;
 			checkBox.CheckedChanged += new EventHandler(checkBoxCheckedChanged);
+			checkBox.Hide();
+			notForShow.Controls.Add(checkBox);
 
-			form.Controls.Add(checkBox);
-		}
-		public void usuńCheckBox()
-		{
-			checkBox.Dispose();
-		}
-		public void pokażNrPytania(ForShow form)
-		{
 			nrOdpowiedziLabel = new Label();
 			nrOdpowiedziLabel.AutoSize = true;
 			nrOdpowiedziLabel.Location = new Point(100, nrOdpowiedzi * 30);
 			//nrOdpowiedziLabel.Size = new Size(10, 17);
 			nrOdpowiedziLabel.Text = nrOdpowiedzi.ToString();
-			form.Controls.Add(nrOdpowiedziLabel);
+			nrOdpowiedziLabel.Hide();
+			forShow.Controls.Add(nrOdpowiedziLabel);
 
 			// tylko utworzenie
 			odpowiedźLabel = new Label();
@@ -65,7 +57,23 @@ namespace familiada
 			//checkBox.Size = new Size(80, 17);
 			odpowiedźLabel.Text = odpowiedź;
 			odpowiedźLabel.Hide();
-			form.Controls.Add(odpowiedźLabel);
+			forShow.Controls.Add(odpowiedźLabel);
+		}
+
+		public void pokażCheckBox()
+		{
+			checkBox.Show();
+		}
+		public void usuńOdpowiedź()
+		{
+			checkBox.Dispose();
+			nrOdpowiedziLabel.Dispose();
+			odpowiedźLabel.Dispose();
+		}
+		public void pokażOdpowiedź()
+		{
+			nrOdpowiedziLabel.Show();
+			odpowiedźLabel.Show();
 		}
 		public bool zaznaczona()
 		{
