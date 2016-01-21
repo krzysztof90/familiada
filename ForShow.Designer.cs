@@ -1,6 +1,7 @@
-﻿namespace familiada
+﻿using System.Windows.Forms;
+namespace familiada
 {
-	partial class Form1
+	partial class ForShow
 	{
 		/// <summary>
 		/// Required designer variable.
@@ -30,14 +31,13 @@
 		{
 			this.SuspendLayout();
 			// 
-			// Form1
+			// ForShow
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(517, 324);
-			this.Name = "Form1";
+			this.Name = "ForShow";
 			this.Text = "Form1";
-			this.Load += new System.EventHandler(this.Form1_Load);
 			this.ResumeLayout(false);
 
 		}
