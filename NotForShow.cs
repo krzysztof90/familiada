@@ -135,18 +135,6 @@ namespace familiada
 			}
 		}
 
-		static int nrPytania(string linia)
-		{
-			int nrPytania = -1;
-			try
-			{
-				nrPytania = Int32.Parse(linia);
-			}
-			catch (FormatException)
-			{ }
-			return nrPytania;
-		}
-
 		public NotForShow()
 		{
 			InitializeComponent();
@@ -189,9 +177,9 @@ namespace familiada
 			główny = new ForShow();
 			główny.Show();
 			główny.Location = drugiEkran.WorkingArea.Location;
-			główny.FormBorderStyle = FormBorderStyle.None;
-			główny.WindowState = FormWindowState.Maximized;
-			główny.TopMost = true;
+			//główny.FormBorderStyle = FormBorderStyle.None;
+			//główny.WindowState = FormWindowState.Maximized;
+			//główny.TopMost = true;
 
 			if (pytania.Count == 0)
 				exit("brak pytań");
@@ -204,23 +192,32 @@ namespace familiada
 			Environment.Exit(0);
 		}
 
+		static int nrPytania(string linia)
+		{
+			int nrPytania = -1;
+			try
+			{
+				nrPytania = Int32.Parse(linia);
+			}
+			catch (FormatException)
+			{ }
+			return nrPytania;
+		}
+
 		private void następnePytanie_Click(object sender, EventArgs e)
 		{
-			if (obecnePytanie == -1 || pytania[obecnePytanie].zaznaczoneWszystkie())
-			{
+
+				if (obecnePytanie != pytania.Count - 1)
+				{
 				if (obecnePytanie != -1)
 				{
 					pytania[obecnePytanie].usuńCheckBoxy();
 					//pytania[obecnePytanie].usuńOdpowiedzi();
 				}
-
-				if (obecnePytanie != pytania.Count - 1)
-				{
 					obecnePytanie++;
 					pytania[obecnePytanie].dodajCheckBoxy(this);
 					pytania[obecnePytanie].pokażNumeryOdpowiedzi(główny);
 				}
-			}
 		}
 	}
 }
