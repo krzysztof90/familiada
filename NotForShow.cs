@@ -60,15 +60,6 @@ namespace familiada
 			if (pytania.Count == 0)
 				Functions.exit("brak pytań");
 
-			Screen tenEkran = Screen.FromControl(this);
-			Screen drugiEkran = Screen.AllScreens.FirstOrDefault(s => !s.Equals(tenEkran)) ?? tenEkran;
-			główny.Show();
-			główny.Location = drugiEkran.WorkingArea.Location;
-			//główny.FormBorderStyle = FormBorderStyle.None;
-			//główny.WindowState = FormWindowState.Maximized;
-			//główny.TopMost = true;
-
-
 		}
 
 		static NrINazwaPytania nrPytania(string linia)
@@ -99,6 +90,17 @@ namespace familiada
 				obecnePytanie++;
 				pytania[obecnePytanie].zainicjujKontrolki();
 			}
+		}
+
+		private void pokażEkran_Click(object sender, EventArgs e)
+		{
+			Screen tenEkran = Screen.FromControl(this);
+			Screen drugiEkran = Screen.AllScreens.FirstOrDefault(s => !s.Equals(tenEkran)) ?? tenEkran;
+			główny.Show();
+			główny.Location = drugiEkran.WorkingArea.Location;
+			//główny.FormBorderStyle = FormBorderStyle.None;
+			//główny.WindowState = FormWindowState.Maximized;
+			//główny.TopMost = true;
 		}
 	}
 }
