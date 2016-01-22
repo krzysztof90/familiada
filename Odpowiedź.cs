@@ -29,7 +29,7 @@ namespace familiada
 			this.nrOdpowiedzi = nrOdpowiedzi;
 			int gdziePrzerwa = linia.LastIndexOfAny(new char[] { ' ', '\t' });
 			if (gdziePrzerwa == -1)
-				Statics.exit(String.Format("niepoprawna linia: {0}", linia));
+				Global.exit(String.Format("niepoprawna linia: {0}", linia));
 			odpowiedź = linia.Substring(0, gdziePrzerwa).TrimEnd();
 			try
 			{
@@ -37,13 +37,13 @@ namespace familiada
 			}
 			catch (FormatException)
 			{
-				Statics.exit("niepoprawna liczba punktów");
+				Global.exit("niepoprawna liczba punktów");
 			}
 
 			naPomocnicznym.Location = new Point(100, nrOdpowiedzi * 30);
 			naPomocnicznym.Size = new System.Drawing.Size(200, 30);
 			naPomocnicznym.Hide();
-			Statics.pomocniczy.Controls.Add(naPomocnicznym);
+			Global.pomocniczy.Controls.Add(naPomocnicznym);
 
 			odpowiedźButton.Size = new Size(100, 30);
 			odpowiedźButton.Location = new Point(50, 0);
@@ -54,21 +54,21 @@ namespace familiada
 			punktyLewyButton.Size = new Size(50, 30);
 			punktyLewyButton.Location = new Point(0, 0);
 			punktyLewyButton.Text = punkty.ToString();
-			punktyLewyButton.Tag = Statics.drużynaL;
+			punktyLewyButton.Tag = Global.drużynaL;
 			punktyLewyButton.Click += new EventHandler(zaznaczDrużynie);
 			naPomocnicznym.Controls.Add(punktyLewyButton);
 
 			punktyPrawyButton.Size = new Size(50, 30);
 			punktyPrawyButton.Location = new Point(150, 0);
 			punktyPrawyButton.Text = punkty.ToString();
-			punktyPrawyButton.Tag = Statics.drużynaP;
+			punktyPrawyButton.Tag = Global.drużynaP;
 			punktyPrawyButton.Click += new EventHandler(zaznaczDrużynie);
 			naPomocnicznym.Controls.Add(punktyPrawyButton);
 
 			naGłównym.Location = new Point(100, nrOdpowiedzi * 30);
 			naGłównym.Size = new System.Drawing.Size(200, 30);
 			naGłównym.Hide();
-			Statics.główny.Controls.Add(naGłównym);
+			Global.główny.Controls.Add(naGłównym);
 
 			nrOdpowiedziLabel.AutoSize = true;
 			nrOdpowiedziLabel.Location = new Point(0, 0);
@@ -89,7 +89,6 @@ namespace familiada
 		public void ukryjKontrolkiOdpowiedzi()
 		{
 			naPomocnicznym.Hide();
-			odznacz(false);
 			naGłównym.Hide();
 		}
 		public void pokażOdpowiedź()

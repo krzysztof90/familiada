@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace familiada
 {
-	class Statics
+	class Global
 	{
 		public static string nazwaPliku = "pytania.txt";
 

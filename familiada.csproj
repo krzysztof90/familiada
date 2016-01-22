@@ -45,7 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Drużyna.cs" />
-    <Compile Include="Statics.cs" />
+    <Compile Include="Global.cs" />
     <Compile Include="Odpowiedź.cs" />
     <Compile Include="ForShow.cs">
       <SubType>Form</SubType>
