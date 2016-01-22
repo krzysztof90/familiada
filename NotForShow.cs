@@ -13,13 +13,6 @@ namespace familiada
 {
 	public partial class NotForShow : Form
 	{
-		static string nazwaPliku = "pytania.txt";
-
-		ForShow główny = new ForShow();
-
-		List<Pytanie> pytania = new List<Pytanie>();
-		int obecnePytanie = -1;
-
 		public NotForShow()
 		{
 			InitializeComponent();
@@ -32,7 +25,7 @@ namespace familiada
 
 			try
 			{
-				StreamReader plik = new StreamReader(nazwaPliku);
+				StreamReader plik = new StreamReader(Statics.nazwaPliku);
 
 				int nrOdpowiedzi = 1;
 				while (!plik.EndOfStream)
@@ -42,14 +35,14 @@ namespace familiada
 					{
 						if (nrPytania(linia) != null)
 						{
-							pytania.Add(new Pytanie(nrPytania(linia), this));
+							Statics.pytania.Add(new Pytanie(nrPytania(linia), this));
 							nrOdpowiedzi = 1;
 						}
 						else
 						{
-							if (pytania.Count == 0)
-								Functions.exit("zacznij plik od numeru pytania");
-							pytania.Last().dodajOdpowiedź(new Odpowiedź(linia, nrOdpowiedzi++, this, główny));
+							if (Statics.pytania.Count == 0)
+								Statics.exit("zacznij plik od numeru pytania");
+							Statics.pytania.Last().dodajOdpowiedź(new Odpowiedź(linia, nrOdpowiedzi++));
 						}
 					}
 				}
@@ -57,11 +50,11 @@ namespace familiada
 			}
 			catch (FileNotFoundException exc)
 			{
-				Functions.exit(String.Format("brakuje pliku {0}", exc.FileName));
+				Statics.exit(String.Format("brakuje pliku {0}", exc.FileName));
 			}
 
-			if (pytania.Count == 0)
-				Functions.exit("brak pytań");
+			if (Statics.pytania.Count == 0)
+				Statics.exit("brak pytań");
 
 		}
 
@@ -84,24 +77,24 @@ namespace familiada
 
 		private void następnePytanie_Click(object sender, EventArgs e)
 		{
-			if (obecnePytanie != pytania.Count - 1)
+			if (Statics.obecnePytanie != Statics.pytania.Count - 1)
 			{
-				if (obecnePytanie != -1)
-					pytania[obecnePytanie].ukryjOdpowiedzi();
+				if (Statics.obecnePytanie != -1)
+					Statics.pytania[Statics.obecnePytanie].ukryjOdpowiedzi();
 
-				obecnePytanie++;
-				pytania[obecnePytanie].zainicjujKontrolki();
+				Statics.obecnePytanie++;
+				Statics.pytania[Statics.obecnePytanie].zainicjujKontrolki();
 			}
 		}
 
 		private void poprzedniePytanie_Click(object sender, EventArgs e)
 		{
-			if (obecnePytanie > 0)
+			if (Statics.obecnePytanie > 0)
 			{
-				pytania[obecnePytanie].ukryjOdpowiedzi();
+				Statics.pytania[Statics.obecnePytanie].ukryjOdpowiedzi();
 
-				obecnePytanie--;
-				pytania[obecnePytanie].zainicjujKontrolki();
+				Statics.obecnePytanie--;
+				Statics.pytania[Statics.obecnePytanie].zainicjujKontrolki();
 			}
 
 		}
@@ -110,8 +103,8 @@ namespace familiada
 		{
 			Screen tenEkran = Screen.FromControl(this);
 			Screen drugiEkran = Screen.AllScreens.FirstOrDefault(s => !s.Equals(tenEkran)) ?? tenEkran;
-			główny.Show();
-			główny.Location = drugiEkran.WorkingArea.Location;
+			Statics.główny.Show();
+			Statics.główny.Location = drugiEkran.WorkingArea.Location;
 			//główny.FormBorderStyle = FormBorderStyle.None;
 			//główny.WindowState = FormWindowState.Maximized;
 			//główny.TopMost = true;

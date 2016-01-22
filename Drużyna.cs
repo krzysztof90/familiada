@@ -3,16 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace familiada
 {
-	class Functions
+	class Drużyna
 	{
-		static public void exit(string message)
+		int punkty=0;
+
+		public Drużyna()
 		{
-			MessageBox.Show(message);
-			Environment.Exit(0);
+
 		}
 	}
 }
