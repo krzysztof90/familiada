@@ -2,17 +2,39 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Windows.Forms;
 
 namespace familiada
 {
+	class NrINazwaPytania
+	{
+		public int nrPytania;
+		public string nazwaPytania;
+
+		public NrINazwaPytania(int nr, string nazwa)
+		{
+			nrPytania = nr;
+			nazwaPytania = nazwa;
+		}
+	}
+
 	class Pytanie
 	{
 		int nrPytania;
+		string nazwaPytania;
+		Label nazwaPytaniaLabel;
 		public List<Odpowiedź> odpowiedzi = new List<Odpowiedź>();
 
-		public Pytanie(int nr)
+		public Pytanie(NrINazwaPytania pytanie, NotForShow notForShow)
 		{
-			nrPytania = nr;
+			nrPytania = pytanie.nrPytania;
+			nazwaPytania = pytanie.nazwaPytania;
+
+			nazwaPytaniaLabel = new Label();
+			//nazwaPytaniaLabel.Location = new Point(120, nrOdpowiedzi * 30);
+			nazwaPytaniaLabel.Text = nazwaPytania;
+			nazwaPytaniaLabel.Hide();
+			notForShow.Controls.Add(nazwaPytaniaLabel);
 		}
 
 		public void dodajOdpowiedź(Odpowiedź odpowiedź)
@@ -21,6 +43,7 @@ namespace familiada
 		}
 		public void zainicjujKontrolki()
 		{
+			nazwaPytaniaLabel.Show();
 			foreach (Odpowiedź odpowiedź in odpowiedzi)
 				odpowiedź.zainicjujKontrolkiOdpowiedzi();
 		}
@@ -31,6 +54,7 @@ namespace familiada
 		}
 		public void usuńOdpowiedzi()
 		{
+			nazwaPytaniaLabel.Dispose();
 			foreach (Odpowiedź odpowiedź in odpowiedzi)
 				odpowiedź.usuńOdpowiedź();
 		}

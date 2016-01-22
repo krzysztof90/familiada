@@ -34,7 +34,6 @@ namespace familiada
 			}
 
 			checkBox = new CheckBox();
-			//checkBox.AutoSize = true;
 			checkBox.Location = new Point(100, nrOdpowiedzi * 30);
 			//checkBox.Size = new Size(80, 17);
 			checkBox.Text = odpowiedź;
@@ -45,16 +44,12 @@ namespace familiada
 			nrOdpowiedziLabel = new Label();
 			nrOdpowiedziLabel.AutoSize = true;
 			nrOdpowiedziLabel.Location = new Point(100, nrOdpowiedzi * 30);
-			//nrOdpowiedziLabel.Size = new Size(10, 17);
 			nrOdpowiedziLabel.Text = nrOdpowiedzi.ToString();
 			nrOdpowiedziLabel.Hide();
 			forShow.Controls.Add(nrOdpowiedziLabel);
 
-			// tylko utworzenie
 			odpowiedźLabel = new Label();
-			//checkBox.AutoSize = true;
 			odpowiedźLabel.Location = new Point(120, nrOdpowiedzi * 30);
-			//checkBox.Size = new Size(80, 17);
 			odpowiedźLabel.Text = odpowiedź;
 			odpowiedźLabel.Hide();
 			forShow.Controls.Add(odpowiedźLabel);

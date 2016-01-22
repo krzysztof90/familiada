@@ -37,9 +37,9 @@ namespace familiada
 					string linia = plik.ReadLine().Trim();
 					if (linia.Length != 0)
 					{
-						if (nrPytania(linia) != -1)
+						if (nrPytania(linia) != null)
 						{
-							pytania.Add(new Pytanie(nrPytania(linia)));
+							pytania.Add(new Pytanie(nrPytania(linia), this));
 							nrOdpowiedzi = 1;
 						}
 						else
@@ -71,16 +71,21 @@ namespace familiada
 
 		}
 
-		static int nrPytania(string linia)
+		static NrINazwaPytania nrPytania(string linia)
 		{
-			int nrPytania = -1;
+			NrINazwaPytania pytanie = null;
 			try
 			{
-				nrPytania = Int32.Parse(linia);
+				string[] words = linia.Split(new char[] { ' ', '\t' });
+			int nrPytania = Int32.Parse(words[0]);
+			string nazwaPytania = "";
+			for (int i = 1; i < words.Length; i++)
+				nazwaPytania += words[i] + " ";
+			pytanie = new NrINazwaPytania(nrPytania, nazwaPytania.TrimEnd());
 			}
 			catch (FormatException)
 			{ }
-			return nrPytania;
+			return pytanie;
 		}
 
 		private void następnePytanie_Click(object sender, EventArgs e)
