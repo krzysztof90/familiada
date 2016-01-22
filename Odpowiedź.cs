@@ -13,9 +13,13 @@ namespace familiada
 		public string odpowiedź;
 		public int punkty;
 		public int nrOdpowiedzi;
-		CheckBox checkBox = new CheckBox();
+
 		Panel naGłównym = new Panel();
 		Panel naPomocnicznym = new Panel();
+
+		Button odpowiedźButton = new Button();
+		Button punktyLewyButton = new Button();
+		Button punktyPrawyButton = new Button();
 
 		Label nrOdpowiedziLabel = new Label();
 		Label odpowiedźLabel = new Label();
@@ -41,10 +45,23 @@ namespace familiada
 			naPomocnicznym.Hide();
 			notForShow.Controls.Add(naPomocnicznym);
 
-			checkBox.Location = new Point(0,0);
-			checkBox.Text = odpowiedź;
-			checkBox.CheckedChanged += new EventHandler(checkBoxCheckedChanged);
-			naPomocnicznym.Controls.Add(checkBox);
+			odpowiedźButton.Size = new Size(100, 30);
+			odpowiedźButton.Location = new Point(50, 0);
+			odpowiedźButton.Text = odpowiedź;
+			odpowiedźButton.Click += new EventHandler(zaznaczOdznacz);
+			naPomocnicznym.Controls.Add(odpowiedźButton);
+
+			punktyLewyButton.Size = new Size(50, 30);
+			punktyLewyButton.Location = new Point(0, 0);
+			//punktyLewyButton.Text = odpowiedź;
+			//punktyLewyButton.Click += new EventHandler(zaznaczOdznacz);
+			naPomocnicznym.Controls.Add(punktyLewyButton);
+
+			punktyPrawyButton.Size = new Size(50, 30);
+			punktyPrawyButton.Location = new Point(150, 0);
+			//punktyPrawyButton.Text = odpowiedź;
+			//punktyPrawyButton.Click += new EventHandler(zaznaczOdznacz);
+			naPomocnicznym.Controls.Add(punktyPrawyButton);
 
 			naGłównym.Location = new Point(100, nrOdpowiedzi * 30);
 			naGłównym.Size = new System.Drawing.Size(200, 30);
@@ -70,7 +87,7 @@ namespace familiada
 		public void ukryjKontrolkiOdpowiedzi()
 		{
 			naPomocnicznym.Hide();
-			checkBox.Checked = false;
+			odznacz(false);
 			naGłównym.Hide();
 		}
 		public void pokażOdpowiedź()
@@ -83,24 +100,39 @@ namespace familiada
 		}
 		public void usuńOdpowiedź()
 		{
-			checkBox.Dispose();
+			odpowiedźButton.Dispose();
 			nrOdpowiedziLabel.Dispose();
 			odpowiedźLabel.Dispose();
 		}
+		public void zaznacz()
+		{
+			odpowiedźButton.BackColor = Color.White;
+
+			pokażOdpowiedź();
+		}
+		public void odznacz(bool odejmijPunkty)
+		{
+			odpowiedźButton.BackColor = SystemColors.Control;
+			odpowiedźButton.UseVisualStyleBackColor = true;
+
+			ukryjOdpowiedź();
+
+
+		}
 		public bool zaznaczona()
 		{
-			return checkBox.Checked;
+			return odpowiedźButton.BackColor == Color.White;
 		}
 
-		private void checkBoxCheckedChanged(object sender, EventArgs e)
+		private void zaznaczOdznacz(object sender, EventArgs e)
 		{
-			if (zaznaczona())
+			if (!zaznaczona())
 			{
-				pokażOdpowiedź();
+				zaznacz();
 			}
 			else
 			{
-				ukryjOdpowiedź();
+				odznacz(true);
 			}
 		}
 	}

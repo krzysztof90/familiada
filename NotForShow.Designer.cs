@@ -45,7 +45,7 @@
 			// 
 			// pokażEkran
 			// 
-			this.pokażEkran.Location = new System.Drawing.Point(377, 90);
+			this.pokażEkran.Location = new System.Drawing.Point(382, 90);
 			this.pokażEkran.Name = "pokażEkran";
 			this.pokażEkran.Size = new System.Drawing.Size(114, 23);
 			this.pokażEkran.TabIndex = 1;
@@ -67,7 +67,7 @@
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(517, 324);
+			this.ClientSize = new System.Drawing.Size(527, 324);
 			this.Controls.Add(this.poprzedniePytanie);
 			this.Controls.Add(this.pokażEkran);
 			this.Controls.Add(this.następnePytanie);
@@ -81,8 +81,8 @@
 		#endregion
 
 		private System.Windows.Forms.Button następnePytanie;
-		private System.Windows.Forms.Button pokażEkran;
 		private System.Windows.Forms.Button poprzedniePytanie;
+		private System.Windows.Forms.Button pokażEkran;
 	}
 }
 
