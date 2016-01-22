@@ -60,20 +60,25 @@ namespace familiada
 			forShow.Controls.Add(odpowiedźLabel);
 		}
 
-		public void pokażCheckBox()
+		public void zainicjujKontrolkiOdpowiedzi()
 		{
 			checkBox.Show();
+			nrOdpowiedziLabel.Show();
+			pokażOdpowiedź();
+		}
+		public void pokażOdpowiedź()
+		{
+			odpowiedźLabel.Show();
+		}
+		public void ukryjOdpowiedź()
+		{
+			odpowiedźLabel.Hide();
 		}
 		public void usuńOdpowiedź()
 		{
 			checkBox.Dispose();
 			nrOdpowiedziLabel.Dispose();
 			odpowiedźLabel.Dispose();
-		}
-		public void pokażOdpowiedź()
-		{
-			nrOdpowiedziLabel.Show();
-			odpowiedźLabel.Show();
 		}
 		public bool zaznaczona()
 		{
@@ -82,13 +87,13 @@ namespace familiada
 
 		private void checkBoxCheckedChanged(object sender, EventArgs e)
 		{
-			if (checkBox.Checked)
+			if (zaznaczona())
 			{
-				odpowiedźLabel.Show();
+				pokażOdpowiedź();
 			}
 			else
 			{
-				odpowiedźLabel.Hide();
+				ukryjOdpowiedź();
 			}
 		}
 	}

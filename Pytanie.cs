@@ -19,17 +19,17 @@ namespace familiada
 		{
 			odpowiedzi.Add(odpowiedź);
 		}
-		public void pokażCheckBoxy(NotForShow form)
+		public void zainicjujKontrolki()
 		{
 			foreach (Odpowiedź odpowiedź in odpowiedzi)
-				odpowiedź.pokażCheckBox();
+				odpowiedź.zainicjujKontrolkiOdpowiedzi();
 		}
 		public void pokażOdpowiedzi()
 		{
 			foreach (Odpowiedź odpowiedź in odpowiedzi)
 				odpowiedź.pokażOdpowiedź();
 		}
-		public void usuńOdpowiedi()
+		public void usuńOdpowiedzi()
 		{
 			foreach (Odpowiedź odpowiedź in odpowiedzi)
 				odpowiedź.usuńOdpowiedź();

@@ -89,11 +89,10 @@ namespace familiada
 			{
 				if (obecnePytanie != -1)
 				{
-					pytania[obecnePytanie].usuńOdpowiedi();
+					pytania[obecnePytanie].usuńOdpowiedzi();
 				}
 				obecnePytanie++;
-				pytania[obecnePytanie].pokażCheckBoxy(this);
-				pytania[obecnePytanie].pokażOdpowiedzi();
+				pytania[obecnePytanie].zainicjujKontrolki();
 			}
 		}
 	}
