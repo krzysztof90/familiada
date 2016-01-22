@@ -30,6 +30,7 @@
 		{
 			this.następnePytanie = new System.Windows.Forms.Button();
 			this.pokażEkran = new System.Windows.Forms.Button();
+			this.poprzedniePytanie = new System.Windows.Forms.Button();
 			this.SuspendLayout();
 			// 
 			// następnePytanie
@@ -52,11 +53,22 @@
 			this.pokażEkran.UseVisualStyleBackColor = true;
 			this.pokażEkran.Click += new System.EventHandler(this.pokażEkran_Click);
 			// 
+			// poprzedniePytanie
+			// 
+			this.poprzedniePytanie.Location = new System.Drawing.Point(187, 251);
+			this.poprzedniePytanie.Name = "poprzedniePytanie";
+			this.poprzedniePytanie.Size = new System.Drawing.Size(114, 23);
+			this.poprzedniePytanie.TabIndex = 2;
+			this.poprzedniePytanie.Text = "poprzedniePytanie";
+			this.poprzedniePytanie.UseVisualStyleBackColor = true;
+			this.poprzedniePytanie.Click += new System.EventHandler(this.poprzedniePytanie_Click);
+			// 
 			// NotForShow
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(517, 324);
+			this.Controls.Add(this.poprzedniePytanie);
 			this.Controls.Add(this.pokażEkran);
 			this.Controls.Add(this.następnePytanie);
 			this.Name = "NotForShow";
@@ -70,6 +82,7 @@
 
 		private System.Windows.Forms.Button następnePytanie;
 		private System.Windows.Forms.Button pokażEkran;
+		private System.Windows.Forms.Button poprzedniePytanie;
 	}
 }
 

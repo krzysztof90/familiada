@@ -59,7 +59,13 @@ namespace familiada
 		{
 			checkBox.Show();
 			nrOdpowiedziLabel.Show();
-			pokażOdpowiedź();
+		}
+		public void ukryjKontrolkiOdpowiedzi()
+		{
+			checkBox.Hide();
+			checkBox.Checked = false;
+			nrOdpowiedziLabel.Hide();
+			ukryjOdpowiedź();
 		}
 		public void pokażOdpowiedź()
 		{

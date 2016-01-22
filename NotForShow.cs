@@ -85,11 +85,25 @@ namespace familiada
 			{
 				if (obecnePytanie != -1)
 				{
-					pytania[obecnePytanie].usuńOdpowiedzi();
+					pytania[obecnePytanie].ukryjOdpowiedzi();
 				}
 				obecnePytanie++;
 				pytania[obecnePytanie].zainicjujKontrolki();
 			}
+		}
+
+		private void poprzedniePytanie_Click(object sender, EventArgs e)
+		{
+			if (obecnePytanie > 0)
+			{
+				//if (obecnePytanie != -1)
+				{
+					pytania[obecnePytanie].ukryjOdpowiedzi();
+				}
+				obecnePytanie--;
+				pytania[obecnePytanie].zainicjujKontrolki();
+			}
+
 		}
 
 		private void pokażEkran_Click(object sender, EventArgs e)
@@ -102,5 +116,6 @@ namespace familiada
 			//główny.WindowState = FormWindowState.Maximized;
 			//główny.TopMost = true;
 		}
+
 	}
 }

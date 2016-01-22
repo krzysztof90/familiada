@@ -52,11 +52,11 @@ namespace familiada
 			foreach (Odpowiedź odpowiedź in odpowiedzi)
 				odpowiedź.pokażOdpowiedź();
 		}
-		public void usuńOdpowiedzi()
+		public void ukryjOdpowiedzi()
 		{
-			nazwaPytaniaLabel.Dispose();
+			nazwaPytaniaLabel.Hide();
 			foreach (Odpowiedź odpowiedź in odpowiedzi)
-				odpowiedź.usuńOdpowiedź();
+				odpowiedź.ukryjKontrolkiOdpowiedzi();
 		}
 		public bool zaznaczoneWszystkie()
 		{
