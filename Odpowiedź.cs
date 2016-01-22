@@ -13,9 +13,12 @@ namespace familiada
 		public string odpowiedź;
 		public int punkty;
 		public int nrOdpowiedzi;
-		CheckBox checkBox;
-		Label nrOdpowiedziLabel;
-		Label odpowiedźLabel;
+		CheckBox checkBox = new CheckBox();
+		Panel naGłównym = new Panel();
+		Panel naPomocnicznym = new Panel();
+
+		Label nrOdpowiedziLabel = new Label();
+		Label odpowiedźLabel = new Label();
 
 		public Odpowiedź(string linia, int nrOdpowiedzi, NotForShow notForShow, ForShow forShow)
 		{
@@ -33,39 +36,42 @@ namespace familiada
 				Functions.exit("niepoprawna liczba punktów");
 			}
 
-			checkBox = new CheckBox();
-			checkBox.Location = new Point(100, nrOdpowiedzi * 30);
-			//checkBox.Size = new Size(80, 17);
+			naPomocnicznym.Location = new Point(100, nrOdpowiedzi * 30);
+			naPomocnicznym.Size = new System.Drawing.Size(200, 30);
+			naPomocnicznym.Hide();
+			notForShow.Controls.Add(naPomocnicznym);
+
+			checkBox.Location = new Point(0,0);
 			checkBox.Text = odpowiedź;
 			checkBox.CheckedChanged += new EventHandler(checkBoxCheckedChanged);
-			checkBox.Hide();
-			notForShow.Controls.Add(checkBox);
+			naPomocnicznym.Controls.Add(checkBox);
 
-			nrOdpowiedziLabel = new Label();
+			naGłównym.Location = new Point(100, nrOdpowiedzi * 30);
+			naGłównym.Size = new System.Drawing.Size(200, 30);
+			naGłównym.Hide();
+			forShow.Controls.Add(naGłównym);
+
 			nrOdpowiedziLabel.AutoSize = true;
-			nrOdpowiedziLabel.Location = new Point(100, nrOdpowiedzi * 30);
+			nrOdpowiedziLabel.Location = new Point(0, 0);
 			nrOdpowiedziLabel.Text = nrOdpowiedzi.ToString();
-			nrOdpowiedziLabel.Hide();
-			forShow.Controls.Add(nrOdpowiedziLabel);
+			naGłównym.Controls.Add(nrOdpowiedziLabel);
 
-			odpowiedźLabel = new Label();
-			odpowiedźLabel.Location = new Point(120, nrOdpowiedzi * 30);
+			odpowiedźLabel.Location = new Point(30, 0);
 			odpowiedźLabel.Text = odpowiedź;
 			odpowiedźLabel.Hide();
-			forShow.Controls.Add(odpowiedźLabel);
+			naGłównym.Controls.Add(odpowiedźLabel);
 		}
 
 		public void zainicjujKontrolkiOdpowiedzi()
 		{
-			checkBox.Show();
-			nrOdpowiedziLabel.Show();
+			naPomocnicznym.Show();
+			naGłównym.Show();
 		}
 		public void ukryjKontrolkiOdpowiedzi()
 		{
-			checkBox.Hide();
+			naPomocnicznym.Hide();
 			checkBox.Checked = false;
-			nrOdpowiedziLabel.Hide();
-			ukryjOdpowiedź();
+			naGłównym.Hide();
 		}
 		public void pokażOdpowiedź()
 		{

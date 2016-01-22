@@ -27,6 +27,9 @@ namespace familiada
 
 		private void Form1_Load(object sender, EventArgs e)
 		{
+			// usunąć
+			pokażEkran_Click(this, new EventArgs());
+
 			try
 			{
 				StreamReader plik = new StreamReader(nazwaPliku);
@@ -68,11 +71,11 @@ namespace familiada
 			try
 			{
 				string[] words = linia.Split(new char[] { ' ', '\t' });
-			int nrPytania = Int32.Parse(words[0]);
-			string nazwaPytania = "";
-			for (int i = 1; i < words.Length; i++)
-				nazwaPytania += words[i] + " ";
-			pytanie = new NrINazwaPytania(nrPytania, nazwaPytania.TrimEnd());
+				int nrPytania = Int32.Parse(words[0]);
+				string nazwaPytania = "";
+				for (int i = 1; i < words.Length; i++)
+					nazwaPytania += words[i] + " ";
+				pytanie = new NrINazwaPytania(nrPytania, nazwaPytania.TrimEnd());
 			}
 			catch (FormatException)
 			{ }
@@ -84,9 +87,8 @@ namespace familiada
 			if (obecnePytanie != pytania.Count - 1)
 			{
 				if (obecnePytanie != -1)
-				{
 					pytania[obecnePytanie].ukryjOdpowiedzi();
-				}
+
 				obecnePytanie++;
 				pytania[obecnePytanie].zainicjujKontrolki();
 			}
@@ -96,10 +98,8 @@ namespace familiada
 		{
 			if (obecnePytanie > 0)
 			{
-				//if (obecnePytanie != -1)
-				{
-					pytania[obecnePytanie].ukryjOdpowiedzi();
-				}
+				pytania[obecnePytanie].ukryjOdpowiedzi();
+
 				obecnePytanie--;
 				pytania[obecnePytanie].zainicjujKontrolki();
 			}
@@ -115,6 +115,8 @@ namespace familiada
 			//główny.FormBorderStyle = FormBorderStyle.None;
 			//główny.WindowState = FormWindowState.Maximized;
 			//główny.TopMost = true;
+
+			pokażEkran.Hide();
 		}
 
 	}
