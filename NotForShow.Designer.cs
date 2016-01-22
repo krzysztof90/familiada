@@ -72,7 +72,7 @@
 			this.Controls.Add(this.pokażEkran);
 			this.Controls.Add(this.następnePytanie);
 			this.Name = "NotForShow";
-			this.Text = "Form1";
+			this.Text = "Kontroler";
 			this.Load += new System.EventHandler(this.Form1_Load);
 			this.ResumeLayout(false);
 

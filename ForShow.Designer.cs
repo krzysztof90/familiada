@@ -37,7 +37,7 @@ namespace familiada
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(517, 324);
 			this.Name = "ForShow";
-			this.Text = "Form1";
+			this.Text = "Główny ekran";
 			this.ResumeLayout(false);
 
 		}
