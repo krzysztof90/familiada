@@ -30,6 +30,7 @@ namespace familiada
 
 		Label nrOdpowiedziLabel = new Label();
 		Label odpowiedźLabel = new Label();
+		Label punktyLabel = new Label();
 
 		public Odpowiedź(string linia, Pytanie pytanie)
 		{
@@ -53,41 +54,41 @@ namespace familiada
 			naKontrolerze.Hide();
 			Global.kontroler.Controls.Add(naKontrolerze);
 
-			odpowiedźButton.Size = new Size(100, 30);
 			odpowiedźButton.Location = new Point(50, 0);
+			odpowiedźButton.Size = new Size(100, 30);
 			odpowiedźButton.Text = odpowiedź;
 			odpowiedźButton.Click += new EventHandler(zaznaczOdznacz_Click);
 
-			punktyLewyButton.Size = new Size(50, 30);
 			punktyLewyButton.Location = new Point(0, 0);
+			punktyLewyButton.Size = new Size(50, 30);
 			punktyLewyButton.Text = punkty.ToString();
 			punktyLewyButton.Tag = Global.drużynaL;
 			punktyLewyButton.Click += new EventHandler(zaznaczDrużynie_Click);
 			naKontrolerze.Controls.Add(punktyLewyButton);
 
-			punktyPrawyButton.Size = new Size(50, 30);
 			punktyPrawyButton.Location = new Point(150, 0);
+			punktyPrawyButton.Size = new Size(50, 30);
 			punktyPrawyButton.Text = punkty.ToString();
 			punktyPrawyButton.Tag = Global.drużynaP;
 			punktyPrawyButton.Click += new EventHandler(zaznaczDrużynie_Click);
 			naKontrolerze.Controls.Add(punktyPrawyButton);
 
-			edycjaOdpowiedziButton.Size = new Size(30, 30);
 			edycjaOdpowiedziButton.Location = new Point(220, 0);
+			edycjaOdpowiedziButton.Size = new Size(30, 30);
 			edycjaOdpowiedziButton.Text = "edytuj";
 			edycjaOdpowiedziButton.Click += new EventHandler(edytujOdpowiedź_Click);
 			naKontrolerze.Controls.Add(edycjaOdpowiedziButton);
 
-			edycjaPunktówButton.Size = new Size(30, 30);
 			edycjaPunktówButton.Location = new Point(250, 0);
+			edycjaPunktówButton.Size = new Size(30, 30);
 			edycjaPunktówButton.Text = "edytuj punkty";
 			edycjaPunktówButton.Click += new EventHandler(edytujPunkty_Click);
 			naKontrolerze.Controls.Add(edycjaPunktówButton);
 			naKontrolerze.Controls.Add(odpowiedźButton);
 
 			edytorOdpowiedzi.AutoSize = false;
-			edytorOdpowiedzi.Size = new Size(100, 30);
 			edytorOdpowiedzi.Location = new Point(50, 0);
+			edytorOdpowiedzi.Size = new Size(100, 30);
 			edytorOdpowiedzi.Text = odpowiedź;
 			edytorOdpowiedzi.Hide();
 			edytorOdpowiedzi.Leave += new EventHandler(edytorOdpowiedzi_Leave);
@@ -96,8 +97,8 @@ namespace familiada
 			naKontrolerze.Controls.Add(edytorOdpowiedzi);
 
 			edytorPunktów.AutoSize = false;
-			edytorPunktów.Size = new Size(30, 30);
 			edytorPunktów.Location = new Point(250, 0);
+			edytorPunktów.Size = new Size(30, 30);
 			edytorPunktów.Text = punkty.ToString();
 			edytorPunktów.Hide();
 			edytorPunktów.Leave += new EventHandler(edytorPunktów_Leave);
@@ -105,34 +106,41 @@ namespace familiada
 			edytorPunktów.Tag = new EventHandler(edytorPunktów_Leave);
 			naKontrolerze.Controls.Add(edytorPunktów);
 
-			doGóry.Size = new Size(30, 15);
 			doGóry.Location = new Point(280, 0);
+			doGóry.Size = new Size(30, 15);
 			doGóry.Text = "góra";
 			doGóry.Tag = nrOdpowiedzi;
 			doGóry.Click += new EventHandler(doGóry_Click);
 			naKontrolerze.Controls.Add(doGóry);
 
-			doDołu.Size = new Size(30, 15);
 			doDołu.Location = new Point(280, 15);
+			doDołu.Size = new Size(30, 15);
 			doDołu.Text = "dół";
 			doDołu.Tag = nrOdpowiedzi;
 			doDołu.Click += new EventHandler(doDołu_Click);
 			naKontrolerze.Controls.Add(doDołu);
 
 			naGłównym.Location = new Point(100, nrOdpowiedzi * 30);
-			naGłównym.Size = new System.Drawing.Size(200, 30);
+			naGłównym.Size = new Size(210, 30);
 			naGłównym.Hide();
 			Global.główny.Controls.Add(naGłównym);
 
-			nrOdpowiedziLabel.AutoSize = true;
 			nrOdpowiedziLabel.Location = new Point(0, 0);
+			nrOdpowiedziLabel.Size = new Size(30, 30);
 			nrOdpowiedziLabel.Text = nrOdpowiedzi.ToString();
 			naGłównym.Controls.Add(nrOdpowiedziLabel);
 
 			odpowiedźLabel.Location = new Point(30, 0);
+			odpowiedźLabel.Size = new Size(150, 30);
 			odpowiedźLabel.Text = odpowiedź;
 			odpowiedźLabel.Hide();
 			naGłównym.Controls.Add(odpowiedźLabel);
+
+			punktyLabel.Location = new Point(180, 0);
+			punktyLabel.Size = new Size(30, 30);
+			punktyLabel.Text = punkty.ToString();
+			punktyLabel.Hide();
+			naGłównym.Controls.Add(punktyLabel);
 		}
 
 		public void zainicjujKontrolkiOdpowiedzi()
@@ -148,10 +156,12 @@ namespace familiada
 		public void pokażOdpowiedź()
 		{
 			odpowiedźLabel.Show();
+			punktyLabel.Show();
 		}
 		public void ukryjOdpowiedź()
 		{
 			odpowiedźLabel.Hide();
+			punktyLabel.Hide();
 		}
 		public void usuńOdpowiedź()
 		{
@@ -260,7 +270,7 @@ namespace familiada
 				edytorPunktów.Hide();
 				punktyLewyButton.Text = punkty.ToString();
 				punktyPrawyButton.Text = punkty.ToString();
-				//punktyLabel.Text = odpowiedź;
+				punktyLabel.Text = punkty.ToString();
 			}
 			catch (FormatException)
 			{
