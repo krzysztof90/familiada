@@ -13,15 +13,15 @@ namespace familiada
 {
 	// URUCHOMIĆ PROGRAM DOPIERO PO PODŁĄCZENIU DRUGIEGO EKRANU
 
-	public partial class NotForShow : Form
+	public partial class Kontroler : Form
 	{
-		public NotForShow()
+		public Kontroler()
 		{
 
 			InitializeComponent();
 		}
 
-		private void Form1_Load(object sender, EventArgs e)
+		private void Form_Load(object sender, EventArgs e)
 		{
 			// usunąć
 			pokażEkran_Click(this, new EventArgs());

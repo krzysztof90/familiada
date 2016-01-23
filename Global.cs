@@ -11,8 +11,8 @@ namespace familiada
 	{
 		public static string nazwaPliku = "pytania.txt";
 
-		public static NotForShow pomocniczy = new NotForShow();
-		public static ForShow główny = new ForShow();
+		public static Kontroler pomocniczy = new Kontroler();
+		public static GłównyEkran główny = new GłównyEkran();
 		
 		public static List<Pytanie> pytania = new List<Pytanie>();
 		public static int obecnePytanie = -1;

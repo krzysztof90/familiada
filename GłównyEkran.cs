@@ -11,15 +11,15 @@ using System.Windows.Forms;
 
 namespace familiada
 {
-	public partial class ForShow : Form
+	public partial class GłównyEkran : Form
 	{
 
-		public ForShow()
+		public GłównyEkran()
 		{
 			InitializeComponent();
 		}
 
-		private void ForShow_Load(object sender, EventArgs e)
+		private void Form_Load(object sender, EventArgs e)
 		{
 			Screen tenEkran = Screen.FromControl(this);
 			Screen drugiEkran = Screen.AllScreens.FirstOrDefault(s => !s.Equals(tenEkran)) ?? tenEkran;

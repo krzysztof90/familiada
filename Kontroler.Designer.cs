@@ -1,6 +1,6 @@
 ﻿namespace familiada
 {
-	partial class NotForShow
+	partial class Kontroler
 	{
 		/// <summary>
 		/// Required designer variable.
@@ -73,7 +73,7 @@
 			this.Controls.Add(this.następnePytanie);
 			this.Name = "NotForShow";
 			this.Text = "Kontroler";
-			this.Load += new System.EventHandler(this.Form1_Load);
+			this.Load += new System.EventHandler(this.Form_Load);
 			this.ResumeLayout(false);
 
 		}

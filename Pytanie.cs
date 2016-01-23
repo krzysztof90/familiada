@@ -25,7 +25,7 @@ namespace familiada
 		Label nazwaPytaniaLabel;
 		public List<Odpowiedź> odpowiedzi = new List<Odpowiedź>();
 
-		public Pytanie(NrINazwaPytania pytanie, NotForShow notForShow)
+		public Pytanie(NrINazwaPytania pytanie, Kontroler notForShow)
 		{
 			nrPytania = pytanie.nrPytania;
 			nazwaPytania = pytanie.nazwaPytania;
