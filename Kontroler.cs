@@ -11,8 +11,6 @@ using System.Windows.Forms;
 
 namespace familiada
 {
-	// URUCHOMIĆ PROGRAM DOPIERO PO PODŁĄCZENIU DRUGIEGO EKRANU
-
 	public partial class Kontroler : Form
 	{
 		public Kontroler()
@@ -120,7 +118,7 @@ namespace familiada
 				Global.główny.FormBorderStyle = FormBorderStyle.None;
 				Global.główny.TopMost = true;
 			}
-				Global.główny.WindowState = FormWindowState.Maximized;
+			Global.główny.WindowState = FormWindowState.Maximized;
 			pokażEkran.Hide();
 		}
 
