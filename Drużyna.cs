@@ -20,15 +20,20 @@ namespace familiada
 			DockStyle Dock = left ? DockStyle.Left : DockStyle.Right;
 
 			punktyGłównyLabel.Dock = Dock;
-			punktyGłównyLabel.Text = "0";
 			Global.główny.Controls.Add(punktyGłównyLabel);
 
-			//int szerokość = Global.główny.Width;
-			//MessageBox.Show(szerokość.ToString());
-
 			punktyPomocniczyLabel.Dock = Dock;
-			punktyPomocniczyLabel.Text = "0";
 			Global.pomocniczy.Controls.Add(punktyPomocniczyLabel);
+
+			dodajPunkty();
+		}
+
+		public void dodajPunkty(int dodane=0)
+		{
+			punkty += dodane;
+			punktyGłównyLabel.Text = punkty.ToString();
+			punktyPomocniczyLabel.Text = punkty.ToString();
+
 		}
 	}
 }

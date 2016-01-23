@@ -105,7 +105,7 @@ namespace familiada
 		private void pokażEkran_Click(object sender, EventArgs e)
 		{
 			Global.główny.Show();
-			//pokażEkran.Hide();
+			pokażEkran.Hide();
 		}
 
 	}
