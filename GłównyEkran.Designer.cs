@@ -39,7 +39,6 @@ namespace familiada
 			this.Name = "GłównyEkran";
 			this.Text = "Główny ekran";
 			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.GłównyEkran_FormClosing);
-			this.Load += new System.EventHandler(this.Form_Load);
 			this.ResumeLayout(false);
 
 		}

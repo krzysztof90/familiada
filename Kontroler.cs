@@ -30,7 +30,6 @@ namespace familiada
 			{
 				StreamReader plik = new StreamReader(Global.nazwaPliku);
 
-				int nrOdpowiedzi = 1;
 				while (!plik.EndOfStream)
 				{
 					string linia = plik.ReadLine().Trim();
@@ -39,7 +38,6 @@ namespace familiada
 						if (nrPytania(linia) != null)
 						{
 							Global.pytania.Add(new Pytanie(nrPytania(linia)));
-							nrOdpowiedzi = 1;
 						}
 						else
 						{
@@ -107,7 +105,22 @@ namespace familiada
 
 		private void pokażEkran_Click(object sender, EventArgs e)
 		{
+			Screen tenEkran = Screen.FromControl(this);
+			Screen drugiEkran = Screen.AllScreens.FirstOrDefault(s => !s.Equals(tenEkran)) ?? tenEkran;
 			Global.główny.Show();
+			Global.główny.WindowState = FormWindowState.Normal;
+			Global.główny.Location = drugiEkran.WorkingArea.Location;
+			if (tenEkran == drugiEkran)
+			{
+				Global.główny.FormBorderStyle = FormBorderStyle.Sizable;
+				Global.główny.TopMost = false;
+			}
+			else
+			{
+				Global.główny.FormBorderStyle = FormBorderStyle.None;
+				Global.główny.TopMost = true;
+			}
+				Global.główny.WindowState = FormWindowState.Maximized;
 			pokażEkran.Hide();
 		}
 
