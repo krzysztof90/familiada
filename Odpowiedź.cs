@@ -20,8 +20,10 @@ namespace familiada
 		Button odpowiedźButton = new Button();
 		Button punktyLewyButton = new Button();
 		Button punktyPrawyButton = new Button();
-		Button edycjaButton = new Button();
-		TextBox edytor = new TextBox();
+		Button edycjaOdpowiedziButton = new Button();
+		Button edycjaPunktówButton = new Button();
+		TextBox edytorOdpowiedzi = new TextBox();
+		TextBox edytorPunktów = new TextBox();
 
 		Label nrOdpowiedziLabel = new Label();
 		Label odpowiedźLabel = new Label();
@@ -43,7 +45,7 @@ namespace familiada
 			}
 
 			naKontrolerze.Location = new Point(100, nrOdpowiedzi * 30);
-			naKontrolerze.Size = new System.Drawing.Size(300, 30);
+			naKontrolerze.Size = new System.Drawing.Size(280, 30);
 			naKontrolerze.Hide();
 			Global.kontroler.Controls.Add(naKontrolerze);
 
@@ -51,16 +53,6 @@ namespace familiada
 			odpowiedźButton.Location = new Point(50, 0);
 			odpowiedźButton.Text = odpowiedź;
 			odpowiedźButton.Click += new EventHandler(zaznaczOdznacz_Click);
-			naKontrolerze.Controls.Add(odpowiedźButton);
-
-			edytor.AutoSize = false;
-			edytor.Size = new Size(100, 30);
-			edytor.Location = new Point(50, 0);
-			edytor.Text = odpowiedź;
-			edytor.Hide();
-			edytor.Leave += new EventHandler(edytor_Leave);
-			edytor.KeyPress += new KeyPressEventHandler(edytor_KeyPress);
-			naKontrolerze.Controls.Add(edytor);
 
 			punktyLewyButton.Size = new Size(50, 30);
 			punktyLewyButton.Location = new Point(0, 0);
@@ -76,11 +68,38 @@ namespace familiada
 			punktyPrawyButton.Click += new EventHandler(zaznaczDrużynie_Click);
 			naKontrolerze.Controls.Add(punktyPrawyButton);
 
-			edycjaButton.Size = new Size(30, 30);
-			edycjaButton.Location = new Point(220, 0);
-			edycjaButton.Text = "edytuj";
-			edycjaButton.Click += new EventHandler(edytuj_Click);
-			naKontrolerze.Controls.Add(edycjaButton);
+			edycjaOdpowiedziButton.Size = new Size(30, 30);
+			edycjaOdpowiedziButton.Location = new Point(220, 0);
+			edycjaOdpowiedziButton.Text = "edytuj";
+			edycjaOdpowiedziButton.Click += new EventHandler(edytujOdpowiedź_Click);
+			naKontrolerze.Controls.Add(edycjaOdpowiedziButton);
+
+			edycjaPunktówButton.Size = new Size(30, 30);
+			edycjaPunktówButton.Location = new Point(250, 0);
+			edycjaPunktówButton.Text = "edytuj punkty";
+			edycjaPunktówButton.Click += new EventHandler(edytujPunkty_Click);
+			naKontrolerze.Controls.Add(edycjaPunktówButton);
+			naKontrolerze.Controls.Add(odpowiedźButton);
+
+			edytorOdpowiedzi.AutoSize = false;
+			edytorOdpowiedzi.Size = new Size(100, 30);
+			edytorOdpowiedzi.Location = new Point(50, 0);
+			edytorOdpowiedzi.Text = odpowiedź;
+			edytorOdpowiedzi.Hide();
+			edytorOdpowiedzi.Leave += new EventHandler(edytorOdpowiedzi_Leave);
+			edytorOdpowiedzi.KeyPress += new KeyPressEventHandler(edytor_KeyPress);
+			edytorOdpowiedzi.Tag = new EventHandler(edytorOdpowiedzi_Leave);
+			naKontrolerze.Controls.Add(edytorOdpowiedzi);
+
+			edytorPunktów.AutoSize = false;
+			edytorPunktów.Size = new Size(30, 30);
+			edytorPunktów.Location = new Point(250, 0);
+			edytorPunktów.Text = punkty.ToString();
+			edytorPunktów.Hide();
+			edytorPunktów.Leave += new EventHandler(edytorPunktów_Leave);
+			edytorPunktów.KeyPress += new KeyPressEventHandler(edytor_KeyPress);
+			edytorPunktów.Tag = new EventHandler(edytorPunktów_Leave);
+			naKontrolerze.Controls.Add(edytorPunktów);
 
 			naGłównym.Location = new Point(100, nrOdpowiedzi * 30);
 			naGłównym.Size = new System.Drawing.Size(200, 30);
@@ -182,23 +201,45 @@ namespace familiada
 			}
 		}
 
-		private void edytuj_Click(object sender, EventArgs e)
+		private void edytujOdpowiedź_Click(object sender, EventArgs e)
 		{
-			edytor.Show();
-			edytor.BringToFront();
-			edytor.Focus();
+			edytorOdpowiedzi.Show();
+			edytorOdpowiedzi.BringToFront();
+			edytorOdpowiedzi.Focus();
+		}
+		private void edytujPunkty_Click(object sender, EventArgs e)
+		{
+			edytorPunktów.Show();
+			edytorPunktów.BringToFront();
+			edytorPunktów.Focus();
 		}
 		private void edytor_KeyPress(object sender, KeyPressEventArgs e)
 		{
 			if (e.KeyChar == 13)
-				edytor_Leave(sender, new EventArgs());
+				((EventHandler)(((TextBox)sender).Tag))(sender, new EventArgs());
 		}
-		private void edytor_Leave(object sender, EventArgs e)
+		private void edytorOdpowiedzi_Leave(object sender, EventArgs e)
 		{
-			edytor.Hide();
-			odpowiedź = edytor.Text;
+			edytorOdpowiedzi.Hide();
+			odpowiedź = edytorOdpowiedzi.Text;
 			odpowiedźButton.Text = odpowiedź;
 			odpowiedźLabel.Text = odpowiedź;
+		}
+		private void edytorPunktów_Leave(object sender, EventArgs e)
+		{
+			try
+			{
+				punkty = Int32.Parse(edytorPunktów.Text);
+				edytorPunktów.Hide();
+				punktyLewyButton.Text = punkty.ToString();
+				punktyPrawyButton.Text = punkty.ToString();
+				//punktyLabel.Text = odpowiedź;
+			}
+			catch (FormatException)
+			{
+				MessageBox.Show("wpisz liczbę");
+				edytorPunktów.SelectAll();
+			}
 		}
 	}
 }
