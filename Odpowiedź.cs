@@ -13,6 +13,7 @@ namespace familiada
 		public string odpowiedź;
 		public int punkty;
 		public int nrOdpowiedzi;
+		Pytanie pytanie;
 
 		Panel naKontrolerze = new Panel();
 		Panel naGłównym = new Panel();
@@ -24,13 +25,16 @@ namespace familiada
 		Button edycjaPunktówButton = new Button();
 		TextBox edytorOdpowiedzi = new TextBox();
 		TextBox edytorPunktów = new TextBox();
+		Button doGóry = new Button();
+		Button doDołu = new Button();
 
 		Label nrOdpowiedziLabel = new Label();
 		Label odpowiedźLabel = new Label();
 
-		public Odpowiedź(string linia, int nrOdpowiedzi)
+		public Odpowiedź(string linia, Pytanie pytanie)
 		{
-			this.nrOdpowiedzi = nrOdpowiedzi;
+			this.pytanie = pytanie;
+			nrOdpowiedzi = pytanie.odpowiedzi.Count + 1;
 			int gdziePrzerwa = linia.LastIndexOfAny(new char[] { ' ', '\t' });
 			if (gdziePrzerwa == -1)
 				Global.exit(String.Format("niepoprawna linia: {0}", linia));
@@ -45,7 +49,7 @@ namespace familiada
 			}
 
 			naKontrolerze.Location = new Point(100, nrOdpowiedzi * 30);
-			naKontrolerze.Size = new System.Drawing.Size(280, 30);
+			naKontrolerze.Size = new System.Drawing.Size(310, 30);
 			naKontrolerze.Hide();
 			Global.kontroler.Controls.Add(naKontrolerze);
 
@@ -100,6 +104,20 @@ namespace familiada
 			edytorPunktów.KeyPress += new KeyPressEventHandler(edytor_KeyPress);
 			edytorPunktów.Tag = new EventHandler(edytorPunktów_Leave);
 			naKontrolerze.Controls.Add(edytorPunktów);
+
+			doGóry.Size = new Size(30, 15);
+			doGóry.Location = new Point(280, 0);
+			doGóry.Text = "góra";
+			doGóry.Tag = nrOdpowiedzi;
+			doGóry.Click += new EventHandler(doGóry_Click);
+			naKontrolerze.Controls.Add(doGóry);
+
+			doDołu.Size = new Size(30, 15);
+			doDołu.Location = new Point(280, 15);
+			doDołu.Text = "dół";
+			doDołu.Tag = nrOdpowiedzi;
+			doDołu.Click += new EventHandler(doDołu_Click);
+			naKontrolerze.Controls.Add(doDołu);
 
 			naGłównym.Location = new Point(100, nrOdpowiedzi * 30);
 			naGłównym.Size = new System.Drawing.Size(200, 30);
@@ -177,6 +195,15 @@ namespace familiada
 				return (Drużyna)punktyPrawyButton.Tag;
 			return null;
 		}
+		public void zmieńNumer(int numer)
+		{
+			nrOdpowiedzi = numer;
+			naKontrolerze.Location = new Point(100, nrOdpowiedzi * 30);
+			naGłównym.Location = new Point(100, nrOdpowiedzi * 30);
+			doGóry.Tag = nrOdpowiedzi;
+			doDołu.Tag = nrOdpowiedzi;
+			nrOdpowiedziLabel.Text = nrOdpowiedzi.ToString();
+		}
 
 		private void zaznaczOdznacz_Click(object sender, EventArgs e)
 		{
@@ -240,6 +267,16 @@ namespace familiada
 				MessageBox.Show("wpisz liczbę");
 				edytorPunktów.SelectAll();
 			}
+		}
+		private void doGóry_Click(object sender, EventArgs e)
+		{
+			if (nrOdpowiedzi != 1)
+				pytanie.zamieńOdpowiedzi(((int)(((Button)sender).Tag))-1);
+		}
+		private void doDołu_Click(object sender, EventArgs e)
+		{
+			if (nrOdpowiedzi != pytanie.odpowiedzi.Count)
+				pytanie.zamieńOdpowiedzi((int)(((Button)sender).Tag));
 		}
 	}
 }

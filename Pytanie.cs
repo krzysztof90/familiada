@@ -25,8 +25,6 @@ namespace familiada
 		Label nazwaPytaniaLabel;
 		public List<Odpowiedź> odpowiedzi = new List<Odpowiedź>();
 
-		Button dodajNowąOdpowiedź;
-
 		public Pytanie(NrINazwaPytania pytanie)
 		{
 			nrPytania = pytanie.nrPytania;
@@ -45,7 +43,7 @@ namespace familiada
 		}
 		public void dodajOdpowiedź(string linia)
 		{
-			odpowiedzi.Add(new Odpowiedź(linia, odpowiedzi.Count+1));
+			odpowiedzi.Add(new Odpowiedź(linia, this));
 		}
 		public void zainicjujKontrolki()
 		{
@@ -70,6 +68,15 @@ namespace familiada
 				if (!odpowiedź.zaznaczona())
 					return false;
 			return true;
+		}
+		public void zamieńOdpowiedzi(int nrPoczątkowej)
+		{
+			odpowiedzi[nrPoczątkowej - 1].zmieńNumer(nrPoczątkowej + 1);
+			odpowiedzi[nrPoczątkowej].zmieńNumer(nrPoczątkowej);
+
+			Odpowiedź początkowa = odpowiedzi[nrPoczątkowej - 1];
+			odpowiedzi[nrPoczątkowej - 1] = odpowiedzi[nrPoczątkowej];
+			odpowiedzi[nrPoczątkowej] = początkowa;
 		}
 	}
 }
