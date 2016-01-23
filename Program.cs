@@ -16,7 +16,7 @@ namespace familiada
 		{
 			Application.EnableVisualStyles();
 			//Application.SetCompatibleTextRenderingDefault(false);
-			Application.Run(Global.pomocniczy);
+			Application.Run(Global.kontroler);
 		}
 	}
 }

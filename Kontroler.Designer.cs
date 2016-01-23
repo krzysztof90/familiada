@@ -63,7 +63,7 @@
 			this.poprzedniePytanie.UseVisualStyleBackColor = true;
 			this.poprzedniePytanie.Click += new System.EventHandler(this.poprzedniePytanie_Click);
 			// 
-			// NotForShow
+			// Kontroler
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -71,7 +71,7 @@
 			this.Controls.Add(this.poprzedniePytanie);
 			this.Controls.Add(this.pokażEkran);
 			this.Controls.Add(this.następnePytanie);
-			this.Name = "NotForShow";
+			this.Name = "Kontroler";
 			this.Text = "Kontroler";
 			this.Load += new System.EventHandler(this.Form_Load);
 			this.ResumeLayout(false);
@@ -82,7 +82,7 @@
 
 		private System.Windows.Forms.Button następnePytanie;
 		private System.Windows.Forms.Button poprzedniePytanie;
-		private System.Windows.Forms.Button pokażEkran;
+		public System.Windows.Forms.Button pokażEkran;
 	}
 }
 

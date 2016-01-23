@@ -11,7 +11,7 @@ namespace familiada
 	{
 		public static string nazwaPliku = "pytania.txt";
 
-		public static Kontroler pomocniczy = new Kontroler();
+		public static Kontroler kontroler = new Kontroler();
 		public static GłównyEkran główny = new GłównyEkran();
 		
 		public static List<Pytanie> pytania = new List<Pytanie>();

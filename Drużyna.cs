@@ -23,7 +23,7 @@ namespace familiada
 			Global.główny.Controls.Add(punktyGłównyLabel);
 
 			punktyPomocniczyLabel.Dock = Dock;
-			Global.pomocniczy.Controls.Add(punktyPomocniczyLabel);
+			Global.kontroler.Controls.Add(punktyPomocniczyLabel);
 
 			dodajPunkty();
 		}

@@ -29,5 +29,12 @@ namespace familiada
 			//this.TopMost = true;
 		}
 
+		private void GłównyEkran_FormClosing(object sender, FormClosingEventArgs e)
+		{
+			this.Hide();
+			e.Cancel = true;
+			Global.kontroler.pokażEkran.Show();
+		}
+
 	}
 }

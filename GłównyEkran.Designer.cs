@@ -31,13 +31,14 @@ namespace familiada
 		{
 			this.SuspendLayout();
 			// 
-			// ForShow
+			// GłównyEkran
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(517, 324);
-			this.Name = "ForShow";
+			this.Name = "GłównyEkran";
 			this.Text = "Główny ekran";
+			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.GłównyEkran_FormClosing);
 			this.Load += new System.EventHandler(this.Form_Load);
 			this.ResumeLayout(false);
 

@@ -43,7 +43,7 @@ namespace familiada
 			naPomocnicznym.Location = new Point(100, nrOdpowiedzi * 30);
 			naPomocnicznym.Size = new System.Drawing.Size(200, 30);
 			naPomocnicznym.Hide();
-			Global.pomocniczy.Controls.Add(naPomocnicznym);
+			Global.kontroler.Controls.Add(naPomocnicznym);
 
 			odpowiedźButton.Size = new Size(100, 30);
 			odpowiedźButton.Location = new Point(50, 0);
