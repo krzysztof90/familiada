@@ -113,7 +113,6 @@ namespace familiada
 
 		private void dodajOdpowiedź_Click(object sender, EventArgs e)
 		{
-
 			Global.pytania[Global.obecnePytanie].dodajIPokażOdpowiedź(" 0");
 		}
 

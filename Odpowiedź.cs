@@ -14,12 +14,14 @@ namespace familiada
 		public int punkty;
 		public int nrOdpowiedzi;
 
+		Panel naKontrolerze = new Panel();
 		Panel naGłównym = new Panel();
-		Panel naPomocnicznym = new Panel();
 
 		Button odpowiedźButton = new Button();
 		Button punktyLewyButton = new Button();
 		Button punktyPrawyButton = new Button();
+		Button edycjaButton = new Button();
+		TextBox edytor = new TextBox();
 
 		Label nrOdpowiedziLabel = new Label();
 		Label odpowiedźLabel = new Label();
@@ -40,30 +42,45 @@ namespace familiada
 				Global.exit("niepoprawna liczba punktów");
 			}
 
-			naPomocnicznym.Location = new Point(100, nrOdpowiedzi * 30);
-			naPomocnicznym.Size = new System.Drawing.Size(200, 30);
-			naPomocnicznym.Hide();
-			Global.kontroler.Controls.Add(naPomocnicznym);
+			naKontrolerze.Location = new Point(100, nrOdpowiedzi * 30);
+			naKontrolerze.Size = new System.Drawing.Size(300, 30);
+			naKontrolerze.Hide();
+			Global.kontroler.Controls.Add(naKontrolerze);
 
 			odpowiedźButton.Size = new Size(100, 30);
 			odpowiedźButton.Location = new Point(50, 0);
 			odpowiedźButton.Text = odpowiedź;
 			odpowiedźButton.Click += new EventHandler(zaznaczOdznacz_Click);
-			naPomocnicznym.Controls.Add(odpowiedźButton);
+			naKontrolerze.Controls.Add(odpowiedźButton);
+
+			edytor.AutoSize = false;
+			edytor.Size = new Size(100, 30);
+			edytor.Location = new Point(50, 0);
+			edytor.Text = odpowiedź;
+			edytor.Hide();
+			edytor.Leave += new EventHandler(edytor_Leave);
+			edytor.KeyPress += new KeyPressEventHandler(edytor_KeyPress);
+			naKontrolerze.Controls.Add(edytor);
 
 			punktyLewyButton.Size = new Size(50, 30);
 			punktyLewyButton.Location = new Point(0, 0);
 			punktyLewyButton.Text = punkty.ToString();
 			punktyLewyButton.Tag = Global.drużynaL;
 			punktyLewyButton.Click += new EventHandler(zaznaczDrużynie_Click);
-			naPomocnicznym.Controls.Add(punktyLewyButton);
+			naKontrolerze.Controls.Add(punktyLewyButton);
 
 			punktyPrawyButton.Size = new Size(50, 30);
 			punktyPrawyButton.Location = new Point(150, 0);
 			punktyPrawyButton.Text = punkty.ToString();
 			punktyPrawyButton.Tag = Global.drużynaP;
 			punktyPrawyButton.Click += new EventHandler(zaznaczDrużynie_Click);
-			naPomocnicznym.Controls.Add(punktyPrawyButton);
+			naKontrolerze.Controls.Add(punktyPrawyButton);
+
+			edycjaButton.Size = new Size(30, 30);
+			edycjaButton.Location = new Point(220, 0);
+			edycjaButton.Text = "edytuj";
+			edycjaButton.Click += new EventHandler(edytuj_Click);
+			naKontrolerze.Controls.Add(edycjaButton);
 
 			naGłównym.Location = new Point(100, nrOdpowiedzi * 30);
 			naGłównym.Size = new System.Drawing.Size(200, 30);
@@ -83,12 +100,12 @@ namespace familiada
 
 		public void zainicjujKontrolkiOdpowiedzi()
 		{
-			naPomocnicznym.Show();
+			naKontrolerze.Show();
 			naGłównym.Show();
 		}
 		public void ukryjKontrolkiOdpowiedzi()
 		{
-			naPomocnicznym.Hide();
+			naKontrolerze.Hide();
 			naGłównym.Hide();
 		}
 		public void pokażOdpowiedź()
@@ -163,6 +180,25 @@ namespace familiada
 				((Button)sender).BackColor = Color.White;
 				((Drużyna)(((Button)sender).Tag)).dodajPunkty(punkty);
 			}
+		}
+
+		private void edytuj_Click(object sender, EventArgs e)
+		{
+			edytor.Show();
+			edytor.BringToFront();
+			edytor.Focus();
+		}
+		private void edytor_KeyPress(object sender, KeyPressEventArgs e)
+		{
+			if (e.KeyChar == 13)
+				edytor_Leave(sender, new EventArgs());
+		}
+		private void edytor_Leave(object sender, EventArgs e)
+		{
+			edytor.Hide();
+			odpowiedź = edytor.Text;
+			odpowiedźButton.Text = odpowiedź;
+			odpowiedźLabel.Text = odpowiedź;
 		}
 	}
 }
