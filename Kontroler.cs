@@ -38,7 +38,7 @@ namespace familiada
 					{
 						if (nrPytania(linia) != null)
 						{
-							Global.pytania.Add(new Pytanie(nrPytania(linia), this));
+							Global.pytania.Add(new Pytanie(nrPytania(linia)));
 							nrOdpowiedzi = 1;
 						}
 						else
@@ -80,26 +80,28 @@ namespace familiada
 
 		private void następnePytanie_Click(object sender, EventArgs e)
 		{
-			if (Global.obecnePytanie != Global.pytania.Count - 1)
-			{
-				if (Global.obecnePytanie != -1)
-					Global.pytania[Global.obecnePytanie].ukryjOdpowiedzi();
+			poprzedniePytanie.Show();
 
-				Global.obecnePytanie++;
-				Global.pytania[Global.obecnePytanie].zainicjujKontrolki();
-			}
+			if (Global.obecnePytanie != -1)
+				Global.pytania[Global.obecnePytanie].ukryjOdpowiedzi();
+
+			Global.obecnePytanie++;
+			Global.pytania[Global.obecnePytanie].zainicjujKontrolki();
+			if (Global.obecnePytanie == Global.pytania.Count - 1)
+				następnePytanie.Hide();
 		}
 
 		private void poprzedniePytanie_Click(object sender, EventArgs e)
 		{
-			if (Global.obecnePytanie > 0)
-			{
-				Global.pytania[Global.obecnePytanie].ukryjOdpowiedzi();
+			następnePytanie.Show();
 
-				Global.obecnePytanie--;
-				Global.pytania[Global.obecnePytanie].zainicjujKontrolki();
-			}
+			Global.pytania[Global.obecnePytanie].ukryjOdpowiedzi();
 
+			Global.obecnePytanie--;
+			Global.pytania[Global.obecnePytanie].zainicjujKontrolki();
+
+			if (Global.obecnePytanie == 0)
+				poprzedniePytanie.Hide();
 		}
 
 		private void pokażEkran_Click(object sender, EventArgs e)

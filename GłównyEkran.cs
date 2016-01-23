@@ -33,6 +33,7 @@ namespace familiada
 		{
 			this.Hide();
 			e.Cancel = true;
+
 			Global.kontroler.pokażEkran.Show();
 		}
 

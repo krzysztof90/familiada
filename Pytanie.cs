@@ -25,16 +25,17 @@ namespace familiada
 		Label nazwaPytaniaLabel;
 		public List<Odpowiedź> odpowiedzi = new List<Odpowiedź>();
 
-		public Pytanie(NrINazwaPytania pytanie, Kontroler notForShow)
+		Button dodajNowąOdpowiedź;
+
+		public Pytanie(NrINazwaPytania pytanie)
 		{
 			nrPytania = pytanie.nrPytania;
 			nazwaPytania = pytanie.nazwaPytania;
 
 			nazwaPytaniaLabel = new Label();
-			//nazwaPytaniaLabel.Location = new Point(120, nrOdpowiedzi * 30);
 			nazwaPytaniaLabel.Text = nazwaPytania;
 			nazwaPytaniaLabel.Hide();
-			notForShow.Controls.Add(nazwaPytaniaLabel);
+			Global.kontroler.Controls.Add(nazwaPytaniaLabel);
 		}
 
 		public void dodajOdpowiedź(Odpowiedź odpowiedź)

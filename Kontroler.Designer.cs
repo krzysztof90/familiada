@@ -61,6 +61,7 @@
 			this.poprzedniePytanie.TabIndex = 2;
 			this.poprzedniePytanie.Text = "poprzedniePytanie";
 			this.poprzedniePytanie.UseVisualStyleBackColor = true;
+			this.poprzedniePytanie.Visible = false;
 			this.poprzedniePytanie.Click += new System.EventHandler(this.poprzedniePytanie_Click);
 			// 
 			// Kontroler
