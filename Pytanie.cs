@@ -38,9 +38,14 @@ namespace familiada
 			Global.kontroler.Controls.Add(nazwaPytaniaLabel);
 		}
 
-		public void dodajOdpowiedź(Odpowiedź odpowiedź)
+		public void dodajIPokażOdpowiedź(string linia)
 		{
-			odpowiedzi.Add(odpowiedź);
+			dodajOdpowiedź(linia);
+			zainicjujKontrolki();
+		}
+		public void dodajOdpowiedź(string linia)
+		{
+			odpowiedzi.Add(new Odpowiedź(linia, odpowiedzi.Count+1));
 		}
 		public void zainicjujKontrolki()
 		{

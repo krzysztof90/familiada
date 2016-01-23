@@ -45,7 +45,7 @@ namespace familiada
 						{
 							if (Global.pytania.Count == 0)
 								Global.exit("zacznij plik od numeru pytania");
-							Global.pytania.Last().dodajOdpowiedź(new Odpowiedź(linia, nrOdpowiedzi++));
+							Global.pytania.Last().dodajOdpowiedź(linia);
 						}
 					}
 				}
@@ -81,6 +81,7 @@ namespace familiada
 		private void następnePytanie_Click(object sender, EventArgs e)
 		{
 			poprzedniePytanie.Show();
+			dodajOdpowiedź.Show();
 
 			if (Global.obecnePytanie != -1)
 				Global.pytania[Global.obecnePytanie].ukryjOdpowiedzi();
@@ -108,6 +109,12 @@ namespace familiada
 		{
 			Global.główny.Show();
 			pokażEkran.Hide();
+		}
+
+		private void dodajOdpowiedź_Click(object sender, EventArgs e)
+		{
+
+			Global.pytania[Global.obecnePytanie].dodajIPokażOdpowiedź(" 0");
 		}
 
 	}
