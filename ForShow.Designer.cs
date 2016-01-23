@@ -38,6 +38,7 @@ namespace familiada
 			this.ClientSize = new System.Drawing.Size(517, 324);
 			this.Name = "ForShow";
 			this.Text = "Główny ekran";
+			this.Load += new System.EventHandler(this.ForShow_Load);
 			this.ResumeLayout(false);
 
 		}

@@ -11,10 +11,13 @@ using System.Windows.Forms;
 
 namespace familiada
 {
+	// URUCHOMIĆ PROGRAM DOPIERO PO PODŁĄCZENIU DRUGIEGO EKRANU
+
 	public partial class NotForShow : Form
 	{
 		public NotForShow()
 		{
+
 			InitializeComponent();
 		}
 
@@ -101,15 +104,8 @@ namespace familiada
 
 		private void pokażEkran_Click(object sender, EventArgs e)
 		{
-			Screen tenEkran = Screen.FromControl(this);
-			Screen drugiEkran = Screen.AllScreens.FirstOrDefault(s => !s.Equals(tenEkran)) ?? tenEkran;
 			Global.główny.Show();
-			Global.główny.Location = drugiEkran.WorkingArea.Location;
-			//główny.FormBorderStyle = FormBorderStyle.None;
-			//główny.WindowState = FormWindowState.Maximized;
-			//główny.TopMost = true;
-
-			pokażEkran.Hide();
+			//pokażEkran.Hide();
 		}
 
 	}

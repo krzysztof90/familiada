@@ -19,5 +19,15 @@ namespace familiada
 			InitializeComponent();
 		}
 
+		private void ForShow_Load(object sender, EventArgs e)
+		{
+			Screen tenEkran = Screen.FromControl(this);
+			Screen drugiEkran = Screen.AllScreens.FirstOrDefault(s => !s.Equals(tenEkran)) ?? tenEkran;
+			this.Location = drugiEkran.WorkingArea.Location;
+			//this.FormBorderStyle = FormBorderStyle.None;
+			//this.WindowState = FormWindowState.Maximized;
+			//this.TopMost = true;
+		}
+
 	}
 }

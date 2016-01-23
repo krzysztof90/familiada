@@ -17,8 +17,8 @@ namespace familiada
 		public static List<Pytanie> pytania = new List<Pytanie>();
 		public static int obecnePytanie = -1;
 		
-		public static Drużyna drużynaL = new Drużyna();
-		public static Drużyna drużynaP = new Drużyna();
+		public static Drużyna drużynaL = new Drużyna(true);
+		public static Drużyna drużynaP = new Drużyna(false);
 
 		static public void exit(string message)
 		{
