@@ -142,8 +142,7 @@ namespace familiada
 			runda2.Show();
 			runda1.Hide();
 
-			foreach (Pytanie2 pytanie in Global.pytania2)
-				pytanie.ukryjPytanie();
+			Global.ukryjPytania2();
 
 			if (Global.obecnePytanie != Global.pytania1.Count - 1)
 				następnePytanie.Show();
@@ -165,8 +164,7 @@ namespace familiada
 			if (Global.obecnePytanie != -1)
 				Global.pytania1[Global.obecnePytanie].ukryjOdpowiedzi();
 
-			foreach (Pytanie2 pytanie in Global.pytania2)
-				pytanie.pokażPytanie();
+			Global.pokażPytania2();
 		}
 
 	}

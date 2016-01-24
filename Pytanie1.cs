@@ -67,8 +67,7 @@ namespace familiada
 		{
 			nazwaPytaniaLabel.Hide();
 			Global.kontroler.dodajOdpowiedź.Hide();
-			Global.główny.punkty.Text = "0";
-			Global.kontroler.punkty.Text = "0";
+			Punkty.ustawPunkty();
 			foreach (Odpowiedź odpowiedź in odpowiedzi)
 				odpowiedź.ukryjKontrolkiOdpowiedzi();
 		}
@@ -100,8 +99,8 @@ namespace familiada
 		public void dodajPunkty(int dodane = 0)
 		{
 			punkty += dodane;
-			Global.główny.punkty.Text = punkty.ToString();
-			Global.kontroler.punkty.Text = punkty.ToString();
+
+			Punkty.ustawPunkty(punkty);
 		}
 	}
 }

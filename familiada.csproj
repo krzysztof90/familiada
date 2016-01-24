@@ -53,6 +53,7 @@
     <Compile Include="GłównyEkran.Designer.cs">
       <DependentUpon>GłównyEkran.cs</DependentUpon>
     </Compile>
+    <Compile Include="Punkty.cs" />
     <Compile Include="Pytanie1.cs" />
     <Compile Include="Kontroler.cs">
       <SubType>Form</SubType>

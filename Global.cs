@@ -22,6 +22,17 @@ namespace familiada
 		public static Drużyna drużynaL = new Drużyna(true);
 		public static Drużyna drużynaP = new Drużyna(false);
 
+		static public void pokażPytania2()
+		{
+			foreach (Pytanie2 pytanie in Global.pytania2)
+				pytanie.pokażPytanie();
+		}
+		static public void ukryjPytania2()
+		{
+			foreach (Pytanie2 pytanie in Global.pytania2)
+				pytanie.ukryjPytanie();
+		}
+
 		static public void exit(string message)
 		{
 			MessageBox.Show(message);
