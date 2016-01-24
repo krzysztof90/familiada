@@ -15,8 +15,10 @@ namespace familiada
 
 	class Pytanie2
 	{
-		string nazwaPytania;
 		static int punkty;
+		
+		string nazwaPytania;
+		int nrPytania;
 
 		Panel naKontrolerze = new Panel();
 		Panel naGłównym = new Panel();
@@ -37,6 +39,7 @@ namespace familiada
 		public Pytanie2(string nazwa, int nrPytania)
 		{
 			nazwaPytania = nazwa;
+			this.nrPytania = nrPytania;
 
 			naKontrolerze.Location = new System.Drawing.Point(100, 50 * nrPytania);
 			naKontrolerze.Size = new System.Drawing.Size(480, 30);
@@ -56,32 +59,41 @@ namespace familiada
 			odpowiedźLTextBox.Location = new System.Drawing.Point(150, 5);
 			odpowiedźLTextBox.Size = new System.Drawing.Size(100, 20);
 			odpowiedźLTextBox.Leave += new EventHandler(edytorL_Leave);
+			odpowiedźLTextBox.TabIndex = 1;
 
 			odpowiedźPTextBox.Location = new System.Drawing.Point(370, 5);
 			odpowiedźPTextBox.Size = new System.Drawing.Size(100, 20);
 			odpowiedźPTextBox.Leave += new EventHandler(edytorP_Leave);
+			odpowiedźPTextBox.TabIndex = 3;
+			//odpowiedźPTextBox.TabStop = false;
 
 			punktyLTextBox.Location = new System.Drawing.Point(250, 5);
 			punktyLTextBox.Size = new System.Drawing.Size(30, 20);
 			punktyLTextBox.Text = "0";
 			punktyLTextBox.Leave += new EventHandler(edytorPunktów_Leave);
 			punktyLTextBox.Leave += new EventHandler(edytorL_Leave);
+			punktyLTextBox.KeyDown += new KeyEventHandler(punktyL_KeyDown);
+			punktyLTextBox.TabIndex = 2;
 
 			punktyPTextBox.Location = new System.Drawing.Point(340, 5);
 			punktyPTextBox.Size = new System.Drawing.Size(30, 20);
 			punktyPTextBox.Text = "0";
 			punktyPTextBox.Leave += new EventHandler(edytorPunktów_Leave);
 			punktyPTextBox.Leave += new EventHandler(edytorP_Leave);
+			punktyPTextBox.KeyDown += new KeyEventHandler(punktyP_KeyDown);
+			punktyPTextBox.TabIndex = 4;
 
 			umieśćL.Location = new Point(280, 0);
 			umieśćL.Size = new Size(30, 30);
 			umieśćL.Text = "umieść";
 			umieśćL.Click += new EventHandler(pokażUkryjL_Click);
+			umieśćL.TabStop = false;
 
 			umieśćP.Location = new Point(310, 0);
 			umieśćP.Size = new Size(30, 30);
 			umieśćP.Text = "umieść";
 			umieśćP.Click += new EventHandler(pokażUkryjP_Click);
+			umieśćP.TabStop = false;
 
 
 			naGłównym.Location = new System.Drawing.Point(30, 50 * nrPytania);
@@ -197,6 +209,25 @@ namespace familiada
 				Punkty.dodajPunkty(Int32.Parse(punktyPTextBox.Text));
 				punkty += Int32.Parse(punktyPTextBox.Text);
 				wyświetlPunkty();
+			}
+		}
+		private void punktyL_KeyDown(object sender, KeyEventArgs e)
+		{
+			if (e.KeyCode == Keys.Down)
+			{
+				if(nrPytania!=5)
+				Global.pytania2[nrPytania].odpowiedźLTextBox.Focus();
+				else
+				Global.pytania2[0].odpowiedźPTextBox.Focus();
+
+			}
+		}
+		private void punktyP_KeyDown(object sender, KeyEventArgs e)
+		{
+			if (e.KeyCode == Keys.Down)
+			{
+				if(nrPytania!=5)
+				Global.pytania2[nrPytania].odpowiedźPTextBox.Focus();
 			}
 		}
 	}

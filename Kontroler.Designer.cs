@@ -42,7 +42,7 @@
 			this.następnePytanie.Location = new System.Drawing.Point(338, 300);
 			this.następnePytanie.Name = "następnePytanie";
 			this.następnePytanie.Size = new System.Drawing.Size(114, 23);
-			this.następnePytanie.TabIndex = 0;
+			this.następnePytanie.TabIndex = 2;
 			this.następnePytanie.Text = "następnePytanie";
 			this.następnePytanie.UseVisualStyleBackColor = true;
 			this.następnePytanie.Visible = false;
@@ -74,7 +74,7 @@
 			this.dodajOdpowiedź.Location = new System.Drawing.Point(457, 110);
 			this.dodajOdpowiedź.Name = "dodajOdpowiedź";
 			this.dodajOdpowiedź.Size = new System.Drawing.Size(135, 23);
-			this.dodajOdpowiedź.TabIndex = 3;
+			this.dodajOdpowiedź.TabIndex = 0;
 			this.dodajOdpowiedź.Text = "dodaj odpowiedź";
 			this.dodajOdpowiedź.UseVisualStyleBackColor = true;
 			this.dodajOdpowiedź.Visible = false;
