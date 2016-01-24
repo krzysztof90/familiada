@@ -13,7 +13,7 @@ namespace familiada
 		public string odpowiedź;
 		public int punkty;
 		public int nrOdpowiedzi;
-		Pytanie pytanie;
+		Pytanie1 pytanie;
 
 		Panel naKontrolerze = new Panel();
 		Panel naGłównym = new Panel();
@@ -33,7 +33,7 @@ namespace familiada
 		Label odpowiedźLabel = new Label();
 		Label punktyLabel = new Label();
 
-		public Odpowiedź(string linia, Pytanie pytanie)
+		public Odpowiedź(string linia, Pytanie1 pytanie)
 		{
 			this.pytanie = pytanie;
 			nrOdpowiedzi = pytanie.odpowiedzi.Count + 1;

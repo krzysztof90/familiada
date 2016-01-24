@@ -26,8 +26,7 @@ namespace familiada
 
 			try
 			{
-				StreamReader plik = new StreamReader(Global.nazwaPliku);
-
+				StreamReader plik = new StreamReader(Global.plik1);
 				while (!plik.EndOfStream)
 				{
 					string linia = plik.ReadLine().Trim();
@@ -35,15 +34,23 @@ namespace familiada
 					{
 						if (nrPytania(linia) != null)
 						{
-							Global.pytania.Add(new Pytanie(nrPytania(linia)));
+							Global.pytania1.Add(new Pytanie1(nrPytania(linia)));
 						}
 						else
 						{
-							if (Global.pytania.Count == 0)
+							if (Global.pytania1.Count == 0)
 								Global.exit("zacznij plik od numeru pytania");
-							Global.pytania.Last().dodajOdpowiedź(linia);
+							Global.pytania1.Last().dodajOdpowiedź(linia);
 						}
 					}
+				}
+				plik.Close();
+
+				plik = new StreamReader(Global.plik2);
+				for(int i=0; i<5; i++)
+				{
+					string linia = plik.ReadLine().Trim();
+					Global.pytania2[i] = new Pytanie2(linia,i+1);
 				}
 				plik.Close();
 			}
@@ -51,8 +58,12 @@ namespace familiada
 			{
 				Global.exit(String.Format("brakuje pliku {0}", exc.FileName));
 			}
+			catch (NullReferenceException)
+			{
+				Global.exit(String.Format("wstaw 5 pytań"));
+			}
 
-			if (Global.pytania.Count == 0)
+			if (Global.pytania1.Count == 0)
 				Global.exit("brak pytań");
 		}
 
@@ -78,12 +89,12 @@ namespace familiada
 			if (Global.obecnePytanie != -1)
 			{
 				poprzedniePytanie.Show();
-				Global.pytania[Global.obecnePytanie].ukryjOdpowiedzi();
+				Global.pytania1[Global.obecnePytanie].ukryjOdpowiedzi();
 			}
 
 			Global.obecnePytanie++;
-			Global.pytania[Global.obecnePytanie].zainicjujKontrolki();
-			if (Global.obecnePytanie == Global.pytania.Count - 1)
+			Global.pytania1[Global.obecnePytanie].zainicjujKontrolki();
+			if (Global.obecnePytanie == Global.pytania1.Count - 1)
 				następnePytanie.Hide();
 		}
 
@@ -91,10 +102,10 @@ namespace familiada
 		{
 			następnePytanie.Show();
 
-			Global.pytania[Global.obecnePytanie].ukryjOdpowiedzi();
+			Global.pytania1[Global.obecnePytanie].ukryjOdpowiedzi();
 
 			Global.obecnePytanie--;
-			Global.pytania[Global.obecnePytanie].zainicjujKontrolki();
+			Global.pytania1[Global.obecnePytanie].zainicjujKontrolki();
 
 			if (Global.obecnePytanie == 0)
 				poprzedniePytanie.Hide();
@@ -123,22 +134,24 @@ namespace familiada
 
 		private void dodajOdpowiedź_Click(object sender, EventArgs e)
 		{
-			Global.pytania[Global.obecnePytanie].dodajIPokażOdpowiedź(" 0");
+			Global.pytania1[Global.obecnePytanie].dodajIPokażOdpowiedź(" 0");
 		}
 
 		private void runda1_Click(object sender, EventArgs e)
 		{
-			//TODO usunięcie elementów z drugiej
-
 			runda2.Show();
 			runda1.Hide();
-			if (Global.obecnePytanie != Global.pytania.Count - 1)
+
+			foreach (Pytanie2 pytanie in Global.pytania2)
+				pytanie.ukryjPytanie();
+
+			if (Global.obecnePytanie != Global.pytania1.Count - 1)
 				następnePytanie.Show();
 			if (Global.obecnePytanie > 0)
 				poprzedniePytanie.Show();
 			if (Global.obecnePytanie != -1)
 			{
-				Global.pytania[Global.obecnePytanie].zainicjujKontrolki();
+				Global.pytania1[Global.obecnePytanie].zainicjujKontrolki();
 			}
 		}
 
@@ -150,9 +163,10 @@ namespace familiada
 			poprzedniePytanie.Hide();
 
 			if (Global.obecnePytanie != -1)
-				Global.pytania[Global.obecnePytanie].ukryjOdpowiedzi();
+				Global.pytania1[Global.obecnePytanie].ukryjOdpowiedzi();
 
-
+			foreach (Pytanie2 pytanie in Global.pytania2)
+				pytanie.pokażPytanie();
 		}
 
 	}

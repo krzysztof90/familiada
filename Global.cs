@@ -9,13 +9,15 @@ namespace familiada
 {
 	class Global
 	{
-		public static string nazwaPliku = "pytania.txt";
+		public static string plik1 = "runda1.txt";
+		public static string plik2 = "runda2.txt";
 
 		public static Kontroler kontroler = new Kontroler();
 		public static GłównyEkran główny = new GłównyEkran();
 		
-		public static List<Pytanie> pytania = new List<Pytanie>();
+		public static List<Pytanie1> pytania1 = new List<Pytanie1>();
 		public static int obecnePytanie = -1;
+		public static Pytanie2[] pytania2 = new Pytanie2[5];
 		
 		public static Drużyna drużynaL = new Drużyna(true);
 		public static Drużyna drużynaP = new Drużyna(false);

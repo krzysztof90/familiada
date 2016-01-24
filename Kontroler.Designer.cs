@@ -39,7 +39,7 @@
 			// 
 			// następnePytanie
 			// 
-			this.następnePytanie.Location = new System.Drawing.Point(338, 251);
+			this.następnePytanie.Location = new System.Drawing.Point(338, 300);
 			this.następnePytanie.Name = "następnePytanie";
 			this.następnePytanie.Size = new System.Drawing.Size(114, 23);
 			this.następnePytanie.TabIndex = 0;
@@ -60,7 +60,7 @@
 			// 
 			// poprzedniePytanie
 			// 
-			this.poprzedniePytanie.Location = new System.Drawing.Point(187, 251);
+			this.poprzedniePytanie.Location = new System.Drawing.Point(187, 300);
 			this.poprzedniePytanie.Name = "poprzedniePytanie";
 			this.poprzedniePytanie.Size = new System.Drawing.Size(114, 23);
 			this.poprzedniePytanie.TabIndex = 2;
@@ -114,7 +114,7 @@
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(604, 293);
+			this.ClientSize = new System.Drawing.Size(659, 372);
 			this.Controls.Add(this.punkty);
 			this.Controls.Add(this.runda2);
 			this.Controls.Add(this.runda1);

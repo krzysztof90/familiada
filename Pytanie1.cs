@@ -19,7 +19,7 @@ namespace familiada
 		}
 	}
 
-	class Pytanie
+	class Pytanie1
 	{
 		int nrPytania;
 		string nazwaPytania;
@@ -29,7 +29,7 @@ namespace familiada
 
 		public List<Odpowiedź> odpowiedzi = new List<Odpowiedź>();
 
-		public Pytanie(NrINazwaPytania pytanie)
+		public Pytanie1(NrINazwaPytania pytanie)
 		{
 			nrPytania = pytanie.nrPytania;
 			nazwaPytania = pytanie.nazwaPytania;
