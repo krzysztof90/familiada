@@ -50,7 +50,7 @@ namespace familiada
 				Global.exit("niepoprawna liczba punktów");
 			}
 
-			naKontrolerze.Location = new Point(100, nrOdpowiedzi * 30);
+			naKontrolerze.Location = new Point(100, nrOdpowiedzi * 30+30);
 			naKontrolerze.Size = new System.Drawing.Size(340, 30);
 			naKontrolerze.Hide();
 			Global.kontroler.Controls.Add(naKontrolerze);
@@ -188,6 +188,8 @@ namespace familiada
 
 			if (odejmijPunkty)
 			{
+				pytanie.dodajPunkty(-punkty);
+
 				Drużyna drużyna = zaznaczonaDrużyna();
 				if (drużyna != null)
 					drużyna.dodajPunkty(-punkty);
@@ -215,7 +217,7 @@ namespace familiada
 		public void zmieńNumer(int numer)
 		{
 			nrOdpowiedzi = numer;
-			naKontrolerze.Location = new Point(100, nrOdpowiedzi * 30);
+			naKontrolerze.Location = new Point(100, nrOdpowiedzi * 30+30);
 			naGłównym.Location = new Point(100, nrOdpowiedzi * 30);
 			doGóry.Tag = nrOdpowiedzi;
 			doDołu.Tag = nrOdpowiedzi;
@@ -238,7 +240,7 @@ namespace familiada
 			if (!zaznaczona())
 			{
 				zaznacz();
-				((Button)sender).BackColor = Color.White;
+				pytanie.dodajPunkty(punkty);
 
 				((Button)sender).BackColor = Color.White;
 				((Drużyna)(((Button)sender).Tag)).dodajPunkty(punkty);
