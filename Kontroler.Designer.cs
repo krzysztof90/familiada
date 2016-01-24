@@ -34,6 +34,7 @@
 			this.dodajOdpowiedź = new System.Windows.Forms.Button();
 			this.runda1 = new System.Windows.Forms.Button();
 			this.runda2 = new System.Windows.Forms.Button();
+			this.punkty = new System.Windows.Forms.Label();
 			this.SuspendLayout();
 			// 
 			// następnePytanie
@@ -49,7 +50,7 @@
 			// 
 			// pokażEkran
 			// 
-			this.pokażEkran.Location = new System.Drawing.Point(352, 12);
+			this.pokażEkran.Location = new System.Drawing.Point(478, 12);
 			this.pokażEkran.Name = "pokażEkran";
 			this.pokażEkran.Size = new System.Drawing.Size(114, 23);
 			this.pokażEkran.TabIndex = 1;
@@ -81,7 +82,7 @@
 			// 
 			// runda1
 			// 
-			this.runda1.Location = new System.Drawing.Point(510, 198);
+			this.runda1.Location = new System.Drawing.Point(510, 222);
 			this.runda1.Name = "runda1";
 			this.runda1.Size = new System.Drawing.Size(75, 23);
 			this.runda1.TabIndex = 4;
@@ -98,12 +99,23 @@
 			this.runda2.Text = "runda 2";
 			this.runda2.UseVisualStyleBackColor = true;
 			this.runda2.Visible = false;
+			this.runda2.Click += new System.EventHandler(this.runda2_Click);
+			// 
+			// punkty
+			// 
+			this.punkty.AutoSize = true;
+			this.punkty.Location = new System.Drawing.Point(184, 9);
+			this.punkty.Name = "punkty";
+			this.punkty.Size = new System.Drawing.Size(13, 13);
+			this.punkty.TabIndex = 6;
+			this.punkty.Text = "0";
 			// 
 			// Kontroler
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(604, 293);
+			this.Controls.Add(this.punkty);
 			this.Controls.Add(this.runda2);
 			this.Controls.Add(this.runda1);
 			this.Controls.Add(this.dodajOdpowiedź);
@@ -114,6 +126,7 @@
 			this.Text = "Kontroler";
 			this.Load += new System.EventHandler(this.Form_Load);
 			this.ResumeLayout(false);
+			this.PerformLayout();
 
 		}
 
@@ -122,9 +135,10 @@
 		private System.Windows.Forms.Button następnePytanie;
 		private System.Windows.Forms.Button poprzedniePytanie;
 		public System.Windows.Forms.Button pokażEkran;
-		private System.Windows.Forms.Button dodajOdpowiedź;
+		public System.Windows.Forms.Button dodajOdpowiedź;
 		private System.Windows.Forms.Button runda1;
 		private System.Windows.Forms.Button runda2;
+		public System.Windows.Forms.Label punkty;
 	}
 }
 

@@ -29,21 +29,35 @@ namespace familiada
 		/// </summary>
 		private void InitializeComponent()
 		{
+			this.punkty = new System.Windows.Forms.Label();
 			this.SuspendLayout();
+			// 
+			// punkty
+			// 
+			this.punkty.AutoSize = true;
+			this.punkty.Location = new System.Drawing.Point(197, 13);
+			this.punkty.Name = "punkty";
+			this.punkty.Size = new System.Drawing.Size(0, 13);
+			this.punkty.TabIndex = 0;
+			this.punkty.Text = "0";
 			// 
 			// GłównyEkran
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(517, 324);
+			this.Controls.Add(this.punkty);
 			this.Name = "GłównyEkran";
 			this.Text = "Główny ekran";
 			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.GłównyEkran_FormClosing);
 			this.ResumeLayout(false);
+			this.PerformLayout();
 
 		}
 
 		#endregion
+
+		public Label punkty;
 
 	}
 }

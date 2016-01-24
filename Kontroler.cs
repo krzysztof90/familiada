@@ -54,7 +54,6 @@ namespace familiada
 
 			if (Global.pytania.Count == 0)
 				Global.exit("brak pytań");
-
 		}
 
 		static NrINazwaPytania nrPytania(string linia)
@@ -76,8 +75,6 @@ namespace familiada
 
 		private void następnePytanie_Click(object sender, EventArgs e)
 		{
-			dodajOdpowiedź.Show();
-
 			if (Global.obecnePytanie != -1)
 			{
 				poprzedniePytanie.Show();
@@ -131,12 +128,31 @@ namespace familiada
 
 		private void runda1_Click(object sender, EventArgs e)
 		{
-			następnePytanie.Show();
+			//TODO usunięcie elementów z drugiej
+
 			runda2.Show();
 			runda1.Hide();
+			if (Global.obecnePytanie != Global.pytania.Count - 1)
+				następnePytanie.Show();
+			if (Global.obecnePytanie > 0)
+				poprzedniePytanie.Show();
+			if (Global.obecnePytanie != -1)
+			{
+				Global.pytania[Global.obecnePytanie].zainicjujKontrolki();
+			}
+		}
 
-			Global.drużynaL.pokażPunkty();
-			Global.drużynaP.pokażPunkty();
+		private void runda2_Click(object sender, EventArgs e)
+		{
+			runda1.Show();
+			runda2.Hide();
+			następnePytanie.Hide();
+			poprzedniePytanie.Hide();
+
+			if (Global.obecnePytanie != -1)
+				Global.pytania[Global.obecnePytanie].ukryjOdpowiedzi();
+
+
 		}
 
 	}
