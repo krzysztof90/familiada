@@ -188,11 +188,13 @@ namespace familiada
 
 			if (odejmijPunkty)
 			{
-				pytanie.dodajPunkty(-punkty);
 
 				Drużyna drużyna = zaznaczonaDrużyna();
 				if (drużyna != null)
+				{
 					drużyna.dodajPunkty(-punkty);
+					pytanie.dodajPunkty(-punkty);
+				}
 			}
 
 			odpowiedźButton.BackColor = SystemColors.Control;

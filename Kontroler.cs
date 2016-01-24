@@ -76,11 +76,13 @@ namespace familiada
 
 		private void następnePytanie_Click(object sender, EventArgs e)
 		{
-			poprzedniePytanie.Show();
 			dodajOdpowiedź.Show();
 
 			if (Global.obecnePytanie != -1)
+			{
+				poprzedniePytanie.Show();
 				Global.pytania[Global.obecnePytanie].ukryjOdpowiedzi();
+			}
 
 			Global.obecnePytanie++;
 			Global.pytania[Global.obecnePytanie].zainicjujKontrolki();
@@ -125,6 +127,16 @@ namespace familiada
 		private void dodajOdpowiedź_Click(object sender, EventArgs e)
 		{
 			Global.pytania[Global.obecnePytanie].dodajIPokażOdpowiedź(" 0");
+		}
+
+		private void runda1_Click(object sender, EventArgs e)
+		{
+			następnePytanie.Show();
+			runda2.Show();
+			runda1.Hide();
+
+			Global.drużynaL.pokażPunkty();
+			Global.drużynaP.pokażPunkty();
 		}
 
 	}

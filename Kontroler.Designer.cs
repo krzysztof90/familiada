@@ -32,6 +32,8 @@
 			this.pokażEkran = new System.Windows.Forms.Button();
 			this.poprzedniePytanie = new System.Windows.Forms.Button();
 			this.dodajOdpowiedź = new System.Windows.Forms.Button();
+			this.runda1 = new System.Windows.Forms.Button();
+			this.runda2 = new System.Windows.Forms.Button();
 			this.SuspendLayout();
 			// 
 			// następnePytanie
@@ -42,6 +44,7 @@
 			this.następnePytanie.TabIndex = 0;
 			this.następnePytanie.Text = "następnePytanie";
 			this.następnePytanie.UseVisualStyleBackColor = true;
+			this.następnePytanie.Visible = false;
 			this.następnePytanie.Click += new System.EventHandler(this.następnePytanie_Click);
 			// 
 			// pokażEkran
@@ -76,11 +79,33 @@
 			this.dodajOdpowiedź.Visible = false;
 			this.dodajOdpowiedź.Click += new System.EventHandler(this.dodajOdpowiedź_Click);
 			// 
+			// runda1
+			// 
+			this.runda1.Location = new System.Drawing.Point(510, 198);
+			this.runda1.Name = "runda1";
+			this.runda1.Size = new System.Drawing.Size(75, 23);
+			this.runda1.TabIndex = 4;
+			this.runda1.Text = "runda 1";
+			this.runda1.UseVisualStyleBackColor = true;
+			this.runda1.Click += new System.EventHandler(this.runda1_Click);
+			// 
+			// runda2
+			// 
+			this.runda2.Location = new System.Drawing.Point(510, 251);
+			this.runda2.Name = "runda2";
+			this.runda2.Size = new System.Drawing.Size(75, 23);
+			this.runda2.TabIndex = 5;
+			this.runda2.Text = "runda 2";
+			this.runda2.UseVisualStyleBackColor = true;
+			this.runda2.Visible = false;
+			// 
 			// Kontroler
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(604, 293);
+			this.Controls.Add(this.runda2);
+			this.Controls.Add(this.runda1);
 			this.Controls.Add(this.dodajOdpowiedź);
 			this.Controls.Add(this.poprzedniePytanie);
 			this.Controls.Add(this.pokażEkran);
@@ -98,6 +123,8 @@
 		private System.Windows.Forms.Button poprzedniePytanie;
 		public System.Windows.Forms.Button pokażEkran;
 		private System.Windows.Forms.Button dodajOdpowiedź;
+		private System.Windows.Forms.Button runda1;
+		private System.Windows.Forms.Button runda2;
 	}
 }
 
