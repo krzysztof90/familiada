@@ -78,5 +78,14 @@ namespace familiada
 			odpowiedzi[nrPoczątkowej - 1] = odpowiedzi[nrPoczątkowej];
 			odpowiedzi[nrPoczątkowej] = początkowa;
 		}
+		public void usuń(int nrOdpowiedzi)
+		{
+			Odpowiedź odpowiedź = odpowiedzi[nrOdpowiedzi - 1];
+			odpowiedź.usuńOdpowiedź();
+			for (int i = nrOdpowiedzi; i < odpowiedzi.Count; i++)
+				odpowiedzi[i].zmieńNumer(i);
+
+			odpowiedzi.RemoveAt(nrOdpowiedzi - 1);
+		}
 	}
 }

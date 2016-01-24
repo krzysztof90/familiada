@@ -27,6 +27,7 @@ namespace familiada
 		TextBox edytorPunktów = new TextBox();
 		Button doGóry = new Button();
 		Button doDołu = new Button();
+		Button usuńButton = new Button();
 
 		Label nrOdpowiedziLabel = new Label();
 		Label odpowiedźLabel = new Label();
@@ -50,7 +51,7 @@ namespace familiada
 			}
 
 			naKontrolerze.Location = new Point(100, nrOdpowiedzi * 30);
-			naKontrolerze.Size = new System.Drawing.Size(310, 30);
+			naKontrolerze.Size = new System.Drawing.Size(340, 30);
 			naKontrolerze.Hide();
 			Global.kontroler.Controls.Add(naKontrolerze);
 
@@ -58,6 +59,7 @@ namespace familiada
 			odpowiedźButton.Size = new Size(100, 30);
 			odpowiedźButton.Text = odpowiedź;
 			odpowiedźButton.Click += new EventHandler(zaznaczOdznacz_Click);
+			naKontrolerze.Controls.Add(odpowiedźButton);
 
 			punktyLewyButton.Location = new Point(0, 0);
 			punktyLewyButton.Size = new Size(50, 30);
@@ -84,7 +86,6 @@ namespace familiada
 			edycjaPunktówButton.Text = "edytuj punkty";
 			edycjaPunktówButton.Click += new EventHandler(edytujPunkty_Click);
 			naKontrolerze.Controls.Add(edycjaPunktówButton);
-			naKontrolerze.Controls.Add(odpowiedźButton);
 
 			edytorOdpowiedzi.AutoSize = false;
 			edytorOdpowiedzi.Location = new Point(50, 0);
@@ -119,6 +120,13 @@ namespace familiada
 			doDołu.Tag = nrOdpowiedzi;
 			doDołu.Click += new EventHandler(doDołu_Click);
 			naKontrolerze.Controls.Add(doDołu);
+
+			usuńButton.Location = new Point(310, 0);
+			usuńButton.Size = new Size(30, 30);
+			usuńButton.Text = "usuń";
+			usuńButton.Click += new EventHandler(usuń_Click);
+			naKontrolerze.Controls.Add(usuńButton);
+
 
 			naGłównym.Location = new Point(100, nrOdpowiedzi * 30);
 			naGłównym.Size = new Size(210, 30);
@@ -165,9 +173,8 @@ namespace familiada
 		}
 		public void usuńOdpowiedź()
 		{
-			odpowiedźButton.Dispose();
-			nrOdpowiedziLabel.Dispose();
-			odpowiedźLabel.Dispose();
+			naKontrolerze.Dispose();
+			naGłównym.Dispose();
 		}
 		public void zaznacz()
 		{
@@ -237,7 +244,6 @@ namespace familiada
 				((Drużyna)(((Button)sender).Tag)).dodajPunkty(punkty);
 			}
 		}
-
 		private void edytujOdpowiedź_Click(object sender, EventArgs e)
 		{
 			edytorOdpowiedzi.Show();
@@ -281,12 +287,16 @@ namespace familiada
 		private void doGóry_Click(object sender, EventArgs e)
 		{
 			if (nrOdpowiedzi != 1)
-				pytanie.zamieńOdpowiedzi(((int)(((Button)sender).Tag))-1);
+				pytanie.zamieńOdpowiedzi(nrOdpowiedzi-1);
 		}
 		private void doDołu_Click(object sender, EventArgs e)
 		{
 			if (nrOdpowiedzi != pytanie.odpowiedzi.Count)
-				pytanie.zamieńOdpowiedzi((int)(((Button)sender).Tag));
+				pytanie.zamieńOdpowiedzi(nrOdpowiedzi);
+		}
+		private void usuń_Click(object sender, EventArgs e)
+		{
+			pytanie.usuń(nrOdpowiedzi);
 		}
 	}
 }
