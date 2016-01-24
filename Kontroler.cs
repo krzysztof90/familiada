@@ -47,10 +47,10 @@ namespace familiada
 				plik.Close();
 
 				plik = new StreamReader(Global.plik2);
-				for(int i=0; i<5; i++)
+				for (int i = 0; i < 5; i++)
 				{
 					string linia = plik.ReadLine().Trim();
-					Global.pytania2[i] = new Pytanie2(linia,i+1);
+					Global.pytania2[i] = new Pytanie2(linia, i + 1);
 				}
 				plik.Close();
 			}
@@ -143,6 +143,7 @@ namespace familiada
 			runda1.Hide();
 
 			Global.ukryjPytania2();
+			Punkty.wyzerujPunkty();
 
 			if (Global.obecnePytanie != Global.pytania1.Count - 1)
 				następnePytanie.Show();
@@ -165,6 +166,8 @@ namespace familiada
 				Global.pytania1[Global.obecnePytanie].ukryjOdpowiedzi();
 
 			Global.pokażPytania2();
+
+			Pytanie2.wyświetlPunkty();
 		}
 
 	}

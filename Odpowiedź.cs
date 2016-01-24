@@ -50,7 +50,7 @@ namespace familiada
 				Global.exit("niepoprawna liczba punktów");
 			}
 
-			naKontrolerze.Location = new Point(100, nrOdpowiedzi * 30+30);
+			naKontrolerze.Location = new Point(100, nrOdpowiedzi * 30 + 30);
 			naKontrolerze.Size = new System.Drawing.Size(340, 30);
 			naKontrolerze.Hide();
 			Global.kontroler.Controls.Add(naKontrolerze);
@@ -219,7 +219,7 @@ namespace familiada
 		public void zmieńNumer(int numer)
 		{
 			nrOdpowiedzi = numer;
-			naKontrolerze.Location = new Point(100, nrOdpowiedzi * 30+30);
+			naKontrolerze.Location = new Point(100, nrOdpowiedzi * 30 + 30);
 			naGłównym.Location = new Point(100, nrOdpowiedzi * 30);
 			doGóry.Tag = nrOdpowiedzi;
 			doDołu.Tag = nrOdpowiedzi;
@@ -285,13 +285,14 @@ namespace familiada
 			catch (FormatException)
 			{
 				MessageBox.Show("wpisz liczbę");
+				edytorPunktów.Focus();
 				edytorPunktów.SelectAll();
 			}
 		}
 		private void doGóry_Click(object sender, EventArgs e)
 		{
 			if (nrOdpowiedzi != 1)
-				pytanie.zamieńOdpowiedzi(nrOdpowiedzi-1);
+				pytanie.zamieńOdpowiedzi(nrOdpowiedzi - 1);
 		}
 		private void doDołu_Click(object sender, EventArgs e)
 		{

@@ -10,7 +10,7 @@ namespace familiada
 {
 	class Drużyna
 	{
-		int punkty=0;
+		int punkty = 0;
 
 		Label punktyGłównyLabel = new Label();
 		Label punktyPomocniczyLabel = new Label();
@@ -28,7 +28,7 @@ namespace familiada
 			dodajPunkty();
 		}
 
-		public void dodajPunkty(int dodane=0)
+		public void dodajPunkty(int dodane = 0)
 		{
 			punkty += dodane;
 			punktyGłównyLabel.Text = punkty.ToString();

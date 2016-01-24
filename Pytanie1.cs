@@ -54,7 +54,7 @@ namespace familiada
 		{
 			nazwaPytaniaLabel.Show();
 			Global.kontroler.dodajOdpowiedź.Show();
-			dodajPunkty();
+			ustawPunkty(punkty);
 			foreach (Odpowiedź odpowiedź in odpowiedzi)
 				odpowiedź.zainicjujKontrolkiOdpowiedzi();
 		}
@@ -67,7 +67,7 @@ namespace familiada
 		{
 			nazwaPytaniaLabel.Hide();
 			Global.kontroler.dodajOdpowiedź.Hide();
-			Punkty.ustawPunkty();
+			Punkty.wyzerujPunkty();
 			foreach (Odpowiedź odpowiedź in odpowiedzi)
 				odpowiedź.ukryjKontrolkiOdpowiedzi();
 		}
@@ -96,10 +96,13 @@ namespace familiada
 
 			odpowiedzi.RemoveAt(nrOdpowiedzi - 1);
 		}
-		public void dodajPunkty(int dodane = 0)
+		public void dodajPunkty(int punkty)
 		{
-			punkty += dodane;
-
+			this.punkty += punkty;
+			Punkty.dodajPunkty(punkty);
+		}
+		public void ustawPunkty(int punkty)
+		{
 			Punkty.ustawPunkty(punkty);
 		}
 	}
