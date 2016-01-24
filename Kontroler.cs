@@ -6,7 +6,6 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace familiada
@@ -22,7 +21,7 @@ namespace familiada
 		private void Form_Load(object sender, EventArgs e)
 		{
 			// usunąć
-			pokażEkran_Click(this, new EventArgs());
+			//pokażEkran_Click(this, new EventArgs());
 
 			try
 			{
