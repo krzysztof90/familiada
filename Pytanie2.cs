@@ -8,10 +8,206 @@ using System.Windows.Forms;
 namespace familiada
 {
 
+	abstract class PytanieStrona
+	{
+		protected static int punkty;
+		protected int nrPytania;
+		private bool poprawnePunkty = true;
+
+		public TextBox odpowiedźTextBox = new TextBox();
+		protected TextBox punktyTextBox = new TextBox();
+		protected Button umieśćButton = new Button();
+
+		protected Label odpowiedźLabel = new Label();
+		protected Label punktyLabel = new Label();
+
+		public abstract int odpowiedźTextBoxLocationX { get; }
+		public abstract int odpowiedźTextBoxTabIndex { get; }
+		public abstract int punktyTextBoxLocationX { get; }
+		public abstract int punktyTextBoxTabIndex { get; }
+		public abstract int umieśćButtonLocationX { get; }
+		public abstract int odpowiedźLabelLocationX { get; }
+		public abstract int punktyLabelLocationX { get; }
+
+		public abstract void punkty_KeyDown(object sender, KeyEventArgs e);
+
+		public PytanieStrona()
+		{
+			odpowiedźTextBox.Location = new Point(odpowiedźTextBoxLocationX, 5);
+			odpowiedźTextBox.Size = new Size(100, 20);
+			odpowiedźTextBox.Leave += new EventHandler(edytor_Leave);
+			odpowiedźTextBox.TabIndex = odpowiedźTextBoxTabIndex;
+
+			punktyTextBox.Location = new Point(punktyTextBoxLocationX, 5);
+			punktyTextBox.Size = new Size(30, 20);
+			punktyTextBox.Text = "0";
+			punktyTextBox.Leave += new EventHandler(edytorPunktów_Leave);
+			punktyTextBox.Leave += new EventHandler(edytor_Leave);
+			punktyTextBox.KeyDown += new KeyEventHandler(punkty_KeyDown);
+			punktyTextBox.TabIndex = punktyTextBoxTabIndex;
+
+			umieśćButton.Location = new Point(umieśćButtonLocationX, 0);
+			umieśćButton.Size = new Size(30, 30);
+			umieśćButton.Text = "umieść";
+			umieśćButton.Click += new EventHandler(pokażUkryj_Click);
+			umieśćButton.TabStop = false;
+
+			odpowiedźLabel.Location = new Point(odpowiedźLabelLocationX, 5);
+			odpowiedźLabel.Size = new Size(100, 20);
+
+			punktyLabel.Location = new Point(punktyLabelLocationX, 5);
+			punktyLabel.Size = new Size(30, 20);
+		}
+		public static void wyświetlPunkty()
+		{
+			Punkty.ustawPunkty(punkty);
+		}
+		public void umieść(Panel naKontrolerze, Panel naGłównym, int nrPytania)
+		{
+			this.nrPytania = nrPytania;
+
+			naKontrolerze.Controls.Add(this.odpowiedźTextBox);
+			naKontrolerze.Controls.Add(this.punktyTextBox);
+			naKontrolerze.Controls.Add(this.umieśćButton);
+
+			naGłównym.Controls.Add(this.odpowiedźLabel);
+			naGłównym.Controls.Add(this.punktyLabel);
+		}
+		private void edytorPunktów_Leave(object sender, EventArgs e)
+		{
+			TextBox textbox = ((TextBox)sender);
+			try
+			{
+				Int32.Parse(textbox.Text);
+				poprawnePunkty = true;
+			}
+			catch (FormatException)
+			{
+				MessageBox.Show("wpisz liczbę");
+				textbox.Focus();
+				textbox.SelectAll();
+				poprawnePunkty = false;
+			}
+		}
+		private void edytor_Leave(object sender, EventArgs e)
+		{
+			if (poprawnePunkty && wyświetlony())
+				pokażUkryj_Click(sender, new EventArgs());
+		}
+		public bool wyświetlony()
+		{
+			return umieśćButton.BackColor == Color.White;
+		}
+		private void pokażUkryj_Click(object sender, EventArgs e)
+		{
+			if (wyświetlony())
+			{
+				umieśćButton.BackColor = SystemColors.Control;
+				umieśćButton.UseVisualStyleBackColor = true;
+
+				odpowiedźLabel.Text = "";
+				punktyLabel.Text = "";
+				punkty -= Int32.Parse(punktyTextBox.Text);
+			}
+			else
+			{
+				umieśćButton.BackColor = Color.White;
+
+				odpowiedźLabel.Text = odpowiedźTextBox.Text;
+				punktyLabel.Text = punktyTextBox.Text;
+				punkty += Int32.Parse(punktyTextBox.Text);
+			}
+			wyświetlPunkty();
+		}
+	}
+
+	class PytanieL : PytanieStrona
+	{
+		public override int odpowiedźTextBoxLocationX
+		{
+			get { return 150; }
+		}
+		public override int odpowiedźTextBoxTabIndex
+		{
+			get { return 1; }
+		}
+		public override int punktyTextBoxLocationX
+		{
+			get { return 250; }
+		}
+		public override int punktyTextBoxTabIndex
+		{
+			get { return 2; }
+		}
+		public override int umieśćButtonLocationX
+		{
+			get { return 280; }
+		}
+		public override int odpowiedźLabelLocationX
+		{
+			get { return 150; }
+		}
+		public override int punktyLabelLocationX
+		{
+			get { return 250; }
+		}
+
+		public override void punkty_KeyDown(object sender, KeyEventArgs e)
+		{
+			if (e.KeyCode == Keys.Down)
+			{
+				if (nrPytania != 5)
+					Global.pytania2[nrPytania].pytanieL.odpowiedźTextBox.Focus();
+				else
+					Global.pytania2[0].pytanieP.odpowiedźTextBox.Focus();
+			}
+		}
+	}
+
+	class PytanieP : PytanieStrona
+	{
+		public override int odpowiedźTextBoxLocationX
+		{
+			get { return 370; }
+		}
+		public override int odpowiedźTextBoxTabIndex
+		{
+			get { return 3; }
+		}
+		public override int punktyTextBoxLocationX
+		{
+			get { return 340; }
+		}
+		public override int punktyTextBoxTabIndex
+		{
+			get { return 4; }
+		}
+		public override int umieśćButtonLocationX
+		{
+			get { return 310; }
+		}
+		public override int odpowiedźLabelLocationX
+		{
+			get { return 310; }
+		}
+		public override int punktyLabelLocationX
+		{
+			get { return 280; }
+		}
+
+		public override void punkty_KeyDown(object sender, KeyEventArgs e)
+		{
+			if (e.KeyCode == Keys.Down)
+			{
+				if (nrPytania != 5)
+					Global.pytania2[nrPytania].pytanieP.odpowiedźTextBox.Focus();
+			}
+		}
+	}
+
 	class Pytanie2
 	{
-		static int punkty;
-		
+
 		string nazwaPytania;
 		int nrPytania;
 
@@ -19,198 +215,35 @@ namespace familiada
 		Panel naGłównym = new Panel();
 
 		Label nazwaLabel = new Label();
-		TextBox odpowiedźLTextBox = new TextBox();
-		TextBox odpowiedźPTextBox = new TextBox();
-		TextBox punktyLTextBox = new TextBox();
-		TextBox punktyPTextBox = new TextBox();
-		Button umieśćL = new Button();
-		Button umieśćP = new Button();
 
-		Label odpowiedźLLabel = new Label();
-		Label odpowiedźPLabel = new Label();
-		Label punktyLLabel = new Label();
-		Label punktyPLabel = new Label();
+		public PytanieL pytanieL = new PytanieL();
+		public PytanieP pytanieP = new PytanieP();
 
 		public Pytanie2(string nazwa, int nrPytania)
 		{
 			nazwaPytania = nazwa;
 			this.nrPytania = nrPytania;
 
-			naKontrolerze.Location = new System.Drawing.Point(100, 50 * nrPytania);
-			naKontrolerze.Size = new System.Drawing.Size(480, 30);
+			naKontrolerze.Location = new Point(100, 50 * nrPytania);
+			naKontrolerze.Size = new Size(480, 30);
 			naKontrolerze.Controls.Add(this.nazwaLabel);
-			naKontrolerze.Controls.Add(this.odpowiedźLTextBox);
-			naKontrolerze.Controls.Add(this.odpowiedźPTextBox);
-			naKontrolerze.Controls.Add(this.punktyLTextBox);
-			naKontrolerze.Controls.Add(this.punktyPTextBox);
-			naKontrolerze.Controls.Add(this.umieśćL);
-			naKontrolerze.Controls.Add(this.umieśćP);
 			Global.panelKontroler2.Controls.Add(naKontrolerze);
 
 			nazwaLabel.Location = new System.Drawing.Point(5, 8);
 			nazwaLabel.Size = new System.Drawing.Size(145, 13);
 			nazwaLabel.Text = nazwaPytania;
 
-			odpowiedźLTextBox.Location = new System.Drawing.Point(150, 5);
-			odpowiedźLTextBox.Size = new System.Drawing.Size(100, 20);
-			odpowiedźLTextBox.Leave += new EventHandler(edytorL_Leave);
-			odpowiedźLTextBox.TabIndex = 1;
-
-			odpowiedźPTextBox.Location = new System.Drawing.Point(370, 5);
-			odpowiedźPTextBox.Size = new System.Drawing.Size(100, 20);
-			odpowiedźPTextBox.Leave += new EventHandler(edytorP_Leave);
-			odpowiedźPTextBox.TabIndex = 3;
-
-			punktyLTextBox.Location = new System.Drawing.Point(250, 5);
-			punktyLTextBox.Size = new System.Drawing.Size(30, 20);
-			punktyLTextBox.Text = "0";
-			punktyLTextBox.Leave += new EventHandler(edytorPunktów_Leave);
-			punktyLTextBox.Leave += new EventHandler(edytorL_Leave);
-			punktyLTextBox.KeyDown += new KeyEventHandler(punktyL_KeyDown);
-			punktyLTextBox.TabIndex = 2;
-
-			punktyPTextBox.Location = new System.Drawing.Point(340, 5);
-			punktyPTextBox.Size = new System.Drawing.Size(30, 20);
-			punktyPTextBox.Text = "0";
-			punktyPTextBox.Leave += new EventHandler(edytorPunktów_Leave);
-			punktyPTextBox.Leave += new EventHandler(edytorP_Leave);
-			punktyPTextBox.KeyDown += new KeyEventHandler(punktyP_KeyDown);
-			punktyPTextBox.TabIndex = 4;
-
-			umieśćL.Location = new Point(280, 0);
-			umieśćL.Size = new Size(30, 30);
-			umieśćL.Text = "umieść";
-			umieśćL.Click += new EventHandler(pokażUkryjL_Click);
-			umieśćL.TabStop = false;
-
-			umieśćP.Location = new Point(310, 0);
-			umieśćP.Size = new Size(30, 30);
-			umieśćP.Text = "umieść";
-			umieśćP.Click += new EventHandler(pokażUkryjP_Click);
-			umieśćP.TabStop = false;
-
-
 			naGłównym.Location = new System.Drawing.Point(30, 50 * nrPytania);
 			naGłównym.Size = new System.Drawing.Size(420, 30);
-			naGłównym.Controls.Add(this.odpowiedźLLabel);
-			naGłównym.Controls.Add(this.odpowiedźPLabel);
-			naGłównym.Controls.Add(this.punktyLLabel);
-			naGłównym.Controls.Add(this.punktyPLabel);
 			Global.panelGłówny2.Controls.Add(naGłównym);
 
-			odpowiedźLLabel.Location = new System.Drawing.Point(150, 5);
-			odpowiedźLLabel.Size = new System.Drawing.Size(100, 20);
-
-			odpowiedźPLabel.Location = new System.Drawing.Point(310, 5);
-			odpowiedźPLabel.Size = new System.Drawing.Size(100, 20);
-
-			punktyLLabel.Location = new System.Drawing.Point(250, 5);
-			punktyLLabel.Size = new System.Drawing.Size(30, 20);
-
-			punktyPLabel.Location = new System.Drawing.Point(280, 5);
-			punktyPLabel.Size = new System.Drawing.Size(30, 20);
+			pytanieL.umieść(naKontrolerze, naGłównym, nrPytania);
+			pytanieP.umieść(naKontrolerze, naGłównym, nrPytania);
 		}
 
-		public bool wyświetlonyL()
-		{
-			return umieśćL.BackColor == Color.White;
-		}
-		public bool wyświetlonyP()
-		{
-			return umieśćP.BackColor == Color.White;
-		}
 		public static void wyświetlPunkty()
 		{
-			Punkty.ustawPunkty(punkty);
-		}
-
-		private void edytorPunktów_Leave(object sender, EventArgs e)
-		{
-			TextBox textbox = ((TextBox)sender);
-			try
-			{
-				Int32.Parse(textbox.Text);
-			}
-			catch (FormatException)
-			{
-				MessageBox.Show("wpisz liczbę");
-				textbox.Focus();
-				textbox.SelectAll();
-			}
-		}
-		private void edytorL_Leave(object sender, EventArgs e)
-		{
-			if (wyświetlonyL())
-				pokażUkryjL_Click(sender, new EventArgs());
-		}
-		private void edytorP_Leave(object sender, EventArgs e)
-		{
-			if (wyświetlonyP())
-				pokażUkryjP_Click(sender, new EventArgs());
-		}
-		private void pokażUkryjL_Click(object sender, EventArgs e)
-		{
-			if (wyświetlonyL())
-			{
-				umieśćL.BackColor = SystemColors.Control;
-				umieśćL.UseVisualStyleBackColor = true;
-
-				odpowiedźLLabel.Text = "";
-				punktyLLabel.Text = "";
-				punkty -= Int32.Parse(punktyLTextBox.Text);
-				wyświetlPunkty();
-			}
-			else
-			{
-				umieśćL.BackColor = Color.White;
-
-				odpowiedźLLabel.Text = odpowiedźLTextBox.Text;
-				punktyLLabel.Text = punktyLTextBox.Text;
-				punkty += Int32.Parse(punktyLTextBox.Text);
-				wyświetlPunkty();
-			}
-		}
-		private void pokażUkryjP_Click(object sender, EventArgs e)
-		{
-			if (wyświetlonyP())
-			{
-				umieśćP.BackColor = SystemColors.Control;
-				umieśćP.UseVisualStyleBackColor = true;
-
-				odpowiedźPLabel.Text = "";
-				punktyPLabel.Text = "";
-				punkty -= Int32.Parse(punktyPTextBox.Text);
-				wyświetlPunkty();
-			}
-			else
-			{
-				umieśćP.BackColor = Color.White;
-
-				odpowiedźPLabel.Text = odpowiedźPTextBox.Text;
-				punktyPLabel.Text = punktyPTextBox.Text;
-				Punkty.dodajPunkty(Int32.Parse(punktyPTextBox.Text));
-				punkty += Int32.Parse(punktyPTextBox.Text);
-				wyświetlPunkty();
-			}
-		}
-		private void punktyL_KeyDown(object sender, KeyEventArgs e)
-		{
-			if (e.KeyCode == Keys.Down)
-			{
-				if(nrPytania!=5)
-				Global.pytania2[nrPytania].odpowiedźLTextBox.Focus();
-				else
-				Global.pytania2[0].odpowiedźPTextBox.Focus();
-
-			}
-		}
-		private void punktyP_KeyDown(object sender, KeyEventArgs e)
-		{
-			if (e.KeyCode == Keys.Down)
-			{
-				if(nrPytania!=5)
-				Global.pytania2[nrPytania].odpowiedźPTextBox.Focus();
-			}
+			PytanieStrona.wyświetlPunkty();
 		}
 	}
 }

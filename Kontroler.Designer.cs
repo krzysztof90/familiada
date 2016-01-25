@@ -109,7 +109,7 @@
 			this.dodatkowy.Controls.Add(this.punkty);
 			this.dodatkowy.Controls.Add(this.runda);
 			this.dodatkowy.Controls.Add(this.pokażEkran);
-			this.dodatkowy.Location = new System.Drawing.Point(3, 236);
+			this.dodatkowy.Location = new System.Drawing.Point(3, 320);
 			this.dodatkowy.Name = "dodatkowy";
 			this.dodatkowy.Size = new System.Drawing.Size(211, 133);
 			this.dodatkowy.TabIndex = 7;
@@ -123,7 +123,7 @@
 			this.panel1.Location = new System.Drawing.Point(0, 0);
 			this.panel1.Margin = new System.Windows.Forms.Padding(0);
 			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(658, 372);
+			this.panel1.Size = new System.Drawing.Size(658, 454);
 			this.panel1.TabIndex = 7;
 			this.panel1.Visible = false;
 			// 
@@ -132,7 +132,7 @@
 			this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.panel2.Location = new System.Drawing.Point(0, 0);
 			this.panel2.Name = "panel2";
-			this.panel2.Size = new System.Drawing.Size(658, 372);
+			this.panel2.Size = new System.Drawing.Size(658, 454);
 			this.panel2.TabIndex = 8;
 			this.panel2.Visible = false;
 			// 
@@ -140,7 +140,7 @@
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(658, 372);
+			this.ClientSize = new System.Drawing.Size(658, 454);
 			this.Controls.Add(this.dodatkowy);
 			this.Controls.Add(this.panel1);
 			this.Controls.Add(this.panel2);
