@@ -53,7 +53,7 @@ namespace familiada
 			naKontrolerze.Location = new Point(100, nrOdpowiedzi * 30 + 30);
 			naKontrolerze.Size = new System.Drawing.Size(340, 30);
 			naKontrolerze.Hide();
-			Global.kontroler.Controls.Add(naKontrolerze);
+			Global.panelKontroler1.Controls.Add(naKontrolerze);
 
 			odpowiedźButton.Location = new Point(50, 0);
 			odpowiedźButton.Size = new Size(100, 30);
@@ -131,7 +131,7 @@ namespace familiada
 			naGłównym.Location = new Point(100, nrOdpowiedzi * 30);
 			naGłównym.Size = new Size(210, 30);
 			naGłównym.Hide();
-			Global.główny.Controls.Add(naGłównym);
+			Global.panelGłówny1.Controls.Add(naGłównym);
 
 			nrOdpowiedziLabel.Location = new Point(0, 0);
 			nrOdpowiedziLabel.Size = new Size(30, 30);

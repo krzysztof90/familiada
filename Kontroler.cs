@@ -21,7 +21,7 @@ namespace familiada
 		private void Form_Load(object sender, EventArgs e)
 		{
 			// usunąć
-			//pokażEkran_Click(this, new EventArgs());
+			pokażEkran_Click(this, new EventArgs());
 
 			try
 			{
@@ -141,13 +141,12 @@ namespace familiada
 			runda2.Show();
 			runda1.Hide();
 
-			Global.ukryjPytania2();
-			Punkty.wyzerujPunkty();
+			Global.panelKontroler1.Show();
+			Global.panelGłówny1.Show();
+			Global.panelKontroler2.Hide();
+			Global.panelGłówny2.Hide();
 
-			if (Global.obecnePytanie != Global.pytania1.Count - 1)
-				następnePytanie.Show();
-			if (Global.obecnePytanie > 0)
-				poprzedniePytanie.Show();
+			Punkty.wyzerujPunkty();
 			if (Global.obecnePytanie != -1)
 			{
 				Global.pytania1[Global.obecnePytanie].zainicjujKontrolki();
@@ -158,13 +157,11 @@ namespace familiada
 		{
 			runda1.Show();
 			runda2.Hide();
-			następnePytanie.Hide();
-			poprzedniePytanie.Hide();
 
-			if (Global.obecnePytanie != -1)
-				Global.pytania1[Global.obecnePytanie].ukryjOdpowiedzi();
-
-			Global.pokażPytania2();
+			Global.panelKontroler2.Show();
+			Global.panelGłówny2.Show();
+			Global.panelKontroler1.Hide();
+			Global.panelGłówny1.Hide();
 
 			Pytanie2.wyświetlPunkty();
 		}

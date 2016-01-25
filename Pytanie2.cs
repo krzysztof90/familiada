@@ -7,10 +7,6 @@ using System.Windows.Forms;
 
 namespace familiada
 {
-	class Odpowiedź2
-	{
-
-	}
 
 	class Pytanie2
 	{
@@ -49,7 +45,7 @@ namespace familiada
 			naKontrolerze.Controls.Add(this.punktyPTextBox);
 			naKontrolerze.Controls.Add(this.umieśćL);
 			naKontrolerze.Controls.Add(this.umieśćP);
-			Global.kontroler.Controls.Add(naKontrolerze);
+			Global.panelKontroler2.Controls.Add(naKontrolerze);
 
 			nazwaLabel.Location = new System.Drawing.Point(5, 8);
 			nazwaLabel.Size = new System.Drawing.Size(145, 13);
@@ -64,7 +60,6 @@ namespace familiada
 			odpowiedźPTextBox.Size = new System.Drawing.Size(100, 20);
 			odpowiedźPTextBox.Leave += new EventHandler(edytorP_Leave);
 			odpowiedźPTextBox.TabIndex = 3;
-			//odpowiedźPTextBox.TabStop = false;
 
 			punktyLTextBox.Location = new System.Drawing.Point(250, 5);
 			punktyLTextBox.Size = new System.Drawing.Size(30, 20);
@@ -101,7 +96,7 @@ namespace familiada
 			naGłównym.Controls.Add(this.odpowiedźPLabel);
 			naGłównym.Controls.Add(this.punktyLLabel);
 			naGłównym.Controls.Add(this.punktyPLabel);
-			Global.główny.Controls.Add(naGłównym);
+			Global.panelGłówny2.Controls.Add(naGłównym);
 
 			odpowiedźLLabel.Location = new System.Drawing.Point(150, 5);
 			odpowiedźLLabel.Size = new System.Drawing.Size(100, 20);
@@ -114,20 +109,8 @@ namespace familiada
 
 			punktyPLabel.Location = new System.Drawing.Point(280, 5);
 			punktyPLabel.Size = new System.Drawing.Size(30, 20);
-
-			ukryjPytanie();
 		}
 
-		public void pokażPytanie()
-		{
-			naKontrolerze.Show();
-			naGłównym.Show();
-		}
-		public void ukryjPytanie()
-		{
-			naKontrolerze.Hide();
-			naGłównym.Hide();
-		}
 		public bool wyświetlonyL()
 		{
 			return umieśćL.BackColor == Color.White;

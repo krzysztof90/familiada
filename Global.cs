@@ -12,7 +12,13 @@ namespace familiada
 		public static string plik2 = "runda2.txt";
 
 		public static Kontroler kontroler = new Kontroler();
+		public static Panel panelKontroler1 = kontroler.panel1;
+		public static Panel panelKontroler2 = kontroler.panel2;
+		public static Panel panelKontrolerDodatkowy = kontroler.dodatkowy;
 		public static GłównyEkran główny = new GłównyEkran();
+		public static Panel panelGłówny1 = główny.panel1;
+		public static Panel panelGłówny2 = główny.panel2;
+		public static Panel panelGłównyDodatkowy = główny.dodatkowy;
 		
 		public static List<Pytanie1> pytania1 = new List<Pytanie1>();
 		public static int obecnePytanie = -1;
@@ -20,17 +26,6 @@ namespace familiada
 		
 		public static Drużyna drużynaL = new Drużyna(true);
 		public static Drużyna drużynaP = new Drużyna(false);
-
-		static public void pokażPytania2()
-		{
-			foreach (Pytanie2 pytanie in Global.pytania2)
-				pytanie.pokażPytanie();
-		}
-		static public void ukryjPytania2()
-		{
-			foreach (Pytanie2 pytanie in Global.pytania2)
-				pytanie.ukryjPytanie();
-		}
 
 		static public void exit(string message)
 		{

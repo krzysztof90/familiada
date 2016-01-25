@@ -38,7 +38,7 @@ namespace familiada
 			nazwaPytaniaLabel.Location = new Point(100, 0);
 			nazwaPytaniaLabel.Text = nrPytania.ToString() + ". " + nazwaPytania;
 			nazwaPytaniaLabel.Hide();
-			Global.kontroler.Controls.Add(nazwaPytaniaLabel);
+			Global.panelKontroler1.Controls.Add(nazwaPytaniaLabel);
 		}
 
 		public void dodajIPokażOdpowiedź(string linia)

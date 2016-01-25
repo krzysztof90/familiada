@@ -35,6 +35,9 @@
 			this.runda1 = new System.Windows.Forms.Button();
 			this.runda2 = new System.Windows.Forms.Button();
 			this.punkty = new System.Windows.Forms.Label();
+			this.dodatkowy = new System.Windows.Forms.Panel();
+			this.panel1 = new System.Windows.Forms.Panel();
+			this.panel2 = new System.Windows.Forms.Panel();
 			this.SuspendLayout();
 			// 
 			// następnePytanie
@@ -45,12 +48,11 @@
 			this.następnePytanie.TabIndex = 2;
 			this.następnePytanie.Text = "następnePytanie";
 			this.następnePytanie.UseVisualStyleBackColor = true;
-			this.następnePytanie.Visible = false;
 			this.następnePytanie.Click += new System.EventHandler(this.następnePytanie_Click);
 			// 
 			// pokażEkran
 			// 
-			this.pokażEkran.Location = new System.Drawing.Point(478, 12);
+			this.pokażEkran.Location = new System.Drawing.Point(0, 39);
 			this.pokażEkran.Name = "pokażEkran";
 			this.pokażEkran.Size = new System.Drawing.Size(114, 23);
 			this.pokażEkran.TabIndex = 1;
@@ -82,17 +84,17 @@
 			// 
 			// runda1
 			// 
-			this.runda1.Location = new System.Drawing.Point(510, 222);
+			this.runda1.Location = new System.Drawing.Point(0, 68);
 			this.runda1.Name = "runda1";
 			this.runda1.Size = new System.Drawing.Size(75, 23);
-			this.runda1.TabIndex = 4;
+			this.runda1.TabIndex = 6;
 			this.runda1.Text = "runda 1";
 			this.runda1.UseVisualStyleBackColor = true;
 			this.runda1.Click += new System.EventHandler(this.runda1_Click);
 			// 
 			// runda2
 			// 
-			this.runda2.Location = new System.Drawing.Point(510, 251);
+			this.runda2.Location = new System.Drawing.Point(0, 97);
 			this.runda2.Name = "runda2";
 			this.runda2.Size = new System.Drawing.Size(75, 23);
 			this.runda2.TabIndex = 5;
@@ -104,29 +106,58 @@
 			// punkty
 			// 
 			this.punkty.AutoSize = true;
-			this.punkty.Location = new System.Drawing.Point(184, 9);
+			this.punkty.Location = new System.Drawing.Point(80, 8);
 			this.punkty.Name = "punkty";
 			this.punkty.Size = new System.Drawing.Size(13, 13);
 			this.punkty.TabIndex = 6;
 			this.punkty.Text = "0";
 			// 
+			// dodatkowy
+			// 
+			this.dodatkowy.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.dodatkowy.Controls.Add(this.punkty);
+			this.dodatkowy.Controls.Add(this.runda2);
+			this.dodatkowy.Controls.Add(this.runda1);
+			this.dodatkowy.Controls.Add(this.pokażEkran);
+			this.dodatkowy.Location = new System.Drawing.Point(3, 236);
+			this.dodatkowy.Name = "dodatkowy";
+			this.dodatkowy.Size = new System.Drawing.Size(211, 133);
+			this.dodatkowy.TabIndex = 7;
+			// 
+			// panel1
+			// 
+			this.panel1.Controls.Add(this.dodajOdpowiedź);
+			this.panel1.Controls.Add(this.poprzedniePytanie);
+			this.panel1.Controls.Add(this.następnePytanie);
+			this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.panel1.Location = new System.Drawing.Point(0, 0);
+			this.panel1.Margin = new System.Windows.Forms.Padding(0);
+			this.panel1.Name = "panel1";
+			this.panel1.Size = new System.Drawing.Size(658, 372);
+			this.panel1.TabIndex = 7;
+			this.panel1.Visible = false;
+			// 
+			// panel2
+			// 
+			this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.panel2.Location = new System.Drawing.Point(0, 0);
+			this.panel2.Name = "panel2";
+			this.panel2.Size = new System.Drawing.Size(658, 372);
+			this.panel2.TabIndex = 8;
+			this.panel2.Visible = false;
+			// 
 			// Kontroler
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(659, 372);
-			this.Controls.Add(this.punkty);
-			this.Controls.Add(this.runda2);
-			this.Controls.Add(this.runda1);
-			this.Controls.Add(this.dodajOdpowiedź);
-			this.Controls.Add(this.poprzedniePytanie);
-			this.Controls.Add(this.pokażEkran);
-			this.Controls.Add(this.następnePytanie);
+			this.ClientSize = new System.Drawing.Size(658, 372);
+			this.Controls.Add(this.dodatkowy);
+			this.Controls.Add(this.panel1);
+			this.Controls.Add(this.panel2);
 			this.Name = "Kontroler";
 			this.Text = "Kontroler";
 			this.Load += new System.EventHandler(this.Form_Load);
 			this.ResumeLayout(false);
-			this.PerformLayout();
 
 		}
 
@@ -139,6 +170,9 @@
 		private System.Windows.Forms.Button runda1;
 		private System.Windows.Forms.Button runda2;
 		public System.Windows.Forms.Label punkty;
+		public System.Windows.Forms.Panel panel1;
+		public System.Windows.Forms.Panel dodatkowy;
+		public System.Windows.Forms.Panel panel2;
 	}
 }
 

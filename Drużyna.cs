@@ -11,18 +11,18 @@ namespace familiada
 	{
 		int punkty = 0;
 
+		Label punktyKontrolerLabel = new Label();
 		Label punktyGłównyLabel = new Label();
-		Label punktyPomocniczyLabel = new Label();
 
 		public Drużyna(bool left)
 		{
 			DockStyle Dock = left ? DockStyle.Left : DockStyle.Right;
 
-			punktyGłównyLabel.Dock = Dock;
-			Global.główny.Controls.Add(punktyGłównyLabel);
+			punktyKontrolerLabel.Dock = Dock;
+			Global.panelKontrolerDodatkowy.Controls.Add(punktyKontrolerLabel);
 
-			punktyPomocniczyLabel.Dock = Dock;
-			Global.kontroler.Controls.Add(punktyPomocniczyLabel);
+			punktyGłównyLabel.Dock = Dock;
+			Global.panelGłównyDodatkowy.Controls.Add(punktyGłównyLabel);
 
 			dodajPunkty();
 		}
@@ -31,7 +31,7 @@ namespace familiada
 		{
 			punkty += dodane;
 			punktyGłównyLabel.Text = punkty.ToString();
-			punktyPomocniczyLabel.Text = punkty.ToString();
+			punktyKontrolerLabel.Text = punkty.ToString();
 		}
 	}
 }
