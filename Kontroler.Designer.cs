@@ -32,12 +32,13 @@
 			this.pokażEkran = new System.Windows.Forms.Button();
 			this.poprzedniePytanie = new System.Windows.Forms.Button();
 			this.dodajOdpowiedź = new System.Windows.Forms.Button();
-			this.runda1 = new System.Windows.Forms.Button();
-			this.runda2 = new System.Windows.Forms.Button();
+			this.runda = new System.Windows.Forms.Button();
 			this.punkty = new System.Windows.Forms.Label();
 			this.dodatkowy = new System.Windows.Forms.Panel();
 			this.panel1 = new System.Windows.Forms.Panel();
 			this.panel2 = new System.Windows.Forms.Panel();
+			this.dodatkowy.SuspendLayout();
+			this.panel1.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// następnePytanie
@@ -82,26 +83,16 @@
 			this.dodajOdpowiedź.Visible = false;
 			this.dodajOdpowiedź.Click += new System.EventHandler(this.dodajOdpowiedź_Click);
 			// 
-			// runda1
+			// runda
 			// 
-			this.runda1.Location = new System.Drawing.Point(0, 68);
-			this.runda1.Name = "runda1";
-			this.runda1.Size = new System.Drawing.Size(75, 23);
-			this.runda1.TabIndex = 6;
-			this.runda1.Text = "runda 1";
-			this.runda1.UseVisualStyleBackColor = true;
-			this.runda1.Click += new System.EventHandler(this.runda1_Click);
-			// 
-			// runda2
-			// 
-			this.runda2.Location = new System.Drawing.Point(0, 97);
-			this.runda2.Name = "runda2";
-			this.runda2.Size = new System.Drawing.Size(75, 23);
-			this.runda2.TabIndex = 5;
-			this.runda2.Text = "runda 2";
-			this.runda2.UseVisualStyleBackColor = true;
-			this.runda2.Visible = false;
-			this.runda2.Click += new System.EventHandler(this.runda2_Click);
+			this.runda.Location = new System.Drawing.Point(0, 68);
+			this.runda.Name = "runda";
+			this.runda.Size = new System.Drawing.Size(114, 23);
+			this.runda.TabIndex = 6;
+			this.runda.Tag = 1;
+			this.runda.Text = "przełącz do rundy 1";
+			this.runda.UseVisualStyleBackColor = true;
+			this.runda.Click += new System.EventHandler(this.runda_Click);
 			// 
 			// punkty
 			// 
@@ -116,8 +107,7 @@
 			// 
 			this.dodatkowy.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.dodatkowy.Controls.Add(this.punkty);
-			this.dodatkowy.Controls.Add(this.runda2);
-			this.dodatkowy.Controls.Add(this.runda1);
+			this.dodatkowy.Controls.Add(this.runda);
 			this.dodatkowy.Controls.Add(this.pokażEkran);
 			this.dodatkowy.Location = new System.Drawing.Point(3, 236);
 			this.dodatkowy.Name = "dodatkowy";
@@ -157,6 +147,9 @@
 			this.Name = "Kontroler";
 			this.Text = "Kontroler";
 			this.Load += new System.EventHandler(this.Form_Load);
+			this.dodatkowy.ResumeLayout(false);
+			this.dodatkowy.PerformLayout();
+			this.panel1.ResumeLayout(false);
 			this.ResumeLayout(false);
 
 		}
@@ -167,8 +160,7 @@
 		private System.Windows.Forms.Button poprzedniePytanie;
 		public System.Windows.Forms.Button pokażEkran;
 		public System.Windows.Forms.Button dodajOdpowiedź;
-		private System.Windows.Forms.Button runda1;
-		private System.Windows.Forms.Button runda2;
+		private System.Windows.Forms.Button runda;
 		public System.Windows.Forms.Label punkty;
 		public System.Windows.Forms.Panel panel1;
 		public System.Windows.Forms.Panel dodatkowy;

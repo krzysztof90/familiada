@@ -136,34 +136,38 @@ namespace familiada
 			Global.pytania1[Global.obecnePytanie].dodajIPokażOdpowiedź(" 0");
 		}
 
-		private void runda1_Click(object sender, EventArgs e)
+		private void runda_Click(object sender, EventArgs e)
 		{
-			runda2.Show();
-			runda1.Hide();
+			Button przycisk = (Button)sender;
 
-			Global.panelKontroler1.Show();
-			Global.panelGłówny1.Show();
-			Global.panelKontroler2.Hide();
-			Global.panelGłówny2.Hide();
-
-			Punkty.wyzerujPunkty();
-			if (Global.obecnePytanie != -1)
+			if ((int)(przycisk.Tag) == 1)
 			{
-				Global.pytania1[Global.obecnePytanie].zainicjujKontrolki();
+				przycisk.Tag = 2;
+				przycisk.Text = "przełącz do rundy 2";
+
+				Global.panelKontroler1.Show();
+				Global.panelGłówny1.Show();
+				Global.panelKontroler2.Hide();
+				Global.panelGłówny2.Hide();
+
+				Punkty.wyzerujPunkty();
+				if (Global.obecnePytanie != -1)
+				{
+					Global.pytania1[Global.obecnePytanie].zainicjujKontrolki();
+				}
 			}
-		}
+			else
+			{
+				przycisk.Tag = 1;
+				przycisk.Text = "przełącz do rundy 1";
 
-		private void runda2_Click(object sender, EventArgs e)
-		{
-			runda1.Show();
-			runda2.Hide();
+				Global.panelKontroler2.Show();
+				Global.panelGłówny2.Show();
+				Global.panelKontroler1.Hide();
+				Global.panelGłówny1.Hide();
 
-			Global.panelKontroler2.Show();
-			Global.panelGłówny2.Show();
-			Global.panelKontroler1.Hide();
-			Global.panelGłówny1.Hide();
-
-			Pytanie2.wyświetlPunkty();
+				Pytanie2.wyświetlPunkty();
+			}
 		}
 
 	}
