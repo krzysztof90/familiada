@@ -79,7 +79,7 @@ namespace familiada
 			this.dodatkowy.Controls.Add(this.punkty);
 			this.dodatkowy.Location = new System.Drawing.Point(0, 0);
 			this.dodatkowy.Name = "dodatkowy";
-			this.dodatkowy.Size = new System.Drawing.Size(211, 20);
+			this.dodatkowy.Size = new System.Drawing.Size(228, 192);
 			this.dodatkowy.TabIndex = 3;
 			// 
 			// GłównyEkran
@@ -93,6 +93,7 @@ namespace familiada
 			this.Name = "GłównyEkran";
 			this.Text = "Główny ekran";
 			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.GłównyEkran_FormClosing);
+			this.Load += new System.EventHandler(this.Form_Load);
 			this.panel2.ResumeLayout(false);
 			this.panel2.PerformLayout();
 			this.dodatkowy.ResumeLayout(false);
