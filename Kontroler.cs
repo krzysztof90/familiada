@@ -33,9 +33,9 @@ namespace familiada
 					string linia = plik.ReadLine().Trim();
 					if (linia.Length != 0)
 					{
-						if (nrPytania(linia) != null)
+						if (nagłówekPytania(linia) != null)
 						{
-							Global.pytania1.Add(new Pytanie1(nrPytania(linia)));
+							Global.pytania1.Add(new Pytanie1(nagłówekPytania(linia)));
 						}
 						else
 						{
@@ -68,7 +68,7 @@ namespace familiada
 				Global.exit("brak pytań");
 		}
 
-		static NrINazwaPytania nrPytania(string linia)
+		static NrINazwaPytania nagłówekPytania(string linia)
 		{
 			NrINazwaPytania pytanie = null;
 			try
@@ -93,7 +93,7 @@ namespace familiada
 				Global.pytania1[obecnePytanie].ukryjOdpowiedzi();
 			}
 
-			pokażOgólneKontrolkiPytania();
+			Global.kontroler.dodajOdpowiedź.Show();
 
 			obecnePytanie++;
 			Global.pytania1[obecnePytanie].zainicjujKontrolki();
@@ -112,12 +112,6 @@ namespace familiada
 
 			if (obecnePytanie == 0)
 				poprzedniePytanie.Hide();
-		}
-
-		private void pokażOgólneKontrolkiPytania()
-		{
-			Global.kontroler.dodajOdpowiedź.Show();
-
 		}
 
 		private void pokażEkran_Click(object sender, EventArgs e)
@@ -177,6 +171,31 @@ namespace familiada
 				Global.panelGłówny1.Hide();
 
 				Pytanie2.wyświetlPunkty();
+			}
+		}
+
+		private void ustawCzas_Click(object sender, System.EventArgs e)
+		{
+			string czasLabel = (string)(((Button)sender).Tag);
+			czas.Text = czasLabel;
+			Global.główny.czas.Text = czasLabel;
+		}
+		private void startCzas_Click(object sender, EventArgs e)
+		{
+			if (czas.Text != "")
+				timer1.Start();
+		}
+		private void timer1_Tick(object sender, EventArgs e)
+		{
+			int pozostałyCzas = Int32.Parse(czas.Text);
+			pozostałyCzas--;
+			czas.Text = pozostałyCzas.ToString();
+			Global.główny.czas.Text = pozostałyCzas.ToString();
+			if (pozostałyCzas == 0)
+			{
+				timer1.Stop();
+				czas.Text = "";
+			Global.główny.czas.Text = "";
 			}
 		}
 

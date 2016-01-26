@@ -28,6 +28,7 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
+			this.components = new System.ComponentModel.Container();
 			this.następnePytanie = new System.Windows.Forms.Button();
 			this.pokażEkran = new System.Windows.Forms.Button();
 			this.poprzedniePytanie = new System.Windows.Forms.Button();
@@ -36,9 +37,15 @@
 			this.punkty = new System.Windows.Forms.Label();
 			this.dodatkowy = new System.Windows.Forms.Panel();
 			this.panel1 = new System.Windows.Forms.Panel();
+			this.start = new System.Windows.Forms.Button();
 			this.panel2 = new System.Windows.Forms.Panel();
+			this.ustawCzas20 = new System.Windows.Forms.Button();
+			this.ustawCzas15 = new System.Windows.Forms.Button();
+			this.czas = new System.Windows.Forms.Label();
+			this.timer1 = new System.Windows.Forms.Timer(this.components);
 			this.dodatkowy.SuspendLayout();
 			this.panel1.SuspendLayout();
+			this.panel2.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// następnePytanie
@@ -127,14 +134,64 @@
 			this.panel1.TabIndex = 7;
 			this.panel1.Visible = false;
 			// 
+			// start
+			// 
+			this.start.Location = new System.Drawing.Point(474, 345);
+			this.start.Name = "start";
+			this.start.Size = new System.Drawing.Size(75, 23);
+			this.start.TabIndex = 3;
+			this.start.Text = "start";
+			this.start.UseVisualStyleBackColor = true;
+			this.start.Click += new System.EventHandler(this.startCzas_Click);
+			// 
 			// panel2
 			// 
+			this.panel2.Controls.Add(this.ustawCzas20);
+			this.panel2.Controls.Add(this.ustawCzas15);
+			this.panel2.Controls.Add(this.czas);
+			this.panel2.Controls.Add(this.start);
 			this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.panel2.Location = new System.Drawing.Point(0, 0);
 			this.panel2.Name = "panel2";
 			this.panel2.Size = new System.Drawing.Size(658, 454);
 			this.panel2.TabIndex = 8;
 			this.panel2.Visible = false;
+			// 
+			// ustawCzas20
+			// 
+			this.ustawCzas20.Location = new System.Drawing.Point(571, 300);
+			this.ustawCzas20.Name = "ustawCzas20";
+			this.ustawCzas20.Size = new System.Drawing.Size(75, 23);
+			this.ustawCzas20.TabIndex = 4;
+			this.ustawCzas20.Tag = "20";
+			this.ustawCzas20.Text = "ustaw 20";
+			this.ustawCzas20.UseVisualStyleBackColor = true;
+			this.ustawCzas20.Click += new System.EventHandler(this.ustawCzas_Click);
+			// 
+			// ustawCzas15
+			// 
+			this.ustawCzas15.Location = new System.Drawing.Point(474, 300);
+			this.ustawCzas15.Name = "ustawCzas15";
+			this.ustawCzas15.Size = new System.Drawing.Size(75, 23);
+			this.ustawCzas15.TabIndex = 3;
+			this.ustawCzas15.Tag = "15";
+			this.ustawCzas15.Text = "ustaw 15";
+			this.ustawCzas15.UseVisualStyleBackColor = true;
+			this.ustawCzas15.Click += new System.EventHandler(this.ustawCzas_Click);
+			// 
+			// czas
+			// 
+			this.czas.AutoSize = true;
+			this.czas.Location = new System.Drawing.Point(523, 398);
+			this.czas.Name = "czas";
+			this.czas.Size = new System.Drawing.Size(19, 13);
+			this.czas.TabIndex = 3;
+			this.czas.Text = "";
+			// 
+			// timer1
+			// 
+			this.timer1.Interval = 1000;
+			this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
 			// 
 			// Kontroler
 			// 
@@ -150,6 +207,8 @@
 			this.dodatkowy.ResumeLayout(false);
 			this.dodatkowy.PerformLayout();
 			this.panel1.ResumeLayout(false);
+			this.panel2.ResumeLayout(false);
+			this.panel2.PerformLayout();
 			this.ResumeLayout(false);
 
 		}
@@ -165,6 +224,11 @@
 		public System.Windows.Forms.Panel panel1;
 		public System.Windows.Forms.Panel dodatkowy;
 		public System.Windows.Forms.Panel panel2;
+		private System.Windows.Forms.Button start;
+		private System.Windows.Forms.Label czas;
+		private System.Windows.Forms.Timer timer1;
+		private System.Windows.Forms.Button ustawCzas20;
+		private System.Windows.Forms.Button ustawCzas15;
 	}
 }
 

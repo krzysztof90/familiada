@@ -207,7 +207,6 @@ namespace familiada
 
 	class Pytanie2
 	{
-
 		string nazwaPytania;
 		int nrPytania;
 

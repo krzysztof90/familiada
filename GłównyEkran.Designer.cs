@@ -32,7 +32,10 @@ namespace familiada
 			this.punkty = new System.Windows.Forms.Label();
 			this.panel1 = new System.Windows.Forms.Panel();
 			this.panel2 = new System.Windows.Forms.Panel();
+			this.czas = new System.Windows.Forms.Label();
 			this.dodatkowy = new System.Windows.Forms.Panel();
+			this.panel2.SuspendLayout();
+			this.dodatkowy.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// punkty
@@ -43,14 +46,6 @@ namespace familiada
 			this.punkty.Size = new System.Drawing.Size(13, 13);
 			this.punkty.TabIndex = 0;
 			this.punkty.Text = "0";
-			// 
-			// dodatkowy
-			// 
-			this.dodatkowy.Controls.Add(this.punkty);
-			this.dodatkowy.Location = new System.Drawing.Point(0, 0);
-			this.dodatkowy.Name = "dodatkowy";
-			this.dodatkowy.Size = new System.Drawing.Size(211, 20);
-			this.dodatkowy.TabIndex = 3;
 			// 
 			// panel1
 			// 
@@ -63,12 +58,29 @@ namespace familiada
 			// 
 			// panel2
 			// 
+			this.panel2.Controls.Add(this.czas);
 			this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.panel2.Location = new System.Drawing.Point(0, 0);
 			this.panel2.Name = "panel2";
 			this.panel2.Size = new System.Drawing.Size(517, 324);
 			this.panel2.TabIndex = 2;
 			this.panel2.Visible = false;
+			// 
+			// czas
+			// 
+			this.czas.AutoSize = true;
+			this.czas.Location = new System.Drawing.Point(400, 10);
+			this.czas.Name = "czas";
+			this.czas.Size = new System.Drawing.Size(0, 13);
+			this.czas.TabIndex = 3;
+			// 
+			// dodatkowy
+			// 
+			this.dodatkowy.Controls.Add(this.punkty);
+			this.dodatkowy.Location = new System.Drawing.Point(0, 0);
+			this.dodatkowy.Name = "dodatkowy";
+			this.dodatkowy.Size = new System.Drawing.Size(211, 20);
+			this.dodatkowy.TabIndex = 3;
 			// 
 			// GłównyEkran
 			// 
@@ -81,6 +93,10 @@ namespace familiada
 			this.Name = "GłównyEkran";
 			this.Text = "Główny ekran";
 			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.GłównyEkran_FormClosing);
+			this.panel2.ResumeLayout(false);
+			this.panel2.PerformLayout();
+			this.dodatkowy.ResumeLayout(false);
+			this.dodatkowy.PerformLayout();
 			this.ResumeLayout(false);
 
 		}
@@ -91,6 +107,7 @@ namespace familiada
 		public Panel panel1;
 		public Panel panel2;
 		public Panel dodatkowy;
+		public Label czas;
 
 	}
 }
