@@ -199,5 +199,15 @@ namespace familiada
 			}
 		}
 
+		//protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+		//{
+		//	if (keyData == Keys.Tab)
+		//	{
+		//		Pytanie2.przenieśFocus();
+		//		return true;
+		//	}
+		//	return base.ProcessCmdKey(ref msg, keyData);
+		//}
+
 	}
 }

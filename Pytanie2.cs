@@ -256,6 +256,10 @@ namespace familiada
 			pytanieP.umieść(naKontrolerze, naGłównym, nrPytania);
 		}
 
+		//public static void przenieśFocus()
+		//{
+
+		//}
 		public static void wyświetlPunkty()
 		{
 			PytanieStrona.wyświetlPunkty();
