@@ -93,6 +93,8 @@ namespace familiada
 				Global.pytania1[obecnePytanie].ukryjOdpowiedzi();
 			}
 
+			pokażOgólneKontrolkiPytania();
+
 			obecnePytanie++;
 			Global.pytania1[obecnePytanie].zainicjujKontrolki();
 			if (obecnePytanie == Global.pytania1.Count - 1)
@@ -110,6 +112,12 @@ namespace familiada
 
 			if (obecnePytanie == 0)
 				poprzedniePytanie.Hide();
+		}
+
+		private void pokażOgólneKontrolkiPytania()
+		{
+			Global.kontroler.dodajOdpowiedź.Show();
+
 		}
 
 		private void pokażEkran_Click(object sender, EventArgs e)
