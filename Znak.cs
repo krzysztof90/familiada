@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
@@ -12,8 +13,6 @@ namespace familiada
 		int liczbaKolumn;
 		int liczbaRzędów;
 
-		//Panel help = new Panel();
-
 		TableLayoutPanel panel = new TableLayoutPanel();
 		PictureBox[,] piksele;
 
@@ -22,12 +21,15 @@ namespace familiada
 			this.liczbaKolumn = liczbaKolumn;
 			this.liczbaRzędów = liczbaRzędów;
 
-			panel.ColumnCount = liczbaKolumn;
+			panel.ColumnCount = liczbaKolumn; //+1 ? zamiast tego niżej
 			panel.RowCount = liczbaRzędów;
-			for(int i=0; i<liczbaKolumn; i++)
+
+			for (int i = 0; i < liczbaKolumn; i++)
 				panel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F / liczbaKolumn));
-			for(int i=0; i<liczbaRzędów; i++)
+			panel.ColumnCount++; //naprawia wyświetlanie ostatniej kolumny za dużej?
+			for (int i = 0; i < liczbaRzędów; i++)
 				panel.RowStyles.Add(new RowStyle(SizeType.Percent, 100F / liczbaRzędów));
+			panel.RowCount++;
 			panel.Dock = DockStyle.Fill;
 			panel.Margin = new Padding(0);
 
