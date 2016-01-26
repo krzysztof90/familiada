@@ -24,12 +24,16 @@ namespace familiada
 			punktyGłównyLabel.Dock = Dock;
 			Global.panelGłównyDodatkowy.Controls.Add(punktyGłównyLabel);
 
-			dodajPunkty();
+			wyświetlPunkty();
 		}
 
 		public void dodajPunkty(int dodane = 0)
 		{
 			punkty += dodane;
+			wyświetlPunkty();
+		}
+		public void wyświetlPunkty()
+		{
 			punktyGłównyLabel.Text = punkty.ToString();
 			punktyKontrolerLabel.Text = punkty.ToString();
 		}
