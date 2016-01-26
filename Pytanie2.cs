@@ -60,6 +60,7 @@ namespace familiada
 			punktyLabel.Location = new Point(punktyLabelLocationX, 5);
 			punktyLabel.Size = new Size(30, 20);
 		}
+
 		public static void wyświetlPunkty()
 		{
 			Punkty.ustawPunkty(punkty);
@@ -75,6 +76,11 @@ namespace familiada
 			naGłównym.Controls.Add(this.odpowiedźLabel);
 			naGłównym.Controls.Add(this.punktyLabel);
 		}
+		public bool wyświetlony()
+		{
+			return umieśćButton.BackColor == Color.White;
+		}
+
 		private void edytorPunktów_Leave(object sender, EventArgs e)
 		{
 			TextBox textbox = ((TextBox)sender);
@@ -95,10 +101,6 @@ namespace familiada
 		{
 			if (poprawnePunkty && wyświetlony())
 				pokażUkryj_Click(sender, new EventArgs());
-		}
-		public bool wyświetlony()
-		{
-			return umieśćButton.BackColor == Color.White;
 		}
 		private void pokażUkryj_Click(object sender, EventArgs e)
 		{
@@ -256,10 +258,6 @@ namespace familiada
 			pytanieP.umieść(naKontrolerze, naGłównym, nrPytania);
 		}
 
-		//public static void przenieśFocus()
-		//{
-
-		//}
 		public static void wyświetlPunkty()
 		{
 			PytanieStrona.wyświetlPunkty();

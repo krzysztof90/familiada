@@ -83,6 +83,7 @@ namespace familiada
 			}
 		}
 	}
+
 	class ZonkL : Zonk
 	{
 		public override int początekWysokości
@@ -124,6 +125,15 @@ namespace familiada
 			Global.panelKontroler1.Controls.Add(nazwaPytaniaLabel);
 		}
 
+		public void zainicjujKontrolki()
+		{
+			nazwaPytaniaLabel.Show();
+			ustawPunkty(punkty);
+			zonkL.pokaż();
+			zonkP.pokaż();
+			foreach (Odpowiedź odpowiedź in odpowiedzi)
+				odpowiedź.pokażKontrolkiOdpowiedzi();
+		}
 		public void dodajIPokażOdpowiedź(string linia)
 		{
 			dodajOdpowiedź(linia);
@@ -132,15 +142,6 @@ namespace familiada
 		public void dodajOdpowiedź(string linia)
 		{
 			odpowiedzi.Add(new Odpowiedź(linia, this));
-		}
-		public void zainicjujKontrolki()
-		{
-			nazwaPytaniaLabel.Show();
-			ustawPunkty(punkty);
-			zonkL.pokaż();
-			zonkP.pokaż();
-			foreach (Odpowiedź odpowiedź in odpowiedzi)
-				odpowiedź.zainicjujKontrolkiOdpowiedzi();
 		}
 		public void ukryjOdpowiedzi()
 		{
@@ -160,7 +161,7 @@ namespace familiada
 			odpowiedzi[nrPoczątkowej - 1] = odpowiedzi[nrPoczątkowej];
 			odpowiedzi[nrPoczątkowej] = początkowa;
 		}
-		public void usuń(int nrOdpowiedzi)
+		public void usuńOdpowiedź(int nrOdpowiedzi)
 		{
 			Odpowiedź odpowiedź = odpowiedzi[nrOdpowiedzi - 1];
 			odpowiedź.usuńOdpowiedź();
@@ -169,6 +170,7 @@ namespace familiada
 
 			odpowiedzi.RemoveAt(nrOdpowiedzi - 1);
 		}
+		
 		public void dodajPunkty(int punkty)
 		{
 			this.punkty += punkty;

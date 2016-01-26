@@ -27,7 +27,7 @@ namespace familiada
 			wyświetlPunkty();
 		}
 
-		public void dodajPunkty(int dodane = 0)
+		public void dodajPunkty(int dodane)
 		{
 			punkty += dodane;
 			wyświetlPunkty();

@@ -13,7 +13,7 @@ namespace familiada
 			Global.kontroler.punkty.Text = "0";
 		}
 
-		public static void dodajPunkty(int dodane = 0)
+		public static void dodajPunkty(int dodane)
 		{
 			int punkty = Int32.Parse(Global.główny.punkty.Text) + dodane;
 			ustawPunkty(punkty);

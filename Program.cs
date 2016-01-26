@@ -14,7 +14,6 @@ namespace familiada
 		static void Main()
 		{
 			Application.EnableVisualStyles();
-			//Application.SetCompatibleTextRenderingDefault(false);
 			Application.Run(Global.kontroler);
 		}
 	}

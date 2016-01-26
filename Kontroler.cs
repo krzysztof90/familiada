@@ -16,7 +16,6 @@ namespace familiada
 
 		public Kontroler()
 		{
-
 			InitializeComponent();
 		}
 
@@ -85,61 +84,6 @@ namespace familiada
 			return pytanie;
 		}
 
-		private void następnePytanie_Click(object sender, EventArgs e)
-		{
-			if (obecnePytanie != -1)
-			{
-				poprzedniePytanie.Show();
-				Global.pytania1[obecnePytanie].ukryjOdpowiedzi();
-			}
-
-			Global.kontroler.dodajOdpowiedź.Show();
-
-			obecnePytanie++;
-			Global.pytania1[obecnePytanie].zainicjujKontrolki();
-			if (obecnePytanie == Global.pytania1.Count - 1)
-				następnePytanie.Hide();
-		}
-
-		private void poprzedniePytanie_Click(object sender, EventArgs e)
-		{
-			następnePytanie.Show();
-
-			Global.pytania1[obecnePytanie].ukryjOdpowiedzi();
-
-			obecnePytanie--;
-			Global.pytania1[obecnePytanie].zainicjujKontrolki();
-
-			if (obecnePytanie == 0)
-				poprzedniePytanie.Hide();
-		}
-
-		private void pokażEkran_Click(object sender, EventArgs e)
-		{
-			Screen tenEkran = Screen.FromControl(this);
-			Screen drugiEkran = Screen.AllScreens.FirstOrDefault(s => !s.Equals(tenEkran)) ?? tenEkran;
-			Global.główny.Show();
-			Global.główny.WindowState = FormWindowState.Normal;
-			Global.główny.Location = drugiEkran.WorkingArea.Location;
-			if (tenEkran == drugiEkran)
-			{
-				Global.główny.FormBorderStyle = FormBorderStyle.Sizable;
-				Global.główny.TopMost = false;
-			}
-			else
-			{
-				Global.główny.FormBorderStyle = FormBorderStyle.None;
-				Global.główny.TopMost = true;
-			}
-			Global.główny.WindowState = FormWindowState.Maximized;
-			pokażEkran.Hide();
-		}
-
-		private void dodajOdpowiedź_Click(object sender, EventArgs e)
-		{
-			Global.pytania1[obecnePytanie].dodajIPokażOdpowiedź(" 0");
-		}
-
 		private void runda_Click(object sender, EventArgs e)
 		{
 			Button przycisk = (Button)sender;
@@ -174,6 +118,61 @@ namespace familiada
 			}
 		}
 
+		private void następnePytanie_Click(object sender, EventArgs e)
+		{
+			następnePytanie.Text = "następne pytanie";
+
+			if (obecnePytanie != -1)
+			{
+				poprzedniePytanie.Show();
+				Global.pytania1[obecnePytanie].ukryjOdpowiedzi();
+			}
+
+			Global.kontroler.dodajOdpowiedź.Show();
+
+			obecnePytanie++;
+			Global.pytania1[obecnePytanie].zainicjujKontrolki();
+			if (obecnePytanie == Global.pytania1.Count - 1)
+				następnePytanie.Hide();
+		}
+		private void poprzedniePytanie_Click(object sender, EventArgs e)
+		{
+			następnePytanie.Show();
+
+			Global.pytania1[obecnePytanie].ukryjOdpowiedzi();
+
+			obecnePytanie--;
+			Global.pytania1[obecnePytanie].zainicjujKontrolki();
+
+			if (obecnePytanie == 0)
+				poprzedniePytanie.Hide();
+		}
+		private void pokażEkran_Click(object sender, EventArgs e)
+		{
+			Screen tenEkran = Screen.FromControl(this);
+			Screen drugiEkran = Screen.AllScreens.FirstOrDefault(s => !s.Equals(tenEkran)) ?? tenEkran;
+			Global.główny.Show();
+			Global.główny.WindowState = FormWindowState.Normal;
+			Global.główny.Location = drugiEkran.WorkingArea.Location;
+			if (tenEkran == drugiEkran)
+			{
+				Global.główny.FormBorderStyle = FormBorderStyle.Sizable;
+				Global.główny.TopMost = false;
+			}
+			else
+			{
+				Global.główny.FormBorderStyle = FormBorderStyle.None;
+				Global.główny.TopMost = true;
+			}
+			Global.główny.WindowState = FormWindowState.Maximized;
+			pokażEkran.Hide();
+		}
+
+		private void dodajOdpowiedź_Click(object sender, EventArgs e)
+		{
+			Global.pytania1[obecnePytanie].dodajIPokażOdpowiedź(" 0");
+		}
+
 		private void ustawCzas_Click(object sender, System.EventArgs e)
 		{
 			string czasLabel = (string)(((Button)sender).Tag);
@@ -198,16 +197,6 @@ namespace familiada
 			Global.główny.czas.Text = "";
 			}
 		}
-
-		//protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
-		//{
-		//	if (keyData == Keys.Tab)
-		//	{
-		//		Pytanie2.przenieśFocus();
-		//		return true;
-		//	}
-		//	return base.ProcessCmdKey(ref msg, keyData);
-		//}
 
 	}
 }

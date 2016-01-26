@@ -54,7 +54,7 @@
 			this.następnePytanie.Name = "następnePytanie";
 			this.następnePytanie.Size = new System.Drawing.Size(114, 23);
 			this.następnePytanie.TabIndex = 2;
-			this.następnePytanie.Text = "następnePytanie";
+			this.następnePytanie.Text = "zacznij pytania";
 			this.następnePytanie.UseVisualStyleBackColor = true;
 			this.następnePytanie.Click += new System.EventHandler(this.następnePytanie_Click);
 			// 
@@ -74,7 +74,7 @@
 			this.poprzedniePytanie.Name = "poprzedniePytanie";
 			this.poprzedniePytanie.Size = new System.Drawing.Size(114, 23);
 			this.poprzedniePytanie.TabIndex = 2;
-			this.poprzedniePytanie.Text = "poprzedniePytanie";
+			this.poprzedniePytanie.Text = "poprzednie pytanie";
 			this.poprzedniePytanie.UseVisualStyleBackColor = true;
 			this.poprzedniePytanie.Visible = false;
 			this.poprzedniePytanie.Click += new System.EventHandler(this.poprzedniePytanie_Click);
@@ -184,9 +184,8 @@
 			this.czas.AutoSize = true;
 			this.czas.Location = new System.Drawing.Point(523, 398);
 			this.czas.Name = "czas";
-			this.czas.Size = new System.Drawing.Size(19, 13);
+			this.czas.Size = new System.Drawing.Size(0, 13);
 			this.czas.TabIndex = 3;
-			this.czas.Text = "";
 			// 
 			// timer1
 			// 
