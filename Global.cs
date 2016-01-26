@@ -21,7 +21,6 @@ namespace familiada
 		public static Panel panelGłównyDodatkowy = główny.dodatkowy;
 		
 		public static List<Pytanie1> pytania1 = new List<Pytanie1>();
-		public static int obecnePytanie = -1;
 		public static Pytanie2[] pytania2 = new Pytanie2[5];
 		
 		public static Drużyna drużynaL = new Drużyna(true);

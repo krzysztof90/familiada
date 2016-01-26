@@ -12,6 +12,8 @@ namespace familiada
 {
 	public partial class Kontroler : Form
 	{
+		static int obecnePytanie = -1;
+
 		public Kontroler()
 		{
 
@@ -85,15 +87,15 @@ namespace familiada
 
 		private void następnePytanie_Click(object sender, EventArgs e)
 		{
-			if (Global.obecnePytanie != -1)
+			if (obecnePytanie != -1)
 			{
 				poprzedniePytanie.Show();
-				Global.pytania1[Global.obecnePytanie].ukryjOdpowiedzi();
+				Global.pytania1[obecnePytanie].ukryjOdpowiedzi();
 			}
 
-			Global.obecnePytanie++;
-			Global.pytania1[Global.obecnePytanie].zainicjujKontrolki();
-			if (Global.obecnePytanie == Global.pytania1.Count - 1)
+			obecnePytanie++;
+			Global.pytania1[obecnePytanie].zainicjujKontrolki();
+			if (obecnePytanie == Global.pytania1.Count - 1)
 				następnePytanie.Hide();
 		}
 
@@ -101,12 +103,12 @@ namespace familiada
 		{
 			następnePytanie.Show();
 
-			Global.pytania1[Global.obecnePytanie].ukryjOdpowiedzi();
+			Global.pytania1[obecnePytanie].ukryjOdpowiedzi();
 
-			Global.obecnePytanie--;
-			Global.pytania1[Global.obecnePytanie].zainicjujKontrolki();
+			obecnePytanie--;
+			Global.pytania1[obecnePytanie].zainicjujKontrolki();
 
-			if (Global.obecnePytanie == 0)
+			if (obecnePytanie == 0)
 				poprzedniePytanie.Hide();
 		}
 
@@ -133,7 +135,7 @@ namespace familiada
 
 		private void dodajOdpowiedź_Click(object sender, EventArgs e)
 		{
-			Global.pytania1[Global.obecnePytanie].dodajIPokażOdpowiedź(" 0");
+			Global.pytania1[obecnePytanie].dodajIPokażOdpowiedź(" 0");
 		}
 
 		private void runda_Click(object sender, EventArgs e)
@@ -151,9 +153,9 @@ namespace familiada
 				Global.panelGłówny2.Hide();
 
 				Punkty.wyzerujPunkty();
-				if (Global.obecnePytanie != -1)
+				if (obecnePytanie != -1)
 				{
-					Global.pytania1[Global.obecnePytanie].zainicjujKontrolki();
+					Global.pytania1[obecnePytanie].zainicjujKontrolki();
 				}
 			}
 			else
