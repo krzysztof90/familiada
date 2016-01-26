@@ -64,6 +64,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Pytanie2.cs" />
+    <Compile Include="Znak.cs" />
     <EmbeddedResource Include="GłównyEkran.resx">
       <DependentUpon>GłównyEkran.cs</DependentUpon>
     </EmbeddedResource>
