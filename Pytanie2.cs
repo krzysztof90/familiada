@@ -29,6 +29,7 @@ namespace familiada
 		public abstract int odpowiedźLabelLocationX { get; }
 		public abstract int punktyLabelLocationX { get; }
 
+		public abstract void odpowiedź_KeyDown(object sender, KeyEventArgs e);
 		public abstract void punkty_KeyDown(object sender, KeyEventArgs e);
 
 		public PytanieStrona()
@@ -36,6 +37,7 @@ namespace familiada
 			odpowiedźTextBox.Location = new Point(odpowiedźTextBoxLocationX, 5);
 			odpowiedźTextBox.Size = new Size(100, 20);
 			odpowiedźTextBox.Leave += new EventHandler(edytor_Leave);
+			odpowiedźTextBox.KeyDown += new KeyEventHandler(odpowiedź_KeyDown);
 			odpowiedźTextBox.TabIndex = odpowiedźTextBoxTabIndex;
 
 			punktyTextBox.Location = new Point(punktyTextBoxLocationX, 5);
@@ -152,14 +154,20 @@ namespace familiada
 			get { return 250; }
 		}
 
-		public override void punkty_KeyDown(object sender, KeyEventArgs e)
+		public override void odpowiedź_KeyDown(object sender, KeyEventArgs e)
 		{
 			if (e.KeyCode == Keys.Down)
 			{
 				if (nrPytania != 5)
 					Global.pytania2[nrPytania].pytanieL.odpowiedźTextBox.Focus();
-				else
-					Global.pytania2[0].pytanieP.odpowiedźTextBox.Focus();
+			}
+		}
+		public override void punkty_KeyDown(object sender, KeyEventArgs e)
+		{
+			if (e.KeyCode == Keys.Down)
+			{
+				if (nrPytania != 5)
+					Global.pytania2[nrPytania].pytanieL.punktyTextBox.Focus();
 			}
 		}
 	}
@@ -195,12 +203,20 @@ namespace familiada
 			get { return 280; }
 		}
 
-		public override void punkty_KeyDown(object sender, KeyEventArgs e)
+		public override void odpowiedź_KeyDown(object sender, KeyEventArgs e)
 		{
 			if (e.KeyCode == Keys.Down)
 			{
 				if (nrPytania != 5)
 					Global.pytania2[nrPytania].pytanieP.odpowiedźTextBox.Focus();
+			}
+		}
+		public override void punkty_KeyDown(object sender, KeyEventArgs e)
+		{
+			if (e.KeyCode == Keys.Down)
+			{
+				if (nrPytania != 5)
+					Global.pytania2[nrPytania].pytanieP.punktyTextBox.Focus();
 			}
 		}
 	}
@@ -228,12 +244,12 @@ namespace familiada
 			naKontrolerze.Controls.Add(this.nazwaLabel);
 			Global.panelKontroler2.Controls.Add(naKontrolerze);
 
-			nazwaLabel.Location = new System.Drawing.Point(5, 8);
-			nazwaLabel.Size = new System.Drawing.Size(145, 13);
+			nazwaLabel.Location = new Point(5, 8);
+			nazwaLabel.Size = new Size(145, 13);
 			nazwaLabel.Text = nazwaPytania;
 
-			naGłównym.Location = new System.Drawing.Point(30, 50 * nrPytania);
-			naGłównym.Size = new System.Drawing.Size(420, 30);
+			naGłównym.Location = new Point(30, 50 * nrPytania);
+			naGłównym.Size = new Size(420, 30);
 			Global.panelGłówny2.Controls.Add(naGłównym);
 
 			pytanieL.umieść(naKontrolerze, naGłównym, nrPytania);
