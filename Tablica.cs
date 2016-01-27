@@ -14,15 +14,13 @@ namespace familiada
 
 		TableLayoutPanel panel = new TableLayoutPanel();
 		PictureBox[,] znakiPictureBox;
-		Dictionary<char, Image> znakiObrazy;
 
-		public Tablica(Panel ojciec, int liczbaKolumn, int liczbaRzędów, int pikseleWKolumnie, int pikseleWRzędzie, Image tło, Dictionary<char, Image> znaki)
+		public Tablica(Panel ojciec, int liczbaKolumn, int liczbaRzędów, Image tło)
 		{
 			this.liczbaKolumn = liczbaKolumn;
 			this.liczbaRzędów = liczbaRzędów;
-			this.znakiObrazy = znaki;
 
-			panel.ColumnCount = liczbaKolumn * 2 +1;
+			panel.ColumnCount = liczbaKolumn * 2 + 1;
 			panel.RowCount = liczbaRzędów * 2 + 1;
 
 			znakiPictureBox = new PictureBox[liczbaKolumn, liczbaRzędów];
@@ -34,27 +32,25 @@ namespace familiada
 					znakPictureBox.Dock = DockStyle.Fill;
 					znakPictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
 					znakPictureBox.Margin = new Padding(0);
-					znakPictureBox.Image = znakiObrazy[' '];
+					znakPictureBox.Image = Global.znaki[' '];
 					panel.Controls.Add(znakPictureBox, kolumna * 2 + 1, rząd * 2 + 1);
 				}
 
-			Single rozmiarKolumnyPrzerwy = 100F / (pikseleWKolumnie * liczbaKolumn + (liczbaKolumn + 1));
-			Single rozmiarKolumnyZnaku = rozmiarKolumnyPrzerwy * pikseleWKolumnie;
-			Single rozmiarWierszaPrzerwy = 100F / (pikseleWRzędzie * liczbaRzędów + (liczbaRzędów + 1));
-			Single rozmiarWierszaZnaku = rozmiarWierszaPrzerwy * pikseleWRzędzie;
+			Single rozmiarKolumnyZnaku = 1F * 5;
+			Single rozmiarWierszaZnaku = 1F * 7;
 
 			for (int i = 0; i < liczbaKolumn; i++)
 			{
-				panel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, rozmiarKolumnyPrzerwy));
+				panel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 1F));
 				panel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, rozmiarKolumnyZnaku));
 			}
-			panel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, rozmiarKolumnyPrzerwy));
+			panel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 1F));
 			for (int i = 0; i < liczbaRzędów; i++)
 			{
-				panel.RowStyles.Add(new RowStyle(SizeType.Percent, rozmiarWierszaPrzerwy));
+				panel.RowStyles.Add(new RowStyle(SizeType.Percent, 1F));
 				panel.RowStyles.Add(new RowStyle(SizeType.Percent, rozmiarWierszaZnaku));
 			}
-			panel.RowStyles.Add(new RowStyle(SizeType.Percent, rozmiarWierszaPrzerwy));
+			panel.RowStyles.Add(new RowStyle(SizeType.Percent, 1F));
 
 			panel.Dock = DockStyle.Fill;
 			panel.BackgroundImage = tło;
@@ -64,9 +60,15 @@ namespace familiada
 			ojciec.Controls.Add(panel);
 		}
 
-		public void wstaw(char znak, int kolumna, int rząd)
+		/// <exception cref="InvalidOperationException">.</exception>
+		public void ustawTekst(string tekst, int kolumnaPoczątkowa, int rządPoczątkowy)
 		{
-			znakiPictureBox[kolumna, rząd].Image = znakiObrazy[znak];
+			if (tekst.Length > liczbaKolumn - kolumnaPoczątkowa)
+				throw new InvalidOperationException();
+		}
+		private void wstaw(char znak, int kolumna, int rząd)
+		{
+			znakiPictureBox[kolumna, rząd].Image = Global.znaki[znak];
 		}
 	}
 }
