@@ -13,18 +13,33 @@ namespace familiada
 		int liczbaRzędów;
 
 		TableLayoutPanel panel = new TableLayoutPanel();
-		Znak[,] znaki;
+		PictureBox[,] znakiPictureBox;
+		Dictionary<char, Image> znakiObrazy;
 
-		public Tablica(int liczbaKolumn, int liczbaRzędów, int pikseleWKolumnie, int pikseleWRzędzie)
+		public Tablica(Panel ojciec, int liczbaKolumn, int liczbaRzędów, int pikseleWKolumnie, int pikseleWRzędzie, Image tło, Dictionary<char, Image> znaki)
 		{
 			this.liczbaKolumn = liczbaKolumn;
 			this.liczbaRzędów = liczbaRzędów;
+			this.znakiObrazy = znaki;
 
 			panel.ColumnCount = liczbaKolumn * 2 + 1;
 			panel.RowCount = liczbaRzędów * 2 + 1;
 
-			Single rozmiarKolumnyPrzerwy=100F/(pikseleWKolumnie*liczbaKolumn+(liczbaKolumn+1));
-			Single rozmiarKolumnyZnaku=rozmiarKolumnyPrzerwy*pikseleWKolumnie;
+			znakiPictureBox = new PictureBox[liczbaKolumn, liczbaRzędów];
+			for (int kolumna = 0; kolumna < liczbaKolumn; kolumna++)
+				for (int rząd = 0; rząd < liczbaRzędów; rząd++)
+				{
+					znakiPictureBox[kolumna, rząd] = new PictureBox();
+					PictureBox znakPictureBox = znakiPictureBox[kolumna, rząd];
+					znakPictureBox.Dock = DockStyle.Fill;
+					znakPictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
+					znakPictureBox.Margin = new Padding(0);
+					znakPictureBox.Image = znakiObrazy[' '];
+					panel.Controls.Add(znakPictureBox, kolumna * 2 + 1, rząd * 2 + 1);
+				}
+
+			Single rozmiarKolumnyPrzerwy = 100F / (pikseleWKolumnie * liczbaKolumn + (liczbaKolumn + 1));
+			Single rozmiarKolumnyZnaku = rozmiarKolumnyPrzerwy * pikseleWKolumnie;
 			Single rozmiarWierszaPrzerwy = 100F / (pikseleWRzędzie * liczbaRzędów + (liczbaRzędów + 1));
 			Single rozmiarWierszaZnaku = rozmiarWierszaPrzerwy * pikseleWRzędzie;
 
@@ -33,60 +48,25 @@ namespace familiada
 				panel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, rozmiarKolumnyPrzerwy));
 				panel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, rozmiarKolumnyZnaku));
 			}
-				panel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, rozmiarKolumnyPrzerwy));
-			//panel.ColumnCount++;
+			panel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, rozmiarKolumnyPrzerwy));
 			for (int i = 0; i < liczbaRzędów; i++)
 			{
 				panel.RowStyles.Add(new RowStyle(SizeType.Percent, rozmiarWierszaPrzerwy));
 				panel.RowStyles.Add(new RowStyle(SizeType.Percent, rozmiarWierszaZnaku));
 			}
-				panel.RowStyles.Add(new RowStyle(SizeType.Percent, rozmiarWierszaPrzerwy));
-			//panel.RowCount++;
+			panel.RowStyles.Add(new RowStyle(SizeType.Percent, rozmiarWierszaPrzerwy));
+
 			panel.Dock = DockStyle.Fill;
+			panel.BackgroundImage = tło;
+			panel.BackgroundImageLayout = ImageLayout.Stretch;
 			panel.Margin = new Padding(0);
 
-			znaki = new Znak[liczbaKolumn, liczbaRzędów];
-
-			for (int kolumna = 0; kolumna < liczbaKolumn; kolumna++)
-			{
-				for (int rząd = 0; rząd < liczbaRzędów; rząd++)
-				{
-					Znak znak = znaki[kolumna, rząd];
-					znak = new Znak(pikseleWKolumnie, pikseleWRzędzie);
-
-					Przerwa przerwa1 = new Przerwa(1, 1);
-					Przerwa przerwa2 = new Przerwa(pikseleWKolumnie, 1);
-					Przerwa przerwa3 = new Przerwa(1, pikseleWRzędzie);
-
-					znak.dodajDo(panel, kolumna * 2 + 1, rząd * 2 + 1);
-					przerwa1.dodajDo(panel, kolumna * 2, rząd * 2);
-					przerwa2.dodajDo(panel, kolumna * 2 + 1, rząd * 2);
-					przerwa3.dodajDo(panel, kolumna * 2, rząd * 2 + 1);
-				}
-					Przerwa przerwa4 = new Przerwa(1, 1);
-					Przerwa przerwa5 = new Przerwa(pikseleWKolumnie, 1);
-					przerwa4.dodajDo(panel, kolumna * 2, liczbaRzędów * 2);
-					przerwa5.dodajDo(panel, kolumna * 2 + 1, liczbaRzędów * 2);
-			}
-			for (int rząd = 0; rząd < liczbaRzędów; rząd++)
-			{
-				Przerwa przerwa6 = new Przerwa(1, 1);
-				Przerwa przerwa7 = new Przerwa(1, pikseleWRzędzie);
-				przerwa6.dodajDo(panel, liczbaKolumn * 2, rząd * 2);
-				przerwa7.dodajDo(panel, liczbaKolumn * 2, rząd * 2 + 1);
-			}
-			Przerwa przerwa8 = new Przerwa(1, 1);
-			przerwa8.dodajDo(panel, liczbaKolumn * 2, liczbaRzędów * 2);
-
-			//panel.BackColor = Color.Black;
-			//panel.Dock
-			panel.Location = new Point(12, 300);
-			panel.Size = new Size(500, 300);
-
+			ojciec.Controls.Add(panel);
 		}
-		public void dodajDo(Panel panel)
+
+		public void wstaw(char znak, int kolumna, int rząd)
 		{
-			panel.Controls.Add(this.panel);
+			znakiPictureBox[kolumna, rząd].Image = znakiObrazy[znak];
 		}
 	}
 }
