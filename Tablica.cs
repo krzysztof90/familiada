@@ -61,10 +61,36 @@ namespace familiada
 		}
 
 		/// <exception cref="InvalidOperationException">.</exception>
-		public void ustawTekst(string tekst, int kolumnaPoczątkowa, int rządPoczątkowy)
+		public void ustawTekst(string tekst, int kolumnaPoczątkowa, int rząd, bool wyrównanieDoLewej, int pojemnośćCałkowita, char wypełnienie)
 		{
-			if (tekst.Length > liczbaKolumn - kolumnaPoczątkowa)
-				throw new InvalidOperationException();
+			int długośćTekstu = tekst.Length;
+			if (długośćTekstu > liczbaKolumn - kolumnaPoczątkowa)
+				throw new InvalidOperationException("za długi tekst");
+			if (wyrównanieDoLewej)
+			{
+				for (int i = 0; i < długośćTekstu; i++)
+				{
+					char znak = tekst[i];
+					if (!Global.znaki.ContainsKey(znak))
+						throw new InvalidOperationException("niepoprawny znak");
+					znakiPictureBox[kolumnaPoczątkowa + i, rząd].Image = Global.znaki[znak];
+				}
+				for (int i = 0; i < pojemnośćCałkowita - długośćTekstu; i++)
+					znakiPictureBox[kolumnaPoczątkowa + długośćTekstu+i, rząd].Image = Global.znaki[wypełnienie];
+			}
+			else
+			{
+				for (int i = 0; i < długośćTekstu; i++)
+				{
+					char znak = tekst[długośćTekstu - 1 - i];
+					if (!Global.znaki.ContainsKey(znak))
+						throw new InvalidOperationException("niepoprawny znak");
+					znakiPictureBox[kolumnaPoczątkowa + pojemnośćCałkowita - 1 - i, rząd].Image = Global.znaki[znak];
+				}
+				for (int i = 0; i < pojemnośćCałkowita - długośćTekstu; i++)
+					znakiPictureBox[kolumnaPoczątkowa + i, rząd].Image = Global.znaki[wypełnienie];
+			}
+
 		}
 		private void wstaw(char znak, int kolumna, int rząd)
 		{

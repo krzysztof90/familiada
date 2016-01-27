@@ -28,6 +28,7 @@ namespace familiada
 			{
 				{'a', global::familiada.Properties.Resources.a},
 				{'b', global::familiada.Properties.Resources.b},
+				{'0', global::familiada.Properties.Resources.b},
 				{' ', global::familiada.Properties.Resources.puste},
 			};
 
