@@ -28,7 +28,17 @@ namespace familiada
 			{
 				{'a', global::familiada.Properties.Resources.a},
 				{'b', global::familiada.Properties.Resources.b},
-				{'0', global::familiada.Properties.Resources.b},
+				{'0', global::familiada.Properties.Resources.c0},
+				{'1', global::familiada.Properties.Resources.c1},
+				{'2', global::familiada.Properties.Resources.c2},
+				{'3', global::familiada.Properties.Resources.c3},
+				{'4', global::familiada.Properties.Resources.c4},
+				{'5', global::familiada.Properties.Resources.c5},
+				{'6', global::familiada.Properties.Resources.c6},
+				{'7', global::familiada.Properties.Resources.c7},
+				{'8', global::familiada.Properties.Resources.c8},
+				{'9', global::familiada.Properties.Resources.c9},
+				{'-', global::familiada.Properties.Resources.minus},
 				{' ', global::familiada.Properties.Resources.puste},
 			};
 

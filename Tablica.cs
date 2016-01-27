@@ -61,31 +61,30 @@ namespace familiada
 		}
 
 		/// <exception cref="InvalidOperationException">.</exception>
-		public void ustawTekst(string tekst, int kolumnaPoczątkowa, int rząd, bool wyrównanieDoLewej, int pojemnośćCałkowita, char wypełnienie)
+		/// <param name="wyświetlCzęść">dla wyrównania do lewej urywa z prawej; dla wyrówania do prawej urywa z lewej</param>
+		public void ustawTekst(string tekst, int kolumnaPoczątkowa, int rząd, bool wyrównanieDoLewej, int pojemnośćCałkowita, char wypełnienie, bool wyświetlCzęść)
 		{
 			int długośćTekstu = tekst.Length;
-			if (długośćTekstu > liczbaKolumn - kolumnaPoczątkowa)
+			if (!wyświetlCzęść && długośćTekstu > liczbaKolumn - kolumnaPoczątkowa)
 				throw new InvalidOperationException("za długi tekst");
+			for (int i = 0; i < długośćTekstu; i++)
+				if (!Global.znaki.ContainsKey(tekst[i]))
+					throw new InvalidOperationException("niepoprawny znak");
+
 			if (wyrównanieDoLewej)
 			{
-				for (int i = 0; i < długośćTekstu; i++)
+				for (int i = 0; i < długośćTekstu && i < liczbaKolumn - kolumnaPoczątkowa; i++)
 				{
-					char znak = tekst[i];
-					if (!Global.znaki.ContainsKey(znak))
-						throw new InvalidOperationException("niepoprawny znak");
-					znakiPictureBox[kolumnaPoczątkowa + i, rząd].Image = Global.znaki[znak];
+					znakiPictureBox[kolumnaPoczątkowa + i, rząd].Image = Global.znaki[tekst[i]];
 				}
 				for (int i = 0; i < pojemnośćCałkowita - długośćTekstu; i++)
-					znakiPictureBox[kolumnaPoczątkowa + długośćTekstu+i, rząd].Image = Global.znaki[wypełnienie];
+					znakiPictureBox[kolumnaPoczątkowa + długośćTekstu + i, rząd].Image = Global.znaki[wypełnienie];
 			}
 			else
 			{
-				for (int i = 0; i < długośćTekstu; i++)
+				for (int i = (długośćTekstu > liczbaKolumn - kolumnaPoczątkowa ? długośćTekstu - (liczbaKolumn - kolumnaPoczątkowa) : 0); i < długośćTekstu; i++)
 				{
-					char znak = tekst[długośćTekstu - 1 - i];
-					if (!Global.znaki.ContainsKey(znak))
-						throw new InvalidOperationException("niepoprawny znak");
-					znakiPictureBox[kolumnaPoczątkowa + pojemnośćCałkowita - 1 - i, rząd].Image = Global.znaki[znak];
+					znakiPictureBox[kolumnaPoczątkowa + pojemnośćCałkowita - długośćTekstu + i, rząd].Image = Global.znaki[tekst[i]];
 				}
 				for (int i = 0; i < pojemnośćCałkowita - długośćTekstu; i++)
 					znakiPictureBox[kolumnaPoczątkowa + i, rząd].Image = Global.znaki[wypełnienie];

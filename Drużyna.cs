@@ -31,7 +31,8 @@ namespace familiada
 		}
 		public void wyświetlPunkty()
 		{
-			tablicaPunkty.ustawTekst(punkty.ToString(), 0, 0, false, 3, ' ');
+			tablicaPunkty.ustawTekst(punkty.ToString(), 0, 0, false, 3, ' ', true);
+			
 			punktyKontrolerLabel.Text = punkty.ToString();
 		}
 	}
