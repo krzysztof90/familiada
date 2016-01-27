@@ -34,34 +34,49 @@ namespace familiada
 				panel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, rozmiarKolumnyZnaku));
 			}
 				panel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, rozmiarKolumnyPrzerwy));
-			panel.ColumnCount++;
+			//panel.ColumnCount++;
 			for (int i = 0; i < liczbaRzędów; i++)
 			{
 				panel.RowStyles.Add(new RowStyle(SizeType.Percent, rozmiarWierszaPrzerwy));
 				panel.RowStyles.Add(new RowStyle(SizeType.Percent, rozmiarWierszaZnaku));
 			}
 				panel.RowStyles.Add(new RowStyle(SizeType.Percent, rozmiarWierszaPrzerwy));
-			panel.RowCount++;
+			//panel.RowCount++;
 			panel.Dock = DockStyle.Fill;
 			panel.Margin = new Padding(0);
 
 			znaki = new Znak[liczbaKolumn, liczbaRzędów];
 
-			//przerwa
 			for (int kolumna = 0; kolumna < liczbaKolumn; kolumna++)
 			{
 				for (int rząd = 0; rząd < liczbaRzędów; rząd++)
 				{
-					//przerwa
-
 					Znak znak = znaki[kolumna, rząd];
 					znak = new Znak(pikseleWKolumnie, pikseleWRzędzie);
-					znak.dodajDo(panel, kolumna * 2 + 1, rząd * 2 + 1);
 
+					Przerwa przerwa1 = new Przerwa(1, 1);
+					Przerwa przerwa2 = new Przerwa(pikseleWKolumnie, 1);
+					Przerwa przerwa3 = new Przerwa(1, pikseleWRzędzie);
+
+					znak.dodajDo(panel, kolumna * 2 + 1, rząd * 2 + 1);
+					przerwa1.dodajDo(panel, kolumna * 2, rząd * 2);
+					przerwa2.dodajDo(panel, kolumna * 2 + 1, rząd * 2);
+					przerwa3.dodajDo(panel, kolumna * 2, rząd * 2 + 1);
 				}
-					//przerwa
+					Przerwa przerwa4 = new Przerwa(1, 1);
+					Przerwa przerwa5 = new Przerwa(pikseleWKolumnie, 1);
+					przerwa4.dodajDo(panel, kolumna * 2, liczbaRzędów * 2);
+					przerwa5.dodajDo(panel, kolumna * 2 + 1, liczbaRzędów * 2);
 			}
-					//przerwa
+			for (int rząd = 0; rząd < liczbaRzędów; rząd++)
+			{
+				Przerwa przerwa6 = new Przerwa(1, 1);
+				Przerwa przerwa7 = new Przerwa(1, pikseleWRzędzie);
+				przerwa6.dodajDo(panel, liczbaKolumn * 2, rząd * 2);
+				przerwa7.dodajDo(panel, liczbaKolumn * 2, rząd * 2 + 1);
+			}
+			Przerwa przerwa8 = new Przerwa(1, 1);
+			przerwa8.dodajDo(panel, liczbaKolumn * 2, liczbaRzędów * 2);
 
 			//panel.BackColor = Color.Black;
 			//panel.Dock
