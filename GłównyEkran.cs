@@ -30,13 +30,13 @@ namespace familiada
 		{
 			Dictionary<char, Image> znaki = new Dictionary<char, Image>()
 			{
-				{'a', global::familiada.Properties.Resources.czarny},
-				{'b', global::familiada.Properties.Resources.żółty},
+				{'a', global::familiada.Properties.Resources.a},
+				{'b', global::familiada.Properties.Resources.b},
 				{' ', global::familiada.Properties.Resources.żółty},
 			};
-			Tablica tablica = new Tablica(panel1, 3, 2, 5, 7, global::familiada.Properties.Resources.tło, znaki);
+			Tablica tablica = new Tablica(panel1, 30,20, 5, 7, global::familiada.Properties.Resources.tło, znaki);
 
-			tablica.wstaw('b', 0, 0);
+			tablica.wstaw('b', 1, 0);
 			tablica.wstaw('a', 0, 0);
 		}
 	}

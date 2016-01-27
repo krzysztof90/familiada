@@ -22,7 +22,7 @@ namespace familiada
 			this.liczbaRzędów = liczbaRzędów;
 			this.znakiObrazy = znaki;
 
-			panel.ColumnCount = liczbaKolumn * 2 + 1;
+			panel.ColumnCount = liczbaKolumn * 2 +1;
 			panel.RowCount = liczbaRzędów * 2 + 1;
 
 			znakiPictureBox = new PictureBox[liczbaKolumn, liczbaRzędów];
