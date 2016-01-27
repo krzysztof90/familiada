@@ -34,7 +34,7 @@ namespace familiada
 				{'b', global::familiada.Properties.Resources.żółty},
 				{' ', global::familiada.Properties.Resources.żółty},
 			};
-			Tablica tablica = new Tablica(panel1, 3, 2, 5, 7, global::familiada.Properties.Resources.czarny, znaki);
+			Tablica tablica = new Tablica(panel1, 3, 2, 5, 7, global::familiada.Properties.Resources.tło, znaki);
 
 			tablica.wstaw('b', 0, 0);
 			tablica.wstaw('a', 0, 0);
