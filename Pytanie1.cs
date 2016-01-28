@@ -164,7 +164,7 @@ namespace familiada
 		public void usuńOdpowiedź(int nrOdpowiedzi)
 		{
 			Odpowiedź odpowiedź = odpowiedzi[nrOdpowiedzi - 1];
-			odpowiedź.usuńOdpowiedź();
+			odpowiedź.ukryjKontrolkiOdpowiedzi();
 			for (int i = nrOdpowiedzi; i < odpowiedzi.Count; i++)
 				odpowiedzi[i].przesuń(i, true);
 

@@ -149,7 +149,7 @@ namespace familiada
 		{
 			naKontrolerze.Location = new Point(100, nrOdpowiedzi * 30 + 30);
 			naKontrolerze.Show();
-			//naGłównym.Show();
+
 			Global.tablica1.ustawTekst(nrOdpowiedzi.ToString(), 0, nrOdpowiedzi, false, 2, ' ');
 			if (zaznaczona())
 				Global.tablica1.ustawTekst(odpowiedź, 2, nrOdpowiedzi, true, Global.długośćOdpowiedzi, '.');
@@ -159,7 +159,6 @@ namespace familiada
 		public void ukryjKontrolkiOdpowiedzi()
 		{
 			naKontrolerze.Hide();
-			naGłównym.Hide();
 			Global.tablica1.ustawTekst("", 0, nrOdpowiedzi, false, 2, ' ');
 			Global.tablica1.ustawTekst("", 2, nrOdpowiedzi, true, Global.długośćOdpowiedzi, ' ');
 		}
@@ -173,47 +172,16 @@ namespace familiada
 			Global.tablica1.ustawTekst("", 2, nrOdpowiedzi, true, Global.długośćOdpowiedzi, '.');
 			punktyLabel.Hide();
 		}
-		public void usuńOdpowiedź()
+		public void przesuń(int numer, bool usuń)
 		{
-			naKontrolerze.Hide();
-			Global.tablica1.ustawTekst("", 0, nrOdpowiedzi, false, 2, ' ');
-			Global.tablica1.ustawTekst("", 2, nrOdpowiedzi, true, Global.długośćOdpowiedzi, ' ');
-		}
-		public void zaznacz()
-		{
-			odpowiedźButton.BackColor = Color.White;
-
-			pokażOdpowiedź();
-		}
-		public void odznacz()
-		{
-			ukryjOdpowiedź();
-
-			Drużyna drużyna = zaznaczonaDrużyna();
-			if (drużyna != null)
-			{
-				drużyna.dodajPunkty(-punkty);
-				pytanie.dodajPunkty(-punkty);
-			}
-
-			odpowiedźButton.BackColor = SystemColors.Control;
-			odpowiedźButton.UseVisualStyleBackColor = true;
-			punktyPrawyButton.BackColor = SystemColors.Control;
-			punktyPrawyButton.UseVisualStyleBackColor = true;
-			punktyLewyButton.BackColor = SystemColors.Control;
-			punktyLewyButton.UseVisualStyleBackColor = true;
-
+			if (usuń)
+				ukryjKontrolkiOdpowiedzi();
+			nrOdpowiedzi = numer;
+			pokażKontrolkiOdpowiedzi();
 		}
 		public bool zaznaczona()
 		{
 			return odpowiedźButton.BackColor == Color.White;
-		}
-		public void przesuń(int numer, bool usuń)
-		{
-			if (usuń)
-				usuńOdpowiedź();
-			nrOdpowiedzi = numer;
-			pokażKontrolkiOdpowiedzi();
 		}
 
 		private Drużyna zaznaczonaDrużyna()
@@ -229,18 +197,35 @@ namespace familiada
 		{
 			if (!zaznaczona())
 			{
-				zaznacz();
+				odpowiedźButton.BackColor = Color.White;
+
+				pokażOdpowiedź();
 			}
 			else
 			{
-				odznacz();
+				Drużyna drużyna = zaznaczonaDrużyna();
+				if (drużyna != null)
+				{
+					drużyna.dodajPunkty(-punkty);
+					pytanie.dodajPunkty(-punkty);
+				}
+
+				odpowiedźButton.BackColor = SystemColors.Control;
+				odpowiedźButton.UseVisualStyleBackColor = true;
+				punktyPrawyButton.BackColor = SystemColors.Control;
+				punktyPrawyButton.UseVisualStyleBackColor = true;
+				punktyLewyButton.BackColor = SystemColors.Control;
+				punktyLewyButton.UseVisualStyleBackColor = true;
+
+				ukryjOdpowiedź();
 			}
 		}
 		private void zaznaczDrużynie_Click(object sender, EventArgs e)
 		{
 			if (!zaznaczona())
 			{
-				zaznacz();
+				zaznaczOdznacz_Click(sender, new EventArgs());
+
 				pytanie.dodajPunkty(punkty);
 
 				((Button)sender).BackColor = Color.White;
@@ -276,7 +261,7 @@ namespace familiada
 			}
 			else
 			{
-				char? niepoprawnyZnak=null;
+				char? niepoprawnyZnak = null;
 				for (int i = 0; i < odpowiedź.Length; i++)
 					if (!Global.znaki.ContainsKey(odpowiedź[i]))
 					{
