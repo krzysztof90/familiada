@@ -179,7 +179,6 @@ namespace familiada
 		{
 			string czasString = (string)(((Button)sender).Tag);
 			czas.Text = czasString;
-			//Global.główny.czas.Text = czasLabel;
 			Global.tablicaPunkty.ustawTekst(czasString, 0, 0, false, 3, ' ');
 		}
 		private void startCzas_Click(object sender, EventArgs e)
