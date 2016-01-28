@@ -150,34 +150,34 @@ namespace familiada
 			naKontrolerze.Location = new Point(100, nrOdpowiedzi * 30 + 30);
 			naKontrolerze.Show();
 			//naGłównym.Show();
-			Global.tablica1.ustawTekst(nrOdpowiedzi.ToString(), 0, nrOdpowiedzi, false, 2, ' ', true);
+			Global.tablica1.ustawTekst(nrOdpowiedzi.ToString(), 0, nrOdpowiedzi, false, 2, ' ');
 			if (zaznaczona())
-				Global.tablica1.ustawTekst(odpowiedź, 2, nrOdpowiedzi, true, Global.długośćOdpowiedzi, '.', false);
+				Global.tablica1.ustawTekst(odpowiedź, 2, nrOdpowiedzi, true, Global.długośćOdpowiedzi, '.');
 			else
-				Global.tablica1.ustawTekst("", 2, nrOdpowiedzi, true, Global.długośćOdpowiedzi, '.', false);
+				Global.tablica1.ustawTekst("", 2, nrOdpowiedzi, true, Global.długośćOdpowiedzi, '.');
 		}
 		public void ukryjKontrolkiOdpowiedzi()
 		{
 			naKontrolerze.Hide();
 			naGłównym.Hide();
-			Global.tablica1.ustawTekst("", 0, nrOdpowiedzi, false, 2, ' ', true);
-			Global.tablica1.ustawTekst("", 2, nrOdpowiedzi, true, Global.długośćOdpowiedzi, ' ', false);
+			Global.tablica1.ustawTekst("", 0, nrOdpowiedzi, false, 2, ' ');
+			Global.tablica1.ustawTekst("", 2, nrOdpowiedzi, true, Global.długośćOdpowiedzi, ' ');
 		}
 		public void pokażOdpowiedź()
 		{
-			Global.tablica1.ustawTekst(odpowiedź, 2, nrOdpowiedzi, true, Global.długośćOdpowiedzi, '.', true);
+			Global.tablica1.ustawTekst(odpowiedź, 2, nrOdpowiedzi, true, Global.długośćOdpowiedzi, '.');
 			punktyLabel.Show();
 		}
 		public void ukryjOdpowiedź()
 		{
-			Global.tablica1.ustawTekst("", 2, nrOdpowiedzi, true, Global.długośćOdpowiedzi, '.', false);
+			Global.tablica1.ustawTekst("", 2, nrOdpowiedzi, true, Global.długośćOdpowiedzi, '.');
 			punktyLabel.Hide();
 		}
 		public void usuńOdpowiedź()
 		{
 			naKontrolerze.Hide();
-			Global.tablica1.ustawTekst("", 0, nrOdpowiedzi, false, 2, ' ', true);
-			Global.tablica1.ustawTekst("", 2, nrOdpowiedzi, true, Global.długośćOdpowiedzi, ' ', false);
+			Global.tablica1.ustawTekst("", 0, nrOdpowiedzi, false, 2, ' ');
+			Global.tablica1.ustawTekst("", 2, nrOdpowiedzi, true, Global.długośćOdpowiedzi, ' ');
 		}
 		public void zaznacz()
 		{
@@ -288,7 +288,7 @@ namespace familiada
 				else
 				{
 					if (zaznaczona())
-						Global.tablica1.ustawTekst(odpowiedź, 2, nrOdpowiedzi, true, Global.długośćOdpowiedzi, '.', true);
+						Global.tablica1.ustawTekst(odpowiedź, 2, nrOdpowiedzi, true, Global.długośćOdpowiedzi, '.');
 					edytorOdpowiedzi.Hide();
 				}
 			}

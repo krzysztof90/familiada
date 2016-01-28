@@ -9,7 +9,7 @@ namespace familiada
 	{
 		public static void wyzerujPunkty()
 		{
-			Global.tablicaPunkty.ustawTekst("0", 0,0,false,3,' ',true, true);
+			Global.tablicaPunkty.ustawTekst("0", 0,0,false,3,' ',true);
 			Global.kontroler.punkty.Text = "0";
 		}
 
@@ -21,7 +21,7 @@ namespace familiada
 
 		public static void ustawPunkty(int punkty)
 		{
-			Global.tablicaPunkty.ustawTekst(punkty.ToString(), 0, 0, false, 3, ' ', true, true);
+			Global.tablicaPunkty.ustawTekst(punkty.ToString(), 0, 0, false, 3, ' ', true);
 			Global.kontroler.punkty.Text = punkty.ToString();
 		}
 	}

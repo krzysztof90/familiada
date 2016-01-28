@@ -60,18 +60,9 @@ namespace familiada
 			ojciec.Controls.Add(panel);
 		}
 
-		/// <exception cref="InvalidOperationException">.</exception>
-		/// <param name="wyświetlCzęść">dla wyrównania do lewej urywa z prawej; dla wyrówania do prawej urywa z lewej</param>
-		public void ustawTekst(string tekst, int kolumnaPoczątkowa, int rząd, bool wyrównanieDoLewej, int pojemnośćCałkowita, char wypełnienie, bool wyświetlCzęść, bool ustawJakoTag=false)
+		public void ustawTekst(string tekst, int kolumnaPoczątkowa, int rząd, bool wyrównanieDoLewej, int pojemnośćCałkowita, char wypełnienie, bool ustawJakoTag=false)
 		{
 			int długośćTekstu = tekst.Length;
-			//niepotrzebne sprawdzanie i parametry?
-			if (!wyświetlCzęść && długośćTekstu > liczbaKolumn - kolumnaPoczątkowa)
-				throw new InvalidOperationException("za długi tekst");
-			for (int i = 0; i < długośćTekstu; i++)
-				if (!Global.znaki.ContainsKey(tekst[i]))
-					throw new InvalidOperationException("niepoprawny znak");
-
 			if (wyrównanieDoLewej)
 			{
 				for (int i = 0; i < długośćTekstu && i < liczbaKolumn - kolumnaPoczątkowa; i++)
