@@ -24,7 +24,6 @@ namespace familiada
 		public abstract int początekWysokości { get; }
 
 		Button[] zonkButton = new Button[4];
-		CheckBox[] zonkCheckBox = new CheckBox[4];
 
 		public Zonk()
 		{
@@ -36,13 +35,7 @@ namespace familiada
 				zonkButton[i].Tag = i;
 				zonkButton[i].Text = "zonk " + (i + 1).ToString();
 
-				zonkCheckBox[i] = new CheckBox();
-				zonkCheckBox[i].Enabled = false;
-				zonkCheckBox[i].Size = new Size(15, 15);
-				zonkCheckBox[i].Location = new Point(0, początekWysokości + i * 25);
-
 				Global.panelKontroler1.Controls.Add(zonkButton[i]);
-				Global.panelGłówny1.Controls.Add(zonkCheckBox[i]);
 			}
 			zonkButton[3].Text = "boom";
 
@@ -57,12 +50,12 @@ namespace familiada
 			{
 				przycisk.BackColor = SystemColors.Control;
 				przycisk.UseVisualStyleBackColor = true;
-				zonkCheckBox[Tag].Checked = false;
+				ukryjZonk(Tag);
 			}
 			else
 			{
 				przycisk.BackColor = Color.White;
-				zonkCheckBox[Tag].Checked = true;
+				wyświetlZonk(Tag);
 			}
 		}
 
@@ -71,7 +64,8 @@ namespace familiada
 			for (int i = 0; i < 4; i++)
 			{
 				zonkButton[i].Show();
-				zonkCheckBox[i].Show();
+				if (zonkButton[i].BackColor == Color.White)
+					wyświetlZonk(i);
 			}
 		}
 		public void ukryj()
@@ -79,8 +73,17 @@ namespace familiada
 			for (int i = 0; i < 4; i++)
 			{
 				zonkButton[i].Hide();
-				zonkCheckBox[i].Hide();
+				ukryjZonk(i);
 			}
+		}
+
+		private void wyświetlZonk(int który)
+		{
+
+		}
+		private void ukryjZonk(int który)
+		{
+	
 		}
 	}
 

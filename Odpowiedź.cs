@@ -16,7 +16,6 @@ namespace familiada
 		Pytanie1 pytanie;
 
 		Panel naKontrolerze = new Panel();
-		Panel naGłównym = new Panel();
 
 		Button odpowiedźButton = new Button();
 		Button punktyButton = new Button();
@@ -112,7 +111,6 @@ namespace familiada
 			naKontrolerze.Controls.Add(usuńButton);
 
 			Global.panelKontroler1.Controls.Add(naKontrolerze);
-			//Global.panelGłówny1.Controls.Add(naGłównym);
 		}
 
 		public void pokażKontrolkiOdpowiedzi()
