@@ -29,8 +29,6 @@ namespace familiada
 		Button doDołu = new Button();
 		Button usuńButton = new Button();
 
-		Label punktyLabel = new Label();
-
 		public Odpowiedź(string linia, Pytanie1 pytanie)
 		{
 			this.pytanie = pytanie;
@@ -118,15 +116,7 @@ namespace familiada
 			usuńButton.Text = "usuń";
 			usuńButton.Click += new EventHandler(usuń_Click);
 
-			//Global.tablica1.ustawTekst("", 2, nrOdpowiedzi, true, długośćOdpowiedzi, '.', false);
-
-			naGłównym.Hide();
-
-			punktyLabel.Location = new Point(180, 0);
-			punktyLabel.Size = new Size(30, 30);
-			punktyLabel.Text = punkty.ToString();
-			punktyLabel.Hide();
-
+			//naGłównym.Hide();
 
 			naKontrolerze.Controls.Add(odpowiedźButton);
 			naKontrolerze.Controls.Add(punktyLewyButton);
@@ -139,8 +129,6 @@ namespace familiada
 			naKontrolerze.Controls.Add(doDołu);
 			naKontrolerze.Controls.Add(usuńButton);
 
-			naGłównym.Controls.Add(punktyLabel);
-
 			Global.panelKontroler1.Controls.Add(naKontrolerze);
 			//Global.panelGłówny1.Controls.Add(naGłównym);
 		}
@@ -152,25 +140,32 @@ namespace familiada
 
 			Global.tablica1.ustawTekst(nrOdpowiedzi.ToString(), 0, nrOdpowiedzi, false, 2, ' ');
 			if (zaznaczona())
+			{
 				Global.tablica1.ustawTekst(odpowiedź, 2, nrOdpowiedzi, true, Global.długośćOdpowiedzi, '.');
+				Global.tablica1.ustawTekst(punkty.ToString(), 3 + Global.długośćOdpowiedzi, nrOdpowiedzi, false, 2, ' ');
+			}
 			else
+			{
 				Global.tablica1.ustawTekst("", 2, nrOdpowiedzi, true, Global.długośćOdpowiedzi, '.');
+				Global.tablica1.ustawTekst("", 3 + Global.długośćOdpowiedzi, nrOdpowiedzi, true, 2, '|');
+			}
 		}
 		public void ukryjKontrolkiOdpowiedzi()
 		{
 			naKontrolerze.Hide();
 			Global.tablica1.ustawTekst("", 0, nrOdpowiedzi, false, 2, ' ');
 			Global.tablica1.ustawTekst("", 2, nrOdpowiedzi, true, Global.długośćOdpowiedzi, ' ');
+			Global.tablica1.ustawTekst("", 3 + Global.długośćOdpowiedzi, nrOdpowiedzi, true, 2, ' ');
 		}
 		public void pokażOdpowiedź()
 		{
 			Global.tablica1.ustawTekst(odpowiedź, 2, nrOdpowiedzi, true, Global.długośćOdpowiedzi, '.');
-			punktyLabel.Show();
+			Global.tablica1.ustawTekst(punkty.ToString(), 3 + Global.długośćOdpowiedzi, nrOdpowiedzi, false, 2, ' ');
 		}
 		public void ukryjOdpowiedź()
 		{
 			Global.tablica1.ustawTekst("", 2, nrOdpowiedzi, true, Global.długośćOdpowiedzi, '.');
-			punktyLabel.Hide();
+			Global.tablica1.ustawTekst("", 3 + Global.długośćOdpowiedzi, nrOdpowiedzi, true, 2, '|');
 		}
 		public void przesuń(int numer, bool usuń)
 		{
@@ -286,7 +281,8 @@ namespace familiada
 				edytorPunktów.Hide();
 				punktyLewyButton.Text = punkty.ToString();
 				punktyPrawyButton.Text = punkty.ToString();
-				punktyLabel.Text = punkty.ToString();
+				if (zaznaczona())
+					Global.tablica1.ustawTekst(punkty.ToString(), 3 + Global.długośćOdpowiedzi, nrOdpowiedzi, false, 2, ' ');
 			}
 			catch (FormatException)
 			{

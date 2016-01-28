@@ -60,7 +60,8 @@ namespace familiada
 			ojciec.Controls.Add(panel);
 		}
 
-		public void ustawTekst(string tekst, int kolumnaPoczątkowa, int rząd, bool wyrównanieDoLewej, int pojemnośćCałkowita, char wypełnienie, bool ustawJakoTag=false)
+		/// <param name="wyrównanieDoLewej">dla za długiwgo tekstu dla wyrównania do lewej urywa z prawej; dla wyrówania do prawej urywa z lewej</param>
+		public void ustawTekst(string tekst, int kolumnaPoczątkowa, int rząd, bool wyrównanieDoLewej, int pojemnośćCałkowita, char wypełnienie, bool ustawJakoTag = false)
 		{
 			int długośćTekstu = tekst.Length;
 			if (wyrównanieDoLewej)

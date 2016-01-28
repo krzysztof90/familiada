@@ -45,6 +45,7 @@ namespace familiada
 				{'-', global::familiada.Properties.Resources.minus},
 				{'.', global::familiada.Properties.Resources.kropka},
 				{' ', global::familiada.Properties.Resources.puste},
+				{'|', global::familiada.Properties.Resources.punktyPuste},
 			};
 
 		public static Drużyna drużynaL = new Drużyna(true);
