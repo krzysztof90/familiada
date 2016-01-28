@@ -103,7 +103,8 @@ namespace familiada
 	{
 		int nrPytania;
 		string nazwaPytania;
-		int punkty = 0;
+		public int punkty = 0;
+		public string druzynaZPrzypisanymiPunktami = null;
 
 		Label nazwaPytaniaLabel;
 
@@ -133,6 +134,18 @@ namespace familiada
 			zonkP.pokaż();
 			foreach (Odpowiedź odpowiedź in odpowiedzi)
 				odpowiedź.pokażKontrolkiOdpowiedzi();
+
+			Global.kontroler.przypiszL.BackColor = SystemColors.Control;
+			Global.kontroler.przypiszL.UseVisualStyleBackColor = true;
+			Global.kontroler.przypiszP.BackColor = SystemColors.Control;
+			Global.kontroler.przypiszP.UseVisualStyleBackColor = true;
+			if (druzynaZPrzypisanymiPunktami != null)
+			{
+				if (druzynaZPrzypisanymiPunktami == "L")
+					Global.kontroler.przypiszL.BackColor = Color.White;
+				else
+					Global.kontroler.przypiszP.BackColor = Color.White;
+			}
 		}
 		public void dodajIPokażOdpowiedź(string linia)
 		{
@@ -170,7 +183,7 @@ namespace familiada
 
 			odpowiedzi.RemoveAt(nrOdpowiedzi - 1);
 		}
-		
+
 		public void dodajPunkty(int punkty)
 		{
 			this.punkty += punkty;

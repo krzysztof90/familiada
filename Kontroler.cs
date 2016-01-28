@@ -128,7 +128,9 @@ namespace familiada
 				Global.pytania1[obecnePytanie].ukryjOdpowiedzi();
 			}
 
-			Global.kontroler.dodajOdpowiedź.Show();
+			dodajOdpowiedź.Show();
+			przypiszL.Show();
+			przypiszP.Show();
 
 			obecnePytanie++;
 			Global.pytania1[obecnePytanie].zainicjujKontrolki();
@@ -194,7 +196,51 @@ namespace familiada
 			{
 				timer1.Stop();
 				czas.Text = "";
-			Global.główny.czas.Text = "";
+				Global.główny.czas.Text = "";
+			}
+		}
+
+		private void przypiszL_Click(object sender, EventArgs e)
+		{
+			if (przypiszL.BackColor != Color.White)
+			{
+				if (przypiszP.BackColor != Color.White)
+				{
+					przypiszL.BackColor = Color.White;
+					Global.pytania1[obecnePytanie].druzynaZPrzypisanymiPunktami = "L";
+
+					Global.drużynaL.dodajPunkty(Global.pytania1[obecnePytanie].punkty);
+				}
+			}
+			else
+			{
+				przypiszL.BackColor = SystemColors.Control;
+				przypiszL.UseVisualStyleBackColor = true;
+				Global.pytania1[obecnePytanie].druzynaZPrzypisanymiPunktami = null;
+
+				Global.drużynaL.dodajPunkty(-Global.pytania1[obecnePytanie].punkty);
+			}
+		}
+
+		private void przypiszP_Click(object sender, EventArgs e)
+		{
+			if (przypiszP.BackColor != Color.White)
+			{
+				if (przypiszL.BackColor != Color.White)
+				{
+					przypiszP.BackColor = Color.White;
+					Global.pytania1[obecnePytanie].druzynaZPrzypisanymiPunktami = "P";
+
+					Global.drużynaP.dodajPunkty(Global.pytania1[obecnePytanie].punkty);
+				}
+			}
+			else
+			{
+				przypiszP.BackColor = SystemColors.Control;
+				przypiszP.UseVisualStyleBackColor = true;
+				Global.pytania1[obecnePytanie].druzynaZPrzypisanymiPunktami = null;
+
+				Global.drużynaP.dodajPunkty(-Global.pytania1[obecnePytanie].punkty);
 			}
 		}
 

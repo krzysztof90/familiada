@@ -19,10 +19,8 @@ namespace familiada
 		Panel naGłównym = new Panel();
 
 		Button odpowiedźButton = new Button();
-		Button punktyLewyButton = new Button();
-		Button punktyPrawyButton = new Button();
+		Button punktyButton = new Button();
 		Button edycjaOdpowiedziButton = new Button();
-		Button edycjaPunktówButton = new Button();
 		TextBox edytorOdpowiedzi = new TextBox();
 		TextBox edytorPunktów = new TextBox();
 		Button doGóry = new Button();
@@ -53,7 +51,7 @@ namespace familiada
 				Global.exit("niepoprawna liczba punktów");
 			}
 
-			naKontrolerze.Size = new System.Drawing.Size(340, 30);
+			naKontrolerze.Size = new System.Drawing.Size(290, 30);
 			naKontrolerze.Hide();
 
 			odpowiedźButton.Location = new Point(50, 0);
@@ -61,27 +59,15 @@ namespace familiada
 			odpowiedźButton.Text = odpowiedź;
 			odpowiedźButton.Click += new EventHandler(zaznaczOdznacz_Click);
 
-			punktyLewyButton.Location = new Point(0, 0);
-			punktyLewyButton.Size = new Size(50, 30);
-			punktyLewyButton.Text = punkty.ToString();
-			punktyLewyButton.Tag = Global.drużynaL;
-			punktyLewyButton.Click += new EventHandler(zaznaczDrużynie_Click);
+			punktyButton.Location = new Point(170, 0);
+			punktyButton.Size = new Size(30, 30);
+			punktyButton.Text = punkty.ToString();
+			punktyButton.Click += new EventHandler(edytujPunkty_Click);
 
-			punktyPrawyButton.Location = new Point(150, 0);
-			punktyPrawyButton.Size = new Size(50, 30);
-			punktyPrawyButton.Text = punkty.ToString();
-			punktyPrawyButton.Tag = Global.drużynaP;
-			punktyPrawyButton.Click += new EventHandler(zaznaczDrużynie_Click);
-
-			edycjaOdpowiedziButton.Location = new Point(220, 0);
+			edycjaOdpowiedziButton.Location = new Point(200, 0);
 			edycjaOdpowiedziButton.Size = new Size(30, 30);
 			edycjaOdpowiedziButton.Text = "edytuj";
 			edycjaOdpowiedziButton.Click += new EventHandler(edytujOdpowiedź_Click);
-
-			edycjaPunktówButton.Location = new Point(250, 0);
-			edycjaPunktówButton.Size = new Size(30, 30);
-			edycjaPunktówButton.Text = "edytuj punkty";
-			edycjaPunktówButton.Click += new EventHandler(edytujPunkty_Click);
 
 			edytorOdpowiedzi.AutoSize = false;
 			edytorOdpowiedzi.Location = new Point(50, 0);
@@ -93,7 +79,7 @@ namespace familiada
 			edytorOdpowiedzi.Tag = new EventHandler(edytorOdpowiedzi_Leave);
 
 			edytorPunktów.AutoSize = false;
-			edytorPunktów.Location = new Point(250, 0);
+			edytorPunktów.Location = new Point(170, 0);
 			edytorPunktów.Size = new Size(30, 30);
 			edytorPunktów.Text = punkty.ToString();
 			edytorPunktów.Hide();
@@ -101,28 +87,24 @@ namespace familiada
 			edytorPunktów.KeyPress += new KeyPressEventHandler(edytor_KeyPress);
 			edytorPunktów.Tag = new EventHandler(edytorPunktów_Leave);
 
-			doGóry.Location = new Point(280, 0);
+			doGóry.Location = new Point(230, 0);
 			doGóry.Size = new Size(30, 15);
 			doGóry.Text = "góra";
 			doGóry.Click += new EventHandler(doGóry_Click);
 
-			doDołu.Location = new Point(280, 15);
+			doDołu.Location = new Point(230, 15);
 			doDołu.Size = new Size(30, 15);
 			doDołu.Text = "dół";
 			doDołu.Click += new EventHandler(doDołu_Click);
 
-			usuńButton.Location = new Point(310, 0);
+			usuńButton.Location = new Point(260, 0);
 			usuńButton.Size = new Size(30, 30);
 			usuńButton.Text = "usuń";
 			usuńButton.Click += new EventHandler(usuń_Click);
 
-			//naGłównym.Hide();
-
 			naKontrolerze.Controls.Add(odpowiedźButton);
-			naKontrolerze.Controls.Add(punktyLewyButton);
-			naKontrolerze.Controls.Add(punktyPrawyButton);
+			naKontrolerze.Controls.Add(punktyButton);
 			naKontrolerze.Controls.Add(edycjaOdpowiedziButton);
-			naKontrolerze.Controls.Add(edycjaPunktówButton);
 			naKontrolerze.Controls.Add(edytorOdpowiedzi);
 			naKontrolerze.Controls.Add(edytorPunktów);
 			naKontrolerze.Controls.Add(doGóry);
@@ -173,15 +155,6 @@ namespace familiada
 			return odpowiedźButton.BackColor == Color.White;
 		}
 
-		private Drużyna zaznaczonaDrużyna()
-		{
-			if (punktyLewyButton.BackColor == Color.White)
-				return (Drużyna)(punktyLewyButton.Tag);
-			if (punktyPrawyButton.BackColor == Color.White)
-				return (Drużyna)punktyPrawyButton.Tag;
-			return null;
-		}
-
 		private void zaznaczOdznacz_Click(object sender, EventArgs e)
 		{
 			if (!zaznaczona())
@@ -189,36 +162,19 @@ namespace familiada
 				odpowiedźButton.BackColor = Color.White;
 
 				pokażOdpowiedź();
+
+				if (pytanie.druzynaZPrzypisanymiPunktami == null)
+					pytanie.dodajPunkty(punkty);
 			}
 			else
 			{
-				Drużyna drużyna = zaznaczonaDrużyna();
-				if (drużyna != null)
-				{
-					drużyna.dodajPunkty(-punkty);
-					pytanie.dodajPunkty(-punkty);
-				}
-
 				odpowiedźButton.BackColor = SystemColors.Control;
 				odpowiedźButton.UseVisualStyleBackColor = true;
-				punktyPrawyButton.BackColor = SystemColors.Control;
-				punktyPrawyButton.UseVisualStyleBackColor = true;
-				punktyLewyButton.BackColor = SystemColors.Control;
-				punktyLewyButton.UseVisualStyleBackColor = true;
 
 				ukryjOdpowiedź();
-			}
-		}
-		private void zaznaczDrużynie_Click(object sender, EventArgs e)
-		{
-			if (!zaznaczona())
-			{
-				zaznaczOdznacz_Click(sender, new EventArgs());
 
-				pytanie.dodajPunkty(punkty);
-
-				((Button)sender).BackColor = Color.White;
-				((Drużyna)(((Button)sender).Tag)).dodajPunkty(punkty);
+				if (pytanie.druzynaZPrzypisanymiPunktami == null)
+					pytanie.dodajPunkty(-punkty);
 			}
 		}
 		private void edytujOdpowiedź_Click(object sender, EventArgs e)
@@ -258,7 +214,10 @@ namespace familiada
 						break;
 					}
 				if (niepoprawnyZnak != null)
+				{
 					MessageBox.Show(String.Format("niepoprawny znak {0}", niepoprawnyZnak));
+					edytorOdpowiedzi.Focus();
+				}
 				else
 				{
 					if (zaznaczona())
@@ -273,8 +232,7 @@ namespace familiada
 			{
 				punkty = Int32.Parse(edytorPunktów.Text);
 				edytorPunktów.Hide();
-				punktyLewyButton.Text = punkty.ToString();
-				punktyPrawyButton.Text = punkty.ToString();
+				punktyButton.Text = punkty.ToString();
 				if (zaznaczona())
 					wyświetlPunkty(true, ' ');
 			}
