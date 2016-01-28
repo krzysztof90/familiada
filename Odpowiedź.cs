@@ -10,6 +10,8 @@ namespace familiada
 {
 	class Odpowiedź
 	{
+		static int długośćOdpowiedzi=15;
+
 		public string odpowiedź;
 		public int punkty;
 		public int nrOdpowiedzi;
@@ -29,7 +31,6 @@ namespace familiada
 		Button doDołu = new Button();
 		Button usuńButton = new Button();
 
-		Label nrOdpowiedziLabel = new Label();
 		Label odpowiedźLabel = new Label();
 		Label punktyLabel = new Label();
 
@@ -124,10 +125,6 @@ namespace familiada
 			naGłównym.Size = new Size(210, 30);
 			naGłównym.Hide();
 
-			nrOdpowiedziLabel.Location = new Point(0, 0);
-			nrOdpowiedziLabel.Size = new Size(30, 30);
-			nrOdpowiedziLabel.Text = nrOdpowiedzi.ToString();
-
 			odpowiedźLabel.Location = new Point(30, 0);
 			odpowiedźLabel.Size = new Size(150, 30);
 			odpowiedźLabel.Text = odpowiedź;
@@ -150,23 +147,24 @@ namespace familiada
 			naKontrolerze.Controls.Add(doDołu);
 			naKontrolerze.Controls.Add(usuńButton);
 
-			naGłównym.Controls.Add(nrOdpowiedziLabel);
 			naGłównym.Controls.Add(odpowiedźLabel);
 			naGłównym.Controls.Add(punktyLabel);
 
 			Global.panelKontroler1.Controls.Add(naKontrolerze);
-			Global.panelGłówny1.Controls.Add(naGłównym);
+			//Global.panelGłówny1.Controls.Add(naGłównym);
 		}
 
 		public void pokażKontrolkiOdpowiedzi()
 		{
 			naKontrolerze.Show();
 			naGłównym.Show();
+			Global.tablica1.ustawTekst(nrOdpowiedzi.ToString(), 0, nrOdpowiedzi, true, 2, ' ', false);
 		}
 		public void ukryjKontrolkiOdpowiedzi()
 		{
 			naKontrolerze.Hide();
 			naGłównym.Hide();
+			Global.tablica1.ustawTekst("", 0, nrOdpowiedzi, true, 2, ' ', false);
 		}
 		public void pokażOdpowiedź()
 		{
@@ -182,6 +180,7 @@ namespace familiada
 		{
 			naKontrolerze.Dispose();
 			naGłównym.Dispose();
+			Global.tablica1.ustawTekst("", 0, nrOdpowiedzi, true, 2, ' ', false);
 		}
 		public void zaznacz()
 		{
@@ -215,10 +214,10 @@ namespace familiada
 		{
 			nrOdpowiedzi = numer;
 			naKontrolerze.Location = new Point(100, nrOdpowiedzi * 30 + 30);
-			naGłównym.Location = new Point(100, nrOdpowiedzi * 30);
+			//naGłównym.Location = new Point(100, nrOdpowiedzi * 30);
 			doGóry.Tag = nrOdpowiedzi;
 			doDołu.Tag = nrOdpowiedzi;
-			nrOdpowiedziLabel.Text = nrOdpowiedzi.ToString();
+			Global.tablica1.ustawTekst(nrOdpowiedzi.ToString(), 0, nrOdpowiedzi, true, 2, ' ', false);
 		}
 
 		private Drużyna zaznaczonaDrużyna()

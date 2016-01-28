@@ -29,11 +29,9 @@ namespace familiada
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.punkty = new System.Windows.Forms.Label();
 			this.panel1 = new System.Windows.Forms.Panel();
 			this.panel2 = new System.Windows.Forms.Panel();
 			this.czas = new System.Windows.Forms.Label();
-			this.dodatkowy = new System.Windows.Forms.Panel();
 			this.panelPodstawa = new System.Windows.Forms.TableLayoutPanel();
 			this.panelRundy = new System.Windows.Forms.Panel();
 			this.panelPodstawaLewy = new System.Windows.Forms.TableLayoutPanel();
@@ -43,22 +41,12 @@ namespace familiada
 			this.panelPodstawaGóra = new System.Windows.Forms.TableLayoutPanel();
 			this.panelPunkty = new System.Windows.Forms.Panel();
 			this.panel2.SuspendLayout();
-			this.dodatkowy.SuspendLayout();
 			this.panelPodstawa.SuspendLayout();
 			this.panelRundy.SuspendLayout();
 			this.panelPodstawaLewy.SuspendLayout();
 			this.panelPodstawaPrawy.SuspendLayout();
 			this.panelPodstawaGóra.SuspendLayout();
 			this.SuspendLayout();
-			// 
-			// punkty
-			// 
-			this.punkty.AutoSize = true;
-			this.punkty.Location = new System.Drawing.Point(77, 0);
-			this.punkty.Name = "punkty";
-			this.punkty.Size = new System.Drawing.Size(13, 13);
-			this.punkty.TabIndex = 0;
-			this.punkty.Text = "0";
 			// 
 			// panel1
 			// 
@@ -88,14 +76,6 @@ namespace familiada
 			this.czas.Name = "czas";
 			this.czas.Size = new System.Drawing.Size(0, 13);
 			this.czas.TabIndex = 3;
-			// 
-			// dodatkowy
-			// 
-			this.dodatkowy.Controls.Add(this.punkty);
-			this.dodatkowy.Location = new System.Drawing.Point(0, 0);
-			this.dodatkowy.Name = "dodatkowy";
-			this.dodatkowy.Size = new System.Drawing.Size(228, 192);
-			this.dodatkowy.TabIndex = 3;
 			// 
 			// panelPodstawa
 			// 
@@ -208,14 +188,11 @@ namespace familiada
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(795, 476);
 			this.Controls.Add(this.panelPodstawa);
-			this.Controls.Add(this.dodatkowy);
 			this.Name = "GłównyEkran";
 			this.Text = "Główny ekran";
 			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.GłównyEkran_FormClosing);
 			this.panel2.ResumeLayout(false);
 			this.panel2.PerformLayout();
-			this.dodatkowy.ResumeLayout(false);
-			this.dodatkowy.PerformLayout();
 			this.panelPodstawa.ResumeLayout(false);
 			this.panelRundy.ResumeLayout(false);
 			this.panelPodstawaLewy.ResumeLayout(false);
@@ -227,10 +204,8 @@ namespace familiada
 
 		#endregion
 
-		public Label punkty;
 		public Panel panel1;
 		public Panel panel2;
-		public Panel dodatkowy;
 		public Label czas;
 		private TableLayoutPanel panelPodstawa;
 		private Panel panelRundy;
