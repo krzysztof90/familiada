@@ -27,14 +27,17 @@ namespace familiada
 		public abstract int punktyTextBoxTabIndex { get; }
 		public abstract int umieśćButtonLocationX { get; }
 		
-		public abstract int pozycjaNaTablicy { get; }
+		public abstract int pozycjaOdpowiedziNaTablicy { get; }
+		public abstract int pozycjaPunktówNaTablicy { get; }
 		public abstract bool wyrównanieDoLewej { get; }
 
 		public abstract void odpowiedź_KeyDown(object sender, KeyEventArgs e);
 		public abstract void punkty_KeyDown(object sender, KeyEventArgs e);
 
-		public PytanieStrona()
+		public PytanieStrona(int nrPytania)
 		{
+			this.nrPytania = nrPytania;
+
 			odpowiedźTextBox.Location = new Point(odpowiedźTextBoxLocationX, 5);
 			odpowiedźTextBox.Size = new Size(100, 20);
 			odpowiedźTextBox.Leave += new EventHandler(edytor_Leave);
@@ -55,16 +58,16 @@ namespace familiada
 			umieśćButton.Text = "umieść";
 			umieśćButton.Click += new EventHandler(pokażUkryj_Click);
 			umieśćButton.TabStop = false;
+
+			ukryjOdpowiedź();
 		}
 
 		public static void wyświetlPunkty()
 		{
 			Punkty.ustawPunkty(punkty);
 		}
-		public void umieść(Panel panel, int nrPytania)
+		public void umieść(Panel panel)
 		{
-			this.nrPytania = nrPytania;
-
 			panel.Controls.Add(this.odpowiedźTextBox);
 			panel.Controls.Add(this.punktyTextBox);
 			panel.Controls.Add(this.umieśćButton);
@@ -127,19 +130,23 @@ namespace familiada
 				umieśćButton.BackColor = SystemColors.Control;
 				umieśćButton.UseVisualStyleBackColor = true;
 
-				Global.tablica2.ustawTekst("", pozycjaNaTablicy, nrPytania + 1, wyrównanieDoLewej, Global.długośćOdpowiedzi2, ' ');
-				//punktyLabel.Text = "";
+				ukryjOdpowiedź();
 				punkty -= Int32.Parse(punktyTextBox.Text);
 			}
 			else
 			{
 				umieśćButton.BackColor = Color.White;
 
-				Global.tablica2.ustawTekst(odpowiedźTextBox.Text, pozycjaNaTablicy, nrPytania + 1, wyrównanieDoLewej, Global.długośćOdpowiedzi2, ' ');
-				//punktyLabel.Text = punktyTextBox.Text;
+				Global.tablica2.ustawTekst(odpowiedźTextBox.Text, pozycjaOdpowiedziNaTablicy, nrPytania + 1, wyrównanieDoLewej, Global.długośćOdpowiedzi2, ' ');
+				Global.tablica2.ustawTekst(punktyTextBox.Text, pozycjaPunktówNaTablicy, nrPytania + 1, false, 2, ' ');
 				punkty += Int32.Parse(punktyTextBox.Text);
 			}
 			wyświetlPunkty();
+		}
+		private void ukryjOdpowiedź()
+		{
+			Global.tablica2.ustawTekst("", pozycjaOdpowiedziNaTablicy, nrPytania + 1, wyrównanieDoLewej, Global.długośćOdpowiedzi2, '.');
+			Global.tablica2.ustawTekst("", pozycjaPunktówNaTablicy, nrPytania + 1, false, 2, '|');
 		}
 	}
 
@@ -166,9 +173,13 @@ namespace familiada
 			get { return 280; }
 		}
 
-		public override int pozycjaNaTablicy
+		public override int pozycjaOdpowiedziNaTablicy
 		{
 			get { return 1; }
+		}
+		public override int pozycjaPunktówNaTablicy
+		{
+			get { return 12; }
 		}
 		public override bool wyrównanieDoLewej
 		{
@@ -191,6 +202,10 @@ namespace familiada
 					Global.pytania2[nrPytania].pytanieL.punktyTextBox.Focus();
 			}
 		}
+
+		public PytanieL(int nrPytania)
+			: base(nrPytania)
+		{ }
 	}
 
 	class PytanieP : PytanieStrona
@@ -216,9 +231,13 @@ namespace familiada
 			get { return 310; }
 		}
 
-		public override int pozycjaNaTablicy
+		public override int pozycjaOdpowiedziNaTablicy
 		{
 			get { return 19; }
+		}
+		public override int pozycjaPunktówNaTablicy
+		{
+			get { return 16; }
 		}
 		public override bool wyrównanieDoLewej
 		{
@@ -241,6 +260,10 @@ namespace familiada
 					Global.pytania2[nrPytania].pytanieP.punktyTextBox.Focus();
 			}
 		}
+
+		public PytanieP(int nrPytania)
+			: base(nrPytania)
+		{ }
 	}
 
 	class Pytanie2
@@ -253,13 +276,16 @@ namespace familiada
 
 		Label nazwaLabel = new Label();
 
-		public PytanieL pytanieL = new PytanieL();
-		public PytanieP pytanieP = new PytanieP();
+		public PytanieL pytanieL;
+		public PytanieP pytanieP;
 
 		public Pytanie2(string nazwa, int nrPytania)
 		{
 			nazwaPytania = nazwa;
 			this.nrPytania = nrPytania;
+
+			pytanieL = new PytanieL(nrPytania);
+			pytanieP = new PytanieP(nrPytania);
 
 			naKontrolerze.Location = new Point(100, 50 * nrPytania);
 			naKontrolerze.Size = new Size(480, 30);
@@ -270,8 +296,8 @@ namespace familiada
 			nazwaLabel.Size = new Size(145, 13);
 			nazwaLabel.Text = nazwaPytania;
 
-			pytanieL.umieść(naKontrolerze, nrPytania);
-			pytanieP.umieść(naKontrolerze, nrPytania);
+			pytanieL.umieść(naKontrolerze);
+			pytanieP.umieść(naKontrolerze);
 		}
 
 		public static void wyświetlPunkty()
