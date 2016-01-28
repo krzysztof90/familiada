@@ -66,14 +66,14 @@ namespace familiada
 			int długośćTekstu = tekst.Length;
 			if (wyrównanieDoLewej)
 			{
-				for (int i = 0; i < długośćTekstu && i < liczbaKolumn - kolumnaPoczątkowa; i++)
+				for (int i = 0; i < długośćTekstu && i < pojemnośćCałkowita; i++)
 					znakiPictureBox[kolumnaPoczątkowa + i, rząd].Image = Global.znaki[tekst[i]];
 				for (int i = 0; i < pojemnośćCałkowita - długośćTekstu; i++)
 					znakiPictureBox[kolumnaPoczątkowa + długośćTekstu + i, rząd].Image = Global.znaki[wypełnienie];
 			}
 			else
 			{
-				for (int i = (długośćTekstu > liczbaKolumn - kolumnaPoczątkowa ? długośćTekstu - (liczbaKolumn - kolumnaPoczątkowa) : 0); i < długośćTekstu; i++)
+				for (int i = (długośćTekstu > pojemnośćCałkowita ? długośćTekstu - pojemnośćCałkowita : 0); i < długośćTekstu; i++)
 					znakiPictureBox[kolumnaPoczątkowa + pojemnośćCałkowita - długośćTekstu + i, rząd].Image = Global.znaki[tekst[i]];
 				for (int i = 0; i < pojemnośćCałkowita - długośćTekstu; i++)
 					znakiPictureBox[kolumnaPoczątkowa + i, rząd].Image = Global.znaki[wypełnienie];
