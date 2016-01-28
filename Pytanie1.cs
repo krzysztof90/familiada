@@ -154,8 +154,8 @@ namespace familiada
 		}
 		public void zamieńOdpowiedzi(int nrPoczątkowej)
 		{
-			odpowiedzi[nrPoczątkowej - 1].zmieńNumer(nrPoczątkowej + 1);
-			odpowiedzi[nrPoczątkowej].zmieńNumer(nrPoczątkowej);
+			odpowiedzi[nrPoczątkowej - 1].przesuń(nrPoczątkowej + 1, true);
+			odpowiedzi[nrPoczątkowej].przesuń(nrPoczątkowej, false);
 
 			Odpowiedź początkowa = odpowiedzi[nrPoczątkowej - 1];
 			odpowiedzi[nrPoczątkowej - 1] = odpowiedzi[nrPoczątkowej];
@@ -166,7 +166,7 @@ namespace familiada
 			Odpowiedź odpowiedź = odpowiedzi[nrOdpowiedzi - 1];
 			odpowiedź.usuńOdpowiedź();
 			for (int i = nrOdpowiedzi; i < odpowiedzi.Count; i++)
-				odpowiedzi[i].zmieńNumer(i);
+				odpowiedzi[i].przesuń(i, true);
 
 			odpowiedzi.RemoveAt(nrOdpowiedzi - 1);
 		}

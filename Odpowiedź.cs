@@ -10,8 +10,6 @@ namespace familiada
 {
 	class Odpowiedź
 	{
-		static int długośćOdpowiedzi=15;
-
 		public string odpowiedź;
 		public int punkty;
 		public int nrOdpowiedzi;
@@ -31,7 +29,6 @@ namespace familiada
 		Button doDołu = new Button();
 		Button usuńButton = new Button();
 
-		Label odpowiedźLabel = new Label();
 		Label punktyLabel = new Label();
 
 		public Odpowiedź(string linia, Pytanie1 pytanie)
@@ -44,7 +41,11 @@ namespace familiada
 			if (pozycjaPrzerwy == -1)
 				Global.exit(String.Format("niepoprawna linia: {0}", linia));
 			odpowiedź = linia.Substring(0, pozycjaPrzerwy).TrimEnd();
-
+			if (odpowiedź.Length > Global.długośćOdpowiedzi)
+				Global.exit(String.Format("za długa odpowiedź: {0}", odpowiedź));
+			for (int i = 0; i < odpowiedź.Length; i++)
+				if (!Global.znaki.ContainsKey(odpowiedź[i]))
+					Global.exit(String.Format("niepoprawny znak '{0}' w {1}", odpowiedź[i], odpowiedź));
 			try
 			{
 				punkty = Int32.Parse(linia.Substring(pozycjaPrzerwy + 1));
@@ -54,7 +55,6 @@ namespace familiada
 				Global.exit("niepoprawna liczba punktów");
 			}
 
-			naKontrolerze.Location = new Point(100, nrOdpowiedzi * 30 + 30);
 			naKontrolerze.Size = new System.Drawing.Size(340, 30);
 			naKontrolerze.Hide();
 
@@ -106,13 +106,11 @@ namespace familiada
 			doGóry.Location = new Point(280, 0);
 			doGóry.Size = new Size(30, 15);
 			doGóry.Text = "góra";
-			doGóry.Tag = nrOdpowiedzi;
 			doGóry.Click += new EventHandler(doGóry_Click);
 
 			doDołu.Location = new Point(280, 15);
 			doDołu.Size = new Size(30, 15);
 			doDołu.Text = "dół";
-			doDołu.Tag = nrOdpowiedzi;
 			doDołu.Click += new EventHandler(doDołu_Click);
 
 			usuńButton.Location = new Point(310, 0);
@@ -120,15 +118,9 @@ namespace familiada
 			usuńButton.Text = "usuń";
 			usuńButton.Click += new EventHandler(usuń_Click);
 
+			//Global.tablica1.ustawTekst("", 2, nrOdpowiedzi, true, długośćOdpowiedzi, '.', false);
 
-			naGłównym.Location = new Point(100, nrOdpowiedzi * 30);
-			naGłównym.Size = new Size(210, 30);
 			naGłównym.Hide();
-
-			odpowiedźLabel.Location = new Point(30, 0);
-			odpowiedźLabel.Size = new Size(150, 30);
-			odpowiedźLabel.Text = odpowiedź;
-			odpowiedźLabel.Hide();
 
 			punktyLabel.Location = new Point(180, 0);
 			punktyLabel.Size = new Size(30, 30);
@@ -147,7 +139,6 @@ namespace familiada
 			naKontrolerze.Controls.Add(doDołu);
 			naKontrolerze.Controls.Add(usuńButton);
 
-			naGłównym.Controls.Add(odpowiedźLabel);
 			naGłównym.Controls.Add(punktyLabel);
 
 			Global.panelKontroler1.Controls.Add(naKontrolerze);
@@ -156,31 +147,37 @@ namespace familiada
 
 		public void pokażKontrolkiOdpowiedzi()
 		{
+			naKontrolerze.Location = new Point(100, nrOdpowiedzi * 30 + 30);
 			naKontrolerze.Show();
-			naGłównym.Show();
-			Global.tablica1.ustawTekst(nrOdpowiedzi.ToString(), 0, nrOdpowiedzi, true, 2, ' ', false);
+			//naGłównym.Show();
+			Global.tablica1.ustawTekst(nrOdpowiedzi.ToString(), 0, nrOdpowiedzi, false, 2, ' ', true);
+			if (zaznaczona())
+				Global.tablica1.ustawTekst(odpowiedź, 2, nrOdpowiedzi, true, Global.długośćOdpowiedzi, '.', false);
+			else
+				Global.tablica1.ustawTekst("", 2, nrOdpowiedzi, true, Global.długośćOdpowiedzi, '.', false);
 		}
 		public void ukryjKontrolkiOdpowiedzi()
 		{
 			naKontrolerze.Hide();
 			naGłównym.Hide();
-			Global.tablica1.ustawTekst("", 0, nrOdpowiedzi, true, 2, ' ', false);
+			Global.tablica1.ustawTekst("", 0, nrOdpowiedzi, false, 2, ' ', true);
+			Global.tablica1.ustawTekst("", 2, nrOdpowiedzi, true, Global.długośćOdpowiedzi, ' ', false);
 		}
 		public void pokażOdpowiedź()
 		{
-			odpowiedźLabel.Show();
+			Global.tablica1.ustawTekst(odpowiedź, 2, nrOdpowiedzi, true, Global.długośćOdpowiedzi, '.', true);
 			punktyLabel.Show();
 		}
 		public void ukryjOdpowiedź()
 		{
-			odpowiedźLabel.Hide();
+			Global.tablica1.ustawTekst("", 2, nrOdpowiedzi, true, Global.długośćOdpowiedzi, '.', false);
 			punktyLabel.Hide();
 		}
 		public void usuńOdpowiedź()
 		{
-			naKontrolerze.Dispose();
-			naGłównym.Dispose();
-			Global.tablica1.ustawTekst("", 0, nrOdpowiedzi, true, 2, ' ', false);
+			naKontrolerze.Hide();
+			Global.tablica1.ustawTekst("", 0, nrOdpowiedzi, false, 2, ' ', true);
+			Global.tablica1.ustawTekst("", 2, nrOdpowiedzi, true, Global.długośćOdpowiedzi, ' ', false);
 		}
 		public void zaznacz()
 		{
@@ -205,19 +202,18 @@ namespace familiada
 			punktyPrawyButton.UseVisualStyleBackColor = true;
 			punktyLewyButton.BackColor = SystemColors.Control;
 			punktyLewyButton.UseVisualStyleBackColor = true;
+
 		}
 		public bool zaznaczona()
 		{
 			return odpowiedźButton.BackColor == Color.White;
 		}
-		public void zmieńNumer(int numer)
+		public void przesuń(int numer, bool usuń)
 		{
+			if (usuń)
+				usuńOdpowiedź();
 			nrOdpowiedzi = numer;
-			naKontrolerze.Location = new Point(100, nrOdpowiedzi * 30 + 30);
-			//naGłównym.Location = new Point(100, nrOdpowiedzi * 30);
-			doGóry.Tag = nrOdpowiedzi;
-			doDołu.Tag = nrOdpowiedzi;
-			Global.tablica1.ustawTekst(nrOdpowiedzi.ToString(), 0, nrOdpowiedzi, true, 2, ' ', false);
+			pokażKontrolkiOdpowiedzi();
 		}
 
 		private Drużyna zaznaczonaDrużyna()
@@ -270,10 +266,32 @@ namespace familiada
 		}
 		private void edytorOdpowiedzi_Leave(object sender, EventArgs e)
 		{
-			edytorOdpowiedzi.Hide();
 			odpowiedź = edytorOdpowiedzi.Text;
 			odpowiedźButton.Text = odpowiedź;
-			odpowiedźLabel.Text = odpowiedź;
+
+			if (odpowiedź.Length > Global.długośćOdpowiedzi)
+			{
+				MessageBox.Show("za długi tekst");
+				edytorOdpowiedzi.Focus();
+			}
+			else
+			{
+				char? niepoprawnyZnak=null;
+				for (int i = 0; i < odpowiedź.Length; i++)
+					if (!Global.znaki.ContainsKey(odpowiedź[i]))
+					{
+						niepoprawnyZnak = odpowiedź[i];
+						break;
+					}
+				if (niepoprawnyZnak != null)
+					MessageBox.Show(String.Format("niepoprawny znak {0}", niepoprawnyZnak));
+				else
+				{
+					if (zaznaczona())
+						Global.tablica1.ustawTekst(odpowiedź, 2, nrOdpowiedzi, true, Global.długośćOdpowiedzi, '.', true);
+					edytorOdpowiedzi.Hide();
+				}
+			}
 		}
 		private void edytorPunktów_Leave(object sender, EventArgs e)
 		{

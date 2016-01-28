@@ -65,6 +65,7 @@ namespace familiada
 		public void ustawTekst(string tekst, int kolumnaPoczątkowa, int rząd, bool wyrównanieDoLewej, int pojemnośćCałkowita, char wypełnienie, bool wyświetlCzęść, bool ustawJakoTag=false)
 		{
 			int długośćTekstu = tekst.Length;
+			//niepotrzebne sprawdzanie i parametry?
 			if (!wyświetlCzęść && długośćTekstu > liczbaKolumn - kolumnaPoczątkowa)
 				throw new InvalidOperationException("za długi tekst");
 			for (int i = 0; i < długośćTekstu; i++)

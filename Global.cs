@@ -12,6 +12,8 @@ namespace familiada
 		public static string plik1 = "runda1.txt";
 		public static string plik2 = "runda2.txt";
 
+		public static int długośćOdpowiedzi = 15;
+
 		public static Kontroler kontroler = new Kontroler();
 		public static Panel panelKontroler1 = kontroler.panel1;
 		public static Panel panelKontroler2 = kontroler.panel2;
@@ -27,6 +29,9 @@ namespace familiada
 			{
 				{'a', global::familiada.Properties.Resources.a},
 				{'b', global::familiada.Properties.Resources.b},
+				{'o', global::familiada.Properties.Resources.b},
+				{'d', global::familiada.Properties.Resources.b},
+				{'p', global::familiada.Properties.Resources.b},
 				{'0', global::familiada.Properties.Resources.c0},
 				{'1', global::familiada.Properties.Resources.c1},
 				{'2', global::familiada.Properties.Resources.c2},
@@ -38,6 +43,7 @@ namespace familiada
 				{'8', global::familiada.Properties.Resources.c8},
 				{'9', global::familiada.Properties.Resources.c9},
 				{'-', global::familiada.Properties.Resources.minus},
+				{'.', global::familiada.Properties.Resources.kropka},
 				{' ', global::familiada.Properties.Resources.puste},
 			};
 
