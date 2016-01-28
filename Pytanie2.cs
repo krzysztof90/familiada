@@ -18,16 +18,17 @@ namespace familiada
 		protected TextBox punktyTextBox = new TextBox();
 		protected Button umieśćButton = new Button();
 
-		protected Label odpowiedźLabel = new Label();
-		protected Label punktyLabel = new Label();
+		//protected Label odpowiedźLabel = new Label();
+		//protected Label punktyLabel = new Label();
 
 		public abstract int odpowiedźTextBoxLocationX { get; }
 		public abstract int odpowiedźTextBoxTabIndex { get; }
 		public abstract int punktyTextBoxLocationX { get; }
 		public abstract int punktyTextBoxTabIndex { get; }
 		public abstract int umieśćButtonLocationX { get; }
-		public abstract int odpowiedźLabelLocationX { get; }
-		public abstract int punktyLabelLocationX { get; }
+		
+		public abstract int pozycjaNaTablicy { get; }
+		public abstract bool wyrównanieDoLewej { get; }
 
 		public abstract void odpowiedź_KeyDown(object sender, KeyEventArgs e);
 		public abstract void punkty_KeyDown(object sender, KeyEventArgs e);
@@ -37,6 +38,7 @@ namespace familiada
 			odpowiedźTextBox.Location = new Point(odpowiedźTextBoxLocationX, 5);
 			odpowiedźTextBox.Size = new Size(100, 20);
 			odpowiedźTextBox.Leave += new EventHandler(edytor_Leave);
+			odpowiedźTextBox.Leave += new EventHandler(edytorOdpowiedzi_Leave);
 			odpowiedźTextBox.KeyDown += new KeyEventHandler(odpowiedź_KeyDown);
 			odpowiedźTextBox.TabIndex = odpowiedźTextBoxTabIndex;
 
@@ -53,34 +55,50 @@ namespace familiada
 			umieśćButton.Text = "umieść";
 			umieśćButton.Click += new EventHandler(pokażUkryj_Click);
 			umieśćButton.TabStop = false;
-
-			odpowiedźLabel.Location = new Point(odpowiedźLabelLocationX, 5);
-			odpowiedźLabel.Size = new Size(100, 20);
-
-			punktyLabel.Location = new Point(punktyLabelLocationX, 5);
-			punktyLabel.Size = new Size(30, 20);
 		}
 
 		public static void wyświetlPunkty()
 		{
 			Punkty.ustawPunkty(punkty);
 		}
-		public void umieść(Panel naKontrolerze, Panel naGłównym, int nrPytania)
+		public void umieść(Panel panel, int nrPytania)
 		{
 			this.nrPytania = nrPytania;
 
-			naKontrolerze.Controls.Add(this.odpowiedźTextBox);
-			naKontrolerze.Controls.Add(this.punktyTextBox);
-			naKontrolerze.Controls.Add(this.umieśćButton);
-
-			naGłównym.Controls.Add(this.odpowiedźLabel);
-			naGłównym.Controls.Add(this.punktyLabel);
+			panel.Controls.Add(this.odpowiedźTextBox);
+			panel.Controls.Add(this.punktyTextBox);
+			panel.Controls.Add(this.umieśćButton);
 		}
 		public bool wyświetlony()
 		{
 			return umieśćButton.BackColor == Color.White;
 		}
 
+		private void edytorOdpowiedzi_Leave(object sender, EventArgs e)
+		{
+			string odpowiedź = odpowiedźTextBox.Text;
+
+			if (odpowiedź.Length > Global.długośćOdpowiedzi2)
+			{
+				MessageBox.Show("za długa odpowiedź");
+				odpowiedźTextBox.Focus();
+			}
+			else
+			{
+				char? niepoprawnyZnak = null;
+				for (int i = 0; i < odpowiedź.Length; i++)
+					if (!Global.znaki.ContainsKey(odpowiedź[i]))
+					{
+						niepoprawnyZnak = odpowiedź[i];
+						break;
+					}
+				if (niepoprawnyZnak != null)
+				{
+					MessageBox.Show(String.Format("niepoprawny znak {0}", niepoprawnyZnak));
+					odpowiedźTextBox.Focus();
+				}
+			}
+		}
 		private void edytorPunktów_Leave(object sender, EventArgs e)
 		{
 			TextBox textbox = ((TextBox)sender);
@@ -109,16 +127,16 @@ namespace familiada
 				umieśćButton.BackColor = SystemColors.Control;
 				umieśćButton.UseVisualStyleBackColor = true;
 
-				odpowiedźLabel.Text = "";
-				punktyLabel.Text = "";
+				Global.tablica2.ustawTekst("", pozycjaNaTablicy, nrPytania + 1, wyrównanieDoLewej, Global.długośćOdpowiedzi2, ' ');
+				//punktyLabel.Text = "";
 				punkty -= Int32.Parse(punktyTextBox.Text);
 			}
 			else
 			{
 				umieśćButton.BackColor = Color.White;
 
-				odpowiedźLabel.Text = odpowiedźTextBox.Text;
-				punktyLabel.Text = punktyTextBox.Text;
+				Global.tablica2.ustawTekst(odpowiedźTextBox.Text, pozycjaNaTablicy, nrPytania + 1, wyrównanieDoLewej, Global.długośćOdpowiedzi2, ' ');
+				//punktyLabel.Text = punktyTextBox.Text;
 				punkty += Int32.Parse(punktyTextBox.Text);
 			}
 			wyświetlPunkty();
@@ -147,13 +165,14 @@ namespace familiada
 		{
 			get { return 280; }
 		}
-		public override int odpowiedźLabelLocationX
+
+		public override int pozycjaNaTablicy
 		{
-			get { return 150; }
+			get { return 1; }
 		}
-		public override int punktyLabelLocationX
+		public override bool wyrównanieDoLewej
 		{
-			get { return 250; }
+			get { return false; }
 		}
 
 		public override void odpowiedź_KeyDown(object sender, KeyEventArgs e)
@@ -196,13 +215,14 @@ namespace familiada
 		{
 			get { return 310; }
 		}
-		public override int odpowiedźLabelLocationX
+
+		public override int pozycjaNaTablicy
 		{
-			get { return 310; }
+			get { return 19; }
 		}
-		public override int punktyLabelLocationX
+		public override bool wyrównanieDoLewej
 		{
-			get { return 280; }
+			get { return true; }
 		}
 
 		public override void odpowiedź_KeyDown(object sender, KeyEventArgs e)
@@ -229,7 +249,7 @@ namespace familiada
 		int nrPytania;
 
 		Panel naKontrolerze = new Panel();
-		Panel naGłównym = new Panel();
+		//Panel naGłównym = new Panel();
 
 		Label nazwaLabel = new Label();
 
@@ -250,12 +270,8 @@ namespace familiada
 			nazwaLabel.Size = new Size(145, 13);
 			nazwaLabel.Text = nazwaPytania;
 
-			naGłównym.Location = new Point(30, 50 * nrPytania);
-			naGłównym.Size = new Size(420, 30);
-			Global.panelGłówny2.Controls.Add(naGłównym);
-
-			pytanieL.umieść(naKontrolerze, naGłównym, nrPytania);
-			pytanieP.umieść(naKontrolerze, naGłównym, nrPytania);
+			pytanieL.umieść(naKontrolerze, nrPytania);
+			pytanieP.umieść(naKontrolerze, nrPytania);
 		}
 
 		public static void wyświetlPunkty()

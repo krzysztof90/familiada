@@ -36,7 +36,7 @@ namespace familiada
 			if (pozycjaPrzerwy == -1)
 				Global.exit(String.Format("niepoprawna linia: {0}", linia));
 			odpowiedź = linia.Substring(0, pozycjaPrzerwy).TrimEnd();
-			if (odpowiedź.Length > Global.długośćOdpowiedzi)
+			if (odpowiedź.Length > Global.długośćOdpowiedzi1)
 				Global.exit(String.Format("za długa odpowiedź: {0}", odpowiedź));
 			for (int i = 0; i < odpowiedź.Length; i++)
 				if (!Global.znaki.ContainsKey(odpowiedź[i]))
@@ -197,7 +197,7 @@ namespace familiada
 			odpowiedź = edytorOdpowiedzi.Text;
 			odpowiedźButton.Text = odpowiedź;
 
-			if (odpowiedź.Length > Global.długośćOdpowiedzi)
+			if (odpowiedź.Length > Global.długośćOdpowiedzi1)
 			{
 				MessageBox.Show("za długi tekst");
 				edytorOdpowiedzi.Focus();
@@ -262,11 +262,11 @@ namespace familiada
 		}
 		private void wyświetlOdpowiedź(bool niePuste, char wypełnienie)
 		{
-			Global.tablica1.ustawTekst(niePuste ? odpowiedź : "", 2, nrOdpowiedzi, true, Global.długośćOdpowiedzi, wypełnienie);
+			Global.tablica1.ustawTekst(niePuste ? odpowiedź : "", 2, nrOdpowiedzi, true, Global.długośćOdpowiedzi1, wypełnienie);
 		}
 		private void wyświetlPunkty(bool niePuste, char wypełnienie)
 		{
-			Global.tablica1.ustawTekst(niePuste ? punkty.ToString() : "", 3 + Global.długośćOdpowiedzi, nrOdpowiedzi, false, 2, wypełnienie);
+			Global.tablica1.ustawTekst(niePuste ? punkty.ToString() : "", 3 + Global.długośćOdpowiedzi1, nrOdpowiedzi, false, 2, wypełnienie);
 		}
 	}
 }

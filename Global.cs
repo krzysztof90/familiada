@@ -12,7 +12,8 @@ namespace familiada
 		public static string plik1 = "runda1.txt";
 		public static string plik2 = "runda2.txt";
 
-		public static int długośćOdpowiedzi = 15;
+		public static int długośćOdpowiedzi1 = 17;
+		public static int długośćOdpowiedzi2 = 10;
 
 		public static Kontroler kontroler = new Kontroler();
 		public static Panel panelKontroler1 = kontroler.panel1;
