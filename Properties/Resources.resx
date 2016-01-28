@@ -166,4 +166,13 @@
   <data name="puste" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\puste.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="zonkDużyGL" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\zonkDużyGL.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="zonkMałyG" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\zonkMałyG.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="zonkMałyGL" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\zonkMałyGL.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

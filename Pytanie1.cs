@@ -21,7 +21,7 @@ namespace familiada
 
 	abstract class Zonk
 	{
-		public abstract int początekWysokości { get; }
+		public abstract int pozycja { get; }
 
 		Button[] zonkButton = new Button[4];
 
@@ -31,15 +31,15 @@ namespace familiada
 			{
 				zonkButton[i] = new Button();
 				zonkButton[i].Click += new EventHandler(zaznacz);
-				zonkButton[i].Location = new Point(0, początekWysokości + i * 25);
+				zonkButton[i].Location = new Point(pozycja, 50 + i * 45);
+				zonkButton[i].Size = new Size(27, 45);
 				zonkButton[i].Tag = i;
 				zonkButton[i].Text = "zonk " + (i + 1).ToString();
+				zonkButton[i].Visible = false;
 
 				Global.panelKontroler1.Controls.Add(zonkButton[i]);
 			}
 			zonkButton[3].Text = "boom";
-
-			ukryj();
 		}
 
 		private void zaznacz(object sender, EventArgs e)
@@ -79,26 +79,44 @@ namespace familiada
 
 		private void wyświetlZonk(int który)
 		{
-
+			if (który == 3)
+			{
+				Global.tablica1.ustawTekst("˹ ˺", pozycja, 3, true, 3, ' ');
+				Global.tablica1.ustawTekst("˼ ˻", pozycja, 4, true, 3, ' ');
+				Global.tablica1.ustawTekst(" | ", pozycja, 5, true, 3, ' ');
+				Global.tablica1.ustawTekst("˺ ˹", pozycja, 6, true, 3, ' ');
+				Global.tablica1.ustawTekst("˻ ˼", pozycja, 7, true, 3, ' ');
+			}
+			else
+			{
+				Global.tablica1.ustawTekst("┘ˍ└", pozycja, 1 + 3 * który, true, 3, ' ');
+				Global.tablica1.ustawTekst(" | ", pozycja, 2 + 3 * który, true, 3, ' ');
+				Global.tablica1.ustawTekst("┐ˉ┌", pozycja, 3 + 3 * który, true, 3, ' ');
+			}
 		}
 		private void ukryjZonk(int który)
 		{
-	
+			if (który == 3)
+				for (int rząd = 3; rząd <= 7; rząd++)
+					Global.tablica1.ustawTekst("", pozycja, rząd, true, 3, ' ');
+			else
+				for (int rząd = 1 + 3 * który; rząd <= 3 + 3 * który; rząd++)
+					Global.tablica1.ustawTekst("", pozycja, rząd, true, 3, ' ');
 		}
 	}
 
 	class ZonkL : Zonk
 	{
-		public override int początekWysokości
+		public override int pozycja
 		{
-			get { return 50; }
+			get { return 0; }
 		}
 	}
 	class ZonkP : Zonk
 	{
-		public override int początekWysokości
+		public override int pozycja
 		{
-			get { return 150; }
+			get { return 27; }
 		}
 	}
 

@@ -21,10 +21,10 @@ namespace familiada
 		public static GłównyEkran główny = new GłównyEkran();
 		public static Panel panelGłówny1 = główny.panel1;
 		public static Panel panelGłówny2 = główny.panel2;
-		
+
 		public static List<Pytanie1> pytania1 = new List<Pytanie1>();
 		public static Pytanie2[] pytania2 = new Pytanie2[5];
-		
+
 		public static Dictionary<char, Image> znaki = new Dictionary<char, Image>()
 			{
 				{'a', global::familiada.Properties.Resources.a},
@@ -46,13 +46,65 @@ namespace familiada
 				{'.', global::familiada.Properties.Resources.kropka},
 				{' ', global::familiada.Properties.Resources.puste},
 				{'|', global::familiada.Properties.Resources.punktyPuste},
+				{'˹', zonkDuży(true, true)},
+				{'˺', zonkDuży(true, false)},
+				{'˻', zonkDuży(false, true)},
+				{'˼', zonkDuży(false, false)},
+				{'┘', zonkMały(true, true)},
+				{'└', zonkMały(true, false)},
+				{'┐', zonkMały(false, true)},
+				{'┌', zonkMały(false, false)},
+				{'ˉ', zonkMały(true)},
+				{'ˍ', zonkMały(false)},
 			};
+
+		private static Bitmap zonkDuży(bool góra, bool lewo)
+		{
+			Bitmap Zonk = (Bitmap)(global::familiada.Properties.Resources.zonkDużyGL.Clone());
+			if (góra)
+			{
+				if (!lewo)
+					Zonk.RotateFlip(RotateFlipType.RotateNoneFlipX);
+			}
+			else
+			{
+				if(lewo)
+					Zonk.RotateFlip(RotateFlipType.RotateNoneFlipY);
+				else
+					Zonk.RotateFlip(RotateFlipType.Rotate180FlipNone);
+			}
+				return Zonk;
+		}
+		private static Bitmap zonkMały(bool góra, bool lewo)
+		{
+			Bitmap Zonk = (Bitmap)(global::familiada.Properties.Resources.zonkMałyGL.Clone());
+			if (góra)
+			{
+				if (!lewo)
+					Zonk.RotateFlip(RotateFlipType.RotateNoneFlipX);
+			}
+			else
+			{
+				if(lewo)
+					Zonk.RotateFlip(RotateFlipType.RotateNoneFlipY);
+				else
+					Zonk.RotateFlip(RotateFlipType.Rotate180FlipNone);
+			}
+				return Zonk;
+		}
+		private static Bitmap zonkMały(bool góra)
+		{
+			Bitmap Zonk = (Bitmap)(global::familiada.Properties.Resources.zonkMałyG.Clone());
+			if(góra)
+					Zonk.RotateFlip(RotateFlipType.RotateNoneFlipY);
+				return Zonk;
+		}
 
 		public static Drużyna drużynaL = new Drużyna(true);
 		public static Drużyna drużynaP = new Drużyna(false);
 
-		public static Tablica tablica1 = new Tablica(główny.panel1, 30, 10, global::familiada.Properties.Resources.puste);
-		public static Tablica tablica2 = new Tablica(główny.panel2, 30, 10, global::familiada.Properties.Resources.puste);
+		public static Tablica tablica1 = new Tablica(panelGłówny1, 30, 10, global::familiada.Properties.Resources.puste);
+		public static Tablica tablica2 = new Tablica(panelGłówny2, 30, 10, global::familiada.Properties.Resources.puste);
 		public static Tablica tablicaPunkty = new Tablica(główny.panelPunkty, 3, 1, global::familiada.Properties.Resources.puste);
 
 		static public void exit(string message)
