@@ -19,7 +19,6 @@ namespace familiada
 		public static GłównyEkran główny = new GłównyEkran();
 		public static Panel panelGłówny1 = główny.panel1;
 		public static Panel panelGłówny2 = główny.panel2;
-		public static Panel panelGłównyDodatkowy = główny.dodatkowy;
 		
 		public static List<Pytanie1> pytania1 = new List<Pytanie1>();
 		public static Pytanie2[] pytania2 = new Pytanie2[5];

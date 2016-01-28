@@ -62,7 +62,7 @@ namespace familiada
 
 		/// <exception cref="InvalidOperationException">.</exception>
 		/// <param name="wyświetlCzęść">dla wyrównania do lewej urywa z prawej; dla wyrówania do prawej urywa z lewej</param>
-		public void ustawTekst(string tekst, int kolumnaPoczątkowa, int rząd, bool wyrównanieDoLewej, int pojemnośćCałkowita, char wypełnienie, bool wyświetlCzęść)
+		public void ustawTekst(string tekst, int kolumnaPoczątkowa, int rząd, bool wyrównanieDoLewej, int pojemnośćCałkowita, char wypełnienie, bool wyświetlCzęść, bool ustawJakoTag=false)
 		{
 			int długośćTekstu = tekst.Length;
 			if (!wyświetlCzęść && długośćTekstu > liczbaKolumn - kolumnaPoczątkowa)
@@ -74,26 +74,27 @@ namespace familiada
 			if (wyrównanieDoLewej)
 			{
 				for (int i = 0; i < długośćTekstu && i < liczbaKolumn - kolumnaPoczątkowa; i++)
-				{
 					znakiPictureBox[kolumnaPoczątkowa + i, rząd].Image = Global.znaki[tekst[i]];
-				}
 				for (int i = 0; i < pojemnośćCałkowita - długośćTekstu; i++)
 					znakiPictureBox[kolumnaPoczątkowa + długośćTekstu + i, rząd].Image = Global.znaki[wypełnienie];
 			}
 			else
 			{
 				for (int i = (długośćTekstu > liczbaKolumn - kolumnaPoczątkowa ? długośćTekstu - (liczbaKolumn - kolumnaPoczątkowa) : 0); i < długośćTekstu; i++)
-				{
 					znakiPictureBox[kolumnaPoczątkowa + pojemnośćCałkowita - długośćTekstu + i, rząd].Image = Global.znaki[tekst[i]];
-				}
 				for (int i = 0; i < pojemnośćCałkowita - długośćTekstu; i++)
 					znakiPictureBox[kolumnaPoczątkowa + i, rząd].Image = Global.znaki[wypełnienie];
 			}
-
+			if (ustawJakoTag)
+				panel.Tag = tekst;
 		}
 		private void wstaw(char znak, int kolumna, int rząd)
 		{
 			znakiPictureBox[kolumna, rząd].Image = Global.znaki[znak];
+		}
+		public string zwróćWartość()
+		{
+			return (string)(panel.Tag);
 		}
 	}
 }

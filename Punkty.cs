@@ -9,19 +9,19 @@ namespace familiada
 	{
 		public static void wyzerujPunkty()
 		{
-			Global.główny.punkty.Text = "0";
+			Global.tablicaPunkty.ustawTekst("0", 0,0,false,3,' ',true, true);
 			Global.kontroler.punkty.Text = "0";
 		}
 
 		public static void dodajPunkty(int dodane)
 		{
-			int punkty = Int32.Parse(Global.główny.punkty.Text) + dodane;
+			int punkty = Int32.Parse(Global.tablicaPunkty.zwróćWartość()) + dodane;
 			ustawPunkty(punkty);
 		}
 
 		public static void ustawPunkty(int punkty)
 		{
-			Global.główny.punkty.Text = punkty.ToString();
+			Global.tablicaPunkty.ustawTekst(punkty.ToString(), 0, 0, false, 3, ' ', true, true);
 			Global.kontroler.punkty.Text = punkty.ToString();
 		}
 	}
