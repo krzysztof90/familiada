@@ -138,34 +138,28 @@ namespace familiada
 			naKontrolerze.Location = new Point(100, nrOdpowiedzi * 30 + 30);
 			naKontrolerze.Show();
 
-			Global.tablica1.ustawTekst(nrOdpowiedzi.ToString(), 0, nrOdpowiedzi, false, 2, ' ');
+			wyświetlNrOdpowiedzi(true, ' ');
 			if (zaznaczona())
-			{
-				Global.tablica1.ustawTekst(odpowiedź, 2, nrOdpowiedzi, true, Global.długośćOdpowiedzi, '.');
-				Global.tablica1.ustawTekst(punkty.ToString(), 3 + Global.długośćOdpowiedzi, nrOdpowiedzi, false, 2, ' ');
-			}
+				pokażOdpowiedź();
 			else
-			{
-				Global.tablica1.ustawTekst("", 2, nrOdpowiedzi, true, Global.długośćOdpowiedzi, '.');
-				Global.tablica1.ustawTekst("", 3 + Global.długośćOdpowiedzi, nrOdpowiedzi, true, 2, '|');
-			}
+				ukryjOdpowiedź();
 		}
 		public void ukryjKontrolkiOdpowiedzi()
 		{
 			naKontrolerze.Hide();
-			Global.tablica1.ustawTekst("", 0, nrOdpowiedzi, false, 2, ' ');
-			Global.tablica1.ustawTekst("", 2, nrOdpowiedzi, true, Global.długośćOdpowiedzi, ' ');
-			Global.tablica1.ustawTekst("", 3 + Global.długośćOdpowiedzi, nrOdpowiedzi, true, 2, ' ');
+			wyświetlNrOdpowiedzi(false, ' ');
+			wyświetlOdpowiedź(false, ' ');
+			wyświetlPunkty(false, ' ');
 		}
 		public void pokażOdpowiedź()
 		{
-			Global.tablica1.ustawTekst(odpowiedź, 2, nrOdpowiedzi, true, Global.długośćOdpowiedzi, '.');
-			Global.tablica1.ustawTekst(punkty.ToString(), 3 + Global.długośćOdpowiedzi, nrOdpowiedzi, false, 2, ' ');
+			wyświetlOdpowiedź(true, '.');
+			wyświetlPunkty(true, ' ');
 		}
 		public void ukryjOdpowiedź()
 		{
-			Global.tablica1.ustawTekst("", 2, nrOdpowiedzi, true, Global.długośćOdpowiedzi, '.');
-			Global.tablica1.ustawTekst("", 3 + Global.długośćOdpowiedzi, nrOdpowiedzi, true, 2, '|');
+			wyświetlOdpowiedź(false, '.');
+			wyświetlPunkty(false, '|');
 		}
 		public void przesuń(int numer, bool usuń)
 		{
@@ -268,7 +262,7 @@ namespace familiada
 				else
 				{
 					if (zaznaczona())
-						Global.tablica1.ustawTekst(odpowiedź, 2, nrOdpowiedzi, true, Global.długośćOdpowiedzi, '.');
+						wyświetlOdpowiedź(true, '.');
 					edytorOdpowiedzi.Hide();
 				}
 			}
@@ -282,7 +276,7 @@ namespace familiada
 				punktyLewyButton.Text = punkty.ToString();
 				punktyPrawyButton.Text = punkty.ToString();
 				if (zaznaczona())
-					Global.tablica1.ustawTekst(punkty.ToString(), 3 + Global.długośćOdpowiedzi, nrOdpowiedzi, false, 2, ' ');
+					wyświetlPunkty(true, ' ');
 			}
 			catch (FormatException)
 			{
@@ -304,6 +298,19 @@ namespace familiada
 		private void usuń_Click(object sender, EventArgs e)
 		{
 			pytanie.usuńOdpowiedź(nrOdpowiedzi);
+		}
+
+		private void wyświetlNrOdpowiedzi(bool niePuste, char wypełnienie)
+		{
+			Global.tablica1.ustawTekst(niePuste ? nrOdpowiedzi.ToString() : "", 0, nrOdpowiedzi, false, 2, wypełnienie);
+		}
+		private void wyświetlOdpowiedź(bool niePuste, char wypełnienie)
+		{
+			Global.tablica1.ustawTekst(niePuste ? odpowiedź : "", 2, nrOdpowiedzi, true, Global.długośćOdpowiedzi, wypełnienie);
+		}
+		private void wyświetlPunkty(bool niePuste, char wypełnienie)
+		{
+			Global.tablica1.ustawTekst(niePuste ? punkty.ToString() : "", 3 + Global.długośćOdpowiedzi, nrOdpowiedzi, false, 2, wypełnienie);
 		}
 	}
 }
