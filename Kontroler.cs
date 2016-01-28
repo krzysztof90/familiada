@@ -177,9 +177,10 @@ namespace familiada
 
 		private void ustawCzas_Click(object sender, System.EventArgs e)
 		{
-			string czasLabel = (string)(((Button)sender).Tag);
-			czas.Text = czasLabel;
-			Global.główny.czas.Text = czasLabel;
+			string czasString = (string)(((Button)sender).Tag);
+			czas.Text = czasString;
+			//Global.główny.czas.Text = czasLabel;
+			Global.tablicaPunkty.ustawTekst(czasString, 0, 0, false, 3, ' ');
 		}
 		private void startCzas_Click(object sender, EventArgs e)
 		{
@@ -191,12 +192,12 @@ namespace familiada
 			int pozostałyCzas = Int32.Parse(czas.Text);
 			pozostałyCzas--;
 			czas.Text = pozostałyCzas.ToString();
-			Global.główny.czas.Text = pozostałyCzas.ToString();
+			Global.tablicaPunkty.ustawTekst(pozostałyCzas.ToString(), 0, 0, false, 3, ' ');
 			if (pozostałyCzas == 0)
 			{
 				timer1.Stop();
 				czas.Text = "";
-				Global.główny.czas.Text = "";
+			Global.tablicaPunkty.ustawTekst("", 0, 0, false, 3, ' ');
 			}
 		}
 

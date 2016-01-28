@@ -272,7 +272,6 @@ namespace familiada
 		int nrPytania;
 
 		Panel naKontrolerze = new Panel();
-		//Panel naGłównym = new Panel();
 
 		Label nazwaLabel = new Label();
 

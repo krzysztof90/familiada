@@ -9,7 +9,7 @@ namespace familiada
 	{
 		public static void wyzerujPunkty()
 		{
-			Global.tablicaPunkty.ustawTekst("0", 0,0,false,3,' ',true);
+			Global.tablicaPunkty.ustawTekst("0", 0, 0, false, 3, ' ', true);
 			Global.kontroler.punkty.Text = "0";
 		}
 

@@ -31,7 +31,6 @@ namespace familiada
 		{
 			this.panel1 = new System.Windows.Forms.Panel();
 			this.panel2 = new System.Windows.Forms.Panel();
-			this.czas = new System.Windows.Forms.Label();
 			this.panelPodstawa = new System.Windows.Forms.TableLayoutPanel();
 			this.panelRundy = new System.Windows.Forms.Panel();
 			this.panelPodstawaLewy = new System.Windows.Forms.TableLayoutPanel();
@@ -60,7 +59,6 @@ namespace familiada
 			// 
 			// panel2
 			// 
-			this.panel2.Controls.Add(this.czas);
 			this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.panel2.Location = new System.Drawing.Point(0, 0);
 			this.panel2.Margin = new System.Windows.Forms.Padding(0);
@@ -68,14 +66,6 @@ namespace familiada
 			this.panel2.Size = new System.Drawing.Size(542, 367);
 			this.panel2.TabIndex = 2;
 			this.panel2.Visible = false;
-			// 
-			// czas
-			// 
-			this.czas.AutoSize = true;
-			this.czas.Location = new System.Drawing.Point(400, 10);
-			this.czas.Name = "czas";
-			this.czas.Size = new System.Drawing.Size(0, 13);
-			this.czas.TabIndex = 3;
 			// 
 			// panelPodstawa
 			// 
@@ -206,7 +196,7 @@ namespace familiada
 
 		public Panel panel1;
 		public Panel panel2;
-		public Label czas;
+		//public Label czas;
 		private TableLayoutPanel panelPodstawa;
 		private Panel panelRundy;
 		private TableLayoutPanel panelPodstawaLewy;
