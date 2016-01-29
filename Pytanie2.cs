@@ -18,9 +18,6 @@ namespace familiada
 		protected TextBox punktyTextBox = new TextBox();
 		protected Button umieśćButton = new Button();
 
-		//protected Label odpowiedźLabel = new Label();
-		//protected Label punktyLabel = new Label();
-
 		public abstract int odpowiedźTextBoxLocationX { get; }
 		public abstract int odpowiedźTextBoxTabIndex { get; }
 		public abstract int punktyTextBoxLocationX { get; }
@@ -145,8 +142,8 @@ namespace familiada
 		}
 		private void ukryjOdpowiedź()
 		{
-			Global.tablica2.ustawTekst("", pozycjaOdpowiedziNaTablicy, nrPytania + 1, wyrównanieDoLewej, Global.długośćOdpowiedzi2, '.');
-			Global.tablica2.ustawTekst("", pozycjaPunktówNaTablicy, nrPytania + 1, false, 2, '|');
+			Global.tablica2.ustawTekst(String.Empty, pozycjaOdpowiedziNaTablicy, nrPytania + 1, wyrównanieDoLewej, Global.długośćOdpowiedzi2, '.');
+			Global.tablica2.ustawTekst(String.Empty, pozycjaPunktówNaTablicy, nrPytania + 1, false, 2, '|');
 		}
 	}
 

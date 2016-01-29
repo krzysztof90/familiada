@@ -258,15 +258,15 @@ namespace familiada
 
 		private void wyświetlNrOdpowiedzi(bool niePuste, char wypełnienie)
 		{
-			Global.tablica1.ustawTekst(niePuste ? nrOdpowiedzi.ToString() : "", 4, nrOdpowiedzi, false, 2, wypełnienie);
+			Global.tablica1.ustawTekst(niePuste ? nrOdpowiedzi.ToString() : String.Empty, 4, nrOdpowiedzi, false, 2, wypełnienie);
 		}
 		private void wyświetlOdpowiedź(bool niePuste, char wypełnienie)
 		{
-			Global.tablica1.ustawTekst(niePuste ? odpowiedź : "", 6, nrOdpowiedzi, true, Global.długośćOdpowiedzi1, wypełnienie);
+			Global.tablica1.ustawTekst(niePuste ? odpowiedź : String.Empty, 6, nrOdpowiedzi, true, Global.długośćOdpowiedzi1, wypełnienie);
 		}
 		private void wyświetlPunkty(bool niePuste, char wypełnienie)
 		{
-			Global.tablica1.ustawTekst(niePuste ? punkty.ToString() : "", 24, nrOdpowiedzi, false, 2, wypełnienie);
+			Global.tablica1.ustawTekst(niePuste ? punkty.ToString() : String.Empty, 24, nrOdpowiedzi, false, 2, wypełnienie);
 		}
 	}
 }

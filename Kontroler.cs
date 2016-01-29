@@ -74,7 +74,7 @@ namespace familiada
 			{
 				string[] words = linia.Split(new char[] { ' ', '\t' });
 				int nrPytania = Int32.Parse(words[0]);
-				string nazwaPytania = "";
+				string nazwaPytania = String.Empty;
 				for (int i = 1; i < words.Length; i++)
 					nazwaPytania += words[i] + " ";
 				pytanie = new NrINazwaPytania(nrPytania, nazwaPytania.TrimEnd());
@@ -183,7 +183,7 @@ namespace familiada
 		}
 		private void startCzas_Click(object sender, EventArgs e)
 		{
-			if (czas.Text != "")
+			if (czas.Text != String.Empty)
 				timer1.Start();
 		}
 		private void timer1_Tick(object sender, EventArgs e)
@@ -195,8 +195,8 @@ namespace familiada
 			if (pozostałyCzas == 0)
 			{
 				timer1.Stop();
-				czas.Text = "";
-			Global.tablicaPunkty.ustawTekst("", 0, 0, false, 3, ' ');
+				czas.Text = String.Empty;
+				Global.tablicaPunkty.ustawTekst(String.Empty, 0, 0, false, 3, ' ');
 			}
 		}
 

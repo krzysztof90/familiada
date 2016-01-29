@@ -98,10 +98,10 @@ namespace familiada
 		{
 			if (który == 3)
 				for (int rząd = 3; rząd <= 7; rząd++)
-					Global.tablica1.ustawTekst("", pozycja, rząd, true, 3, ' ');
+					Global.tablica1.ustawTekst(String.Empty, pozycja, rząd, true, 3, ' ');
 			else
 				for (int rząd = 1 + 3 * który; rząd <= 3 + 3 * który; rząd++)
-					Global.tablica1.ustawTekst("", pozycja, rząd, true, 3, ' ');
+					Global.tablica1.ustawTekst(String.Empty, pozycja, rząd, true, 3, ' ');
 		}
 	}
 
