@@ -63,7 +63,7 @@ namespace familiada
 		/// <summary>
 		/// dla za długiego tekstu przy wyrównaniu do lewej urywa z prawej, przy wyrówaniu do prawej urywa z lewej
 		/// </summary>
-		public void ustawTekst(string tekst, int kolumnaPoczątkowa, int rząd, bool wyrównanieDoLewej, int pojemnośćCałkowita, char wypełnienie, bool ustawJakoTag = false)
+		public void ustawTekst(string tekst, int kolumnaPoczątkowa, int rząd, bool wyrównanieDoLewej, int pojemnośćCałkowita, char wypełnienie)
 		{
 			int długośćTekstu = tekst.Length;
 			if (wyrównanieDoLewej)
@@ -80,16 +80,10 @@ namespace familiada
 				for (int i = 0; i < pojemnośćCałkowita - długośćTekstu; i++)
 					znakiPictureBox[kolumnaPoczątkowa + i, rząd].Image = Global.znaki[wypełnienie];
 			}
-			if (ustawJakoTag)
-				panel.Tag = tekst;
 		}
 		private void wstaw(char znak, int kolumna, int rząd)
 		{
 			znakiPictureBox[kolumna, rząd].Image = Global.znaki[znak];
-		}
-		public string zwróćWartość()
-		{
-			return (string)(panel.Tag);
 		}
 	}
 }

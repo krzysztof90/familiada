@@ -180,7 +180,8 @@ namespace familiada
 		public void ukryjOdpowiedzi()
 		{
 			nazwaPytaniaLabel.Hide();
-			Punkty.wyzerujPunkty();
+			Global.tablicaPunkty.ustawTekst("0", 0, 0, false, 3, ' ');
+			Global.kontroler.punkty.Text = "0";
 			zonkL.ukryj();
 			zonkP.ukryj();
 			foreach (Odpowiedź odpowiedź in odpowiedzi)
@@ -208,11 +209,12 @@ namespace familiada
 		public void dodajPunkty(int punkty)
 		{
 			this.punkty += punkty;
-			Punkty.dodajPunkty(punkty);
+			ustawPunkty(this.punkty);
 		}
 		public void ustawPunkty(int punkty)
 		{
-			Punkty.ustawPunkty(punkty);
+			Global.tablicaPunkty.ustawTekst(punkty.ToString(), 0, 0, false, 3, ' ');
+			Global.kontroler.punkty.Text = punkty.ToString();
 		}
 	}
 }

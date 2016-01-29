@@ -61,7 +61,8 @@ namespace familiada
 
 		public static void wyświetlPunkty()
 		{
-			Punkty.ustawPunkty(punkty);
+			Global.tablicaPunkty.ustawTekst(punkty.ToString(), 0, 0, false, 3, ' ');
+			Global.kontroler.punkty.Text = punkty.ToString();
 		}
 		public void umieść(Panel panel)
 		{

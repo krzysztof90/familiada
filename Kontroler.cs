@@ -98,7 +98,9 @@ namespace familiada
 				Global.panelKontroler2.Hide();
 				Global.panelGłówny2.Hide();
 
-				Punkty.wyzerujPunkty();
+				Global.tablicaPunkty.ustawTekst("0", 0, 0, false, 3, ' ');
+				Global.kontroler.punkty.Text = "0";
+
 				if (obecnePytanie != -1)
 				{
 					Global.pytania1[obecnePytanie].zainicjujKontrolki();
