@@ -15,7 +15,7 @@ namespace familiada
 		public int nrOdpowiedzi;
 		Pytanie1 pytanie;
 
-		Panel naKontrolerze = new Panel();
+		Panel panel = new Panel();
 
 		Button odpowiedźButton = new Button();
 		Button punktyButton = new Button();
@@ -50,8 +50,8 @@ namespace familiada
 				Global.exit("niepoprawna liczba punktów");
 			}
 
-			naKontrolerze.Size = new System.Drawing.Size(290, 30);
-			naKontrolerze.Hide();
+			panel.Size = new System.Drawing.Size(290, 30);
+			panel.Hide();
 
 			odpowiedźButton.Location = new Point(50, 0);
 			odpowiedźButton.Size = new Size(100, 30);
@@ -101,35 +101,25 @@ namespace familiada
 			usuńButton.Text = "usuń";
 			usuńButton.Click += new EventHandler(usuń_Click);
 
-			naKontrolerze.Controls.Add(odpowiedźButton);
-			naKontrolerze.Controls.Add(punktyButton);
-			naKontrolerze.Controls.Add(edycjaOdpowiedziButton);
-			naKontrolerze.Controls.Add(edytorOdpowiedzi);
-			naKontrolerze.Controls.Add(edytorPunktów);
-			naKontrolerze.Controls.Add(doGóry);
-			naKontrolerze.Controls.Add(doDołu);
-			naKontrolerze.Controls.Add(usuńButton);
+			panel.Controls.Add(odpowiedźButton);
+			panel.Controls.Add(punktyButton);
+			panel.Controls.Add(edycjaOdpowiedziButton);
+			panel.Controls.Add(edytorOdpowiedzi);
+			panel.Controls.Add(edytorPunktów);
+			panel.Controls.Add(doGóry);
+			panel.Controls.Add(doDołu);
+			panel.Controls.Add(usuńButton);
 
-			Global.panelKontroler1.Controls.Add(naKontrolerze);
+			Global.panelKontroler1.Controls.Add(panel);
 		}
 
 		public void pokażKontrolkiOdpowiedzi()
 		{
-			naKontrolerze.Location = new Point(100, nrOdpowiedzi * 30 + 30);
-			naKontrolerze.Show();
-
-			wyświetlNrOdpowiedzi(true, ' ');
-			if (zaznaczona())
-				pokażOdpowiedź();
-			else
-				ukryjOdpowiedź();
+			Global.pokażKontrolkiOdpowiedzi1(nrOdpowiedzi, odpowiedź, punkty, panel, zaznaczona());
 		}
 		public void ukryjKontrolkiOdpowiedzi()
 		{
-			naKontrolerze.Hide();
-			wyświetlNrOdpowiedzi(false, ' ');
-			wyświetlOdpowiedź(false, ' ');
-			wyświetlPunkty(false, ' ');
+			Global.ukryjKontrolkiOdpowiedzi1(nrOdpowiedzi, panel);
 		}
 		public void pokażOdpowiedź()
 		{

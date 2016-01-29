@@ -202,5 +202,14 @@ namespace familiada
 		{
 			punktyDrużynaLabel[która].Text = punkty.ToString();
 		}
+		public void pokażKontrolkiOdpowiedzi1(int numer, string odpowiedź, int punkty, Panel panel, bool zaznaczona)
+		{
+			panel.Location = new Point(100, numer * 30 + 30);
+			panel.Show();
+		}
+		public void ukryjKontrolkiOdpowiedzi1(int numer, Panel panel)
+		{
+			panel.Hide();
+		}
 	}
 }
