@@ -32,13 +32,10 @@
 			this.następnePytanie = new System.Windows.Forms.Button();
 			this.pokażEkran = new System.Windows.Forms.Button();
 			this.poprzedniePytanie = new System.Windows.Forms.Button();
-			this.dodajOdpowiedź = new System.Windows.Forms.Button();
 			this.runda = new System.Windows.Forms.Button();
 			this.punkty = new System.Windows.Forms.Label();
 			this.dodatkowy = new System.Windows.Forms.Panel();
 			this.panel1 = new System.Windows.Forms.Panel();
-			this.przypiszP = new System.Windows.Forms.Button();
-			this.przypiszL = new System.Windows.Forms.Button();
 			this.start = new System.Windows.Forms.Button();
 			this.panel2 = new System.Windows.Forms.Panel();
 			this.ustawCzas20 = new System.Windows.Forms.Button();
@@ -81,17 +78,6 @@
 			this.poprzedniePytanie.Visible = false;
 			this.poprzedniePytanie.Click += new System.EventHandler(this.poprzedniePytanie_Click);
 			// 
-			// dodajOdpowiedź
-			// 
-			this.dodajOdpowiedź.Location = new System.Drawing.Point(457, 95);
-			this.dodajOdpowiedź.Name = "dodajOdpowiedź";
-			this.dodajOdpowiedź.Size = new System.Drawing.Size(135, 23);
-			this.dodajOdpowiedź.TabIndex = 0;
-			this.dodajOdpowiedź.Text = "dodaj odpowiedź";
-			this.dodajOdpowiedź.UseVisualStyleBackColor = true;
-			this.dodajOdpowiedź.Visible = false;
-			this.dodajOdpowiedź.Click += new System.EventHandler(this.dodajOdpowiedź_Click);
-			// 
 			// runda
 			// 
 			this.runda.Location = new System.Drawing.Point(0, 68);
@@ -125,9 +111,6 @@
 			// 
 			// panel1
 			// 
-			this.panel1.Controls.Add(this.przypiszP);
-			this.panel1.Controls.Add(this.przypiszL);
-			this.panel1.Controls.Add(this.dodajOdpowiedź);
 			this.panel1.Controls.Add(this.poprzedniePytanie);
 			this.panel1.Controls.Add(this.następnePytanie);
 			this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -137,28 +120,6 @@
 			this.panel1.Size = new System.Drawing.Size(658, 454);
 			this.panel1.TabIndex = 7;
 			this.panel1.Visible = false;
-			// 
-			// przypiszP
-			// 
-			this.przypiszP.Location = new System.Drawing.Point(457, 170);
-			this.przypiszP.Name = "przypiszP";
-			this.przypiszP.Size = new System.Drawing.Size(135, 23);
-			this.przypiszP.TabIndex = 4;
-			this.przypiszP.Text = "przypisz punkty prawej";
-			this.przypiszP.UseVisualStyleBackColor = true;
-			this.przypiszP.Visible = false;
-			this.przypiszP.Click += new System.EventHandler(this.przypiszP_Click);
-			// 
-			// przypiszL
-			// 
-			this.przypiszL.Location = new System.Drawing.Point(457, 140);
-			this.przypiszL.Name = "przypiszL";
-			this.przypiszL.Size = new System.Drawing.Size(135, 23);
-			this.przypiszL.TabIndex = 3;
-			this.przypiszL.Text = "przypisz punkty lewej";
-			this.przypiszL.UseVisualStyleBackColor = true;
-			this.przypiszL.Visible = false;
-			this.przypiszL.Click += new System.EventHandler(this.przypiszL_Click);
 			// 
 			// start
 			// 
@@ -243,7 +204,6 @@
 		private System.Windows.Forms.Button następnePytanie;
 		private System.Windows.Forms.Button poprzedniePytanie;
 		public System.Windows.Forms.Button pokażEkran;
-		public System.Windows.Forms.Button dodajOdpowiedź;
 		private System.Windows.Forms.Button runda;
 		public System.Windows.Forms.Label punkty;
 		public System.Windows.Forms.Panel panel1;
@@ -254,8 +214,6 @@
 		private System.Windows.Forms.Timer timer1;
 		private System.Windows.Forms.Button ustawCzas20;
 		private System.Windows.Forms.Button ustawCzas15;
-		public System.Windows.Forms.Button przypiszL;
-		public System.Windows.Forms.Button przypiszP;
 	}
 }
 

@@ -122,6 +122,11 @@ namespace familiada
 
 	class Pytanie1
 	{
+		public static int obecnePytanie = -1;
+		static Button dodajOdpowiedźButton = new Button();
+		static Button przypiszLButton = new Button();
+		static Button przypiszPButton = new Button();
+
 		int nrPytania;
 		string nazwaPytania;
 		public int punkty = 0;
@@ -133,6 +138,33 @@ namespace familiada
 		ZonkP zonkP = new ZonkP();
 
 		public List<Odpowiedź> odpowiedzi = new List<Odpowiedź>();
+
+		static Pytanie1()
+		{
+			dodajOdpowiedźButton.Click += new EventHandler(dodajOdpowiedź_Click);
+			dodajOdpowiedźButton.Location = new Point(457, 95);
+			dodajOdpowiedźButton.Size = new Size(135, 23);
+			dodajOdpowiedźButton.Text = "dodaj odpowiedź";
+			dodajOdpowiedźButton.Visible = false;
+
+			przypiszLButton.Location = new System.Drawing.Point(457, 140);
+			przypiszLButton.Size = new System.Drawing.Size(135, 23);
+			przypiszLButton.Text = "przypisz punkty lewej";
+			przypiszLButton.UseVisualStyleBackColor = true;
+			przypiszLButton.Visible = false;
+			przypiszLButton.Click += new System.EventHandler(przypiszL_Click);
+
+			przypiszPButton.Location = new System.Drawing.Point(457, 170);
+			przypiszPButton.Size = new System.Drawing.Size(135, 23);
+			przypiszPButton.Text = "przypisz punkty prawej";
+			przypiszPButton.UseVisualStyleBackColor = true;
+			przypiszPButton.Visible = false;
+			przypiszPButton.Click += new System.EventHandler(przypiszP_Click);
+
+			Global.panelKontroler1.Controls.Add(dodajOdpowiedźButton);
+			Global.panelKontroler1.Controls.Add(przypiszLButton);
+			Global.panelKontroler1.Controls.Add(przypiszPButton);
+		}
 
 		public Pytanie1(NrINazwaPytania pytanie)
 		{
@@ -147,7 +179,7 @@ namespace familiada
 			Global.panelKontroler1.Controls.Add(nazwaPytaniaLabel);
 		}
 
-		public void zainicjujKontrolki()
+		private void zainicjujKontrolki()
 		{
 			nazwaPytaniaLabel.Show();
 			ustawPunkty(punkty);
@@ -156,16 +188,16 @@ namespace familiada
 			foreach (Odpowiedź odpowiedź in odpowiedzi)
 				odpowiedź.pokażKontrolkiOdpowiedzi();
 
-			Global.kontroler.przypiszL.BackColor = SystemColors.Control;
-			Global.kontroler.przypiszL.UseVisualStyleBackColor = true;
-			Global.kontroler.przypiszP.BackColor = SystemColors.Control;
-			Global.kontroler.przypiszP.UseVisualStyleBackColor = true;
+			przypiszLButton.BackColor = SystemColors.Control;
+			przypiszLButton.UseVisualStyleBackColor = true;
+			przypiszPButton.BackColor = SystemColors.Control;
+			przypiszPButton.UseVisualStyleBackColor = true;
 			if (druzynaZPrzypisanymiPunktami != null)
 			{
 				if (druzynaZPrzypisanymiPunktami == "L")
-					Global.kontroler.przypiszL.BackColor = Color.White;
+					przypiszLButton.BackColor = Color.White;
 				else
-					Global.kontroler.przypiszP.BackColor = Color.White;
+					przypiszPButton.BackColor = Color.White;
 			}
 		}
 		public void dodajIPokażOdpowiedź(string linia)
@@ -215,6 +247,81 @@ namespace familiada
 		{
 			Global.tablicaPunkty.ustawTekst(punkty.ToString(), 0, 0, false, 3, ' ');
 			Global.kontroler.punkty.Text = punkty.ToString();
+		}
+
+		public static void pokażPytanie()
+		{
+			if (obecnePytanie != -1)
+			{
+				zwróćObecnePytanie().zainicjujKontrolki();
+			}
+		}
+		public static void ukryjPytanie()
+		{
+			if (obecnePytanie != -1)
+				zwróćObecnePytanie().ukryjOdpowiedzi();
+		}
+		public static bool ostatniePytanie()
+		{
+			return obecnePytanie == Global.pytania1.Count - 1;
+		}
+		internal static void pokażPrzyciski()
+		{
+			dodajOdpowiedźButton.Show();
+			przypiszLButton.Show();
+			przypiszPButton.Show();
+		}
+
+		private static Pytanie1 zwróćObecnePytanie()
+		{
+			return Global.pytania1[obecnePytanie];
+		}
+
+		private static void dodajOdpowiedź_Click(object sender, EventArgs e)
+		{
+			zwróćObecnePytanie().dodajIPokażOdpowiedź(" 0");
+		}
+		private static void przypiszL_Click(object sender, EventArgs e)
+		{
+			if (przypiszLButton.BackColor != Color.White)
+			{
+				if (przypiszPButton.BackColor != Color.White)
+				{
+					przypiszLButton.BackColor = Color.White;
+					zwróćObecnePytanie().druzynaZPrzypisanymiPunktami = "L";
+
+					Global.drużynaL.dodajPunkty(zwróćObecnePytanie().punkty);
+				}
+			}
+			else
+			{
+				przypiszLButton.BackColor = SystemColors.Control;
+				przypiszLButton.UseVisualStyleBackColor = true;
+				zwróćObecnePytanie().druzynaZPrzypisanymiPunktami = null;
+
+				Global.drużynaL.dodajPunkty(-zwróćObecnePytanie().punkty);
+			}
+		}
+		private static void przypiszP_Click(object sender, EventArgs e)
+		{
+			if (przypiszPButton.BackColor != Color.White)
+			{
+				if (przypiszLButton.BackColor != Color.White)
+				{
+					przypiszPButton.BackColor = Color.White;
+					zwróćObecnePytanie().druzynaZPrzypisanymiPunktami = "P";
+
+					Global.drużynaP.dodajPunkty(zwróćObecnePytanie().punkty);
+				}
+			}
+			else
+			{
+				przypiszPButton.BackColor = SystemColors.Control;
+				przypiszPButton.UseVisualStyleBackColor = true;
+				zwróćObecnePytanie().druzynaZPrzypisanymiPunktami = null;
+
+				Global.drużynaP.dodajPunkty(-zwróćObecnePytanie().punkty);
+			}
 		}
 	}
 }

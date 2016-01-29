@@ -12,8 +12,6 @@ namespace familiada
 {
 	public partial class Kontroler : Form
 	{
-		static int obecnePytanie = -1;
-
 		public Kontroler()
 		{
 			InitializeComponent();
@@ -101,10 +99,7 @@ namespace familiada
 				Global.tablicaPunkty.ustawTekst("0", 0, 0, false, 3, ' ');
 				Global.kontroler.punkty.Text = "0";
 
-				if (obecnePytanie != -1)
-				{
-					Global.pytania1[obecnePytanie].zainicjujKontrolki();
-				}
+				Pytanie1.pokażPytanie();
 			}
 			else
 			{
@@ -124,31 +119,28 @@ namespace familiada
 		{
 			następnePytanie.Text = "następne pytanie";
 
-			if (obecnePytanie != -1)
+			if (Pytanie1.obecnePytanie != -1)
 			{
 				poprzedniePytanie.Show();
-				Global.pytania1[obecnePytanie].ukryjOdpowiedzi();
+				Pytanie1.ukryjPytanie();
 			}
 
-			dodajOdpowiedź.Show();
-			przypiszL.Show();
-			przypiszP.Show();
+			Pytanie1.pokażPrzyciski();
 
-			obecnePytanie++;
-			Global.pytania1[obecnePytanie].zainicjujKontrolki();
-			if (obecnePytanie == Global.pytania1.Count - 1)
+			Pytanie1.obecnePytanie++;
+			Pytanie1.pokażPytanie();
+			if (Pytanie1.ostatniePytanie())
 				następnePytanie.Hide();
 		}
 		private void poprzedniePytanie_Click(object sender, EventArgs e)
 		{
 			następnePytanie.Show();
 
-			Global.pytania1[obecnePytanie].ukryjOdpowiedzi();
+			Pytanie1.ukryjPytanie();
+			Pytanie1.obecnePytanie--;
+			Pytanie1.pokażPytanie();
 
-			obecnePytanie--;
-			Global.pytania1[obecnePytanie].zainicjujKontrolki();
-
-			if (obecnePytanie == 0)
+			if (Pytanie1.obecnePytanie == 0)
 				poprzedniePytanie.Hide();
 		}
 		private void pokażEkran_Click(object sender, EventArgs e)
@@ -170,11 +162,6 @@ namespace familiada
 			}
 			Global.główny.WindowState = FormWindowState.Maximized;
 			pokażEkran.Hide();
-		}
-
-		private void dodajOdpowiedź_Click(object sender, EventArgs e)
-		{
-			Global.pytania1[obecnePytanie].dodajIPokażOdpowiedź(" 0");
 		}
 
 		private void ustawCzas_Click(object sender, System.EventArgs e)
@@ -201,50 +188,5 @@ namespace familiada
 				Global.tablicaPunkty.ustawTekst(String.Empty, 0, 0, false, 3, ' ');
 			}
 		}
-
-		private void przypiszL_Click(object sender, EventArgs e)
-		{
-			if (przypiszL.BackColor != Color.White)
-			{
-				if (przypiszP.BackColor != Color.White)
-				{
-					przypiszL.BackColor = Color.White;
-					Global.pytania1[obecnePytanie].druzynaZPrzypisanymiPunktami = "L";
-
-					Global.drużynaL.dodajPunkty(Global.pytania1[obecnePytanie].punkty);
-				}
-			}
-			else
-			{
-				przypiszL.BackColor = SystemColors.Control;
-				przypiszL.UseVisualStyleBackColor = true;
-				Global.pytania1[obecnePytanie].druzynaZPrzypisanymiPunktami = null;
-
-				Global.drużynaL.dodajPunkty(-Global.pytania1[obecnePytanie].punkty);
-			}
-		}
-
-		private void przypiszP_Click(object sender, EventArgs e)
-		{
-			if (przypiszP.BackColor != Color.White)
-			{
-				if (przypiszL.BackColor != Color.White)
-				{
-					przypiszP.BackColor = Color.White;
-					Global.pytania1[obecnePytanie].druzynaZPrzypisanymiPunktami = "P";
-
-					Global.drużynaP.dodajPunkty(Global.pytania1[obecnePytanie].punkty);
-				}
-			}
-			else
-			{
-				przypiszP.BackColor = SystemColors.Control;
-				przypiszP.UseVisualStyleBackColor = true;
-				Global.pytania1[obecnePytanie].druzynaZPrzypisanymiPunktami = null;
-
-				Global.drużynaP.dodajPunkty(-Global.pytania1[obecnePytanie].punkty);
-			}
-		}
-
 	}
 }
