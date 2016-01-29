@@ -18,11 +18,11 @@ namespace familiada
 		protected TextBox punktyTextBox = new TextBox();
 		protected Button umieśćButton = new Button();
 
-		public abstract int odpowiedźTextBoxLocationX { get; }
+		public abstract int odpowiedźTextBoxPozycjaX { get; }
 		public abstract int odpowiedźTextBoxTabIndex { get; }
-		public abstract int punktyTextBoxLocationX { get; }
+		public abstract int punktyTextBoxPozycjaX { get; }
 		public abstract int punktyTextBoxTabIndex { get; }
-		public abstract int umieśćButtonLocationX { get; }
+		public abstract int umieśćButtonPozycjaX { get; }
 
 		public abstract int pozycjaOdpowiedziNaTablicy { get; }
 		public abstract int pozycjaPunktówNaTablicy { get; }
@@ -35,14 +35,14 @@ namespace familiada
 		{
 			this.nrPytania = nrPytania;
 
-			odpowiedźTextBox.Location = new Point(odpowiedźTextBoxLocationX, 5);
+			odpowiedźTextBox.Location = new Point(odpowiedźTextBoxPozycjaX, 5);
 			odpowiedźTextBox.Size = new Size(100, 20);
 			odpowiedźTextBox.Leave += new EventHandler(edytor_Leave);
 			odpowiedźTextBox.Leave += new EventHandler(edytorOdpowiedzi_Leave);
 			odpowiedźTextBox.KeyDown += new KeyEventHandler(odpowiedź_KeyDown);
 			odpowiedźTextBox.TabIndex = odpowiedźTextBoxTabIndex;
 
-			punktyTextBox.Location = new Point(punktyTextBoxLocationX, 5);
+			punktyTextBox.Location = new Point(punktyTextBoxPozycjaX, 5);
 			punktyTextBox.Size = new Size(30, 20);
 			punktyTextBox.Text = "0";
 			punktyTextBox.Leave += new EventHandler(edytorPunktów_Leave);
@@ -50,7 +50,7 @@ namespace familiada
 			punktyTextBox.KeyDown += new KeyEventHandler(punkty_KeyDown);
 			punktyTextBox.TabIndex = punktyTextBoxTabIndex;
 
-			umieśćButton.Location = new Point(umieśćButtonLocationX, 0);
+			umieśćButton.Location = new Point(umieśćButtonPozycjaX, 0);
 			umieśćButton.Size = new Size(30, 30);
 			umieśćButton.Text = "umieść";
 			umieśćButton.Click += new EventHandler(pokażUkryj_Click);
@@ -145,7 +145,7 @@ namespace familiada
 
 	class PytanieL : PytanieStrona
 	{
-		public override int odpowiedźTextBoxLocationX
+		public override int odpowiedźTextBoxPozycjaX
 		{
 			get { return 150; }
 		}
@@ -153,7 +153,7 @@ namespace familiada
 		{
 			get { return 1; }
 		}
-		public override int punktyTextBoxLocationX
+		public override int punktyTextBoxPozycjaX
 		{
 			get { return 250; }
 		}
@@ -161,7 +161,7 @@ namespace familiada
 		{
 			get { return 2; }
 		}
-		public override int umieśćButtonLocationX
+		public override int umieśćButtonPozycjaX
 		{
 			get { return 280; }
 		}
@@ -203,7 +203,7 @@ namespace familiada
 
 	class PytanieP : PytanieStrona
 	{
-		public override int odpowiedźTextBoxLocationX
+		public override int odpowiedźTextBoxPozycjaX
 		{
 			get { return 370; }
 		}
@@ -211,7 +211,7 @@ namespace familiada
 		{
 			get { return 3; }
 		}
-		public override int punktyTextBoxLocationX
+		public override int punktyTextBoxPozycjaX
 		{
 			get { return 340; }
 		}
@@ -219,7 +219,7 @@ namespace familiada
 		{
 			get { return 4; }
 		}
-		public override int umieśćButtonLocationX
+		public override int umieśćButtonPozycjaX
 		{
 			get { return 310; }
 		}
@@ -267,7 +267,6 @@ namespace familiada
 		Panel naKontrolerze = new Panel();
 
 		Label nazwaLabel = new Label();
-
 		public PytanieL pytanieL;
 		public PytanieP pytanieP;
 

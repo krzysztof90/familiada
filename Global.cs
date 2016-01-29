@@ -10,11 +10,11 @@ namespace familiada
 {
 	class Global
 	{
-		public static string plik1 = "runda1.txt";
-		public static string plik2 = "runda2.txt";
+		public const string plik1 = "runda1.txt";
+		public const string plik2 = "runda2.txt";
 
-		public static int długośćOdpowiedzi1 = 17;
-		public static int długośćOdpowiedzi2 = 10;
+		public const int długośćOdpowiedzi1 = 17;
+		public const int długośćOdpowiedzi2 = 10;
 
 		public static Kontroler kontroler = new Kontroler();
 		public static Panel panelKontroler1 = kontroler.panel1;

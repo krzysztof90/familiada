@@ -19,7 +19,7 @@ namespace familiada
 
 		private void Form_Load(object sender, EventArgs e)
 		{
-			// usunąć
+			// TODO usunąć
 			pokażEkran_Click(this, new EventArgs());
 
 			try

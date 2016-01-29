@@ -12,7 +12,6 @@ namespace familiada
 {
 	public partial class GłównyEkran : Form
 	{
-
 		public GłównyEkran()
 		{
 			InitializeComponent();

@@ -124,8 +124,8 @@ namespace familiada
 	{
 		public static int obecnePytanie = -1;
 		static Button dodajOdpowiedźButton = new Button();
-		static Button przypiszLButton = new Button();
-		static Button przypiszPButton = new Button();
+		Button przypiszLButton = new Button();
+		Button przypiszPButton = new Button();
 
 		int nrPytania;
 		string nazwaPytania;
@@ -147,23 +147,7 @@ namespace familiada
 			dodajOdpowiedźButton.Text = "dodaj odpowiedź";
 			dodajOdpowiedźButton.Visible = false;
 
-			przypiszLButton.Location = new System.Drawing.Point(457, 140);
-			przypiszLButton.Size = new System.Drawing.Size(135, 23);
-			przypiszLButton.Text = "przypisz punkty lewej";
-			przypiszLButton.UseVisualStyleBackColor = true;
-			przypiszLButton.Visible = false;
-			przypiszLButton.Click += new System.EventHandler(przypiszL_Click);
-
-			przypiszPButton.Location = new System.Drawing.Point(457, 170);
-			przypiszPButton.Size = new System.Drawing.Size(135, 23);
-			przypiszPButton.Text = "przypisz punkty prawej";
-			przypiszPButton.UseVisualStyleBackColor = true;
-			przypiszPButton.Visible = false;
-			przypiszPButton.Click += new System.EventHandler(przypiszP_Click);
-
 			Global.panelKontroler1.Controls.Add(dodajOdpowiedźButton);
-			Global.panelKontroler1.Controls.Add(przypiszLButton);
-			Global.panelKontroler1.Controls.Add(przypiszPButton);
 		}
 
 		public Pytanie1(NrINazwaPytania pytanie)
@@ -176,7 +160,25 @@ namespace familiada
 			nazwaPytaniaLabel.Text = nrPytania.ToString() + ". " + nazwaPytania;
 			nazwaPytaniaLabel.Hide();
 
+			przypiszLButton.Location = new System.Drawing.Point(457, 140);
+			przypiszLButton.Size = new System.Drawing.Size(135, 23);
+			przypiszLButton.Text = "przypisz punkty lewej";
+			przypiszLButton.UseVisualStyleBackColor = true;
+			przypiszLButton.Visible = false;
+			przypiszLButton.Click += new System.EventHandler(przypiszL_Click);
+			przypiszLButton.Hide();
+
+			przypiszPButton.Location = new System.Drawing.Point(457, 170);
+			przypiszPButton.Size = new System.Drawing.Size(135, 23);
+			przypiszPButton.Text = "przypisz punkty prawej";
+			przypiszPButton.UseVisualStyleBackColor = true;
+			przypiszPButton.Visible = false;
+			przypiszPButton.Click += new System.EventHandler(przypiszP_Click);
+			przypiszPButton.Hide();
+
 			Global.panelKontroler1.Controls.Add(nazwaPytaniaLabel);
+			Global.panelKontroler1.Controls.Add(przypiszLButton);
+			Global.panelKontroler1.Controls.Add(przypiszPButton);
 		}
 
 		private void zainicjujKontrolki()
@@ -188,17 +190,8 @@ namespace familiada
 			foreach (Odpowiedź odpowiedź in odpowiedzi)
 				odpowiedź.pokażKontrolkiOdpowiedzi();
 
-			przypiszLButton.BackColor = SystemColors.Control;
-			przypiszLButton.UseVisualStyleBackColor = true;
-			przypiszPButton.BackColor = SystemColors.Control;
-			przypiszPButton.UseVisualStyleBackColor = true;
-			if (druzynaZPrzypisanymiPunktami != null)
-			{
-				if (druzynaZPrzypisanymiPunktami == "L")
-					przypiszLButton.BackColor = Color.White;
-				else
-					przypiszPButton.BackColor = Color.White;
-			}
+			przypiszLButton.Show();
+			przypiszPButton.Show();
 		}
 		public void dodajIPokażOdpowiedź(string linia)
 		{
@@ -216,6 +209,8 @@ namespace familiada
 			Global.kontroler.punkty.Text = "0";
 			zonkL.ukryj();
 			zonkP.ukryj();
+			przypiszLButton.Hide();
+			przypiszPButton.Hide();
 			foreach (Odpowiedź odpowiedź in odpowiedzi)
 				odpowiedź.ukryjKontrolkiOdpowiedzi();
 		}
@@ -252,9 +247,7 @@ namespace familiada
 		public static void pokażPytanie()
 		{
 			if (obecnePytanie != -1)
-			{
 				zwróćObecnePytanie().zainicjujKontrolki();
-			}
 		}
 		public static void ukryjPytanie()
 		{
@@ -268,8 +261,6 @@ namespace familiada
 		public static void pokażPrzyciski()
 		{
 			dodajOdpowiedźButton.Show();
-			przypiszLButton.Show();
-			przypiszPButton.Show();
 		}
 
 		private static Pytanie1 zwróćObecnePytanie()
@@ -281,7 +272,7 @@ namespace familiada
 		{
 			zwróćObecnePytanie().dodajIPokażOdpowiedź(" 0");
 		}
-		private static void przypiszL_Click(object sender, EventArgs e)
+		private void przypiszL_Click(object sender, EventArgs e)
 		{
 			if (przypiszLButton.BackColor != Color.White)
 			{
@@ -302,7 +293,7 @@ namespace familiada
 				Global.drużynaL.dodajPunkty(-zwróćObecnePytanie().punkty);
 			}
 		}
-		private static void przypiszP_Click(object sender, EventArgs e)
+		private void przypiszP_Click(object sender, EventArgs e)
 		{
 			if (przypiszPButton.BackColor != Color.White)
 			{

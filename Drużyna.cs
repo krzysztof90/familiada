@@ -68,5 +68,4 @@ namespace familiada
 			get { return Global.główny.panelPunktyP; }
 		}
 	}
-
 }
