@@ -142,14 +142,6 @@ namespace familiada
 		{
 			formy.ForEach(e => e.ustawPunktyDrużyny(która, punkty));
 		}
-		static public void pokażKontrolkiOdpowiedzi1(int numer, string odpowiedź, int punkty, Panel panel, bool zaznaczona)
-		{
-			formy.ForEach(e => e.pokażKontrolkiOdpowiedzi1(numer, odpowiedź, punkty, panel, zaznaczona));
-		}
-		static public void ukryjKontrolkiOdpowiedzi1(int numer, Panel panel)
-		{
-			formy.ForEach(e => e.ukryjKontrolkiOdpowiedzi1(numer, panel));
-		}
 
 		static public void exit(string message)
 		{

@@ -115,11 +115,21 @@ namespace familiada
 
 		public void pokażKontrolkiOdpowiedzi()
 		{
-			Global.pokażKontrolkiOdpowiedzi1(nrOdpowiedzi, odpowiedź, punkty, panel, zaznaczona());
+			panel.Location = new Point(100, nrOdpowiedzi * 30 + 30);
+			panel.Show();
+
+			wyświetlNrOdpowiedzi(true, ' ');
+			if (zaznaczona())
+				pokażOdpowiedź();
+			else
+				ukryjOdpowiedź();
 		}
 		public void ukryjKontrolkiOdpowiedzi()
 		{
-			Global.ukryjKontrolkiOdpowiedzi1(nrOdpowiedzi, panel);
+			panel.Hide();
+			wyświetlNrOdpowiedzi(false, ' ');
+			wyświetlOdpowiedź(false, ' ');
+			wyświetlPunkty(false, ' ');
 		}
 		public void pokażOdpowiedź()
 		{
