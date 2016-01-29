@@ -12,7 +12,7 @@ namespace familiada
 	{
 		int punkty = 0;
 
-		Label punktyKontrolerLabel = new Label();
+		Label punktyDrużynaLabel = new Label();
 		public Tablica tablicaPunkty;
 
 		public abstract DockStyle punktyKontrolerLabelDockStyle { get; }
@@ -20,8 +20,8 @@ namespace familiada
 
 		public DrużynaStrona()
 		{
-			punktyKontrolerLabel.Dock = punktyKontrolerLabelDockStyle;
-			Global.panelKontrolerDodatkowy.Controls.Add(punktyKontrolerLabel);
+			punktyDrużynaLabel.Dock = punktyKontrolerLabelDockStyle;
+			Global.panelKontrolerDodatkowy.Controls.Add(punktyDrużynaLabel);
 
 			tablicaPunkty = new Tablica(ojciec, 3, 1, Resources.puste);
 
@@ -37,7 +37,7 @@ namespace familiada
 		{
 			tablicaPunkty.ustawTekst(punkty.ToString(), 0, 0, false, 3, ' ');
 			
-			punktyKontrolerLabel.Text = punkty.ToString();
+			punktyDrużynaLabel.Text = punkty.ToString();
 		}
 	}
 

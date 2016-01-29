@@ -1,4 +1,5 @@
-﻿using System.Windows.Forms;
+﻿using System.Collections.Generic;
+using System.Windows.Forms;
 namespace familiada
 {
 	partial class GłównyEkran
@@ -29,8 +30,7 @@ namespace familiada
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.panel1 = new System.Windows.Forms.Panel();
-			this.panel2 = new System.Windows.Forms.Panel();
+			this.panel = new List<System.Windows.Forms.Panel> { new System.Windows.Forms.Panel(), new System.Windows.Forms.Panel() };
 			this.panelPodstawa = new System.Windows.Forms.TableLayoutPanel();
 			this.panelRundy = new System.Windows.Forms.Panel();
 			this.panelPodstawaLewy = new System.Windows.Forms.TableLayoutPanel();
@@ -39,7 +39,7 @@ namespace familiada
 			this.panelPunktyP = new System.Windows.Forms.Panel();
 			this.panelPodstawaGóra = new System.Windows.Forms.TableLayoutPanel();
 			this.panelPunkty = new System.Windows.Forms.Panel();
-			this.panel2.SuspendLayout();
+			this.panel.ForEach(p => p.SuspendLayout());
 			this.panelPodstawa.SuspendLayout();
 			this.panelRundy.SuspendLayout();
 			this.panelPodstawaLewy.SuspendLayout();
@@ -49,23 +49,9 @@ namespace familiada
 			// 
 			// panel1
 			// 
-			this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.panel1.Location = new System.Drawing.Point(0, 0);
-			this.panel1.Margin = new System.Windows.Forms.Padding(0);
-			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(542, 367);
-			this.panel1.TabIndex = 1;
-			this.panel1.Visible = false;
-			// 
-			// panel2
-			// 
-			this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.panel2.Location = new System.Drawing.Point(0, 0);
-			this.panel2.Margin = new System.Windows.Forms.Padding(0);
-			this.panel2.Name = "panel2";
-			this.panel2.Size = new System.Drawing.Size(542, 367);
-			this.panel2.TabIndex = 2;
-			this.panel2.Visible = false;
+			this.panel.ForEach(p => p.Dock = System.Windows.Forms.DockStyle.Fill);
+			this.panel.ForEach(p => Margin = new System.Windows.Forms.Padding(0));
+			this.panel.ForEach(p => p.Visible = false);
 			// 
 			// panelPodstawa
 			// 
@@ -88,8 +74,7 @@ namespace familiada
 			// 
 			// panelRundy
 			// 
-			this.panelRundy.Controls.Add(this.panel1);
-			this.panelRundy.Controls.Add(this.panel2);
+			this.panel.ForEach(p => this.panelRundy.Controls.Add(p));
 			this.panelRundy.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.panelRundy.Location = new System.Drawing.Point(126, 109);
 			this.panelRundy.Margin = new System.Windows.Forms.Padding(0);
@@ -181,8 +166,8 @@ namespace familiada
 			this.Name = "GłównyEkran";
 			this.Text = "Główny ekran";
 			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.GłównyEkran_FormClosing);
-			this.panel2.ResumeLayout(false);
-			this.panel2.PerformLayout();
+			this.panel.ForEach(p => p.ResumeLayout(false));
+			this.panel.ForEach(p => p.PerformLayout());
 			this.panelPodstawa.ResumeLayout(false);
 			this.panelRundy.ResumeLayout(false);
 			this.panelPodstawaLewy.ResumeLayout(false);
@@ -194,8 +179,7 @@ namespace familiada
 
 		#endregion
 
-		public Panel panel1;
-		public Panel panel2;
+		public List<System.Windows.Forms.Panel> panel;
 		//public Label czas;
 		private TableLayoutPanel panelPodstawa;
 		private Panel panelRundy;

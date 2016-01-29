@@ -17,8 +17,8 @@ namespace familiada
 		public const int długośćOdpowiedzi2 = 10;
 
 		public static Kontroler kontroler = new Kontroler();
-		public static Panel panelKontroler1 = kontroler.panel1;
-		public static Panel panelKontroler2 = kontroler.panel2;
+		public static Panel panelKontroler1 = kontroler.panel[0];
+		public static Panel panelKontroler2 = kontroler.panel[1];
 		public static Panel panelKontrolerDodatkowy = kontroler.dodatkowy;
 		public static GłównyEkran główny = new GłównyEkran();
 		private static List<IOperatable> formy = new List<IOperatable> { kontroler, główny };
@@ -122,25 +122,17 @@ namespace familiada
 		public static DrużynaL drużynaL = new DrużynaL();
 		public static DrużynaP drużynaP = new DrużynaP();
 
-		public static Tablica tablica1 = new Tablica(główny.panel1, 30, 10, Resources.puste);
-		public static Tablica tablica2 = new Tablica(główny.panel2, 30, 10, Resources.puste);
+		public static Tablica tablica1 = new Tablica(główny.panel[0], 30, 10, Resources.puste);
+		public static Tablica tablica2 = new Tablica(główny.panel[1], 30, 10, Resources.puste);
 		public static Tablica tablicaPunkty = new Tablica(główny.panelPunkty, 3, 1, Resources.puste);
 
-		static public void pokażPanel1()
+		static public void pokażPanel(int który)
 		{
-			formy.ForEach(e => e.pokażPanel1());
+			formy.ForEach(e => e.pokażPanel(który));
 		}
-		static public void ukryjPanel1()
+		static public void ukryjPanel(int który)
 		{
-			formy.ForEach(e => e.ukryjPanel1());
-		}
-		static public void pokażPanel2()
-		{
-			formy.ForEach(e => e.pokażPanel2());
-		}
-		static public void ukryjPanel2()
-		{
-			formy.ForEach(e => e.ukryjPanel2());
+			formy.ForEach(e => e.ukryjPanel(który));
 		}
 		static public void ustawPunktyGłówne(int punkty)
 		{

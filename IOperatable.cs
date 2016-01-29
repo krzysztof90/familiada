@@ -7,10 +7,8 @@ namespace familiada
 {
 	interface IOperatable
 	{
-		void pokażPanel1();
-		void ukryjPanel1();
-		void pokażPanel2();
-		void ukryjPanel2();
+		void pokażPanel(int który);
+		void ukryjPanel(int który);
 		void ustawPunktyGłówne(int punkty);
 	}
 }

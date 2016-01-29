@@ -12,6 +12,8 @@ namespace familiada
 {
 	public partial class Kontroler : Form, IOperatable
 	{
+		//Label punktyDrużynaLabel = new Label();
+
 		public Kontroler()
 		{
 			InitializeComponent();
@@ -91,8 +93,8 @@ namespace familiada
 				przycisk.Tag = 2;
 				przycisk.Text = "przełącz do rundy 2";
 
-				Global.pokażPanel1();
-				Global.ukryjPanel2();
+				Global.pokażPanel(0);
+				Global.ukryjPanel(1);
 
 				Global.ustawPunktyGłówne(0);
 
@@ -103,8 +105,8 @@ namespace familiada
 				przycisk.Tag = 1;
 				przycisk.Text = "przełącz do rundy 1";
 
-				Global.pokażPanel2();
-				Global.ukryjPanel1();
+				Global.pokażPanel(1);
+				Global.ukryjPanel(0);
 
 				Pytanie2.wyświetlPunkty();
 			}
@@ -184,21 +186,13 @@ namespace familiada
 			}
 		}
 
-		public void pokażPanel1()
+		public void pokażPanel(int który)
 		{
-			panel1.Show();
+			panel[który].Show();
 		}
-		public void ukryjPanel1()
+		public void ukryjPanel(int który)
 		{
-			panel1.Hide();
-		}
-		public void pokażPanel2()
-		{
-			panel2.Show();
-		}
-		public void ukryjPanel2()
-		{
-			panel2.Hide();
+			panel[który].Hide();
 		}
 		public void ustawPunktyGłówne(int punkty)
 		{

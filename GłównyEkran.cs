@@ -25,21 +25,13 @@ namespace familiada
 			Global.kontroler.pokażEkran.Show();
 		}
 
-		public void pokażPanel1()
+		public void pokażPanel(int który)
 		{
-			panel1.Show();
+			panel[który].Show();
 		}
-		public void ukryjPanel1()
+		public void ukryjPanel(int który)
 		{
-			panel1.Hide();
-		}
-		public void pokażPanel2()
-		{
-			panel2.Show();
-		}
-		public void ukryjPanel2()
-		{
-			panel2.Hide();
+			panel[który].Hide();
 		}
 		public void ustawPunktyGłówne(int punkty)
 		{

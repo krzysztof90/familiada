@@ -1,4 +1,5 @@
-﻿namespace familiada
+﻿using System.Collections.Generic;
+namespace familiada
 {
 	partial class Kontroler
 	{
@@ -35,16 +36,14 @@
 			this.runda = new System.Windows.Forms.Button();
 			this.punkty = new System.Windows.Forms.Label();
 			this.dodatkowy = new System.Windows.Forms.Panel();
-			this.panel1 = new System.Windows.Forms.Panel();
+			this.panel = new List<System.Windows.Forms.Panel> { new System.Windows.Forms.Panel(), new System.Windows.Forms.Panel() };
 			this.start = new System.Windows.Forms.Button();
-			this.panel2 = new System.Windows.Forms.Panel();
 			this.ustawCzas20 = new System.Windows.Forms.Button();
 			this.ustawCzas15 = new System.Windows.Forms.Button();
 			this.czas = new System.Windows.Forms.Label();
 			this.timer1 = new System.Windows.Forms.Timer(this.components);
 			this.dodatkowy.SuspendLayout();
-			this.panel1.SuspendLayout();
-			this.panel2.SuspendLayout();
+			panel.ForEach(p => p.SuspendLayout());
 			this.SuspendLayout();
 			// 
 			// następnePytanie
@@ -111,15 +110,19 @@
 			// 
 			// panel1
 			// 
-			this.panel1.Controls.Add(this.poprzedniePytanie);
-			this.panel1.Controls.Add(this.następnePytanie);
-			this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.panel1.Location = new System.Drawing.Point(0, 0);
-			this.panel1.Margin = new System.Windows.Forms.Padding(0);
-			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(658, 454);
-			this.panel1.TabIndex = 7;
-			this.panel1.Visible = false;
+
+			this.panel[0].Controls.Add(this.poprzedniePytanie);
+			this.panel[0].Controls.Add(this.następnePytanie);
+
+			this.panel.ForEach(p => p.Dock = System.Windows.Forms.DockStyle.Fill);
+			this.panel.ForEach(p => p.Margin = new System.Windows.Forms.Padding(0));
+			this.panel.ForEach(p => p.Visible = false);
+			// 
+			// panel2
+			// 
+			this.panel[1].Controls.Add(this.ustawCzas15);
+			this.panel[1].Controls.Add(this.czas);
+			this.panel[1].Controls.Add(this.start);
 			// 
 			// start
 			// 
@@ -130,19 +133,6 @@
 			this.start.Text = "start";
 			this.start.UseVisualStyleBackColor = true;
 			this.start.Click += new System.EventHandler(this.startCzas_Click);
-			// 
-			// panel2
-			// 
-			this.panel2.Controls.Add(this.ustawCzas20);
-			this.panel2.Controls.Add(this.ustawCzas15);
-			this.panel2.Controls.Add(this.czas);
-			this.panel2.Controls.Add(this.start);
-			this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.panel2.Location = new System.Drawing.Point(0, 0);
-			this.panel2.Name = "panel2";
-			this.panel2.Size = new System.Drawing.Size(658, 454);
-			this.panel2.TabIndex = 8;
-			this.panel2.Visible = false;
 			// 
 			// ustawCzas20
 			// 
@@ -185,16 +175,14 @@
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(658, 454);
 			this.Controls.Add(this.dodatkowy);
-			this.Controls.Add(this.panel1);
-			this.Controls.Add(this.panel2);
+			this.panel.ForEach(p => this.Controls.Add(p));
 			this.Name = "Kontroler";
 			this.Text = "Kontroler";
 			this.Load += new System.EventHandler(this.Form_Load);
 			this.dodatkowy.ResumeLayout(false);
 			this.dodatkowy.PerformLayout();
-			this.panel1.ResumeLayout(false);
-			this.panel2.ResumeLayout(false);
-			this.panel2.PerformLayout();
+			this.panel.ForEach(p => p.ResumeLayout());
+			this.panel.ForEach(p => p.PerformLayout());
 			this.ResumeLayout(false);
 
 		}
@@ -206,9 +194,8 @@
 		public System.Windows.Forms.Button pokażEkran;
 		private System.Windows.Forms.Button runda;
 		public System.Windows.Forms.Label punkty;
-		public System.Windows.Forms.Panel panel1;
+		public List<System.Windows.Forms.Panel> panel;
 		public System.Windows.Forms.Panel dodatkowy;
-		public System.Windows.Forms.Panel panel2;
 		private System.Windows.Forms.Button start;
 		private System.Windows.Forms.Label czas;
 		private System.Windows.Forms.Timer timer1;
