@@ -37,7 +37,7 @@ namespace familiada
 				Global.exit(String.Format("niepoprawna linia: {0}", linia));
 			odpowiedź = linia.Substring(0, pozycjaPrzerwy).TrimEnd();
 			if (odpowiedź.Length > Global.długośćOdpowiedzi1)
-				Global.exit(String.Format("za długa odpowiedź: {0}", odpowiedź));
+				Global.exit(String.Format("za długa odpowiedź: {0}. Dopuszczalna długość to {1}", odpowiedź, Global.długośćOdpowiedzi1));
 			for (int i = 0; i < odpowiedź.Length; i++)
 				if (!Global.znaki.ContainsKey(odpowiedź[i]))
 					Global.exit(String.Format("niepoprawny znak '{0}' w {1}", odpowiedź[i], odpowiedź));
@@ -199,29 +199,21 @@ namespace familiada
 
 			if (odpowiedź.Length > Global.długośćOdpowiedzi1)
 			{
-				MessageBox.Show("za długi tekst");
+				MessageBox.Show(String.Format("Tekst za długi o {0} znaków", odpowiedź.Length-Global.długośćOdpowiedzi1));
 				edytorOdpowiedzi.Focus();
 			}
 			else
 			{
-				char? niepoprawnyZnak = null;
 				for (int i = 0; i < odpowiedź.Length; i++)
 					if (!Global.znaki.ContainsKey(odpowiedź[i]))
 					{
-						niepoprawnyZnak = odpowiedź[i];
-						break;
+						MessageBox.Show(String.Format("niepoprawny znak {0}", odpowiedź[i]));
+						edytorOdpowiedzi.Focus();
+						return;
 					}
-				if (niepoprawnyZnak != null)
-				{
-					MessageBox.Show(String.Format("niepoprawny znak {0}", niepoprawnyZnak));
-					edytorOdpowiedzi.Focus();
-				}
-				else
-				{
-					if (zaznaczona())
-						wyświetlOdpowiedź(true, '.');
-					edytorOdpowiedzi.Hide();
-				}
+				if (zaznaczona())
+					wyświetlOdpowiedź(true, '.');
+				edytorOdpowiedzi.Hide();
 			}
 		}
 		private void edytorPunktów_Leave(object sender, EventArgs e)

@@ -23,7 +23,7 @@ namespace familiada
 		public abstract int punktyTextBoxLocationX { get; }
 		public abstract int punktyTextBoxTabIndex { get; }
 		public abstract int umieśćButtonLocationX { get; }
-		
+
 		public abstract int pozycjaOdpowiedziNaTablicy { get; }
 		public abstract int pozycjaPunktówNaTablicy { get; }
 		public abstract bool wyrównanieDoLewej { get; }
@@ -81,23 +81,18 @@ namespace familiada
 
 			if (odpowiedź.Length > Global.długośćOdpowiedzi2)
 			{
-				MessageBox.Show("za długa odpowiedź");
+				MessageBox.Show(String.Format("Tekst za długi o {0} znaków", odpowiedź.Length - Global.długośćOdpowiedzi2));
 				odpowiedźTextBox.Focus();
 			}
 			else
 			{
-				char? niepoprawnyZnak = null;
 				for (int i = 0; i < odpowiedź.Length; i++)
 					if (!Global.znaki.ContainsKey(odpowiedź[i]))
 					{
-						niepoprawnyZnak = odpowiedź[i];
-						break;
+						MessageBox.Show(String.Format("niepoprawny znak {0}", odpowiedź[i]));
+						odpowiedźTextBox.Focus();
+						return;
 					}
-				if (niepoprawnyZnak != null)
-				{
-					MessageBox.Show(String.Format("niepoprawny znak {0}", niepoprawnyZnak));
-					odpowiedźTextBox.Focus();
-				}
 			}
 		}
 		private void edytorPunktów_Leave(object sender, EventArgs e)

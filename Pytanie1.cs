@@ -265,7 +265,7 @@ namespace familiada
 		{
 			return obecnePytanie == Global.pytania1.Count - 1;
 		}
-		internal static void pokażPrzyciski()
+		public static void pokażPrzyciski()
 		{
 			dodajOdpowiedźButton.Show();
 			przypiszLButton.Show();
