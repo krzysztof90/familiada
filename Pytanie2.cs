@@ -61,8 +61,7 @@ namespace familiada
 
 		public static void wyświetlPunkty()
 		{
-			Global.tablicaPunkty.ustawTekst(punkty.ToString(), 0, 0, false, 3, ' ');
-			Global.kontroler.punkty.Text = punkty.ToString();
+			Global.ustawPunktyGłówne(punkty);
 		}
 		public void umieść(Panel panel)
 		{
@@ -280,13 +279,13 @@ namespace familiada
 
 			naKontrolerze.Location = new Point(100, 50 * nrPytania);
 			naKontrolerze.Size = new Size(480, 30);
-			naKontrolerze.Controls.Add(this.nazwaLabel);
-			Global.panelKontroler2.Controls.Add(naKontrolerze);
 
 			nazwaLabel.Location = new Point(5, 8);
 			nazwaLabel.Size = new Size(145, 13);
 			nazwaLabel.Text = nazwaPytania;
 
+			naKontrolerze.Controls.Add(this.nazwaLabel);
+			Global.panelKontroler2.Controls.Add(naKontrolerze);
 			pytanieL.umieść(naKontrolerze);
 			pytanieP.umieść(naKontrolerze);
 		}

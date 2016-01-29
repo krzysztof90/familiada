@@ -47,6 +47,7 @@
   <ItemGroup>
     <Compile Include="Drużyna.cs" />
     <Compile Include="Global.cs" />
+    <Compile Include="IOperatable.cs" />
     <Compile Include="Odpowiedź.cs" />
     <Compile Include="GłównyEkran.cs">
       <SubType>Form</SubType>

@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace familiada
 {
-	public partial class GłównyEkran : Form
+	public partial class GłównyEkran : Form, IOperatable
 	{
 		public GłównyEkran()
 		{
@@ -23,6 +23,27 @@ namespace familiada
 			e.Cancel = true;
 
 			Global.kontroler.pokażEkran.Show();
+		}
+
+		public void pokażPanel1()
+		{
+			panel1.Show();
+		}
+		public void ukryjPanel1()
+		{
+			panel1.Hide();
+		}
+		public void pokażPanel2()
+		{
+			panel2.Show();
+		}
+		public void ukryjPanel2()
+		{
+			panel2.Hide();
+		}
+		public void ustawPunktyGłówne(int punkty)
+		{
+			Global.tablicaPunkty.ustawTekst(punkty.ToString(), 0, 0, false, 3, ' ');
 		}
 	}
 }

@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace familiada
 {
-	public partial class Kontroler : Form
+	public partial class Kontroler : Form, IOperatable
 	{
 		public Kontroler()
 		{
@@ -91,13 +91,10 @@ namespace familiada
 				przycisk.Tag = 2;
 				przycisk.Text = "przełącz do rundy 2";
 
-				Global.panelKontroler1.Show();
-				Global.panelGłówny1.Show();
-				Global.panelKontroler2.Hide();
-				Global.panelGłówny2.Hide();
+				Global.pokażPanel1();
+				Global.ukryjPanel2();
 
-				Global.tablicaPunkty.ustawTekst("0", 0, 0, false, 3, ' ');
-				Global.kontroler.punkty.Text = "0";
+				Global.ustawPunktyGłówne(0);
 
 				Pytanie1.pokażPytanie();
 			}
@@ -106,10 +103,8 @@ namespace familiada
 				przycisk.Tag = 1;
 				przycisk.Text = "przełącz do rundy 1";
 
-				Global.panelKontroler2.Show();
-				Global.panelGłówny2.Show();
-				Global.panelKontroler1.Hide();
-				Global.panelGłówny1.Hide();
+				Global.pokażPanel2();
+				Global.ukryjPanel1();
 
 				Pytanie2.wyświetlPunkty();
 			}
@@ -187,6 +182,27 @@ namespace familiada
 				czas.Text = String.Empty;
 				Global.tablicaPunkty.ustawTekst(String.Empty, 0, 0, false, 3, ' ');
 			}
+		}
+
+		public void pokażPanel1()
+		{
+			panel1.Show();
+		}
+		public void ukryjPanel1()
+		{
+			panel1.Hide();
+		}
+		public void pokażPanel2()
+		{
+			panel2.Show();
+		}
+		public void ukryjPanel2()
+		{
+			panel2.Hide();
+		}
+		public void ustawPunktyGłówne(int punkty)
+		{
+			this.punkty.Text = punkty.ToString();
 		}
 	}
 }

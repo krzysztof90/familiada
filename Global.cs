@@ -21,8 +21,7 @@ namespace familiada
 		public static Panel panelKontroler2 = kontroler.panel2;
 		public static Panel panelKontrolerDodatkowy = kontroler.dodatkowy;
 		public static GłównyEkran główny = new GłównyEkran();
-		public static Panel panelGłówny1 = główny.panel1;
-		public static Panel panelGłówny2 = główny.panel2;
+		private static List<IOperatable> formy = new List<IOperatable> { kontroler, główny };
 
 		public static List<Pytanie1> pytania1 = new List<Pytanie1>();
 		public static Pytanie2[] pytania2 = new Pytanie2[5];
@@ -88,12 +87,12 @@ namespace familiada
 			}
 			else
 			{
-				if(lewo)
+				if (lewo)
 					Zonk.RotateFlip(RotateFlipType.RotateNoneFlipY);
 				else
 					Zonk.RotateFlip(RotateFlipType.Rotate180FlipNone);
 			}
-				return Zonk;
+			return Zonk;
 		}
 		private static Bitmap zonkMały(bool góra, bool lewo)
 		{
@@ -105,27 +104,48 @@ namespace familiada
 			}
 			else
 			{
-				if(lewo)
+				if (lewo)
 					Zonk.RotateFlip(RotateFlipType.RotateNoneFlipY);
 				else
 					Zonk.RotateFlip(RotateFlipType.Rotate180FlipNone);
 			}
-				return Zonk;
+			return Zonk;
 		}
 		private static Bitmap zonkMały(bool góra)
 		{
 			Bitmap Zonk = (Bitmap)(Resources.zonkMałyG.Clone());
-			if(góra)
-					Zonk.RotateFlip(RotateFlipType.RotateNoneFlipY);
-				return Zonk;
+			if (góra)
+				Zonk.RotateFlip(RotateFlipType.RotateNoneFlipY);
+			return Zonk;
 		}
 
 		public static DrużynaL drużynaL = new DrużynaL();
 		public static DrużynaP drużynaP = new DrużynaP();
 
-		public static Tablica tablica1 = new Tablica(panelGłówny1, 30, 10, Resources.puste);
-		public static Tablica tablica2 = new Tablica(panelGłówny2, 30, 10, Resources.puste);
+		public static Tablica tablica1 = new Tablica(główny.panel1, 30, 10, Resources.puste);
+		public static Tablica tablica2 = new Tablica(główny.panel2, 30, 10, Resources.puste);
 		public static Tablica tablicaPunkty = new Tablica(główny.panelPunkty, 3, 1, Resources.puste);
+
+		static public void pokażPanel1()
+		{
+			formy.ForEach(e => e.pokażPanel1());
+		}
+		static public void ukryjPanel1()
+		{
+			formy.ForEach(e => e.ukryjPanel1());
+		}
+		static public void pokażPanel2()
+		{
+			formy.ForEach(e => e.pokażPanel2());
+		}
+		static public void ukryjPanel2()
+		{
+			formy.ForEach(e => e.ukryjPanel2());
+		}
+		static public void ustawPunktyGłówne(int punkty)
+		{
+			formy.ForEach(e => e.ustawPunktyGłówne(punkty));
+		}
 
 		static public void exit(string message)
 		{
