@@ -31,29 +31,38 @@ namespace familiada
 		private void InitializeComponent()
 		{
 			this.components = new System.ComponentModel.Container();
+			this.dodatkowy = new System.Windows.Forms.Panel();
+			this.poprzedniePytanie = new System.Windows.Forms.Button();
 			this.następnePytanie = new System.Windows.Forms.Button();
 			this.pokażEkran = new System.Windows.Forms.Button();
-			this.poprzedniePytanie = new System.Windows.Forms.Button();
 			this.runda = new System.Windows.Forms.Button();
 			this.punkty = new System.Windows.Forms.Label();
-			this.dodatkowy = new System.Windows.Forms.Panel();
-			this.panel = new List<System.Windows.Forms.Panel> { new System.Windows.Forms.Panel(), new System.Windows.Forms.Panel() };
 			this.start = new System.Windows.Forms.Button();
-			this.ustawCzas20 = new System.Windows.Forms.Button();
-			this.ustawCzas15 = new System.Windows.Forms.Button();
 			this.czas = new System.Windows.Forms.Label();
 			this.timer1 = new System.Windows.Forms.Timer(this.components);
-			punktyDrużynaLabel = new List<Label>{ new Label(), new Label()};
-			this.dodatkowy.SuspendLayout();
-			panel.ForEach(p => p.SuspendLayout());
 			this.SuspendLayout();
-			//
-			// punktyDrużynaLabel
-			//
-			punktyDrużynaLabel.ForEach(l => this.dodatkowy.Controls.Add(l));
-			punktyDrużynaLabel.ForEach(l => l.Size = new System.Drawing.Size(25,15));
-			punktyDrużynaLabel[0].Dock = DockStyle.Left;
-			punktyDrużynaLabel[1].Dock = DockStyle.Right;
+			// 
+			// dodatkowy
+			// 
+			this.dodatkowy.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.dodatkowy.Controls.Add(this.punkty);
+			this.dodatkowy.Controls.Add(this.runda);
+			this.dodatkowy.Controls.Add(this.pokażEkran);
+			this.dodatkowy.Location = new System.Drawing.Point(3, 320);
+			this.dodatkowy.Name = "dodatkowy";
+			this.dodatkowy.Size = new System.Drawing.Size(211, 133);
+			this.dodatkowy.TabIndex = 7;
+			// 
+			// poprzedniePytanie
+			// 
+			this.poprzedniePytanie.Location = new System.Drawing.Point(187, 300);
+			this.poprzedniePytanie.Name = "poprzedniePytanie";
+			this.poprzedniePytanie.Size = new System.Drawing.Size(114, 23);
+			this.poprzedniePytanie.TabIndex = 2;
+			this.poprzedniePytanie.Text = "poprzednie pytanie";
+			this.poprzedniePytanie.UseVisualStyleBackColor = true;
+			this.poprzedniePytanie.Visible = false;
+			this.poprzedniePytanie.Click += new System.EventHandler(this.poprzedniePytanie_Click);
 			// 
 			// następnePytanie
 			// 
@@ -75,17 +84,6 @@ namespace familiada
 			this.pokażEkran.UseVisualStyleBackColor = true;
 			this.pokażEkran.Click += new System.EventHandler(this.pokażEkran_Click);
 			// 
-			// poprzedniePytanie
-			// 
-			this.poprzedniePytanie.Location = new System.Drawing.Point(187, 300);
-			this.poprzedniePytanie.Name = "poprzedniePytanie";
-			this.poprzedniePytanie.Size = new System.Drawing.Size(114, 23);
-			this.poprzedniePytanie.TabIndex = 2;
-			this.poprzedniePytanie.Text = "poprzednie pytanie";
-			this.poprzedniePytanie.UseVisualStyleBackColor = true;
-			this.poprzedniePytanie.Visible = false;
-			this.poprzedniePytanie.Click += new System.EventHandler(this.poprzedniePytanie_Click);
-			// 
 			// runda
 			// 
 			this.runda.Location = new System.Drawing.Point(0, 68);
@@ -106,33 +104,6 @@ namespace familiada
 			this.punkty.TabIndex = 6;
 			this.punkty.Text = "0";
 			// 
-			// dodatkowy
-			// 
-			this.dodatkowy.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.dodatkowy.Controls.Add(this.punkty);
-			this.dodatkowy.Controls.Add(this.runda);
-			this.dodatkowy.Controls.Add(this.pokażEkran);
-			this.dodatkowy.Location = new System.Drawing.Point(3, 320);
-			this.dodatkowy.Name = "dodatkowy";
-			this.dodatkowy.Size = new System.Drawing.Size(211, 133);
-			this.dodatkowy.TabIndex = 7;
-			// 
-			// panel1
-			// 
-
-			this.panel[0].Controls.Add(this.poprzedniePytanie);
-			this.panel[0].Controls.Add(this.następnePytanie);
-
-			this.panel.ForEach(p => p.Dock = System.Windows.Forms.DockStyle.Fill);
-			this.panel.ForEach(p => p.Margin = new System.Windows.Forms.Padding(0));
-			this.panel.ForEach(p => p.Visible = false);
-			// 
-			// panel2
-			// 
-			this.panel[1].Controls.Add(this.ustawCzas15);
-			this.panel[1].Controls.Add(this.czas);
-			this.panel[1].Controls.Add(this.start);
-			// 
 			// start
 			// 
 			this.start.Location = new System.Drawing.Point(474, 345);
@@ -142,28 +113,6 @@ namespace familiada
 			this.start.Text = "start";
 			this.start.UseVisualStyleBackColor = true;
 			this.start.Click += new System.EventHandler(this.startCzas_Click);
-			// 
-			// ustawCzas20
-			// 
-			this.ustawCzas20.Location = new System.Drawing.Point(571, 300);
-			this.ustawCzas20.Name = "ustawCzas20";
-			this.ustawCzas20.Size = new System.Drawing.Size(75, 23);
-			this.ustawCzas20.TabIndex = 4;
-			this.ustawCzas20.Tag = "20";
-			this.ustawCzas20.Text = "ustaw 20";
-			this.ustawCzas20.UseVisualStyleBackColor = true;
-			this.ustawCzas20.Click += new System.EventHandler(this.ustawCzas_Click);
-			// 
-			// ustawCzas15
-			// 
-			this.ustawCzas15.Location = new System.Drawing.Point(474, 300);
-			this.ustawCzas15.Name = "ustawCzas15";
-			this.ustawCzas15.Size = new System.Drawing.Size(75, 23);
-			this.ustawCzas15.TabIndex = 3;
-			this.ustawCzas15.Tag = "15";
-			this.ustawCzas15.Text = "ustaw 15";
-			this.ustawCzas15.UseVisualStyleBackColor = true;
-			this.ustawCzas15.Click += new System.EventHandler(this.ustawCzas_Click);
 			// 
 			// czas
 			// 
@@ -184,33 +133,27 @@ namespace familiada
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(658, 454);
 			this.Controls.Add(this.dodatkowy);
-			this.panel.ForEach(p => this.Controls.Add(p));
 			this.Name = "Kontroler";
 			this.Text = "Kontroler";
 			this.Load += new System.EventHandler(this.Form_Load);
-			this.dodatkowy.ResumeLayout(false);
-			this.dodatkowy.PerformLayout();
-			this.panel.ForEach(p => p.ResumeLayout());
-			this.panel.ForEach(p => p.PerformLayout());
 			this.ResumeLayout(false);
 
 		}
 
 		#endregion
 
-		private System.Windows.Forms.Button następnePytanie;
+		public List<System.Windows.Forms.Panel> panele;
+		public List<Label> punktyDrużynaLabel;
+		private List<Button> ustawCzasButton;
+		public System.Windows.Forms.Panel dodatkowy;
 		private System.Windows.Forms.Button poprzedniePytanie;
+		private System.Windows.Forms.Button następnePytanie;
 		public System.Windows.Forms.Button pokażEkran;
 		private System.Windows.Forms.Button runda;
 		public System.Windows.Forms.Label punkty;
-		public List<System.Windows.Forms.Panel> panel;
-		public System.Windows.Forms.Panel dodatkowy;
-		private System.Windows.Forms.Button start;
 		private System.Windows.Forms.Label czas;
+		private System.Windows.Forms.Button start;
 		private System.Windows.Forms.Timer timer1;
-		private System.Windows.Forms.Button ustawCzas20;
-		private System.Windows.Forms.Button ustawCzas15;
-		public List<Label> punktyDrużynaLabel;
 
 	}
 }

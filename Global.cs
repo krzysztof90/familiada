@@ -17,8 +17,8 @@ namespace familiada
 		public const int długośćOdpowiedzi2 = 10;
 
 		public static Kontroler kontroler = new Kontroler();
-		public static Panel panelKontroler1 = kontroler.panel[0];
-		public static Panel panelKontroler2 = kontroler.panel[1];
+		public static Panel panelKontroler1 = kontroler.panele[0];
+		public static Panel panelKontroler2 = kontroler.panele[1];
 		public static Panel panelKontrolerDodatkowy = kontroler.dodatkowy;
 		public static GłównyEkran główny = new GłównyEkran();
 		private static List<IOperatable> formy = new List<IOperatable> { kontroler, główny };

@@ -30,7 +30,6 @@ namespace familiada
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.panel = new List<System.Windows.Forms.Panel> { new System.Windows.Forms.Panel(), new System.Windows.Forms.Panel() };
 			this.panelPodstawa = new System.Windows.Forms.TableLayoutPanel();
 			this.panelRundy = new System.Windows.Forms.Panel();
 			this.panelPodstawaLewy = new System.Windows.Forms.TableLayoutPanel();
@@ -39,19 +38,7 @@ namespace familiada
 			this.panelPunktyP = new System.Windows.Forms.Panel();
 			this.panelPodstawaGóra = new System.Windows.Forms.TableLayoutPanel();
 			this.panelPunkty = new System.Windows.Forms.Panel();
-			this.panel.ForEach(p => p.SuspendLayout());
-			this.panelPodstawa.SuspendLayout();
-			this.panelRundy.SuspendLayout();
-			this.panelPodstawaLewy.SuspendLayout();
-			this.panelPodstawaPrawy.SuspendLayout();
-			this.panelPodstawaGóra.SuspendLayout();
 			this.SuspendLayout();
-			// 
-			// panel1
-			// 
-			this.panel.ForEach(p => p.Dock = System.Windows.Forms.DockStyle.Fill);
-			this.panel.ForEach(p => Margin = new System.Windows.Forms.Padding(0));
-			this.panel.ForEach(p => p.Visible = false);
 			// 
 			// panelPodstawa
 			// 
@@ -74,7 +61,6 @@ namespace familiada
 			// 
 			// panelRundy
 			// 
-			this.panel.ForEach(p => this.panelRundy.Controls.Add(p));
 			this.panelRundy.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.panelRundy.Location = new System.Drawing.Point(126, 109);
 			this.panelRundy.Margin = new System.Windows.Forms.Padding(0);
@@ -166,21 +152,21 @@ namespace familiada
 			this.Name = "GłównyEkran";
 			this.Text = "Główny ekran";
 			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.GłównyEkran_FormClosing);
-			this.panel.ForEach(p => p.ResumeLayout(false));
-			this.panel.ForEach(p => p.PerformLayout());
-			this.panelPodstawa.ResumeLayout(false);
-			this.panelRundy.ResumeLayout(false);
-			this.panelPodstawaLewy.ResumeLayout(false);
-			this.panelPodstawaPrawy.ResumeLayout(false);
-			this.panelPodstawaGóra.ResumeLayout(false);
 			this.ResumeLayout(false);
 
+			this.panel = new List<System.Windows.Forms.Panel> { new System.Windows.Forms.Panel(), new System.Windows.Forms.Panel() };
+			// 
+			// panel1
+			// 
+			this.panel.ForEach(p => p.Dock = System.Windows.Forms.DockStyle.Fill);
+			this.panel.ForEach(p => Margin = new System.Windows.Forms.Padding(0));
+			this.panel.ForEach(p => p.Visible = false);
+			this.panel.ForEach(p => this.panelRundy.Controls.Add(p));
 		}
 
 		#endregion
 
 		public List<System.Windows.Forms.Panel> panel;
-		//public Label czas;
 		private TableLayoutPanel panelPodstawa;
 		private Panel panelRundy;
 		private TableLayoutPanel panelPodstawaLewy;
