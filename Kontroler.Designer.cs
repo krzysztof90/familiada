@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Windows.Forms;
 namespace familiada
 {
 	partial class Kontroler
@@ -42,9 +43,17 @@ namespace familiada
 			this.ustawCzas15 = new System.Windows.Forms.Button();
 			this.czas = new System.Windows.Forms.Label();
 			this.timer1 = new System.Windows.Forms.Timer(this.components);
+			punktyDrużynaLabel = new List<Label>{ new Label(), new Label()};
 			this.dodatkowy.SuspendLayout();
 			panel.ForEach(p => p.SuspendLayout());
 			this.SuspendLayout();
+			//
+			// punktyDrużynaLabel
+			//
+			punktyDrużynaLabel.ForEach(l => this.dodatkowy.Controls.Add(l));
+			punktyDrużynaLabel.ForEach(l => l.Size = new System.Drawing.Size(25,15));
+			punktyDrużynaLabel[0].Dock = DockStyle.Left;
+			punktyDrużynaLabel[1].Dock = DockStyle.Right;
 			// 
 			// następnePytanie
 			// 
@@ -201,6 +210,8 @@ namespace familiada
 		private System.Windows.Forms.Timer timer1;
 		private System.Windows.Forms.Button ustawCzas20;
 		private System.Windows.Forms.Button ustawCzas15;
+		public List<Label> punktyDrużynaLabel;
+
 	}
 }
 

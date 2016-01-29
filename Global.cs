@@ -119,12 +119,12 @@ namespace familiada
 			return Zonk;
 		}
 
-		public static DrużynaL drużynaL = new DrużynaL();
-		public static DrużynaP drużynaP = new DrużynaP();
-
 		public static Tablica tablica1 = new Tablica(główny.panel[0], 30, 10, Resources.puste);
 		public static Tablica tablica2 = new Tablica(główny.panel[1], 30, 10, Resources.puste);
 		public static Tablica tablicaPunkty = new Tablica(główny.panelPunkty, 3, 1, Resources.puste);
+		public static List<Tablica> tablicaPunktyDrużyny = new List<Tablica>{new Tablica(główny.panelPunktyL, 3, 1, Resources.puste), new Tablica(główny.panelPunktyP, 3, 1, Resources.puste)};
+
+		public static List<DrużynaStrona> drużyny = new List<DrużynaStrona> { new DrużynaL(), new DrużynaP() };
 
 		static public void pokażPanel(int który)
 		{
@@ -137,6 +137,10 @@ namespace familiada
 		static public void ustawPunktyGłówne(int punkty)
 		{
 			formy.ForEach(e => e.ustawPunktyGłówne(punkty));
+		}
+		static public void ustawPunktyDrużyny(int która, int punkty)
+		{
+			formy.ForEach(e => e.ustawPunktyDrużyny(która, punkty));
 		}
 
 		static public void exit(string message)

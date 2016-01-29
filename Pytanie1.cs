@@ -279,7 +279,7 @@ namespace familiada
 					przypiszLButton.BackColor = Color.White;
 					zwróćObecnePytanie().druzynaZPrzypisanymiPunktami = "L";
 
-					Global.drużynaL.dodajPunkty(zwróćObecnePytanie().punkty);
+					Global.drużyny[0].dodajPunkty(zwróćObecnePytanie().punkty);
 				}
 			}
 			else
@@ -288,7 +288,7 @@ namespace familiada
 				przypiszLButton.UseVisualStyleBackColor = true;
 				zwróćObecnePytanie().druzynaZPrzypisanymiPunktami = null;
 
-				Global.drużynaL.dodajPunkty(-zwróćObecnePytanie().punkty);
+				Global.drużyny[0].dodajPunkty(-zwróćObecnePytanie().punkty);
 			}
 		}
 		private void przypiszP_Click(object sender, EventArgs e)
@@ -300,7 +300,7 @@ namespace familiada
 					przypiszPButton.BackColor = Color.White;
 					zwróćObecnePytanie().druzynaZPrzypisanymiPunktami = "P";
 
-					Global.drużynaP.dodajPunkty(zwróćObecnePytanie().punkty);
+					Global.drużyny[1].dodajPunkty(zwróćObecnePytanie().punkty);
 				}
 			}
 			else
@@ -309,7 +309,7 @@ namespace familiada
 				przypiszPButton.UseVisualStyleBackColor = true;
 				zwróćObecnePytanie().druzynaZPrzypisanymiPunktami = null;
 
-				Global.drużynaP.dodajPunkty(-zwróćObecnePytanie().punkty);
+				Global.drużyny[1].dodajPunkty(-zwróćObecnePytanie().punkty);
 			}
 		}
 	}

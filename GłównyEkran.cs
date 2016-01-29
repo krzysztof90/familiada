@@ -37,5 +37,9 @@ namespace familiada
 		{
 			Global.tablicaPunkty.ustawTekst(punkty.ToString(), 0, 0, false, 3, ' ');
 		}
+		public void ustawPunktyDrużyny(int która, int punkty)
+		{
+			Global.tablicaPunktyDrużyny[która].ustawTekst(punkty.ToString(), 0, 0, false, 3, ' ');
+		}
 	}
 }

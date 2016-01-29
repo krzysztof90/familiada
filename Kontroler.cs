@@ -198,5 +198,9 @@ namespace familiada
 		{
 			this.punkty.Text = punkty.ToString();
 		}
+		public void ustawPunktyDrużyny(int która, int punkty)
+		{
+			punktyDrużynaLabel[która].Text = punkty.ToString();
+		}
 	}
 }
