@@ -120,8 +120,8 @@ namespace familiada
 				return Zonk;
 		}
 
-		public static Drużyna drużynaL = new Drużyna(true);
-		public static Drużyna drużynaP = new Drużyna(false);
+		public static DrużynaL drużynaL = new DrużynaL();
+		public static DrużynaP drużynaP = new DrużynaP();
 
 		public static Tablica tablica1 = new Tablica(panelGłówny1, 30, 10, Resources.puste);
 		public static Tablica tablica2 = new Tablica(panelGłówny2, 30, 10, Resources.puste);
