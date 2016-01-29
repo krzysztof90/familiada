@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using familiada.Properties;
 
 namespace familiada
 {
@@ -19,7 +20,7 @@ namespace familiada
 			punktyKontrolerLabel.Dock = left ? DockStyle.Left : DockStyle.Right;
 			Global.panelKontrolerDodatkowy.Controls.Add(punktyKontrolerLabel);
 
-			tablicaPunkty = new Tablica(left ? Global.główny.panelPunktyL : Global.główny.panelPunktyP, 3, 1, global::familiada.Properties.Resources.puste);
+			tablicaPunkty = new Tablica(left ? Global.główny.panelPunktyL : Global.główny.panelPunktyP, 3, 1, Resources.puste);
 
 			wyświetlPunkty();
 		}
@@ -36,4 +37,6 @@ namespace familiada
 			punktyKontrolerLabel.Text = punkty.ToString();
 		}
 	}
+
+
 }

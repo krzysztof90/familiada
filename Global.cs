@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using familiada.Properties;
 
 namespace familiada
 {
@@ -28,43 +29,43 @@ namespace familiada
 
 		public static Dictionary<char, Image> znaki = new Dictionary<char, Image>()
 			{
-				{'a', global::familiada.Properties.Resources.a},
-				{'b', global::familiada.Properties.Resources.b},
-				{'c', global::familiada.Properties.Resources.b},
-				{'d', global::familiada.Properties.Resources.b},
-				{'e', global::familiada.Properties.Resources.b},
-				{'f', global::familiada.Properties.Resources.b},
-				{'g', global::familiada.Properties.Resources.b},
-				{'h', global::familiada.Properties.Resources.b},
-				{'i', global::familiada.Properties.Resources.b},
-				{'j', global::familiada.Properties.Resources.b},
-				{'k', global::familiada.Properties.Resources.b},
-				{'l', global::familiada.Properties.Resources.b},
-				{'m', global::familiada.Properties.Resources.b},
-				{'n', global::familiada.Properties.Resources.b},
-				{'o', global::familiada.Properties.Resources.b},
-				{'p', global::familiada.Properties.Resources.b},
-				{'r', global::familiada.Properties.Resources.b},
-				{'s', global::familiada.Properties.Resources.b},
-				{'t', global::familiada.Properties.Resources.b},
-				{'u', global::familiada.Properties.Resources.b},
-				{'w', global::familiada.Properties.Resources.b},
-				{'y', global::familiada.Properties.Resources.b},
-				{'z', global::familiada.Properties.Resources.b},
-				{'0', global::familiada.Properties.Resources.c0},
-				{'1', global::familiada.Properties.Resources.c1},
-				{'2', global::familiada.Properties.Resources.c2},
-				{'3', global::familiada.Properties.Resources.c3},
-				{'4', global::familiada.Properties.Resources.c4},
-				{'5', global::familiada.Properties.Resources.c5},
-				{'6', global::familiada.Properties.Resources.c6},
-				{'7', global::familiada.Properties.Resources.c7},
-				{'8', global::familiada.Properties.Resources.c8},
-				{'9', global::familiada.Properties.Resources.c9},
-				{'-', global::familiada.Properties.Resources.minus},
-				{'.', global::familiada.Properties.Resources.kropka},
-				{' ', global::familiada.Properties.Resources.puste},
-				{'|', global::familiada.Properties.Resources.punktyPuste},
+				{'a', Resources.a},
+				{'b', Resources.b},
+				{'c', Resources.b},
+				{'d', Resources.b},
+				{'e', Resources.b},
+				{'f', Resources.b},
+				{'g', Resources.b},
+				{'h', Resources.b},
+				{'i', Resources.b},
+				{'j', Resources.b},
+				{'k', Resources.b},
+				{'l', Resources.b},
+				{'m', Resources.b},
+				{'n', Resources.b},
+				{'o', Resources.b},
+				{'p', Resources.b},
+				{'r', Resources.b},
+				{'s', Resources.b},
+				{'t', Resources.b},
+				{'u', Resources.b},
+				{'w', Resources.b},
+				{'y', Resources.b},
+				{'z', Resources.b},
+				{'0', Resources.c0},
+				{'1', Resources.c1},
+				{'2', Resources.c2},
+				{'3', Resources.c3},
+				{'4', Resources.c4},
+				{'5', Resources.c5},
+				{'6', Resources.c6},
+				{'7', Resources.c7},
+				{'8', Resources.c8},
+				{'9', Resources.c9},
+				{'-', Resources.minus},
+				{'.', Resources.kropka},
+				{' ', Resources.puste},
+				{'|', Resources.punktyPuste},
 				{'˹', zonkDuży(true, true)},
 				{'˺', zonkDuży(true, false)},
 				{'˻', zonkDuży(false, true)},
@@ -79,7 +80,7 @@ namespace familiada
 
 		private static Bitmap zonkDuży(bool góra, bool lewo)
 		{
-			Bitmap Zonk = (Bitmap)(global::familiada.Properties.Resources.zonkDużyGL.Clone());
+			Bitmap Zonk = (Bitmap)(Resources.zonkDużyGL.Clone());
 			if (góra)
 			{
 				if (!lewo)
@@ -96,7 +97,7 @@ namespace familiada
 		}
 		private static Bitmap zonkMały(bool góra, bool lewo)
 		{
-			Bitmap Zonk = (Bitmap)(global::familiada.Properties.Resources.zonkMałyGL.Clone());
+			Bitmap Zonk = (Bitmap)(Resources.zonkMałyGL.Clone());
 			if (góra)
 			{
 				if (!lewo)
@@ -113,7 +114,7 @@ namespace familiada
 		}
 		private static Bitmap zonkMały(bool góra)
 		{
-			Bitmap Zonk = (Bitmap)(global::familiada.Properties.Resources.zonkMałyG.Clone());
+			Bitmap Zonk = (Bitmap)(Resources.zonkMałyG.Clone());
 			if(góra)
 					Zonk.RotateFlip(RotateFlipType.RotateNoneFlipY);
 				return Zonk;
@@ -122,9 +123,9 @@ namespace familiada
 		public static Drużyna drużynaL = new Drużyna(true);
 		public static Drużyna drużynaP = new Drużyna(false);
 
-		public static Tablica tablica1 = new Tablica(panelGłówny1, 30, 10, global::familiada.Properties.Resources.puste);
-		public static Tablica tablica2 = new Tablica(panelGłówny2, 30, 10, global::familiada.Properties.Resources.puste);
-		public static Tablica tablicaPunkty = new Tablica(główny.panelPunkty, 3, 1, global::familiada.Properties.Resources.puste);
+		public static Tablica tablica1 = new Tablica(panelGłówny1, 30, 10, Resources.puste);
+		public static Tablica tablica2 = new Tablica(panelGłówny2, 30, 10, Resources.puste);
+		public static Tablica tablicaPunkty = new Tablica(główny.panelPunkty, 3, 1, Resources.puste);
 
 		static public void exit(string message)
 		{
