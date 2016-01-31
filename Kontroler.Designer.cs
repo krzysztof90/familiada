@@ -48,16 +48,16 @@ namespace familiada
 			this.dodatkowy.Controls.Add(this.punkty);
 			this.dodatkowy.Controls.Add(this.runda);
 			this.dodatkowy.Controls.Add(this.pokażEkran);
-			this.dodatkowy.Location = new System.Drawing.Point(3, 320);
+			this.dodatkowy.Location = new System.Drawing.Point(dodatkowyPanelPozycjaX, dodatkowyPanelPozycjaY);
 			this.dodatkowy.Name = "dodatkowy";
-			this.dodatkowy.Size = new System.Drawing.Size(211, 133);
+			this.dodatkowy.Size = new System.Drawing.Size(dodatkowyPanelSzerokość, dodatkowyPanelWysokość);
 			this.dodatkowy.TabIndex = 7;
 			// 
 			// poprzedniePytanie
 			// 
-			this.poprzedniePytanie.Location = new System.Drawing.Point(187, 300);
+			this.poprzedniePytanie.Location = new System.Drawing.Point(przełączPytanieButtonPozycjaXPoczątek, przełączPytanieButtonPozycjaY);
 			this.poprzedniePytanie.Name = "poprzedniePytanie";
-			this.poprzedniePytanie.Size = new System.Drawing.Size(114, 23);
+			this.poprzedniePytanie.Size = new System.Drawing.Size(przełączPytanieButtonSzerokość, przełączPytanieButtonWysokość);
 			this.poprzedniePytanie.TabIndex = 2;
 			this.poprzedniePytanie.Text = "poprzednie pytanie";
 			this.poprzedniePytanie.UseVisualStyleBackColor = true;
@@ -66,9 +66,9 @@ namespace familiada
 			// 
 			// następnePytanie
 			// 
-			this.następnePytanie.Location = new System.Drawing.Point(338, 300);
+			this.następnePytanie.Location = new System.Drawing.Point(przełączPytanieButtonPozycjaXPoczątek + przełączPytanieButtonOdstępX + przełączPytanieButtonSzerokość, przełączPytanieButtonPozycjaY);
 			this.następnePytanie.Name = "następnePytanie";
-			this.następnePytanie.Size = new System.Drawing.Size(114, 23);
+			this.następnePytanie.Size = new System.Drawing.Size(przełączPytanieButtonSzerokość, przełączPytanieButtonWysokość);
 			this.następnePytanie.TabIndex = 2;
 			this.następnePytanie.Text = "zacznij pytania";
 			this.następnePytanie.UseVisualStyleBackColor = true;
@@ -76,9 +76,9 @@ namespace familiada
 			// 
 			// pokażEkran
 			// 
-			this.pokażEkran.Location = new System.Drawing.Point(0, 39);
+			this.pokażEkran.Location = new System.Drawing.Point(pokażEkranButtonPozycjaX, pokażEkranButtonPozycjaY);
 			this.pokażEkran.Name = "pokażEkran";
-			this.pokażEkran.Size = new System.Drawing.Size(114, 23);
+			this.pokażEkran.Size = new System.Drawing.Size(pokażEkranButtonSzerokość, pokażEkranButtonWysokość);
 			this.pokażEkran.TabIndex = 1;
 			this.pokażEkran.Text = "otwórz ekran główny";
 			this.pokażEkran.UseVisualStyleBackColor = true;
@@ -86,9 +86,9 @@ namespace familiada
 			// 
 			// runda
 			// 
-			this.runda.Location = new System.Drawing.Point(0, 68);
+			this.runda.Location = new System.Drawing.Point(rundaButtonPozycjaX, rundaButtonPozycjaY);
 			this.runda.Name = "runda";
-			this.runda.Size = new System.Drawing.Size(114, 23);
+			this.runda.Size = new System.Drawing.Size(rundaButtonSzerokość, rundaButtonWysokość);
 			this.runda.TabIndex = 6;
 			this.runda.Tag = 1;
 			this.runda.Text = "przełącz do rundy 1";
@@ -98,17 +98,17 @@ namespace familiada
 			// punkty
 			// 
 			this.punkty.AutoSize = true;
-			this.punkty.Location = new System.Drawing.Point(80, 8);
+			this.punkty.Location = new System.Drawing.Point(punktyLabelPozycjaX, punktyLabelPozycjaY);
 			this.punkty.Name = "punkty";
-			this.punkty.Size = new System.Drawing.Size(13, 13);
+			this.punkty.Size = new System.Drawing.Size(punktyLabelSzerokość, punktyLabelWysokość);
 			this.punkty.TabIndex = 6;
 			this.punkty.Text = "0";
 			// 
 			// start
 			// 
-			this.start.Location = new System.Drawing.Point(474, 345);
+			this.start.Location = new System.Drawing.Point(startButtonPozycjaX, startButtonPozycjaY);
 			this.start.Name = "start";
-			this.start.Size = new System.Drawing.Size(75, 23);
+			this.start.Size = new System.Drawing.Size(startButtonSzerokość, startButtonWysokość);
 			this.start.TabIndex = 3;
 			this.start.Text = "start";
 			this.start.UseVisualStyleBackColor = true;
@@ -117,9 +117,9 @@ namespace familiada
 			// czas
 			// 
 			this.czas.AutoSize = true;
-			this.czas.Location = new System.Drawing.Point(523, 398);
+			this.czas.Location = new System.Drawing.Point(czasLabelPozycjaX, czasLabelPozycjaY);
 			this.czas.Name = "czas";
-			this.czas.Size = new System.Drawing.Size(0, 13);
+			this.czas.Size = new System.Drawing.Size(czasLabelSzerokość, czasLabelWysokość);
 			this.czas.TabIndex = 3;
 			// 
 			// timer1
@@ -137,7 +137,6 @@ namespace familiada
 			this.Text = "Kontroler";
 			this.Load += new System.EventHandler(this.Form_Load);
 			this.ResumeLayout(false);
-
 		}
 
 		#endregion

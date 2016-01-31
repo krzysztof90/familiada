@@ -21,6 +21,10 @@ namespace familiada
 
 	abstract class Zonk
 	{
+		static private int zonkButtonPozycjaYPoczątek = 50;
+		static private int zonkButtonOdstępY = 0;
+		static private int zonkButtonSzerokość = 25;
+		static private int zonkButtonWysokość = 45;
 		public abstract int pozycja { get; }
 
 		Button[] zonkButton = new Button[4];
@@ -31,8 +35,8 @@ namespace familiada
 			{
 				zonkButton[i] = new Button();
 				zonkButton[i].Click += new EventHandler(zaznacz);
-				zonkButton[i].Location = new Point(pozycja, 50 + i * 45);
-				zonkButton[i].Size = new Size(27, 45);
+				zonkButton[i].Location = new Point(pozycja, zonkButtonPozycjaYPoczątek + i * (zonkButtonOdstępY + zonkButtonWysokość));
+				zonkButton[i].Size = new Size(zonkButtonSzerokość, zonkButtonWysokość);
 				zonkButton[i].Tag = i;
 				zonkButton[i].Text = "zonk " + (i + 1).ToString();
 				zonkButton[i].Visible = false;
@@ -121,6 +125,18 @@ namespace familiada
 
 	class Pytanie1
 	{
+		public static int nazwaPytaniaLabelPozycjaX = 100;
+		public static int nazwaPytaniaLabelPozycjaY = 0;
+		public static int dodajOdpowiedźButtonPozycjaX = 450;
+		public static int dodajOdpowiedźButtonPozycjaY = 100;
+		public static int dodajOdpowiedźButtonSzerokość = 135;
+		public static int dodajOdpowiedźButtonWysokość = 25;
+		static private int przypiszButtonPozycjaX = 450;
+		static private int przypiszButtonPozycjaYPoczątek = 140;
+		static private int przypiszButtonOdstępY = 5;
+		static private int przypiszButtonSzerokość = 135;
+		static private int przypiszButtonWysokość = 25;
+
 		public static int obecnePytanie { get; set; }
 		private static Button dodajOdpowiedźButton = new Button();
 		private List<Button> przypiszButton = new List<Button> { new Button(), new Button() };
@@ -141,8 +157,8 @@ namespace familiada
 			obecnePytanie = -1;
 
 			dodajOdpowiedźButton.Click += new EventHandler(dodajOdpowiedź_Click);
-			dodajOdpowiedźButton.Location = new Point(457, 95);
-			dodajOdpowiedźButton.Size = new Size(135, 23);
+			dodajOdpowiedźButton.Location = new Point(dodajOdpowiedźButtonPozycjaX, dodajOdpowiedźButtonPozycjaY);
+			dodajOdpowiedźButton.Size = new Size(dodajOdpowiedźButtonSzerokość, dodajOdpowiedźButtonWysokość);
 			dodajOdpowiedźButton.Text = "dodaj odpowiedź";
 			dodajOdpowiedźButton.Visible = false;
 
@@ -158,16 +174,16 @@ namespace familiada
 			nazwaPytania = pytanie.nazwaPytania;
 
 			nazwaPytaniaLabel = new Label();
-			nazwaPytaniaLabel.Location = new Point(100, 0);
+			nazwaPytaniaLabel.Location = new Point(nazwaPytaniaLabelPozycjaX, nazwaPytaniaLabelPozycjaY);
 			nazwaPytaniaLabel.Text = nrPytania.ToString() + ". " + nazwaPytania;
 			nazwaPytaniaLabel.Hide();
 
 			for (int i = 0; i < 2; i++)
 			{
-				przypiszButton[i].Size = new System.Drawing.Size(135, 23);
+				przypiszButton[i].Size = new System.Drawing.Size(przypiszButtonSzerokość, przypiszButtonWysokość);
 				przypiszButton[i].Visible = false;
 				przypiszButton[i].Click += new System.EventHandler(przypisz_Click);
-				przypiszButton[i].Location = new System.Drawing.Point(457, 140 + i * 30);
+				przypiszButton[i].Location = new System.Drawing.Point(przypiszButtonPozycjaX, przypiszButtonPozycjaYPoczątek + i * (przypiszButtonWysokość + przypiszButtonOdstępY));
 				przypiszButton[i].Tag = i;
 				przypiszButton[i].Text = "przypisz punkty" + (i == 0 ? "lewej" : "prawej");
 				Global.panelKontroler1.Controls.Add(przypiszButton[i]);

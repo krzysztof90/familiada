@@ -10,6 +10,17 @@ namespace familiada
 {
 	class Odpowiedź
 	{
+		private static int panelWysokość = 30;
+		private static int odpowiedźButtoniPunktyButtonOdstępX = 20;
+		private static int operacjeButtonOdstępX = 0;
+		private static int odpowiedźButtonSzerokość= 100;
+		private static int operacjeButtonSzerokość= 30;
+
+		private static int tablicaNumerPytaniaPozycjaX = 4;
+		private static int tablicaOdpowiedźPozycjaX=6;
+		private static int tablicaPunktyPozycjaX=24;
+		private static int tablicaPunktyOdstępY=1;
+
 		private string odpowiedź;
 		private int punkty;
 		private int nrOdpowiedzi;
@@ -37,7 +48,7 @@ namespace familiada
 				Global.exit(String.Format("niepoprawna linia: {0}", linia));
 			odpowiedź = linia.Substring(0, pozycjaPrzerwy).TrimEnd().ToUpper();
 			if (odpowiedź.Length > Global.długośćOdpowiedzi1)
-				Global.exit(String.Format("za długa odpowiedź: {0}. Dopuszczalna długość to {1}", odpowiedź, Global.długośćOdpowiedzi1));
+				Global.exit(String.Format("za długa odpowiedź: {0}. Dopuszczalna szerokość to {1}", odpowiedź, Global.długośćOdpowiedzi1));
 			for (int i = 0; i < odpowiedź.Length; i++)
 				if (!Global.znaki.ContainsKey(odpowiedź[i]))
 					Global.exit(String.Format("niepoprawny znak '{0}' w {1}", odpowiedź[i], odpowiedź));
@@ -50,27 +61,26 @@ namespace familiada
 				Global.exit("niepoprawna liczba punktów");
 			}
 
-			panel.Size = new System.Drawing.Size(290, 30);
 			panel.Hide();
 
-			odpowiedźButton.Location = new Point(50, 0);
-			odpowiedźButton.Size = new Size(100, 30);
+			odpowiedźButton.Location = new Point(0, 0);
+			odpowiedźButton.Size = new Size(odpowiedźButtonSzerokość, panelWysokość);
 			odpowiedźButton.Text = odpowiedź;
 			odpowiedźButton.Click += new EventHandler(zaznaczOdznacz_Click);
 
-			punktyButton.Location = new Point(170, 0);
-			punktyButton.Size = new Size(30, 30);
+			punktyButton.Location = new Point(odpowiedźButton .Right+ odpowiedźButtoniPunktyButtonOdstępX, 0);
+			punktyButton.Size = new Size(operacjeButtonSzerokość, panelWysokość);
 			punktyButton.Text = punkty.ToString();
 			punktyButton.Click += new EventHandler(edytujPunkty_Click);
 
-			edycjaOdpowiedziButton.Location = new Point(200, 0);
-			edycjaOdpowiedziButton.Size = new Size(30, 30);
+			edycjaOdpowiedziButton.Location = new Point(punktyButton.Right+ operacjeButtonOdstępX, 0);
+			edycjaOdpowiedziButton.Size = new Size(operacjeButtonSzerokość, panelWysokość);
 			edycjaOdpowiedziButton.Text = "edytuj";
 			edycjaOdpowiedziButton.Click += new EventHandler(edytujOdpowiedź_Click);
 
 			edytorOdpowiedzi.AutoSize = false;
-			edytorOdpowiedzi.Location = new Point(50, 0);
-			edytorOdpowiedzi.Size = new Size(100, 30);
+			edytorOdpowiedzi.Location = odpowiedźButton.Location;
+			edytorOdpowiedzi.Size = odpowiedźButton.Size;
 			edytorOdpowiedzi.Text = odpowiedź;
 			edytorOdpowiedzi.Hide();
 			edytorOdpowiedzi.Leave += new EventHandler(edytorOdpowiedzi_Leave);
@@ -78,28 +88,30 @@ namespace familiada
 			edytorOdpowiedzi.Tag = new EventHandler(edytorOdpowiedzi_Leave);
 
 			edytorPunktów.AutoSize = false;
-			edytorPunktów.Location = new Point(170, 0);
-			edytorPunktów.Size = new Size(30, 30);
+			edytorPunktów.Location = punktyButton.Location;
+			edytorPunktów.Size = punktyButton.Size;
 			edytorPunktów.Text = punkty.ToString();
 			edytorPunktów.Hide();
 			edytorPunktów.Leave += new EventHandler(edytorPunktów_Leave);
 			edytorPunktów.KeyPress += new KeyPressEventHandler(edytor_KeyPress);
 			edytorPunktów.Tag = new EventHandler(edytorPunktów_Leave);
 
-			doGóry.Location = new Point(230, 0);
-			doGóry.Size = new Size(30, 15);
+			doGóry.Location = new Point(edycjaOdpowiedziButton.Right + operacjeButtonOdstępX, 0);
+			doGóry.Size = new Size(operacjeButtonSzerokość, panelWysokość/2);
 			doGóry.Text = "góra";
 			doGóry.Click += new EventHandler(doGóry_Click);
 
-			doDołu.Location = new Point(230, 15);
-			doDołu.Size = new Size(30, 15);
+			doDołu.Location = new Point(edycjaOdpowiedziButton.Right + operacjeButtonOdstępX, panelWysokość / 2);
+			doDołu.Size = doGóry.Size;
 			doDołu.Text = "dół";
 			doDołu.Click += new EventHandler(doDołu_Click);
 
-			usuńButton.Location = new Point(260, 0);
-			usuńButton.Size = new Size(30, 30);
+			usuńButton.Location = new Point(doGóry.Right + operacjeButtonOdstępX, 0);
+			usuńButton.Size = new Size(operacjeButtonSzerokość, 30);
 			usuńButton.Text = "usuń";
 			usuńButton.Click += new EventHandler(usuń_Click);
+
+			panel.Size = new System.Drawing.Size(usuńButton.Right, panelWysokość);
 
 			panel.Controls.Add(odpowiedźButton);
 			panel.Controls.Add(punktyButton);
@@ -250,15 +262,15 @@ namespace familiada
 
 		private void wyświetlNrOdpowiedzi(bool niePuste, char wypełnienie)
 		{
-			Global.tablica1.ustawTekst(niePuste ? nrOdpowiedzi.ToString() : String.Empty, 4, nrOdpowiedzi, false, 2, wypełnienie);
+			Global.tablica1.ustawTekst(niePuste ? nrOdpowiedzi.ToString() : String.Empty, tablicaNumerPytaniaPozycjaX, tablicaPunktyOdstępY-1+nrOdpowiedzi, false, 2, wypełnienie);
 		}
 		private void wyświetlOdpowiedź(bool niePuste, char wypełnienie)
 		{
-			Global.tablica1.ustawTekst(niePuste ? odpowiedź : String.Empty, 6, nrOdpowiedzi, true, Global.długośćOdpowiedzi1, wypełnienie);
+			Global.tablica1.ustawTekst(niePuste ? odpowiedź : String.Empty, tablicaOdpowiedźPozycjaX, tablicaPunktyOdstępY-1+nrOdpowiedzi, true, Global.długośćOdpowiedzi1, wypełnienie);
 		}
 		private void wyświetlPunkty(bool niePuste, char wypełnienie)
 		{
-			Global.tablica1.ustawTekst(niePuste ? punkty.ToString() : String.Empty, 24, nrOdpowiedzi, false, 2, wypełnienie);
+			Global.tablica1.ustawTekst(niePuste ? punkty.ToString() : String.Empty, tablicaPunktyPozycjaX, tablicaPunktyOdstępY-1+nrOdpowiedzi, false, 2, wypełnienie);
 		}
 	}
 }

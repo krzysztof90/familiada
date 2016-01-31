@@ -12,6 +12,43 @@ namespace familiada
 {
 	public partial class Kontroler : Form, IOperatable
 	{
+		static private int dodatkowyPanelPozycjaX = 0;
+		static private int dodatkowyPanelPozycjaY = 320;
+		static private int dodatkowyPanelSzerokość = 210;
+		static private int dodatkowyPanelWysokość = 135;
+		static private int przełączPytanieButtonPozycjaXPoczątek = 185;
+		static private int przełączPytanieButtonOdstępX = 70;
+		static private int przełączPytanieButtonPozycjaY = 300;
+		static private int przełączPytanieButtonSzerokość = 115;
+		static private int przełączPytanieButtonWysokość = 25;
+		static private int pokażEkranButtonPozycjaX = 0;
+		static private int pokażEkranButtonPozycjaY = 40;
+		static private int pokażEkranButtonSzerokość = 115;
+		static private int pokażEkranButtonWysokość = 25;
+		static private int rundaButtonPozycjaX = 0;
+		static private int rundaButtonPozycjaY = 70;
+		static private int rundaButtonSzerokość = 115;
+		static private int rundaButtonWysokość = 25;
+		static private int punktyLabelPozycjaX = 80;
+		static private int punktyLabelPozycjaY = 8;
+		static private int punktyLabelSzerokość = 13;
+		static private int punktyLabelWysokość = 13;
+		static private int punktyDrużynaLabelSzerokość = 25;
+		static private int punktyDrużynaLabelWysokość = 15;
+		static private int ustawCzasButtonPozycjaXPoczątek = 400;
+		static private int ustawCzasButtonOdstępX = 25;
+		static private int ustawCzasButtonPozycjaY = 300;
+		static private int ustawCzasButtonSzerokość = 75;
+		static private int ustawCzasButtonWysokość = 25;
+		static private int czasLabelPozycjaX = 520;
+		static private int czasLabelPozycjaY = 400;
+		static private int czasLabelSzerokość = 0;
+		static private int czasLabelWysokość = 13;
+		static private int startButtonPozycjaX = 470;
+		static private int startButtonPozycjaY = 350;
+		static private int startButtonSzerokość = 75;
+		static private int startButtonWysokość = 25;
+
 		public Kontroler()
 		{
 			panele = new List<Panel> { new Panel(), new Panel() };
@@ -23,7 +60,7 @@ namespace familiada
 			}
 
 			punktyDrużynaLabel = new List<Label> { new Label(), new Label() };
-			punktyDrużynaLabel.ForEach(l => l.Size = new Size(25, 15));
+			punktyDrużynaLabel.ForEach(l => l.Size = new Size(punktyDrużynaLabelSzerokość, punktyDrużynaLabelWysokość));
 			punktyDrużynaLabel[0].Dock = DockStyle.Left;
 			punktyDrużynaLabel[1].Dock = DockStyle.Right;
 
@@ -32,10 +69,10 @@ namespace familiada
 			{
 				Button b = ustawCzasButton[i];
 				panele[1].Controls.Add(b);
-				b.Location = new Point(400 + 100 * i, 300);
+				b.Location = new Point(ustawCzasButtonPozycjaXPoczątek + (ustawCzasButtonOdstępX+ustawCzasButtonSzerokość) * i, ustawCzasButtonPozycjaY);
 				b.Tag = i == 0 ? "15" : "20";
 				b.Text = "ustaw" + (string)(b.Tag);
-				b.Size = new Size(75, 23);
+				b.Size = new Size(ustawCzasButtonSzerokość, ustawCzasButtonWysokość);
 				b.Click += new EventHandler(ustawCzas_Click);
 			}
 
