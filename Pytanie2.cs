@@ -18,6 +18,8 @@ namespace familiada
 		protected TextBox punktyTextBox = new TextBox();
 		protected Button umieśćButton = new Button();
 
+		public abstract int Tag { get; }
+
 		public abstract int odpowiedźTextBoxPozycjaX { get; }
 		public abstract int odpowiedźTextBoxTabIndex { get; }
 		public abstract int punktyTextBoxPozycjaX { get; }
@@ -27,9 +29,6 @@ namespace familiada
 		public abstract int pozycjaOdpowiedziNaTablicy { get; }
 		public abstract int pozycjaPunktówNaTablicy { get; }
 		public abstract bool wyrównanieDoLewej { get; }
-
-		public abstract void odpowiedź_KeyDown(object sender, KeyEventArgs e);
-		public abstract void punkty_KeyDown(object sender, KeyEventArgs e);
 
 		public PytanieStrona(int nrPytania)
 		{
@@ -115,6 +114,22 @@ namespace familiada
 			if (poprawnePunkty && wyświetlony())
 				pokażUkryj_Click(sender, new EventArgs());
 		}
+		private void odpowiedź_KeyDown(object sender, KeyEventArgs e)
+		{
+			if (e.KeyCode == Keys.Down)
+			{
+				if (nrPytania != 5)
+					Global.pytania2[nrPytania].pytaniaStrona[Tag].odpowiedźTextBox.Focus();
+			}
+		}
+		private void punkty_KeyDown(object sender, KeyEventArgs e)
+		{
+			if (e.KeyCode == Keys.Down)
+			{
+				if (nrPytania != 5)
+					Global.pytania2[nrPytania].pytaniaStrona[Tag].punktyTextBox.Focus();
+			}
+		}
 		private void pokażUkryj_Click(object sender, EventArgs e)
 		{
 			if (wyświetlony())
@@ -144,56 +159,20 @@ namespace familiada
 
 	class PytanieL : PytanieStrona
 	{
+		public override int Tag { get { return 0; } }
+
 		public override int odpowiedźTextBoxPozycjaX
 		{
 			get { return 150; }
 		}
-		public override int odpowiedźTextBoxTabIndex
-		{
-			get { return 1; }
-		}
-		public override int punktyTextBoxPozycjaX
-		{
-			get { return 250; }
-		}
-		public override int punktyTextBoxTabIndex
-		{
-			get { return 2; }
-		}
-		public override int umieśćButtonPozycjaX
-		{
-			get { return 280; }
-		}
+		public override int odpowiedźTextBoxTabIndex { get { return 1; } }
+		public override int punktyTextBoxPozycjaX { get { return 250; } }
+		public override int punktyTextBoxTabIndex { get { return 2; } }
+		public override int umieśćButtonPozycjaX { get { return 280; } }
 
-		public override int pozycjaOdpowiedziNaTablicy
-		{
-			get { return 1; }
-		}
-		public override int pozycjaPunktówNaTablicy
-		{
-			get { return 12; }
-		}
-		public override bool wyrównanieDoLewej
-		{
-			get { return false; }
-		}
-
-		public override void odpowiedź_KeyDown(object sender, KeyEventArgs e)
-		{
-			if (e.KeyCode == Keys.Down)
-			{
-				if (nrPytania != 5)
-					Global.pytania2[nrPytania].pytanieL.odpowiedźTextBox.Focus();
-			}
-		}
-		public override void punkty_KeyDown(object sender, KeyEventArgs e)
-		{
-			if (e.KeyCode == Keys.Down)
-			{
-				if (nrPytania != 5)
-					Global.pytania2[nrPytania].pytanieL.punktyTextBox.Focus();
-			}
-		}
+		public override int pozycjaOdpowiedziNaTablicy { get { return 1; } }
+		public override int pozycjaPunktówNaTablicy { get { return 12; } }
+		public override bool wyrównanieDoLewej { get { return false; } }
 
 		public PytanieL(int nrPytania)
 			: base(nrPytania)
@@ -202,56 +181,17 @@ namespace familiada
 
 	class PytanieP : PytanieStrona
 	{
-		public override int odpowiedźTextBoxPozycjaX
-		{
-			get { return 370; }
-		}
-		public override int odpowiedźTextBoxTabIndex
-		{
-			get { return 3; }
-		}
-		public override int punktyTextBoxPozycjaX
-		{
-			get { return 340; }
-		}
-		public override int punktyTextBoxTabIndex
-		{
-			get { return 4; }
-		}
-		public override int umieśćButtonPozycjaX
-		{
-			get { return 310; }
-		}
+		public override int Tag { get { return 1; } }
 
-		public override int pozycjaOdpowiedziNaTablicy
-		{
-			get { return 19; }
-		}
-		public override int pozycjaPunktówNaTablicy
-		{
-			get { return 16; }
-		}
-		public override bool wyrównanieDoLewej
-		{
-			get { return true; }
-		}
+		public override int odpowiedźTextBoxPozycjaX { get { return 370; } }
+		public override int odpowiedźTextBoxTabIndex { get { return 3; } }
+		public override int punktyTextBoxPozycjaX { get { return 340; } }
+		public override int punktyTextBoxTabIndex { get { return 4; } }
+		public override int umieśćButtonPozycjaX { get { return 310; } }
 
-		public override void odpowiedź_KeyDown(object sender, KeyEventArgs e)
-		{
-			if (e.KeyCode == Keys.Down)
-			{
-				if (nrPytania != 5)
-					Global.pytania2[nrPytania].pytanieP.odpowiedźTextBox.Focus();
-			}
-		}
-		public override void punkty_KeyDown(object sender, KeyEventArgs e)
-		{
-			if (e.KeyCode == Keys.Down)
-			{
-				if (nrPytania != 5)
-					Global.pytania2[nrPytania].pytanieP.punktyTextBox.Focus();
-			}
-		}
+		public override int pozycjaOdpowiedziNaTablicy { get { return 19; } }
+		public override int pozycjaPunktówNaTablicy { get { return 16; } }
+		public override bool wyrównanieDoLewej { get { return true; } }
 
 		public PytanieP(int nrPytania)
 			: base(nrPytania)
@@ -266,16 +206,13 @@ namespace familiada
 		Panel naKontrolerze = new Panel();
 
 		Label nazwaLabel = new Label();
-		public PytanieL pytanieL;
-		public PytanieP pytanieP;
+		public List<PytanieStrona> pytaniaStrona;
 
 		public Pytanie2(string nazwa, int nrPytania)
 		{
 			nazwaPytania = nazwa;
 			this.nrPytania = nrPytania;
-
-			pytanieL = new PytanieL(nrPytania);
-			pytanieP = new PytanieP(nrPytania);
+			pytaniaStrona = new List<PytanieStrona> { new PytanieL(nrPytania), new PytanieP(nrPytania) };
 
 			naKontrolerze.Location = new Point(100, 50 * nrPytania);
 			naKontrolerze.Size = new Size(480, 30);
@@ -286,8 +223,7 @@ namespace familiada
 
 			naKontrolerze.Controls.Add(this.nazwaLabel);
 			Global.panelKontroler2.Controls.Add(naKontrolerze);
-			pytanieL.umieść(naKontrolerze);
-			pytanieP.umieść(naKontrolerze);
+			pytaniaStrona.ForEach(p=>p.umieść(naKontrolerze));
 		}
 
 		public static void wyświetlPunkty()
