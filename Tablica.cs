@@ -9,8 +9,8 @@ namespace familiada
 {
 	class Tablica
 	{
-		public static int szerokość= 30;
-		public static int wysokość= 10;
+		public const int szerokość = 30;
+		public const int wysokość = 10;
 
 		private int liczbaKolumn;
 		private int liczbaRzędów;

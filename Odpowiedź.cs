@@ -10,16 +10,16 @@ namespace familiada
 {
 	class Odpowiedź
 	{
-		private static int panelWysokość = 30;
-		private static int odpowiedźButtoniPunktyButtonOdstępX = 20;
-		private static int operacjeButtonOdstępX = 0;
-		private static int odpowiedźButtonSzerokość= 100;
-		private static int operacjeButtonSzerokość= 30;
+		private const int panelWysokość = 30;
+		private const int odpowiedźButtoniPunktyButtonOdstępX = 20;
+		private const int operacjeButtonOdstępX = 0;
+		private const int odpowiedźButtonSzerokość = 100;
+		private const int operacjeButtonSzerokość = 30;
 
-		private static int tablicaNumerPytaniaPozycjaX = 4;
-		private static int tablicaOdpowiedźPozycjaX=6;
-		private static int tablicaPunktyPozycjaX=24;
-		private static int tablicaPunktyOdstępY=1;
+		private const int tablicaNumerPytaniaPozycjaX = 4;
+		private const int tablicaOdpowiedźPozycjaX = 6;
+		private const int tablicaPunktyPozycjaX = 24;
+		private const int tablicaPunktyOdstępY = 1;
 
 		private string odpowiedź;
 		private int punkty;
@@ -68,12 +68,12 @@ namespace familiada
 			odpowiedźButton.Text = odpowiedź;
 			odpowiedźButton.Click += new EventHandler(zaznaczOdznacz_Click);
 
-			punktyButton.Location = new Point(odpowiedźButton .Right+ odpowiedźButtoniPunktyButtonOdstępX, 0);
+			punktyButton.Location = new Point(odpowiedźButton.Right + odpowiedźButtoniPunktyButtonOdstępX, 0);
 			punktyButton.Size = new Size(operacjeButtonSzerokość, panelWysokość);
 			punktyButton.Text = punkty.ToString();
 			punktyButton.Click += new EventHandler(edytujPunkty_Click);
 
-			edycjaOdpowiedziButton.Location = new Point(punktyButton.Right+ operacjeButtonOdstępX, 0);
+			edycjaOdpowiedziButton.Location = new Point(punktyButton.Right + operacjeButtonOdstępX, 0);
 			edycjaOdpowiedziButton.Size = new Size(operacjeButtonSzerokość, panelWysokość);
 			edycjaOdpowiedziButton.Text = "edytuj";
 			edycjaOdpowiedziButton.Click += new EventHandler(edytujOdpowiedź_Click);
@@ -97,7 +97,7 @@ namespace familiada
 			edytorPunktów.Tag = new EventHandler(edytorPunktów_Leave);
 
 			doGóry.Location = new Point(edycjaOdpowiedziButton.Right + operacjeButtonOdstępX, 0);
-			doGóry.Size = new Size(operacjeButtonSzerokość, panelWysokość/2);
+			doGóry.Size = new Size(operacjeButtonSzerokość, panelWysokość / 2);
 			doGóry.Text = "góra";
 			doGóry.Click += new EventHandler(doGóry_Click);
 
@@ -211,7 +211,7 @@ namespace familiada
 
 			if (odpowiedź.Length > Global.długośćOdpowiedzi1)
 			{
-				MessageBox.Show(String.Format("Tekst za długi o {0} znaków", odpowiedź.Length-Global.długośćOdpowiedzi1));
+				MessageBox.Show(String.Format("Tekst za długi o {0} znaków", odpowiedź.Length - Global.długośćOdpowiedzi1));
 				edytorOdpowiedzi.Focus();
 			}
 			else
@@ -262,15 +262,15 @@ namespace familiada
 
 		private void wyświetlNrOdpowiedzi(bool niePuste, char wypełnienie)
 		{
-			Global.tablica1.ustawTekst(niePuste ? nrOdpowiedzi.ToString() : String.Empty, tablicaNumerPytaniaPozycjaX, tablicaPunktyOdstępY-1+nrOdpowiedzi, false, 2, wypełnienie);
+			Global.tablica1.ustawTekst(niePuste ? nrOdpowiedzi.ToString() : String.Empty, tablicaNumerPytaniaPozycjaX, tablicaPunktyOdstępY - 1 + nrOdpowiedzi, false, 2, wypełnienie);
 		}
 		private void wyświetlOdpowiedź(bool niePuste, char wypełnienie)
 		{
-			Global.tablica1.ustawTekst(niePuste ? odpowiedź : String.Empty, tablicaOdpowiedźPozycjaX, tablicaPunktyOdstępY-1+nrOdpowiedzi, true, Global.długośćOdpowiedzi1, wypełnienie);
+			Global.tablica1.ustawTekst(niePuste ? odpowiedź : String.Empty, tablicaOdpowiedźPozycjaX, tablicaPunktyOdstępY - 1 + nrOdpowiedzi, true, Global.długośćOdpowiedzi1, wypełnienie);
 		}
 		private void wyświetlPunkty(bool niePuste, char wypełnienie)
 		{
-			Global.tablica1.ustawTekst(niePuste ? punkty.ToString() : String.Empty, tablicaPunktyPozycjaX, tablicaPunktyOdstępY-1+nrOdpowiedzi, false, 2, wypełnienie);
+			Global.tablica1.ustawTekst(niePuste ? punkty.ToString() : String.Empty, tablicaPunktyPozycjaX, tablicaPunktyOdstępY - 1 + nrOdpowiedzi, false, 2, wypełnienie);
 		}
 	}
 }

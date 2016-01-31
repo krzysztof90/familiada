@@ -21,10 +21,10 @@ namespace familiada
 
 	abstract class Zonk
 	{
-		static private int zonkButtonPozycjaYPoczątek = 50;
-		static private int zonkButtonOdstępY = 0;
-		static private int zonkButtonSzerokość = 25;
-		static private int zonkButtonWysokość = 45;
+		private const int zonkButtonPozycjaYPoczątek = 50;
+		private const int zonkButtonOdstępY = 0;
+		private const int zonkButtonSzerokość = 25;
+		private const int zonkButtonWysokość = 45;
 		public abstract int pozycja { get; }
 
 		Button[] zonkButton = new Button[4];
@@ -125,17 +125,17 @@ namespace familiada
 
 	class Pytanie1
 	{
-		public static int nazwaPytaniaLabelPozycjaX = 100;
-		public static int nazwaPytaniaLabelPozycjaY = 0;
-		public static int dodajOdpowiedźButtonPozycjaX = 450;
-		public static int dodajOdpowiedźButtonPozycjaY = 100;
-		public static int dodajOdpowiedźButtonSzerokość = 135;
-		public static int dodajOdpowiedźButtonWysokość = 25;
-		static private int przypiszButtonPozycjaX = 450;
-		static private int przypiszButtonPozycjaYPoczątek = 140;
-		static private int przypiszButtonOdstępY = 5;
-		static private int przypiszButtonSzerokość = 135;
-		static private int przypiszButtonWysokość = 25;
+		public const int nazwaPytaniaLabelPozycjaX = 100;
+		public const int nazwaPytaniaLabelPozycjaY = 0;
+		public const int dodajOdpowiedźButtonPozycjaX = 450;
+		public const int dodajOdpowiedźButtonPozycjaY = 100;
+		public const int dodajOdpowiedźButtonSzerokość = 135;
+		public const int dodajOdpowiedźButtonWysokość = 25;
+		private const int przypiszButtonPozycjaX = 450;
+		private const int przypiszButtonPozycjaYPoczątek = 140;
+		private const int przypiszButtonOdstępY = 5;
+		private const int przypiszButtonSzerokość = 135;
+		private const int przypiszButtonWysokość = 25;
 
 		public static int obecnePytanie { get; set; }
 		private static Button dodajOdpowiedźButton = new Button();

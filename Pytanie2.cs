@@ -9,14 +9,14 @@ namespace familiada
 {
 	abstract class PytanieStrona
 	{
-		static public int ControlOdstępX = 0;
-		static public int odpowiedźTextBoxSzerokość = 100;
-		static private int odpowiedźTextBoxWysokość = 20;
-		static public int punktyTextBoxSzerokość = 30;
-		static private int punktyTextBoxWysokość = 20;
-		static public int umieśćButtonSzerokość = 30;
-		static private int umieśćButtonWysokość = 30;
-		public static int tablicaOdstęp = (Tablica.szerokość / 2 - Global.długośćOdpowiedzi2 - 2) / 3; //2-szerokość punktów; 3-są trzy odstępy
+		public const int ControlOdstępX = 0;
+		public const int odpowiedźTextBoxSzerokość = 100;
+		private const int odpowiedźTextBoxWysokość = 20;
+		public const int punktyTextBoxSzerokość = 30;
+		private const int punktyTextBoxWysokość = 20;
+		public const int umieśćButtonSzerokość = 30;
+		private const int umieśćButtonWysokość = 30;
+		public const int tablicaOdstęp = (Tablica.szerokość / 2 - Global.długośćOdpowiedzi2 - 2) / 3; //2-szerokość punktów; 3-są trzy odstępy
 
 		private static int punkty;
 		private int nrPytania;
@@ -204,13 +204,13 @@ namespace familiada
 
 	class Pytanie2
 	{
-		public static int nazwaLabelSzerokość = 150;
-		public static int nazwaLabelWysokość = 14;
-		private static int panelPozycjaX = 100;
-		private static int panelPozycjaYPoczątek = 50;
-		private static int panelOdstępY = 20;
-		private static int panelSzerokość = nazwaLabelSzerokość + (PytanieStrona.odpowiedźTextBoxSzerokość + PytanieStrona.punktyTextBoxSzerokość + PytanieStrona.umieśćButtonSzerokość) * 2 + PytanieStrona.ControlOdstępX * 5;
-		public static int panelWysokość = 30;
+		public const int nazwaLabelSzerokość = 150;
+		public const int nazwaLabelWysokość = 14;
+		private const int panelPozycjaX = 100;
+		private const int panelPozycjaYPoczątek = 50;
+		private const int panelOdstępY = 20;
+		private const int panelSzerokość = nazwaLabelSzerokość + (PytanieStrona.odpowiedźTextBoxSzerokość + PytanieStrona.punktyTextBoxSzerokość + PytanieStrona.umieśćButtonSzerokość) * 2 + PytanieStrona.ControlOdstępX * 5;
+		public const int panelWysokość = 30;
 
 		string nazwaPytania;
 		int nrPytania;
