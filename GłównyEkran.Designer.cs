@@ -153,15 +153,6 @@ namespace familiada
 			this.Text = "Główny ekran";
 			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.GłównyEkran_FormClosing);
 			this.ResumeLayout(false);
-
-			this.panel = new List<System.Windows.Forms.Panel> { new System.Windows.Forms.Panel(), new System.Windows.Forms.Panel() };
-			// 
-			// panel1
-			// 
-			this.panel.ForEach(p => p.Dock = System.Windows.Forms.DockStyle.Fill);
-			this.panel.ForEach(p => Margin = new System.Windows.Forms.Padding(0));
-			this.panel.ForEach(p => p.Visible = false);
-			this.panel.ForEach(p => this.panelRundy.Controls.Add(p));
 		}
 
 		#endregion

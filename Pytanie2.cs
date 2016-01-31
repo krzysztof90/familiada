@@ -12,7 +12,7 @@ namespace familiada
 	{
 		protected static int punkty;
 		protected int nrPytania;
-		private bool poprawnePunkty = true;
+		private int punktyPytania;
 
 		public TextBox odpowiedźTextBox = new TextBox();
 		protected TextBox punktyTextBox = new TextBox();
@@ -36,7 +36,6 @@ namespace familiada
 
 			odpowiedźTextBox.Location = new Point(odpowiedźTextBoxPozycjaX, 5);
 			odpowiedźTextBox.Size = new Size(100, 20);
-			odpowiedźTextBox.Leave += new EventHandler(edytor_Leave);
 			odpowiedźTextBox.Leave += new EventHandler(edytorOdpowiedzi_Leave);
 			odpowiedźTextBox.KeyDown += new KeyEventHandler(odpowiedź_KeyDown);
 			odpowiedźTextBox.TabIndex = odpowiedźTextBoxTabIndex;
@@ -45,7 +44,6 @@ namespace familiada
 			punktyTextBox.Size = new Size(30, 20);
 			punktyTextBox.Text = "0";
 			punktyTextBox.Leave += new EventHandler(edytorPunktów_Leave);
-			punktyTextBox.Leave += new EventHandler(edytor_Leave);
 			punktyTextBox.KeyDown += new KeyEventHandler(punkty_KeyDown);
 			punktyTextBox.TabIndex = punktyTextBoxTabIndex;
 
@@ -81,38 +79,39 @@ namespace familiada
 			{
 				MessageBox.Show(String.Format("Tekst za długi o {0} znaków", odpowiedź.Length - Global.długośćOdpowiedzi2));
 				odpowiedźTextBox.Focus();
+				return;
 			}
-			else
-			{
-				for (int i = 0; i < odpowiedź.Length; i++)
-					if (!Global.znaki.ContainsKey(odpowiedź[i]))
-					{
-						MessageBox.Show(String.Format("niepoprawny znak {0}", odpowiedź[i]));
-						odpowiedźTextBox.Focus();
-						return;
-					}
-			}
+			for (int i = 0; i < odpowiedź.Length; i++)
+				if (!Global.znaki.ContainsKey(odpowiedź[i]))
+				{
+					MessageBox.Show(String.Format("niepoprawny znak {0}", odpowiedź[i]));
+					odpowiedźTextBox.Focus();
+					return;
+				}
+
+			if (wyświetlony())
+				pokażOdpowiedź();
 		}
 		private void edytorPunktów_Leave(object sender, EventArgs e)
 		{
 			TextBox textbox = ((TextBox)sender);
 			try
 			{
-				Int32.Parse(textbox.Text);
-				poprawnePunkty = true;
+				int nowePunkty = Int32.Parse(textbox.Text);
+				if (wyświetlony())
+				{
+					punkty -= punktyPytania;
+					punkty += nowePunkty;
+					wyświetlPunkty();
+				}
+				punktyPytania = nowePunkty;
 			}
 			catch (FormatException)
 			{
 				MessageBox.Show("wpisz liczbę");
 				textbox.Focus();
 				textbox.SelectAll();
-				poprawnePunkty = false;
 			}
-		}
-		private void edytor_Leave(object sender, EventArgs e)
-		{
-			if (poprawnePunkty && wyświetlony())
-				pokażUkryj_Click(sender, new EventArgs());
 		}
 		private void odpowiedź_KeyDown(object sender, KeyEventArgs e)
 		{
@@ -144,11 +143,15 @@ namespace familiada
 			{
 				umieśćButton.BackColor = Color.White;
 
-				Global.tablica2.ustawTekst(odpowiedźTextBox.Text, pozycjaOdpowiedziNaTablicy, nrPytania + 1, wyrównanieDoLewej, Global.długośćOdpowiedzi2, ' ');
-				Global.tablica2.ustawTekst(punktyTextBox.Text, pozycjaPunktówNaTablicy, nrPytania + 1, false, 2, ' ');
+				pokażOdpowiedź();
 				punkty += Int32.Parse(punktyTextBox.Text);
 			}
 			wyświetlPunkty();
+		}
+		private void pokażOdpowiedź()
+		{
+			Global.tablica2.ustawTekst(odpowiedźTextBox.Text, pozycjaOdpowiedziNaTablicy, nrPytania + 1, wyrównanieDoLewej, Global.długośćOdpowiedzi2, ' ');
+			Global.tablica2.ustawTekst(punktyTextBox.Text, pozycjaPunktówNaTablicy, nrPytania + 1, false, 2, ' ');
 		}
 		private void ukryjOdpowiedź()
 		{
@@ -161,10 +164,7 @@ namespace familiada
 	{
 		public override int Tag { get { return 0; } }
 
-		public override int odpowiedźTextBoxPozycjaX
-		{
-			get { return 150; }
-		}
+		public override int odpowiedźTextBoxPozycjaX { get { return 150; } }
 		public override int odpowiedźTextBoxTabIndex { get { return 1; } }
 		public override int punktyTextBoxPozycjaX { get { return 250; } }
 		public override int punktyTextBoxTabIndex { get { return 2; } }
@@ -223,7 +223,7 @@ namespace familiada
 
 			naKontrolerze.Controls.Add(this.nazwaLabel);
 			Global.panelKontroler2.Controls.Add(naKontrolerze);
-			pytaniaStrona.ForEach(p=>p.umieść(naKontrolerze));
+			pytaniaStrona.ForEach(p => p.umieść(naKontrolerze));
 		}
 
 		public static void wyświetlPunkty()
