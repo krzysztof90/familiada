@@ -135,9 +135,6 @@
     <None Include="Resources\punktyPuste.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\ZonkGL.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\zonkDużyGL.png" />
   </ItemGroup>
   <ItemGroup>
@@ -145,6 +142,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\zonkMałyG.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\a.png" />
+    <Content Include="Resources\b.png" />
+    <Content Include="Resources\puste.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
