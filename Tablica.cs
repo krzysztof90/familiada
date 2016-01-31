@@ -8,11 +8,11 @@ namespace familiada
 		public const int szerokość = 30;
 		public const int wysokość = 10;
 
-		private int liczbaKolumn;
-		private int liczbaRzędów;
+		readonly int liczbaKolumn;
+		readonly int liczbaRzędów;
 
-		private TableLayoutPanel panel = new TableLayoutPanel();
-		private PictureBox[,] znakiPictureBox;
+		readonly TableLayoutPanel panel = new TableLayoutPanel();
+		readonly PictureBox[,] znakiPictureBox;
 
 		public Tablica(Panel ojciec, int liczbaKolumn, int liczbaRzędów, Image tło)
 		{
@@ -62,26 +62,26 @@ namespace familiada
 		/// <summary>
 		/// dla za długiego tekstu przy wyrównaniu do lewej urywa z prawej, przy wyrówaniu do prawej urywa z lewej
 		/// </summary>
-		public void ustawTekst(string tekst, int kolumnaPoczątkowa, int rząd, bool wyrównanieDoLewej, int pojemnośćCałkowita, char wypełnienie)
+		public void UstawTekst(string tekst, int kolumnaPoczątkowa, int rząd, bool wyrównanieDoLewej, int pojemnośćCałkowita, char wypełnienie)
 		{
-			tekst = tekst.ToUpper();
-			int długośćTekstu = tekst.Length;
+			string tekstUpper = tekst.ToUpper();
+			int długośćTekstu = tekstUpper.Length;
 			if (wyrównanieDoLewej)
 			{
 				for (int i = 0; i < długośćTekstu && i < pojemnośćCałkowita; i++)
-					znakiPictureBox[kolumnaPoczątkowa + i, rząd].Image = Global.znaki[tekst[i]];
+					znakiPictureBox[kolumnaPoczątkowa + i, rząd].Image = Global.znaki[tekstUpper[i]];
 				for (int i = 0; i < pojemnośćCałkowita - długośćTekstu; i++)
 					znakiPictureBox[kolumnaPoczątkowa + długośćTekstu + i, rząd].Image = Global.znaki[wypełnienie];
 			}
 			else
 			{
 				for (int i = (długośćTekstu > pojemnośćCałkowita ? długośćTekstu - pojemnośćCałkowita : 0); i < długośćTekstu; i++)
-					znakiPictureBox[kolumnaPoczątkowa + pojemnośćCałkowita - długośćTekstu + i, rząd].Image = Global.znaki[tekst[i]];
+					znakiPictureBox[kolumnaPoczątkowa + pojemnośćCałkowita - długośćTekstu + i, rząd].Image = Global.znaki[tekstUpper[i]];
 				for (int i = 0; i < pojemnośćCałkowita - długośćTekstu; i++)
 					znakiPictureBox[kolumnaPoczątkowa + i, rząd].Image = Global.znaki[wypełnienie];
 			}
 		}
-		private void wstaw(char znak, int kolumna, int rząd)
+		private void Wstaw(char znak, int kolumna, int rząd)
 		{
 			znakiPictureBox[kolumna, rząd].Image = Global.znaki[znak];
 		}

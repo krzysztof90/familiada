@@ -27,21 +27,21 @@ namespace familiada
 			Global.kontroler.pokażEkran.Show();
 		}
 
-		public void pokażPanel(int który)
+		public void PokażPanel(int który)
 		{
 			panele[który].Show();
 		}
-		public void ukryjPanel(int który)
+		public void UkryjPanel(int który)
 		{
 			panele[który].Hide();
 		}
-		public void ustawPunktyGłówne(int punkty)
+		public void UstawPunktyGłówne(int punkty)
 		{
-			Global.tablicaPunkty.ustawTekst(punkty.ToString(), 0, 0, false, 3, ' ');
+			Global.tablicaPunkty.UstawTekst(punkty.ToString(), 0, 0, false, 3, ' ');
 		}
-		public void ustawPunktyDrużyny(int która, int punkty)
+		public void UstawPunktyDrużyny(int która, int punkty)
 		{
-			Global.tablicaPunktyDrużyny[która].ustawTekst(punkty.ToString(), 0, 0, false, 3, ' ');
+			Global.tablicaPunktyDrużyny[która].UstawTekst(punkty.ToString(), 0, 0, false, 3, ' ');
 		}
 	}
 }

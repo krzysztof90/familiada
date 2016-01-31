@@ -8,7 +8,7 @@ using familiada.Properties;
 
 namespace familiada
 {
-	class Global
+	static class Global
 	{
 		static Global()
 		{
@@ -60,16 +60,16 @@ namespace familiada
 				{'.', Resources.kropka},
 				{' ', Resources.puste},
 				{'|', Resources.punktyPuste},
-				{'˹', zonkDuży(true, true)},
-				{'˺', zonkDuży(true, false)},
-				{'˻', zonkDuży(false, true)},
-				{'˼', zonkDuży(false, false)},
-				{'┘', zonkMały(true, true)},
-				{'└', zonkMały(true, false)},
-				{'┐', zonkMały(false, true)},
-				{'┌', zonkMały(false, false)},
-				{'ˉ', zonkMały(true)},
-				{'ˍ', zonkMały(false)},
+				{'˹', ZwróćZonkDuży(true, true)},
+				{'˺', ZwróćZonkDuży(true, false)},
+				{'˻', ZwróćZonkDuży(false, true)},
+				{'˼', ZwróćZonkDuży(false, false)},
+				{'┘', ZwróćZonkMały(true, true)},
+				{'└', ZwróćZonkMały(true, false)},
+				{'┐', ZwróćZonkMały(false, true)},
+				{'┌', ZwróćZonkMały(false, false)},
+				{'ˉ', ZwróćZonkMały(true)},
+				{'ˍ', ZwróćZonkMały(false)},
 			};
 
 			tablica1 = new Tablica(główny.panele[0], Tablica.szerokość, Tablica.wysokość, Resources.puste);
@@ -97,7 +97,7 @@ namespace familiada
 
 		public static Dictionary<char, Image> znaki { get; private set; }
 
-		private static Bitmap zonkDuży(bool góra, bool lewo)
+		private static Bitmap ZwróćZonkDuży(bool góra, bool lewo)
 		{
 			Bitmap Zonk = (Bitmap)(Resources.zonkDużyGL.Clone());
 			if (góra)
@@ -114,7 +114,7 @@ namespace familiada
 			}
 			return Zonk;
 		}
-		private static Bitmap zonkMały(bool góra, bool lewo)
+		private static Bitmap ZwróćZonkMały(bool góra, bool lewo)
 		{
 			Bitmap Zonk = (Bitmap)(Resources.zonkMałyGL.Clone());
 			if (góra)
@@ -131,7 +131,7 @@ namespace familiada
 			}
 			return Zonk;
 		}
-		private static Bitmap zonkMały(bool góra)
+		private static Bitmap ZwróćZonkMały(bool góra)
 		{
 			Bitmap Zonk = (Bitmap)(Resources.zonkMałyG.Clone());
 			if (góra)
@@ -146,24 +146,24 @@ namespace familiada
 
 		public static List<Drużyna> drużyny { get; private set; }
 
-		static public void pokażPanel(int który)
+		static public void PokażPanel(int który)
 		{
-			formy.ForEach(e => e.pokażPanel(który));
+			formy.ForEach(e => e.PokażPanel(który));
 		}
-		static public void ukryjPanel(int który)
+		static public void UkryjPanel(int który)
 		{
-			formy.ForEach(e => e.ukryjPanel(który));
+			formy.ForEach(e => e.UkryjPanel(który));
 		}
-		static public void ustawPunktyGłówne(int punkty)
+		static public void UstawPunktyGłówne(int punkty)
 		{
-			formy.ForEach(e => e.ustawPunktyGłówne(punkty));
+			formy.ForEach(e => e.UstawPunktyGłówne(punkty));
 		}
-		static public void ustawPunktyDrużyny(int która, int punkty)
+		static public void UstawPunktyDrużyny(int która, int punkty)
 		{
-			formy.ForEach(e => e.ustawPunktyDrużyny(która, punkty));
+			formy.ForEach(e => e.UstawPunktyDrużyny(która, punkty));
 		}
 
-		static public void exit(string message)
+		static public void Wyjdź(string message)
 		{
 			MessageBox.Show(message);
 			Environment.Exit(0);

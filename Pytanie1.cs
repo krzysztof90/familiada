@@ -24,14 +24,14 @@ namespace familiada
 		private const int zonkButtonWysokość = 45;
 		public abstract int pozycja { get; }
 
-		Button[] zonkButton = new Button[4];
+		readonly Button[] zonkButton = new Button[4];
 
 		public Zonk()
 		{
 			for (int i = 0; i < 4; i++)
 			{
 				zonkButton[i] = new Button();
-				zonkButton[i].Click += new EventHandler(zaznacz);
+				zonkButton[i].Click += new EventHandler(Zaznacz);
 				zonkButton[i].Location = new Point(pozycja, zonkButtonPozycjaYPoczątek + i * (zonkButtonOdstępY + zonkButtonWysokość));
 				zonkButton[i].Size = new Size(zonkButtonSzerokość, zonkButtonWysokość);
 				zonkButton[i].Tag = i;
@@ -43,7 +43,7 @@ namespace familiada
 			zonkButton[3].Text = "boom";
 		}
 
-		private void zaznacz(object sender, EventArgs e)
+		private void Zaznacz(object sender, EventArgs e)
 		{
 			Button przycisk = (Button)sender;
 			int Tag = (int)(przycisk.Tag);
@@ -51,57 +51,57 @@ namespace familiada
 			{
 				przycisk.BackColor = SystemColors.Control;
 				przycisk.UseVisualStyleBackColor = true;
-				ukryjZonk(Tag);
+				UkryjZonk(Tag);
 			}
 			else
 			{
 				przycisk.BackColor = Color.White;
-				wyświetlZonk(Tag);
+				WyświetlZonk(Tag);
 			}
 		}
-		public void pokaż()
+		public void Pokaż()
 		{
 			for (int i = 0; i < 4; i++)
 			{
 				zonkButton[i].Show();
 				if (zonkButton[i].BackColor == Color.White)
-					wyświetlZonk(i);
+					WyświetlZonk(i);
 			}
 		}
-		public void ukryj()
+		public void Ukryj()
 		{
 			for (int i = 0; i < 4; i++)
 			{
 				zonkButton[i].Hide();
-				ukryjZonk(i);
+				UkryjZonk(i);
 			}
 		}
 
-		private void wyświetlZonk(int który)
+		private void WyświetlZonk(int który)
 		{
 			if (który == 3)
 			{
-				Global.tablica1.ustawTekst("˹ ˺", pozycja, 3, true, 3, ' ');
-				Global.tablica1.ustawTekst("˼ ˻", pozycja, 4, true, 3, ' ');
-				Global.tablica1.ustawTekst(" | ", pozycja, 5, true, 3, ' ');
-				Global.tablica1.ustawTekst("˺ ˹", pozycja, 6, true, 3, ' ');
-				Global.tablica1.ustawTekst("˻ ˼", pozycja, 7, true, 3, ' ');
+				Global.tablica1.UstawTekst("˹ ˺", pozycja, 3, true, 3, ' ');
+				Global.tablica1.UstawTekst("˼ ˻", pozycja, 4, true, 3, ' ');
+				Global.tablica1.UstawTekst(" | ", pozycja, 5, true, 3, ' ');
+				Global.tablica1.UstawTekst("˺ ˹", pozycja, 6, true, 3, ' ');
+				Global.tablica1.UstawTekst("˻ ˼", pozycja, 7, true, 3, ' ');
 			}
 			else
 			{
-				Global.tablica1.ustawTekst("┘ˍ└", pozycja, 1 + 3 * który, true, 3, ' ');
-				Global.tablica1.ustawTekst(" | ", pozycja, 2 + 3 * który, true, 3, ' ');
-				Global.tablica1.ustawTekst("┐ˉ┌", pozycja, 3 + 3 * który, true, 3, ' ');
+				Global.tablica1.UstawTekst("┘ˍ└", pozycja, 1 + 3 * który, true, 3, ' ');
+				Global.tablica1.UstawTekst(" | ", pozycja, 2 + 3 * który, true, 3, ' ');
+				Global.tablica1.UstawTekst("┐ˉ┌", pozycja, 3 + 3 * który, true, 3, ' ');
 			}
 		}
-		private void ukryjZonk(int który)
+		private void UkryjZonk(int który)
 		{
 			if (który == 3)
 				for (int rząd = 3; rząd <= 7; rząd++)
-					Global.tablica1.ustawTekst(String.Empty, pozycja, rząd, true, 3, ' ');
+					Global.tablica1.UstawTekst(String.Empty, pozycja, rząd, true, 3, ' ');
 			else
 				for (int rząd = 1 + 3 * który; rząd <= 3 + 3 * który; rząd++)
-					Global.tablica1.ustawTekst(String.Empty, pozycja, rząd, true, 3, ' ');
+					Global.tablica1.UstawTekst(String.Empty, pozycja, rząd, true, 3, ' ');
 		}
 	}
 
@@ -136,16 +136,16 @@ namespace familiada
 
 		public static int obecnePytanie { get; set; }
 		private static Button dodajOdpowiedźButton = new Button();
-		private List<Button> przypiszButton = new List<Button> { new Button(), new Button() };
+		readonly List<Button> przypiszButton = new List<Button> { new Button(), new Button() };
 
-		private int nrPytania;
-		private string nazwaPytania;
+		readonly int nrPytania;
+		readonly string nazwaPytania;
 		private int punkty = 0;
 		public Drużyna drużynaZPrzypisanymiPunktami { get; set; }
 
-		private Label nazwaPytaniaLabel;
+		readonly Label nazwaPytaniaLabel;
 
-		private List<Zonk> zonki = new List<Zonk> { new ZonkL(), new ZonkP() };
+		readonly List<Zonk> zonki = new List<Zonk> { new ZonkL(), new ZonkP() };
 
 		public List<Odpowiedź> odpowiedzi { get; private set; }
 
@@ -153,7 +153,7 @@ namespace familiada
 		{
 			obecnePytanie = -1;
 
-			dodajOdpowiedźButton.Click += new EventHandler(dodajOdpowiedź_Click);
+			dodajOdpowiedźButton.Click += new EventHandler(DodajOdpowiedź_Click);
 			dodajOdpowiedźButton.Location = new Point(dodajOdpowiedźButtonPozycjaX, dodajOdpowiedźButtonPozycjaY);
 			dodajOdpowiedźButton.Size = new Size(dodajOdpowiedźButtonSzerokość, dodajOdpowiedźButtonWysokość);
 			dodajOdpowiedźButton.Text = "dodaj odpowiedź";
@@ -179,99 +179,99 @@ namespace familiada
 			{
 				przypiszButton[i].Size = new System.Drawing.Size(przypiszButtonSzerokość, przypiszButtonWysokość);
 				przypiszButton[i].Visible = false;
-				przypiszButton[i].Click += new System.EventHandler(przypisz_Click);
+				przypiszButton[i].Click += new System.EventHandler(Przypisz_Click);
 				przypiszButton[i].Location = new System.Drawing.Point(przypiszButtonPozycjaX, przypiszButtonPozycjaYPoczątek + i * (przypiszButtonWysokość + przypiszButtonOdstępY));
 				przypiszButton[i].Tag = i;
-				przypiszButton[i].Text = "przypisz punkty" + (i == 0 ? "lewej" : "prawej");
+				przypiszButton[i].Text = "przypisz punkty " + (i == 0 ? "lewej" : "prawej");
 				Global.panelKontroler1.Controls.Add(przypiszButton[i]);
 			}
 
 			Global.panelKontroler1.Controls.Add(nazwaPytaniaLabel);
 		}
 
-		private void zainicjujKontrolki()
+		private void ZainicjujKontrolki()
 		{
 			nazwaPytaniaLabel.Show();
-			ustawPunkty(punkty);
-			zonki.ForEach(z => z.pokaż());
-			odpowiedzi.ForEach(o => o.pokażKontrolkiOdpowiedzi());
+			UstawPunkty();
+			zonki.ForEach(z => z.Pokaż());
+			odpowiedzi.ForEach(o => o.PokażKontrolkiOdpowiedzi());
 			przypiszButton.ForEach(b => b.Show());
 		}
-		public void dodajIPokażOdpowiedź(string linia)
+		private void DodajIPokażOdpowiedź(string linia)
 		{
-			dodajOdpowiedź(linia);
-			zainicjujKontrolki();
+			DodajOdpowiedź(linia);
+			ZainicjujKontrolki();
 		}
-		public void dodajOdpowiedź(string linia)
+		public void DodajOdpowiedź(string linia)
 		{
 			odpowiedzi.Add(new Odpowiedź(linia, this));
 		}
-		public void ukryjOdpowiedzi()
+		private void UkryjOdpowiedzi()
 		{
 			nazwaPytaniaLabel.Hide();
-			Global.ustawPunktyGłówne(0);
-			zonki.ForEach(z => z.ukryj());
-			odpowiedzi.ForEach(o => o.ukryjKontrolkiOdpowiedzi());
+			Global.UstawPunktyGłówne(0);
+			zonki.ForEach(z => z.Ukryj());
+			odpowiedzi.ForEach(o => o.UkryjKontrolkiOdpowiedzi());
 			przypiszButton.ForEach(b => b.Hide());
 		}
-		public void zamieńOdpowiedzi(int nrPoczątkowej)
+		public void ZamieńOdpowiedzi(int nrPoczątkowej)
 		{
-			odpowiedzi[nrPoczątkowej - 1].przesuń(nrPoczątkowej + 1, true);
-			odpowiedzi[nrPoczątkowej].przesuń(nrPoczątkowej, false);
+			odpowiedzi[nrPoczątkowej - 1].Przesuń(nrPoczątkowej + 1, true);
+			odpowiedzi[nrPoczątkowej].Przesuń(nrPoczątkowej, false);
 
 			Odpowiedź początkowa = odpowiedzi[nrPoczątkowej - 1];
 			odpowiedzi[nrPoczątkowej - 1] = odpowiedzi[nrPoczątkowej];
 			odpowiedzi[nrPoczątkowej] = początkowa;
 		}
-		public void usuńOdpowiedź(int nrOdpowiedzi)
+		public void UsuńOdpowiedź(int nrOdpowiedzi)
 		{
 			Odpowiedź odpowiedź = odpowiedzi[nrOdpowiedzi - 1];
-			odpowiedź.ukryjKontrolkiOdpowiedzi();
+			odpowiedź.UkryjKontrolkiOdpowiedzi();
 			for (int i = nrOdpowiedzi; i < odpowiedzi.Count; i++)
-				odpowiedzi[i].przesuń(i, true);
+				odpowiedzi[i].Przesuń(i, true);
 
 			odpowiedzi.RemoveAt(nrOdpowiedzi - 1);
 		}
 
-		public void dodajPunkty(int punkty)
+		public void DodajPunkty(int dodane)
 		{
-			this.punkty += punkty;
-			ustawPunkty(this.punkty);
+			punkty += dodane;
+			UstawPunkty();
 		}
-		public void ustawPunkty(int punkty)
+		private void UstawPunkty()
 		{
-			Global.ustawPunktyGłówne(punkty);
+			Global.UstawPunktyGłówne(punkty);
 		}
 
-		public static void pokażPytanie()
+		public static void PokażPytanie()
 		{
 			if (obecnePytanie != -1)
-				zwróćObecnePytanie().zainicjujKontrolki();
+				ZwróćObecnePytanie().ZainicjujKontrolki();
 		}
-		public static void ukryjPytanie()
+		public static void UkryjPytanie()
 		{
 			if (obecnePytanie != -1)
-				zwróćObecnePytanie().ukryjOdpowiedzi();
+				ZwróćObecnePytanie().UkryjOdpowiedzi();
 		}
-		public static bool ostatniePytanie()
+		public static bool OstatniePytanie()
 		{
 			return obecnePytanie == Global.pytania1.Count - 1;
 		}
-		public static void pokażPrzyciski()
+		public static void PokażPrzyciski()
 		{
 			dodajOdpowiedźButton.Show();
 		}
 
-		private static Pytanie1 zwróćObecnePytanie()
+		private static Pytanie1 ZwróćObecnePytanie()
 		{
 			return Global.pytania1[obecnePytanie];
 		}
 
-		private static void dodajOdpowiedź_Click(object sender, EventArgs e)
+		private static void DodajOdpowiedź_Click(object sender, EventArgs e)
 		{
-			zwróćObecnePytanie().dodajIPokażOdpowiedź(" 0");
+			ZwróćObecnePytanie().DodajIPokażOdpowiedź(" 0");
 		}
-		private void przypisz_Click(object sender, EventArgs e)
+		private void Przypisz_Click(object sender, EventArgs e)
 		{
 			Button przycisk = (Button)sender;
 			int Tag = (int)(przycisk.Tag);
@@ -280,18 +280,18 @@ namespace familiada
 				if (przypiszButton[Tag == 0 ? 1 : 0].BackColor != Color.White)
 				{
 					przycisk.BackColor = Color.White;
-					zwróćObecnePytanie().drużynaZPrzypisanymiPunktami = Global.drużyny[Tag];
+					ZwróćObecnePytanie().drużynaZPrzypisanymiPunktami = Global.drużyny[Tag];
 
-					Global.drużyny[Tag].dodajPunkty(zwróćObecnePytanie().punkty);
+					Global.drużyny[Tag].DodajPunkty(ZwróćObecnePytanie().punkty);
 				}
 			}
 			else
 			{
 				przycisk.BackColor = SystemColors.Control;
 				przycisk.UseVisualStyleBackColor = true;
-				zwróćObecnePytanie().drużynaZPrzypisanymiPunktami = null;
+				ZwróćObecnePytanie().drużynaZPrzypisanymiPunktami = null;
 
-				Global.drużyny[Tag].dodajPunkty(-zwróćObecnePytanie().punkty);
+				Global.drużyny[Tag].DodajPunkty(-ZwróćObecnePytanie().punkty);
 			}
 		}
 	}

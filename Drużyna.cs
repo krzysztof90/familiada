@@ -15,17 +15,17 @@ namespace familiada
 
 		public Drużyna()
 		{
-			wyświetlPunkty();
+			WyświetlPunkty();
 		}
 
-		public void dodajPunkty(int dodane)
+		public void DodajPunkty(int dodane)
 		{
 			punkty += dodane;
-			wyświetlPunkty();
+			WyświetlPunkty();
 		}
-		private void wyświetlPunkty()
+		private void WyświetlPunkty()
 		{
-			Global.ustawPunktyDrużyny(która, punkty);
+			Global.UstawPunktyDrużyny(która, punkty);
 		}
 	}
 

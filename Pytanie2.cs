@@ -17,12 +17,12 @@ namespace familiada
 		private const int tablicaPozycjaYPoczątek = 1;
 
 		private static int punkty;
-		private int nrPytania;
+		readonly int nrPytania;
 		private int punktyPytania;
 
-		private TextBox odpowiedźTextBox = new TextBox();
-		private TextBox punktyTextBox = new TextBox();
-		private Button umieśćButton = new Button();
+		readonly TextBox odpowiedźTextBox = new TextBox();
+		readonly TextBox punktyTextBox = new TextBox();
+		readonly Button umieśćButton = new Button();
 
 		protected abstract int Tag { get; }
 
@@ -42,42 +42,47 @@ namespace familiada
 
 			odpowiedźTextBox.Location = new Point(odpowiedźTextBoxPozycjaX, (Pytanie2.panelWysokość - odpowiedźTextBoxWysokość) / 2);
 			odpowiedźTextBox.Size = new Size(odpowiedźTextBoxSzerokość, odpowiedźTextBoxWysokość);
-			odpowiedźTextBox.Leave += new EventHandler(edytorOdpowiedzi_Leave);
-			odpowiedźTextBox.KeyDown += new KeyEventHandler(odpowiedź_KeyDown);
+			odpowiedźTextBox.Leave += new EventHandler(EdytorOdpowiedzi_Leave);
+			odpowiedźTextBox.KeyDown += new KeyEventHandler(Odpowiedź_KeyDown);
 			odpowiedźTextBox.TabIndex = odpowiedźTextBoxTabIndex;
 
 			punktyTextBox.Location = new Point(punktyTextBoxPozycjaX, (Pytanie2.panelWysokość - punktyTextBoxWysokość) / 2);
 			punktyTextBox.Size = new Size(punktyTextBoxSzerokość, punktyTextBoxWysokość);
 			punktyTextBox.Text = "0";
-			punktyTextBox.Leave += new EventHandler(edytorPunktów_Leave);
-			punktyTextBox.KeyDown += new KeyEventHandler(punkty_KeyDown);
+			punktyTextBox.Leave += new EventHandler(EdytorPunktów_Leave);
+			punktyTextBox.KeyDown += new KeyEventHandler(Punkty_KeyDown);
 			punktyTextBox.TabIndex = punktyTextBoxTabIndex;
 
 			umieśćButton.Location = new Point(umieśćButtonPozycjaX, (Pytanie2.panelWysokość - umieśćButtonWysokość) / 2);
 			umieśćButton.Size = new Size(umieśćButtonSzerokość, umieśćButtonWysokość);
 			umieśćButton.Text = "umieść";
-			umieśćButton.Click += new EventHandler(pokażUkryj_Click);
+			umieśćButton.Click += new EventHandler(PokażUkryj_Click);
 			umieśćButton.TabStop = false;
 
-			ukryjOdpowiedź();
+			UkryjOdpowiedź();
 		}
 
-		public static void wyświetlPunkty()
+		private static void DodajPunkty(int dodane)
 		{
-			Global.ustawPunktyGłówne(punkty);
+			punkty += dodane;
+			WyświetlPunkty();
 		}
-		public void umieść(Panel panel)
+		public static void WyświetlPunkty()
+		{
+			Global.UstawPunktyGłówne(punkty);
+		}
+		public void Umieść(Panel panel)
 		{
 			panel.Controls.Add(this.odpowiedźTextBox);
 			panel.Controls.Add(this.punktyTextBox);
 			panel.Controls.Add(this.umieśćButton);
 		}
-		private bool wyświetlony()
+		private bool Wyświetlony()
 		{
 			return umieśćButton.BackColor == Color.White;
 		}
 
-		private void edytorOdpowiedzi_Leave(object sender, EventArgs e)
+		private void EdytorOdpowiedzi_Leave(object sender, EventArgs e)
 		{
 			string odpowiedź = odpowiedźTextBox.Text.ToUpper();
 
@@ -95,20 +100,20 @@ namespace familiada
 					return;
 				}
 
-			if (wyświetlony())
-				pokażOdpowiedź();
+			if (Wyświetlony())
+				PokażOdpowiedź();
 		}
-		private void edytorPunktów_Leave(object sender, EventArgs e)
+		private void EdytorPunktów_Leave(object sender, EventArgs e)
 		{
 			TextBox textbox = ((TextBox)sender);
 			try
 			{
 				int nowePunkty = Int32.Parse(textbox.Text);
-				if (wyświetlony())
+				if (Wyświetlony())
 				{
-					punkty -= punktyPytania;
-					punkty += nowePunkty;
-					wyświetlPunkty();
+					DodajPunkty(-punktyPytania);
+					DodajPunkty(nowePunkty);
+					WyświetlPunkty();
 				}
 				punktyPytania = nowePunkty;
 			}
@@ -119,50 +124,43 @@ namespace familiada
 				textbox.SelectAll();
 			}
 		}
-		private void odpowiedź_KeyDown(object sender, KeyEventArgs e)
+		private void Odpowiedź_KeyDown(object sender, KeyEventArgs e)
 		{
-			if (e.KeyCode == Keys.Down)
-			{
-				if (nrPytania != 5)
+			if (e.KeyCode == Keys.Down && nrPytania != 5)
 					Global.pytania2[nrPytania].pytaniaStrona[Tag].odpowiedźTextBox.Focus();
-			}
 		}
-		private void punkty_KeyDown(object sender, KeyEventArgs e)
+		private void Punkty_KeyDown(object sender, KeyEventArgs e)
 		{
-			if (e.KeyCode == Keys.Down)
-			{
-				if (nrPytania != 5)
+			if (e.KeyCode == Keys.Down && nrPytania != 5)
 					Global.pytania2[nrPytania].pytaniaStrona[Tag].punktyTextBox.Focus();
-			}
 		}
-		private void pokażUkryj_Click(object sender, EventArgs e)
+		private void PokażUkryj_Click(object sender, EventArgs e)
 		{
-			if (wyświetlony())
+			if (Wyświetlony())
 			{
 				umieśćButton.BackColor = SystemColors.Control;
 				umieśćButton.UseVisualStyleBackColor = true;
 
-				ukryjOdpowiedź();
-				punkty -= Int32.Parse(punktyTextBox.Text);
+				UkryjOdpowiedź();
+				DodajPunkty(-Int32.Parse(punktyTextBox.Text));
 			}
 			else
 			{
 				umieśćButton.BackColor = Color.White;
 
-				pokażOdpowiedź();
-				punkty += Int32.Parse(punktyTextBox.Text);
+				PokażOdpowiedź();
+				DodajPunkty(Int32.Parse(punktyTextBox.Text));
 			}
-			wyświetlPunkty();
 		}
-		private void pokażOdpowiedź()
+		private void PokażOdpowiedź()
 		{
-			Global.tablica2.ustawTekst(odpowiedźTextBox.Text, pozycjaOdpowiedziNaTablicy, tablicaPozycjaYPoczątek - 1 + nrPytania, wyrównanieDoLewej, Global.długośćOdpowiedzi2, ' ');
-			Global.tablica2.ustawTekst(punktyTextBox.Text, pozycjaPunktówNaTablicy, tablicaPozycjaYPoczątek - 1 + nrPytania, false, 2, ' ');
+			Global.tablica2.UstawTekst(odpowiedźTextBox.Text, pozycjaOdpowiedziNaTablicy, tablicaPozycjaYPoczątek - 1 + nrPytania, wyrównanieDoLewej, Global.długośćOdpowiedzi2, ' ');
+			Global.tablica2.UstawTekst(punktyTextBox.Text, pozycjaPunktówNaTablicy, tablicaPozycjaYPoczątek - 1 + nrPytania, false, 2, ' ');
 		}
-		private void ukryjOdpowiedź()
+		private void UkryjOdpowiedź()
 		{
-			Global.tablica2.ustawTekst(String.Empty, pozycjaOdpowiedziNaTablicy, tablicaPozycjaYPoczątek - 1 + nrPytania, wyrównanieDoLewej, Global.długośćOdpowiedzi2, '.');
-			Global.tablica2.ustawTekst(String.Empty, pozycjaPunktówNaTablicy, tablicaPozycjaYPoczątek - 1 + nrPytania, false, 2, '|');
+			Global.tablica2.UstawTekst(String.Empty, pozycjaOdpowiedziNaTablicy, tablicaPozycjaYPoczątek - 1 + nrPytania, wyrównanieDoLewej, Global.długośćOdpowiedzi2, '.');
+			Global.tablica2.UstawTekst(String.Empty, pozycjaPunktówNaTablicy, tablicaPozycjaYPoczątek - 1 + nrPytania, false, 2, '|');
 		}
 	}
 
@@ -210,12 +208,12 @@ namespace familiada
 		private const int panelSzerokość = nazwaLabelSzerokość + (PytanieStrona.odpowiedźTextBoxSzerokość + PytanieStrona.punktyTextBoxSzerokość + PytanieStrona.umieśćButtonSzerokość) * 2 + PytanieStrona.ControlOdstępX * 5;
 		public const int panelWysokość = 30;
 
-		string nazwaPytania;
-		int nrPytania;
+		readonly string nazwaPytania;
+		readonly int nrPytania;
 
-		Panel panel = new Panel();
+		readonly Panel panel = new Panel();
 
-		Label nazwaLabel = new Label();
+		readonly Label nazwaLabel = new Label();
 		public List<PytanieStrona> pytaniaStrona;
 
 		public Pytanie2(string nazwa, int nrPytania)
@@ -233,12 +231,12 @@ namespace familiada
 
 			panel.Controls.Add(this.nazwaLabel);
 			Global.panelKontroler2.Controls.Add(panel);
-			pytaniaStrona.ForEach(p => p.umieść(panel));
+			pytaniaStrona.ForEach(p => p.Umieść(panel));
 		}
 
-		public static void wyświetlPunkty()
+		public static void WyświetlPunkty()
 		{
-			PytanieStrona.wyświetlPunkty();
+			PytanieStrona.WyświetlPunkty();
 		}
 	}
 }

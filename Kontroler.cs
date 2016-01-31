@@ -38,7 +38,7 @@ namespace familiada
 		private const int ustawCzasButtonWysokość = 25;
 		private const int czasLabelPozycjaX = 520;
 		private const int czasLabelPozycjaY = 400;
-		private const int czasLabelSzerokość = 0;
+		private const int czasLabelSzerokość = 13;
 		private const int czasLabelWysokość = 13;
 		private const int startButtonPozycjaX = 470;
 		private const int startButtonPozycjaY = 350;
@@ -69,8 +69,57 @@ namespace familiada
 				b.Tag = i == 0 ? "15" : "20";
 				b.Text = "ustaw" + (string)(b.Tag);
 				b.Size = new Size(ustawCzasButtonSzerokość, ustawCzasButtonWysokość);
-				b.Click += new EventHandler(ustawCzas_Click);
+				b.Click += new EventHandler(UstawCzas_Click);
 			}
+
+			poprzedniePytanie = new Button();
+			poprzedniePytanie.Location = new Point(przełączPytanieButtonPozycjaXPoczątek, przełączPytanieButtonPozycjaY);
+			poprzedniePytanie.Size = new Size(przełączPytanieButtonSzerokość, przełączPytanieButtonWysokość);
+			poprzedniePytanie.Text = "poprzednie pytanie";
+			poprzedniePytanie.Visible = false;
+			poprzedniePytanie.Click += new EventHandler(PoprzedniePytanie_Click);
+
+			następnePytanie = new Button();
+			następnePytanie.Location = new Point(przełączPytanieButtonPozycjaXPoczątek + przełączPytanieButtonOdstępX + przełączPytanieButtonSzerokość, przełączPytanieButtonPozycjaY);
+			następnePytanie.Size = new Size(przełączPytanieButtonSzerokość, przełączPytanieButtonWysokość);
+			następnePytanie.Text = "zacznij pytania";
+			następnePytanie.Click += new EventHandler(NastępnePytanie_Click);
+
+			pokażEkran = new Button();
+			pokażEkran.Location = new Point(pokażEkranButtonPozycjaX, pokażEkranButtonPozycjaY);
+			pokażEkran.Size = new Size(pokażEkranButtonSzerokość, pokażEkranButtonWysokość);
+			pokażEkran.Text = "otwórz ekran główny";
+			pokażEkran.Click += new EventHandler(PokażEkran_Click);
+
+			runda = new Button();
+			runda.Location = new Point(rundaButtonPozycjaX, rundaButtonPozycjaY);
+			runda.Size = new Size(rundaButtonSzerokość, rundaButtonWysokość);
+			runda.Tag = 1;
+			runda.Text = "przełącz do rundy 1";
+			runda.Click += new EventHandler(Runda_Click);
+
+			punkty = new Label();
+			punkty.Location = new Point(punktyLabelPozycjaX, punktyLabelPozycjaY);
+			punkty.Size = new Size(punktyLabelSzerokość, punktyLabelWysokość);
+			punkty.Text = "0";
+
+			start = new Button();
+			start.Location = new Point(startButtonPozycjaX, startButtonPozycjaY);
+			start.Size = new Size(startButtonSzerokość, startButtonWysokość);
+			start.Text = "start";
+			start.Click += new EventHandler(this.StartCzas_Click);
+			
+			czas = new Label();
+			czas.Location = new Point(czasLabelPozycjaX, czasLabelPozycjaY);
+			czas.Size = new Size(czasLabelSzerokość, czasLabelWysokość);
+
+			dodatkowy = new Panel();
+			dodatkowy.BorderStyle = BorderStyle.FixedSingle;
+			dodatkowy.Controls.Add(punkty);
+			dodatkowy.Controls.Add(runda);
+			dodatkowy.Controls.Add(pokażEkran);
+			dodatkowy.Location = new Point(dodatkowyPanelPozycjaX, dodatkowyPanelPozycjaY);
+			dodatkowy.Size = new Size(dodatkowyPanelSzerokość, dodatkowyPanelWysokość);
 
 			InitializeComponent();
 
@@ -85,7 +134,7 @@ namespace familiada
 		private void Form_Load(object sender, EventArgs e)
 		{
 			// TODO usunąć
-			pokażEkran_Click(this, new EventArgs());
+			PokażEkran_Click(this, new EventArgs());
 
 			try
 			{
@@ -102,8 +151,8 @@ namespace familiada
 						else
 						{
 							if (Global.pytania1.Count == 0)
-								Global.exit("zacznij plik od numeru pytania");
-							Global.pytania1.Last().dodajOdpowiedź(linia);
+								Global.Wyjdź("zacznij plik od numeru pytania");
+							Global.pytania1.Last().DodajOdpowiedź(linia);
 						}
 					}
 				}
@@ -119,20 +168,19 @@ namespace familiada
 			}
 			catch (FileNotFoundException exc)
 			{
-				Global.exit(String.Format("brakuje pliku {0}", exc.FileName));
+				Global.Wyjdź(String.Format("brakuje pliku {0}", exc.FileName));
 			}
 			catch (NullReferenceException)
 			{
-				Global.exit(String.Format("wstaw 5 pytań"));
+				Global.Wyjdź(String.Format("Wstaw 5 pytań"));
 			}
 
 			if (Global.pytania1.Count == 0)
-				Global.exit("brak pytań");
+				Global.Wyjdź("brak pytań");
 		}
 
 		private static NrINazwaPytania nagłówekPytania(string linia)
 		{
-			NrINazwaPytania pytanie = null;
 			try
 			{
 				string[] words = linia.Split(new char[] { ' ', '\t' });
@@ -140,14 +188,15 @@ namespace familiada
 				string nazwaPytania = String.Empty;
 				for (int i = 1; i < words.Length; i++)
 					nazwaPytania += words[i] + " ";
-				pytanie = new NrINazwaPytania(nrPytania, nazwaPytania.TrimEnd());
+				return new NrINazwaPytania(nrPytania, nazwaPytania.TrimEnd());
 			}
 			catch (FormatException)
-			{ }
-			return pytanie;
+			{
+				return null;
+			}
 		}
 
-		private void runda_Click(object sender, EventArgs e)
+		private void Runda_Click(object sender, EventArgs e)
 		{
 			Button przycisk = (Button)sender;
 
@@ -156,54 +205,54 @@ namespace familiada
 				przycisk.Tag = 2;
 				przycisk.Text = "przełącz do rundy 2";
 
-				Global.pokażPanel(0);
-				Global.ukryjPanel(1);
+				Global.PokażPanel(0);
+				Global.UkryjPanel(1);
 
-				Global.ustawPunktyGłówne(0);
+				Global.UstawPunktyGłówne(0);
 
-				Pytanie1.pokażPytanie();
+				Pytanie1.PokażPytanie();
 			}
 			else
 			{
 				przycisk.Tag = 1;
 				przycisk.Text = "przełącz do rundy 1";
 
-				Global.pokażPanel(1);
-				Global.ukryjPanel(0);
+				Global.PokażPanel(1);
+				Global.UkryjPanel(0);
 
-				Pytanie2.wyświetlPunkty();
+				Pytanie2.WyświetlPunkty();
 			}
 		}
 
-		private void następnePytanie_Click(object sender, EventArgs e)
+		private void NastępnePytanie_Click(object sender, EventArgs e)
 		{
 			następnePytanie.Text = "następne pytanie";
 
 			if (Pytanie1.obecnePytanie != -1)
 			{
 				poprzedniePytanie.Show();
-				Pytanie1.ukryjPytanie();
+				Pytanie1.UkryjPytanie();
 			}
 
-			Pytanie1.pokażPrzyciski();
+			Pytanie1.PokażPrzyciski();
 
 			Pytanie1.obecnePytanie++;
-			Pytanie1.pokażPytanie();
-			if (Pytanie1.ostatniePytanie())
+			Pytanie1.PokażPytanie();
+			if (Pytanie1.OstatniePytanie())
 				następnePytanie.Hide();
 		}
-		private void poprzedniePytanie_Click(object sender, EventArgs e)
+		private void PoprzedniePytanie_Click(object sender, EventArgs e)
 		{
 			następnePytanie.Show();
 
-			Pytanie1.ukryjPytanie();
+			Pytanie1.UkryjPytanie();
 			Pytanie1.obecnePytanie--;
-			Pytanie1.pokażPytanie();
+			Pytanie1.PokażPytanie();
 
 			if (Pytanie1.obecnePytanie == 0)
 				poprzedniePytanie.Hide();
 		}
-		private void pokażEkran_Click(object sender, EventArgs e)
+		private void PokażEkran_Click(object sender, EventArgs e)
 		{
 			Screen tenEkran = Screen.FromControl(this);
 			Screen drugiEkran = Screen.AllScreens.FirstOrDefault(s => !s.Equals(tenEkran)) ?? tenEkran;
@@ -224,44 +273,44 @@ namespace familiada
 			pokażEkran.Hide();
 		}
 
-		private void ustawCzas_Click(object sender, System.EventArgs e)
+		private void UstawCzas_Click(object sender, System.EventArgs e)
 		{
 			string czasString = (string)(((Button)sender).Tag);
 			czas.Text = czasString;
-			Global.tablicaPunkty.ustawTekst(czasString, 0, 0, false, 3, ' ');
+			Global.tablicaPunkty.UstawTekst(czasString, 0, 0, false, 3, ' ');
 		}
-		private void startCzas_Click(object sender, EventArgs e)
+		private void StartCzas_Click(object sender, EventArgs e)
 		{
 			if (czas.Text != String.Empty)
 				timer1.Start();
 		}
-		private void timer1_Tick(object sender, EventArgs e)
+		private void Timer1_Tick(object sender, EventArgs e)
 		{
 			int pozostałyCzas = Int32.Parse(czas.Text);
 			pozostałyCzas--;
 			czas.Text = pozostałyCzas.ToString();
-			Global.tablicaPunkty.ustawTekst(pozostałyCzas.ToString(), 0, 0, false, 3, ' ');
+			Global.tablicaPunkty.UstawTekst(pozostałyCzas.ToString(), 0, 0, false, 3, ' ');
 			if (pozostałyCzas == 0)
 			{
 				timer1.Stop();
 				czas.Text = String.Empty;
-				Global.tablicaPunkty.ustawTekst(String.Empty, 0, 0, false, 3, ' ');
+				Global.tablicaPunkty.UstawTekst(String.Empty, 0, 0, false, 3, ' ');
 			}
 		}
 
-		public void pokażPanel(int który)
+		public void PokażPanel(int który)
 		{
 			panele[który].Show();
 		}
-		public void ukryjPanel(int który)
+		public void UkryjPanel(int który)
 		{
 			panele[który].Hide();
 		}
-		public void ustawPunktyGłówne(int punkty)
+		public void UstawPunktyGłówne(int punkty)
 		{
 			this.punkty.Text = punkty.ToString();
 		}
-		public void ustawPunktyDrużyny(int która, int punkty)
+		public void UstawPunktyDrużyny(int która, int punkty)
 		{
 			punktyDrużynaLabel[która].Text = punkty.ToString();
 		}
