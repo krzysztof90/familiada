@@ -124,7 +124,7 @@ namespace familiada
 		public static Tablica tablicaPunkty = new Tablica(główny.panelPunkty, 3, 1, Resources.puste);
 		public static List<Tablica> tablicaPunktyDrużyny = new List<Tablica>{new Tablica(główny.panelPunktyL, 3, 1, Resources.puste), new Tablica(główny.panelPunktyP, 3, 1, Resources.puste)};
 
-		public static List<DrużynaStrona> drużyny = new List<DrużynaStrona> { new DrużynaL(), new DrużynaP() };
+		public static List<Drużyna> drużyny = new List<Drużyna> { new DrużynaL(), new DrużynaP() };
 
 		static public void pokażPanel(int który)
 		{

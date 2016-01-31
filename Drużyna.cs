@@ -8,12 +8,12 @@ using familiada.Properties;
 
 namespace familiada
 {
-	abstract class DrużynaStrona
+	abstract class Drużyna
 	{
 		int punkty = 0;
 		protected abstract int która { get; }
 
-		public DrużynaStrona()
+		public Drużyna()
 		{
 			wyświetlPunkty();
 		}
@@ -29,18 +29,12 @@ namespace familiada
 		}
 	}
 
-	class DrużynaL : DrużynaStrona
+	class DrużynaL : Drużyna
 	{
-		protected override int która
-		{
-			get { return 0; }
-		}
+		protected override int która { get { return 0; } }
 	}
-	class DrużynaP : DrużynaStrona
+	class DrużynaP : Drużyna
 	{
-		protected override int która
-		{
-			get { return 1; }
-		}
+		protected override int która { get { return 1; } }
 	}
 }

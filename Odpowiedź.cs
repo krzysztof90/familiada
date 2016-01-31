@@ -161,7 +161,7 @@ namespace familiada
 
 				pokażOdpowiedź();
 
-				if (pytanie.druzynaZPrzypisanymiPunktami == null)
+				if (pytanie.drużynaZPrzypisanymiPunktami == null)
 					pytanie.dodajPunkty(punkty);
 			}
 			else
@@ -171,7 +171,7 @@ namespace familiada
 
 				ukryjOdpowiedź();
 
-				if (pytanie.druzynaZPrzypisanymiPunktami == null)
+				if (pytanie.drużynaZPrzypisanymiPunktami == null)
 					pytanie.dodajPunkty(-punkty);
 			}
 		}
