@@ -16,7 +16,8 @@ namespace familiada
 		private const int punktyTextBoxWysokość = 20;
 		public const int umieśćButtonSzerokość = 30;
 		private const int umieśćButtonWysokość = 30;
-		public const int tablicaOdstęp = (Tablica.szerokość / 2 - Global.długośćOdpowiedzi2 - 2) / 3; //2-szerokość punktów; 3-są trzy odstępy
+		public const int tablicaOdstępX = (Tablica.szerokość / 2 - Global.długośćOdpowiedzi2 - 2) / 3; //2-szerokość punktów; 3-są trzy odstępy
+		private const int tablicaPozycjaYPoczątek = 1;
 
 		private static int punkty;
 		private int nrPytania;
@@ -158,13 +159,13 @@ namespace familiada
 		}
 		private void pokażOdpowiedź()
 		{
-			Global.tablica2.ustawTekst(odpowiedźTextBox.Text, pozycjaOdpowiedziNaTablicy, nrPytania + 1, wyrównanieDoLewej, Global.długośćOdpowiedzi2, ' ');
-			Global.tablica2.ustawTekst(punktyTextBox.Text, pozycjaPunktówNaTablicy, nrPytania + 1, false, 2, ' ');
+			Global.tablica2.ustawTekst(odpowiedźTextBox.Text, pozycjaOdpowiedziNaTablicy, tablicaPozycjaYPoczątek - 1 + nrPytania, wyrównanieDoLewej, Global.długośćOdpowiedzi2, ' ');
+			Global.tablica2.ustawTekst(punktyTextBox.Text, pozycjaPunktówNaTablicy, tablicaPozycjaYPoczątek - 1 + nrPytania, false, 2, ' ');
 		}
 		private void ukryjOdpowiedź()
 		{
-			Global.tablica2.ustawTekst(String.Empty, pozycjaOdpowiedziNaTablicy, nrPytania + 1, wyrównanieDoLewej, Global.długośćOdpowiedzi2, '.');
-			Global.tablica2.ustawTekst(String.Empty, pozycjaPunktówNaTablicy, nrPytania + 1, false, 2, '|');
+			Global.tablica2.ustawTekst(String.Empty, pozycjaOdpowiedziNaTablicy, tablicaPozycjaYPoczątek - 1 + nrPytania, wyrównanieDoLewej, Global.długośćOdpowiedzi2, '.');
+			Global.tablica2.ustawTekst(String.Empty, pozycjaPunktówNaTablicy, tablicaPozycjaYPoczątek - 1 + nrPytania, false, 2, '|');
 		}
 	}
 
@@ -178,8 +179,8 @@ namespace familiada
 		protected override int punktyTextBoxTabIndex { get { return 2; } }
 		protected override int umieśćButtonPozycjaX { get { return punktyTextBoxPozycjaX + punktyTextBoxSzerokość + ControlOdstępX; } }
 
-		protected override int pozycjaOdpowiedziNaTablicy { get { return tablicaOdstęp; } }
-		protected override int pozycjaPunktówNaTablicy { get { return pozycjaOdpowiedziNaTablicy + Global.długośćOdpowiedzi2 + tablicaOdstęp; } }
+		protected override int pozycjaOdpowiedziNaTablicy { get { return tablicaOdstępX; } }
+		protected override int pozycjaPunktówNaTablicy { get { return pozycjaOdpowiedziNaTablicy + Global.długośćOdpowiedzi2 + tablicaOdstępX; } }
 		protected override bool wyrównanieDoLewej { get { return false; } }
 
 		public PytanieL(int nrPytania) : base(nrPytania) { }
@@ -195,8 +196,8 @@ namespace familiada
 		protected override int punktyTextBoxTabIndex { get { return 4; } }
 		protected override int umieśćButtonPozycjaX { get { return Pytanie2.nazwaLabelSzerokość + odpowiedźTextBoxSzerokość + umieśćButtonSzerokość + punktyTextBoxSzerokość + ControlOdstępX * 3; } }
 
-		protected override int pozycjaOdpowiedziNaTablicy { get { return pozycjaPunktówNaTablicy + 2 + tablicaOdstęp; } }
-		protected override int pozycjaPunktówNaTablicy { get { return Tablica.szerokość / 2 + tablicaOdstęp; } }
+		protected override int pozycjaOdpowiedziNaTablicy { get { return pozycjaPunktówNaTablicy + 2 + tablicaOdstępX; } }
+		protected override int pozycjaPunktówNaTablicy { get { return Tablica.szerokość / 2 + tablicaOdstępX; } }
 		protected override bool wyrównanieDoLewej { get { return true; } }
 
 		public PytanieP(int nrPytania) : base(nrPytania) { }

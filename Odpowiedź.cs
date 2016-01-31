@@ -19,7 +19,7 @@ namespace familiada
 		private const int tablicaNumerPytaniaPozycjaX = 4;
 		private const int tablicaOdpowiedźPozycjaX = 6;
 		private const int tablicaPunktyPozycjaX = 24;
-		private const int tablicaPunktyOdstępY = 1;
+		private const int tablicaPunktyPozycjaYPoczątek = 2;
 
 		private string odpowiedź;
 		private int punkty;
@@ -262,15 +262,15 @@ namespace familiada
 
 		private void wyświetlNrOdpowiedzi(bool niePuste, char wypełnienie)
 		{
-			Global.tablica1.ustawTekst(niePuste ? nrOdpowiedzi.ToString() : String.Empty, tablicaNumerPytaniaPozycjaX, tablicaPunktyOdstępY - 1 + nrOdpowiedzi, false, 2, wypełnienie);
+			Global.tablica1.ustawTekst(niePuste ? nrOdpowiedzi.ToString() : String.Empty, tablicaNumerPytaniaPozycjaX, tablicaPunktyPozycjaYPoczątek - 1 + nrOdpowiedzi, false, 2, wypełnienie);
 		}
 		private void wyświetlOdpowiedź(bool niePuste, char wypełnienie)
 		{
-			Global.tablica1.ustawTekst(niePuste ? odpowiedź : String.Empty, tablicaOdpowiedźPozycjaX, tablicaPunktyOdstępY - 1 + nrOdpowiedzi, true, Global.długośćOdpowiedzi1, wypełnienie);
+			Global.tablica1.ustawTekst(niePuste ? odpowiedź : String.Empty, tablicaOdpowiedźPozycjaX, tablicaPunktyPozycjaYPoczątek - 1 + nrOdpowiedzi, true, Global.długośćOdpowiedzi1, wypełnienie);
 		}
 		private void wyświetlPunkty(bool niePuste, char wypełnienie)
 		{
-			Global.tablica1.ustawTekst(niePuste ? punkty.ToString() : String.Empty, tablicaPunktyPozycjaX, tablicaPunktyOdstępY - 1 + nrOdpowiedzi, false, 2, wypełnienie);
+			Global.tablica1.ustawTekst(niePuste ? punkty.ToString() : String.Empty, tablicaPunktyPozycjaX, tablicaPunktyPozycjaYPoczątek - 1 + nrOdpowiedzi, false, 2, wypełnienie);
 		}
 	}
 }
