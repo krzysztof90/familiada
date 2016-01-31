@@ -157,7 +157,7 @@ namespace familiada
 
 		#endregion
 
-		public List<System.Windows.Forms.Panel> panel;
+		public List<System.Windows.Forms.Panel> panele;
 		private Panel panelRundy;
 		private TableLayoutPanel panelPodstawa;
 		private TableLayoutPanel panelPodstawaGóra;

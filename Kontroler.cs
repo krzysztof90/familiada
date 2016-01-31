@@ -15,32 +15,36 @@ namespace familiada
 		public Kontroler()
 		{
 			this.panele = new List<Panel> { new Panel(), new Panel() };
-			this.punktyDrużynaLabel = new List<Label> { new Label(), new Label() };
-			this.ustawCzasButton = new List<Button> { new Button(), new Button() };
-			this.ustawCzasButton.ForEach(b => this.panele[1].Controls.Add(b));
-			this.panele[1].Controls.Add(this.czas);
-			this.panele[1].Controls.Add(this.start);
 			this.panele.ForEach(p => p.Dock = DockStyle.Fill);
 			this.panele.ForEach(p => p.Margin = new Padding(0));
 			this.panele.ForEach(p => p.Visible = false);
+
+			this.punktyDrużynaLabel = new List<Label> { new Label(), new Label() };
 			this.punktyDrużynaLabel.ForEach(l => l.Size = new Size(25, 15));
 			this.punktyDrużynaLabel[0].Dock = DockStyle.Left;
 			this.punktyDrużynaLabel[1].Dock = DockStyle.Right;
-			this.ustawCzasButton[0].Location = new Point(474, 300);
-			this.ustawCzasButton[0].Tag = "15";
-			this.ustawCzasButton[0].Text = "ustaw 15";
-			this.ustawCzasButton[1].Location = new Point(571, 300);
-			this.ustawCzasButton[1].Tag = "20";
-			this.ustawCzasButton[1].Text = "ustaw 20";
-			this.ustawCzasButton.ForEach(b => b.Size = new Size(75, 23));
-			this.ustawCzasButton.ForEach(b => b.Click += new EventHandler(this.ustawCzas_Click));
+
+			this.ustawCzasButton = new List<Button> { new Button(), new Button() };
+			for (int i = 0; i < ustawCzasButton.Count; i++)
+			{
+				Button b = ustawCzasButton[i];
+				panele[1].Controls.Add(b);
+				b.Location = new Point(400 + 100 * i, 300);
+				b.Tag = i == 0 ? "15" : "20";
+				b.Text = "ustaw" + (string)(b.Tag);
+				b.Size = new Size(75, 23);
+				b.Click += new EventHandler(ustawCzas_Click);
+			}
+
 
 			InitializeComponent();
 
-			this.panele.ForEach(p => this.Controls.Add(p));
-			this.panele[0].Controls.Add(this.poprzedniePytanie);
-			this.panele[0].Controls.Add(this.następnePytanie);
-			this.punktyDrużynaLabel.ForEach(l => this.dodatkowy.Controls.Add(l));
+			panele[0].Controls.Add(poprzedniePytanie);
+			panele[0].Controls.Add(następnePytanie);
+			panele[1].Controls.Add(czas);
+			panele[1].Controls.Add(start);
+			panele.ForEach(p => Controls.Add(p));
+			punktyDrużynaLabel.ForEach(l => dodatkowy.Controls.Add(l));
 		}
 
 		private void Form_Load(object sender, EventArgs e)

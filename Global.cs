@@ -72,8 +72,8 @@ namespace familiada
 				{'ˍ', zonkMały(false)},
 			};
 
-			tablica1 = new Tablica(główny.panel[0], 30, 10, Resources.puste);
-			tablica2 = new Tablica(główny.panel[1], 30, 10, Resources.puste);
+			tablica1 = new Tablica(główny.panele[0], 30, 10, Resources.puste);
+			tablica2 = new Tablica(główny.panele[1], 30, 10, Resources.puste);
 			tablicaPunkty = new Tablica(główny.panelPunkty, 3, 1, Resources.puste);
 			tablicaPunktyDrużyny = new List<Tablica> { new Tablica(główny.panelPunktyL, 3, 1, Resources.puste), new Tablica(główny.panelPunktyP, 3, 1, Resources.puste) };
 			drużyny = new List<Drużyna> { new DrużynaL(), new DrużynaP() };

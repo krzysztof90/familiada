@@ -14,14 +14,17 @@ namespace familiada
 	{
 		public GłównyEkran()
 		{
-			this.panel = new List<Panel> { new Panel(), new Panel() };
-			this.panel.ForEach(p => p.Dock = DockStyle.Fill);
-			this.panel.ForEach(p => Margin = new Padding(0));
-			this.panel.ForEach(p => p.Visible = false);
+			panele = new List<Panel> { new Panel(), new Panel() };
+			foreach (Panel p in panele)
+			{
+				p.Dock = DockStyle.Fill;
+				p.Margin = new Padding(0);
+				p.Visible = false;
+			}
 
 			InitializeComponent();
 
-			this.panel.ForEach(p => this.panelRundy.Controls.Add(p));
+			panele.ForEach(p => panelRundy.Controls.Add(p));
 		}
 
 		private void GłównyEkran_FormClosing(object sender, FormClosingEventArgs e)
@@ -34,11 +37,11 @@ namespace familiada
 
 		public void pokażPanel(int który)
 		{
-			panel[który].Show();
+			panele[który].Show();
 		}
 		public void ukryjPanel(int który)
 		{
-			panel[który].Hide();
+			panele[który].Hide();
 		}
 		public void ustawPunktyGłówne(int punkty)
 		{
