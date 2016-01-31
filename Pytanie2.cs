@@ -10,25 +10,25 @@ namespace familiada
 
 	abstract class PytanieStrona
 	{
-		protected static int punkty;
-		protected int nrPytania;
+		private static int punkty;
+		private int nrPytania;
 		private int punktyPytania;
 
-		public TextBox odpowiedźTextBox = new TextBox();
-		protected TextBox punktyTextBox = new TextBox();
-		protected Button umieśćButton = new Button();
+		private TextBox odpowiedźTextBox = new TextBox();
+		private TextBox punktyTextBox = new TextBox();
+		private Button umieśćButton = new Button();
 
-		public abstract int Tag { get; }
+		protected abstract int Tag { get; }
 
-		public abstract int odpowiedźTextBoxPozycjaX { get; }
-		public abstract int odpowiedźTextBoxTabIndex { get; }
-		public abstract int punktyTextBoxPozycjaX { get; }
-		public abstract int punktyTextBoxTabIndex { get; }
-		public abstract int umieśćButtonPozycjaX { get; }
+		protected abstract int odpowiedźTextBoxPozycjaX { get; }
+		protected abstract int odpowiedźTextBoxTabIndex { get; }
+		protected abstract int punktyTextBoxPozycjaX { get; }
+		protected abstract int punktyTextBoxTabIndex { get; }
+		protected abstract int umieśćButtonPozycjaX { get; }
 
-		public abstract int pozycjaOdpowiedziNaTablicy { get; }
-		public abstract int pozycjaPunktówNaTablicy { get; }
-		public abstract bool wyrównanieDoLewej { get; }
+		protected abstract int pozycjaOdpowiedziNaTablicy { get; }
+		protected abstract int pozycjaPunktówNaTablicy { get; }
+		protected abstract bool wyrównanieDoLewej { get; }
 
 		public PytanieStrona(int nrPytania)
 		{
@@ -66,7 +66,7 @@ namespace familiada
 			panel.Controls.Add(this.punktyTextBox);
 			panel.Controls.Add(this.umieśćButton);
 		}
-		public bool wyświetlony()
+		private bool wyświetlony()
 		{
 			return umieśćButton.BackColor == Color.White;
 		}
@@ -162,17 +162,17 @@ namespace familiada
 
 	class PytanieL : PytanieStrona
 	{
-		public override int Tag { get { return 0; } }
+		protected override int Tag { get { return 0; } }
 
-		public override int odpowiedźTextBoxPozycjaX { get { return 150; } }
-		public override int odpowiedźTextBoxTabIndex { get { return 1; } }
-		public override int punktyTextBoxPozycjaX { get { return 250; } }
-		public override int punktyTextBoxTabIndex { get { return 2; } }
-		public override int umieśćButtonPozycjaX { get { return 280; } }
+		protected override int odpowiedźTextBoxPozycjaX { get { return 150; } }
+		protected override int odpowiedźTextBoxTabIndex { get { return 1; } }
+		protected override int punktyTextBoxPozycjaX { get { return 250; } }
+		protected override int punktyTextBoxTabIndex { get { return 2; } }
+		protected override int umieśćButtonPozycjaX { get { return 280; } }
 
-		public override int pozycjaOdpowiedziNaTablicy { get { return 1; } }
-		public override int pozycjaPunktówNaTablicy { get { return 12; } }
-		public override bool wyrównanieDoLewej { get { return false; } }
+		protected override int pozycjaOdpowiedziNaTablicy { get { return 1; } }
+		protected override int pozycjaPunktówNaTablicy { get { return 12; } }
+		protected override bool wyrównanieDoLewej { get { return false; } }
 
 		public PytanieL(int nrPytania)
 			: base(nrPytania)
@@ -181,17 +181,17 @@ namespace familiada
 
 	class PytanieP : PytanieStrona
 	{
-		public override int Tag { get { return 1; } }
+		protected override int Tag { get { return 1; } }
 
-		public override int odpowiedźTextBoxPozycjaX { get { return 370; } }
-		public override int odpowiedźTextBoxTabIndex { get { return 3; } }
-		public override int punktyTextBoxPozycjaX { get { return 340; } }
-		public override int punktyTextBoxTabIndex { get { return 4; } }
-		public override int umieśćButtonPozycjaX { get { return 310; } }
+		protected override int odpowiedźTextBoxPozycjaX { get { return 370; } }
+		protected override int odpowiedźTextBoxTabIndex { get { return 3; } }
+		protected override int punktyTextBoxPozycjaX { get { return 340; } }
+		protected override int punktyTextBoxTabIndex { get { return 4; } }
+		protected override int umieśćButtonPozycjaX { get { return 310; } }
 
-		public override int pozycjaOdpowiedziNaTablicy { get { return 19; } }
-		public override int pozycjaPunktówNaTablicy { get { return 16; } }
-		public override bool wyrównanieDoLewej { get { return true; } }
+		protected override int pozycjaOdpowiedziNaTablicy { get { return 19; } }
+		protected override int pozycjaPunktówNaTablicy { get { return 16; } }
+		protected override bool wyrównanieDoLewej { get { return true; } }
 
 		public PytanieP(int nrPytania)
 			: base(nrPytania)

@@ -143,18 +143,17 @@ namespace familiada
 		#endregion
 
 		public List<System.Windows.Forms.Panel> panele;
-		public List<Label> punktyDrużynaLabel;
+		private List<Label> punktyDrużynaLabel;
 		private List<Button> ustawCzasButton;
 		public System.Windows.Forms.Panel dodatkowy;
 		private System.Windows.Forms.Button poprzedniePytanie;
 		private System.Windows.Forms.Button następnePytanie;
 		public System.Windows.Forms.Button pokażEkran;
 		private System.Windows.Forms.Button runda;
-		public System.Windows.Forms.Label punkty;
+		private System.Windows.Forms.Label punkty;
 		private System.Windows.Forms.Label czas;
 		private System.Windows.Forms.Button start;
 		private System.Windows.Forms.Timer timer1;
-
 	}
 }
 

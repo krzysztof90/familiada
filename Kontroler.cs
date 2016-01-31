@@ -12,7 +12,6 @@ namespace familiada
 {
 	public partial class Kontroler : Form, IOperatable
 	{
-
 		public Kontroler()
 		{
 			this.panele = new List<Panel> { new Panel(), new Panel() };
@@ -92,7 +91,7 @@ namespace familiada
 				Global.exit("brak pytań");
 		}
 
-		static NrINazwaPytania nagłówekPytania(string linia)
+		private static NrINazwaPytania nagłówekPytania(string linia)
 		{
 			NrINazwaPytania pytanie = null;
 			try

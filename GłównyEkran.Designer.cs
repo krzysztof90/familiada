@@ -30,15 +30,24 @@ namespace familiada
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.panelPodstawa = new System.Windows.Forms.TableLayoutPanel();
 			this.panelRundy = new System.Windows.Forms.Panel();
-			this.panelPodstawaLewy = new System.Windows.Forms.TableLayoutPanel();
-			this.panelPunktyL = new System.Windows.Forms.Panel();
-			this.panelPodstawaPrawy = new System.Windows.Forms.TableLayoutPanel();
-			this.panelPunktyP = new System.Windows.Forms.Panel();
+			this.panelPodstawa = new System.Windows.Forms.TableLayoutPanel();
 			this.panelPodstawaGóra = new System.Windows.Forms.TableLayoutPanel();
+			this.panelPodstawaLewy = new System.Windows.Forms.TableLayoutPanel();
+			this.panelPodstawaPrawy = new System.Windows.Forms.TableLayoutPanel();
 			this.panelPunkty = new System.Windows.Forms.Panel();
+			this.panelPunktyL = new System.Windows.Forms.Panel();
+			this.panelPunktyP = new System.Windows.Forms.Panel();
 			this.SuspendLayout();
+			// 
+			// panelRundy
+			// 
+			this.panelRundy.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.panelRundy.Location = new System.Drawing.Point(126, 109);
+			this.panelRundy.Margin = new System.Windows.Forms.Padding(0);
+			this.panelRundy.Name = "panelRundy";
+			this.panelRundy.Size = new System.Drawing.Size(542, 367);
+			this.panelRundy.TabIndex = 3;
 			// 
 			// panelPodstawa
 			// 
@@ -59,14 +68,21 @@ namespace familiada
 			this.panelPodstawa.Size = new System.Drawing.Size(795, 476);
 			this.panelPodstawa.TabIndex = 0;
 			// 
-			// panelRundy
+			// panelPodstawaGóra
 			// 
-			this.panelRundy.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.panelRundy.Location = new System.Drawing.Point(126, 109);
-			this.panelRundy.Margin = new System.Windows.Forms.Padding(0);
-			this.panelRundy.Name = "panelRundy";
-			this.panelRundy.Size = new System.Drawing.Size(542, 367);
-			this.panelRundy.TabIndex = 3;
+			this.panelPodstawaGóra.ColumnCount = 3;
+			this.panelPodstawaGóra.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 11.5F));
+			this.panelPodstawaGóra.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 7F));
+			this.panelPodstawaGóra.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 11.5F));
+			this.panelPodstawaGóra.Controls.Add(this.panelPunkty, 1, 0);
+			this.panelPodstawaGóra.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.panelPodstawaGóra.Location = new System.Drawing.Point(126, 0);
+			this.panelPodstawaGóra.Margin = new System.Windows.Forms.Padding(0);
+			this.panelPodstawaGóra.Name = "panelPodstawaGóra";
+			this.panelPodstawaGóra.RowCount = 1;
+			this.panelPodstawaGóra.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+			this.panelPodstawaGóra.Size = new System.Drawing.Size(542, 109);
+			this.panelPodstawaGóra.TabIndex = 6;
 			// 
 			// panelPodstawaLewy
 			// 
@@ -84,15 +100,6 @@ namespace familiada
 			this.panelPodstawaLewy.Size = new System.Drawing.Size(126, 367);
 			this.panelPodstawaLewy.TabIndex = 4;
 			// 
-			// panelPunktyL
-			// 
-			this.panelPunktyL.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.panelPunktyL.Location = new System.Drawing.Point(0, 128);
-			this.panelPunktyL.Margin = new System.Windows.Forms.Padding(0);
-			this.panelPunktyL.Name = "panelPunktyL";
-			this.panelPunktyL.Size = new System.Drawing.Size(126, 110);
-			this.panelPunktyL.TabIndex = 0;
-			// 
 			// panelPodstawaPrawy
 			// 
 			this.panelPodstawaPrawy.ColumnCount = 1;
@@ -109,31 +116,6 @@ namespace familiada
 			this.panelPodstawaPrawy.Size = new System.Drawing.Size(127, 367);
 			this.panelPodstawaPrawy.TabIndex = 5;
 			// 
-			// panelPunktyP
-			// 
-			this.panelPunktyP.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.panelPunktyP.Location = new System.Drawing.Point(0, 128);
-			this.panelPunktyP.Margin = new System.Windows.Forms.Padding(0);
-			this.panelPunktyP.Name = "panelPunktyP";
-			this.panelPunktyP.Size = new System.Drawing.Size(127, 110);
-			this.panelPunktyP.TabIndex = 0;
-			// 
-			// panelPodstawaGóra
-			// 
-			this.panelPodstawaGóra.ColumnCount = 3;
-			this.panelPodstawaGóra.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 11.5F));
-			this.panelPodstawaGóra.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 7F));
-			this.panelPodstawaGóra.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 11.5F));
-			this.panelPodstawaGóra.Controls.Add(this.panelPunkty, 1, 0);
-			this.panelPodstawaGóra.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.panelPodstawaGóra.Location = new System.Drawing.Point(126, 0);
-			this.panelPodstawaGóra.Margin = new System.Windows.Forms.Padding(0);
-			this.panelPodstawaGóra.Name = "panelPodstawaGóra";
-			this.panelPodstawaGóra.RowCount = 1;
-			this.panelPodstawaGóra.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-			this.panelPodstawaGóra.Size = new System.Drawing.Size(542, 109);
-			this.panelPodstawaGóra.TabIndex = 6;
-			// 
 			// panelPunkty
 			// 
 			this.panelPunkty.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -142,6 +124,24 @@ namespace familiada
 			this.panelPunkty.Name = "panelPunkty";
 			this.panelPunkty.Size = new System.Drawing.Size(126, 109);
 			this.panelPunkty.TabIndex = 0;
+			// 
+			// panelPunktyL
+			// 
+			this.panelPunktyL.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.panelPunktyL.Location = new System.Drawing.Point(0, 128);
+			this.panelPunktyL.Margin = new System.Windows.Forms.Padding(0);
+			this.panelPunktyL.Name = "panelPunktyL";
+			this.panelPunktyL.Size = new System.Drawing.Size(126, 110);
+			this.panelPunktyL.TabIndex = 0;
+			// 
+			// panelPunktyP
+			// 
+			this.panelPunktyP.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.panelPunktyP.Location = new System.Drawing.Point(0, 128);
+			this.panelPunktyP.Margin = new System.Windows.Forms.Padding(0);
+			this.panelPunktyP.Name = "panelPunktyP";
+			this.panelPunktyP.Size = new System.Drawing.Size(127, 110);
+			this.panelPunktyP.TabIndex = 0;
 			// 
 			// GłównyEkran
 			// 
@@ -158,15 +158,14 @@ namespace familiada
 		#endregion
 
 		public List<System.Windows.Forms.Panel> panel;
-		private TableLayoutPanel panelPodstawa;
 		private Panel panelRundy;
+		private TableLayoutPanel panelPodstawa;
+		private TableLayoutPanel panelPodstawaGóra;
 		private TableLayoutPanel panelPodstawaLewy;
 		private TableLayoutPanel panelPodstawaPrawy;
-		private TableLayoutPanel panelPodstawaGóra;
+		public Panel panelPunkty;
 		public Panel panelPunktyL;
 		public Panel panelPunktyP;
-		public Panel panelPunkty;
-
 	}
 }
 

@@ -9,11 +9,11 @@ namespace familiada
 {
 	class Tablica
 	{
-		int liczbaKolumn;
-		int liczbaRzędów;
+		private int liczbaKolumn;
+		private int liczbaRzędów;
 
-		TableLayoutPanel panel = new TableLayoutPanel();
-		PictureBox[,] znakiPictureBox;
+		private TableLayoutPanel panel = new TableLayoutPanel();
+		private PictureBox[,] znakiPictureBox;
 
 		public Tablica(Panel ojciec, int liczbaKolumn, int liczbaRzędów, Image tło)
 		{

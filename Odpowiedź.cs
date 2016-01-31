@@ -10,21 +10,21 @@ namespace familiada
 {
 	class Odpowiedź
 	{
-		public string odpowiedź;
-		public int punkty;
-		public int nrOdpowiedzi;
-		Pytanie1 pytanie;
+		private string odpowiedź;
+		private int punkty;
+		private int nrOdpowiedzi;
+		private Pytanie1 pytanie;
 
-		Panel panel = new Panel();
+		private Panel panel = new Panel();
 
-		Button odpowiedźButton = new Button();
-		Button punktyButton = new Button();
-		Button edycjaOdpowiedziButton = new Button();
-		TextBox edytorOdpowiedzi = new TextBox();
-		TextBox edytorPunktów = new TextBox();
-		Button doGóry = new Button();
-		Button doDołu = new Button();
-		Button usuńButton = new Button();
+		private Button odpowiedźButton = new Button();
+		private Button punktyButton = new Button();
+		private Button edycjaOdpowiedziButton = new Button();
+		private TextBox edytorOdpowiedzi = new TextBox();
+		private TextBox edytorPunktów = new TextBox();
+		private Button doGóry = new Button();
+		private Button doDołu = new Button();
+		private Button usuńButton = new Button();
 
 		public Odpowiedź(string linia, Pytanie1 pytanie)
 		{
@@ -131,7 +131,7 @@ namespace familiada
 			wyświetlOdpowiedź(false, ' ');
 			wyświetlPunkty(false, ' ');
 		}
-		public void pokażOdpowiedź()
+		private void pokażOdpowiedź()
 		{
 			wyświetlOdpowiedź(true, '.');
 			wyświetlPunkty(true, ' ');
@@ -148,7 +148,7 @@ namespace familiada
 			nrOdpowiedzi = numer;
 			pokażKontrolkiOdpowiedzi();
 		}
-		public bool zaznaczona()
+		private bool zaznaczona()
 		{
 			return odpowiedźButton.BackColor == Color.White;
 		}

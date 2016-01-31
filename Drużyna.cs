@@ -10,7 +10,7 @@ namespace familiada
 {
 	abstract class Drużyna
 	{
-		int punkty = 0;
+		private int punkty = 0;
 		protected abstract int która { get; }
 
 		public Drużyna()
@@ -23,7 +23,7 @@ namespace familiada
 			punkty += dodane;
 			wyświetlPunkty();
 		}
-		public void wyświetlPunkty()
+		private void wyświetlPunkty()
 		{
 			Global.ustawPunktyDrużyny(która, punkty);
 		}

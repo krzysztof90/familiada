@@ -121,24 +121,26 @@ namespace familiada
 
 	class Pytanie1
 	{
-		public static int obecnePytanie = -1;
-		static Button dodajOdpowiedźButton = new Button();
-		List<Button> przypiszButton = new List<Button> { new Button(), new Button() };
+		public static int obecnePytanie { get; set; }
+		private static Button dodajOdpowiedźButton = new Button();
+		private List<Button> przypiszButton = new List<Button> { new Button(), new Button() };
 
-		int nrPytania;
-		string nazwaPytania;
-		public int punkty = 0;
-		public Drużyna drużynaZPrzypisanymiPunktami = null;
+		private int nrPytania;
+		private string nazwaPytania;
+		private int punkty = 0;
+		public Drużyna drużynaZPrzypisanymiPunktami { get; set; }
 
-		Label nazwaPytaniaLabel;
+		private Label nazwaPytaniaLabel;
 
-		ZonkL zonkL = new ZonkL();
-		ZonkP zonkP = new ZonkP();
+		private ZonkL zonkL = new ZonkL();
+		private ZonkP zonkP = new ZonkP();
 
-		public List<Odpowiedź> odpowiedzi = new List<Odpowiedź>();
+		public List<Odpowiedź> odpowiedzi { get; private set; }
 
 		static Pytanie1()
 		{
+			obecnePytanie = -1;
+
 			dodajOdpowiedźButton.Click += new EventHandler(dodajOdpowiedź_Click);
 			dodajOdpowiedźButton.Location = new Point(457, 95);
 			dodajOdpowiedźButton.Size = new Size(135, 23);
@@ -150,6 +152,9 @@ namespace familiada
 
 		public Pytanie1(NrINazwaPytania pytanie)
 		{
+			drużynaZPrzypisanymiPunktami = null;
+			odpowiedzi = new List<Odpowiedź>();
+
 			nrPytania = pytanie.nrPytania;
 			nazwaPytania = pytanie.nazwaPytania;
 

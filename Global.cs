@@ -10,23 +10,18 @@ namespace familiada
 {
 	class Global
 	{
-		public const string plik1 = "runda1.txt";
-		public const string plik2 = "runda2.txt";
+		static Global()
+		{
+			kontroler = new Kontroler();
+			panelKontroler1 = kontroler.panele[0];
+			panelKontroler2 = kontroler.panele[1];
+			panelKontrolerDodatkowy = kontroler.dodatkowy;
+			główny = new GłównyEkran();
+			formy = new List<IOperatable> { kontroler, główny };
+			pytania1 = new List<Pytanie1>();
+			pytania2 = new Pytanie2[5];
 
-		public const int długośćOdpowiedzi1 = 17;
-		public const int długośćOdpowiedzi2 = 10;
-
-		public static Kontroler kontroler = new Kontroler();
-		public static Panel panelKontroler1 = kontroler.panele[0];
-		public static Panel panelKontroler2 = kontroler.panele[1];
-		public static Panel panelKontrolerDodatkowy = kontroler.dodatkowy;
-		public static GłównyEkran główny = new GłównyEkran();
-		private static List<IOperatable> formy = new List<IOperatable> { kontroler, główny };
-
-		public static List<Pytanie1> pytania1 = new List<Pytanie1>();
-		public static Pytanie2[] pytania2 = new Pytanie2[5];
-
-		public static Dictionary<char, Image> znaki = new Dictionary<char, Image>()
+			znaki = new Dictionary<char, Image>()
 			{
 				{'A', Resources.a},
 				{'B', Resources.b},
@@ -77,6 +72,31 @@ namespace familiada
 				{'ˍ', zonkMały(false)},
 			};
 
+			tablica1 = new Tablica(główny.panel[0], 30, 10, Resources.puste);
+			tablica2 = new Tablica(główny.panel[1], 30, 10, Resources.puste);
+			tablicaPunkty = new Tablica(główny.panelPunkty, 3, 1, Resources.puste);
+			tablicaPunktyDrużyny = new List<Tablica> { new Tablica(główny.panelPunktyL, 3, 1, Resources.puste), new Tablica(główny.panelPunktyP, 3, 1, Resources.puste) };
+			drużyny = new List<Drużyna> { new DrużynaL(), new DrużynaP() };
+		}
+
+		public const string plik1 = "runda1.txt";
+		public const string plik2 = "runda2.txt";
+
+		public const int długośćOdpowiedzi1 = 17;
+		public const int długośćOdpowiedzi2 = 10;
+
+		public static Kontroler kontroler { get; private set; }
+		public static Panel panelKontroler1 { get; private set; }
+		public static Panel panelKontroler2 { get; private set; }
+		public static Panel panelKontrolerDodatkowy { get; private set; }
+		public static GłównyEkran główny { get; private set; }
+		private static List<IOperatable> formy;
+
+		public static List<Pytanie1> pytania1 { get; private set; }
+		public static Pytanie2[] pytania2 { get; private set; }
+
+		public static Dictionary<char, Image> znaki { get; private set; }
+
 		private static Bitmap zonkDuży(bool góra, bool lewo)
 		{
 			Bitmap Zonk = (Bitmap)(Resources.zonkDużyGL.Clone());
@@ -119,12 +139,12 @@ namespace familiada
 			return Zonk;
 		}
 
-		public static Tablica tablica1 = new Tablica(główny.panel[0], 30, 10, Resources.puste);
-		public static Tablica tablica2 = new Tablica(główny.panel[1], 30, 10, Resources.puste);
-		public static Tablica tablicaPunkty = new Tablica(główny.panelPunkty, 3, 1, Resources.puste);
-		public static List<Tablica> tablicaPunktyDrużyny = new List<Tablica>{new Tablica(główny.panelPunktyL, 3, 1, Resources.puste), new Tablica(główny.panelPunktyP, 3, 1, Resources.puste)};
+		public static Tablica tablica1 { get; private set; }
+		public static Tablica tablica2 { get; private set; }
+		public static Tablica tablicaPunkty { get; private set; }
+		public static List<Tablica> tablicaPunktyDrużyny { get; private set; }
 
-		public static List<Drużyna> drużyny = new List<Drużyna> { new DrużynaL(), new DrużynaP() };
+		public static List<Drużyna> drużyny { get; private set; }
 
 		static public void pokażPanel(int który)
 		{
