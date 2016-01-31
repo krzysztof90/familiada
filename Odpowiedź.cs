@@ -35,7 +35,7 @@ namespace familiada
 			int pozycjaPrzerwy = linia.LastIndexOfAny(new char[] { ' ', '\t' });
 			if (pozycjaPrzerwy == -1)
 				Global.exit(String.Format("niepoprawna linia: {0}", linia));
-			odpowiedź = linia.Substring(0, pozycjaPrzerwy).TrimEnd();
+			odpowiedź = linia.Substring(0, pozycjaPrzerwy).TrimEnd().ToUpper();
 			if (odpowiedź.Length > Global.długośćOdpowiedzi1)
 				Global.exit(String.Format("za długa odpowiedź: {0}. Dopuszczalna długość to {1}", odpowiedź, Global.długośćOdpowiedzi1));
 			for (int i = 0; i < odpowiedź.Length; i++)
@@ -194,7 +194,7 @@ namespace familiada
 		}
 		private void edytorOdpowiedzi_Leave(object sender, EventArgs e)
 		{
-			odpowiedź = edytorOdpowiedzi.Text;
+			odpowiedź = edytorOdpowiedzi.Text.ToUpper();
 			odpowiedźButton.Text = odpowiedź;
 
 			if (odpowiedź.Length > Global.długośćOdpowiedzi1)

@@ -65,6 +65,7 @@ namespace familiada
 		/// </summary>
 		public void ustawTekst(string tekst, int kolumnaPoczątkowa, int rząd, bool wyrównanieDoLewej, int pojemnośćCałkowita, char wypełnienie)
 		{
+			tekst = tekst.ToUpper();
 			int długośćTekstu = tekst.Length;
 			if (wyrównanieDoLewej)
 			{

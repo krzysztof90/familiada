@@ -73,7 +73,7 @@ namespace familiada
 
 		private void edytorOdpowiedzi_Leave(object sender, EventArgs e)
 		{
-			string odpowiedź = odpowiedźTextBox.Text;
+			string odpowiedź = odpowiedźTextBox.Text.ToUpper();
 
 			if (odpowiedź.Length > Global.długośćOdpowiedzi2)
 			{
