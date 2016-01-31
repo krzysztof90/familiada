@@ -132,8 +132,7 @@ namespace familiada
 
 		private Label nazwaPytaniaLabel;
 
-		private ZonkL zonkL = new ZonkL();
-		private ZonkP zonkP = new ZonkP();
+		private List<Zonk> zonki = new List<Zonk> { new ZonkL(), new ZonkP() };
 
 		public List<Odpowiedź> odpowiedzi { get; private set; }
 
@@ -181,11 +180,8 @@ namespace familiada
 		{
 			nazwaPytaniaLabel.Show();
 			ustawPunkty(punkty);
-			zonkL.pokaż();
-			zonkP.pokaż();
-			foreach (Odpowiedź odpowiedź in odpowiedzi)
-				odpowiedź.pokażKontrolkiOdpowiedzi();
-
+			zonki.ForEach(z => z.pokaż());
+			odpowiedzi.ForEach(o => o.pokażKontrolkiOdpowiedzi());
 			przypiszButton.ForEach(b => b.Show());
 		}
 		public void dodajIPokażOdpowiedź(string linia)
@@ -201,11 +197,9 @@ namespace familiada
 		{
 			nazwaPytaniaLabel.Hide();
 			Global.ustawPunktyGłówne(0);
-			zonkL.ukryj();
-			zonkP.ukryj();
+			zonki.ForEach(z => z.ukryj());
+			odpowiedzi.ForEach(o => o.ukryjKontrolkiOdpowiedzi());
 			przypiszButton.ForEach(b => b.Hide());
-			foreach (Odpowiedź odpowiedź in odpowiedzi)
-				odpowiedź.ukryjKontrolkiOdpowiedzi();
 		}
 		public void zamieńOdpowiedzi(int nrPoczątkowej)
 		{

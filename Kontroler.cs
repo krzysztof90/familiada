@@ -14,17 +14,20 @@ namespace familiada
 	{
 		public Kontroler()
 		{
-			this.panele = new List<Panel> { new Panel(), new Panel() };
-			this.panele.ForEach(p => p.Dock = DockStyle.Fill);
-			this.panele.ForEach(p => p.Margin = new Padding(0));
-			this.panele.ForEach(p => p.Visible = false);
+			panele = new List<Panel> { new Panel(), new Panel() };
+			foreach (Panel p in panele)
+			{
+				p.Dock = DockStyle.Fill;
+				p.Margin = new Padding(0);
+				p.Visible = false;
+			}
 
-			this.punktyDrużynaLabel = new List<Label> { new Label(), new Label() };
-			this.punktyDrużynaLabel.ForEach(l => l.Size = new Size(25, 15));
-			this.punktyDrużynaLabel[0].Dock = DockStyle.Left;
-			this.punktyDrużynaLabel[1].Dock = DockStyle.Right;
+			punktyDrużynaLabel = new List<Label> { new Label(), new Label() };
+			punktyDrużynaLabel.ForEach(l => l.Size = new Size(25, 15));
+			punktyDrużynaLabel[0].Dock = DockStyle.Left;
+			punktyDrużynaLabel[1].Dock = DockStyle.Right;
 
-			this.ustawCzasButton = new List<Button> { new Button(), new Button() };
+			ustawCzasButton = new List<Button> { new Button(), new Button() };
 			for (int i = 0; i < ustawCzasButton.Count; i++)
 			{
 				Button b = ustawCzasButton[i];
@@ -35,7 +38,6 @@ namespace familiada
 				b.Size = new Size(75, 23);
 				b.Click += new EventHandler(ustawCzas_Click);
 			}
-
 
 			InitializeComponent();
 
