@@ -134,7 +134,7 @@ namespace familiada
 			this.ClientSize = new System.Drawing.Size(795, 476);
 			this.Controls.Add(this.panelPodstawa);
 			this.Name = "GłównyEkran";
-			this.Text = "Główny ekran";
+			this.Text = "Familiada";
 			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.GłównyEkran_FormClosing);
 			this.ResumeLayout(false);
 		}

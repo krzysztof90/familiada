@@ -129,12 +129,13 @@ namespace familiada
 			panele[1].Controls.Add(start);
 			panele.ForEach(p => Controls.Add(p));
 			punktyDrużynaLabel.ForEach(l => dodatkowy.Controls.Add(l));
+			Controls.Add(dodatkowy);
 		}
 
 		private void Form_Load(object sender, EventArgs e)
 		{
 			// TODO usunąć
-			PokażEkran_Click(this, new EventArgs());
+			//PokażEkran_Click(this, new EventArgs());
 
 			try
 			{
