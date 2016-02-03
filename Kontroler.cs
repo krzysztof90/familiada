@@ -47,8 +47,8 @@ namespace familiada
 
 		public Kontroler()
 		{
-			panele = new List<Panel> { new Panel(), new Panel() };
-			foreach (Panel p in panele)
+			paneleRundy = new List<Panel> { new Panel(), new Panel() };
+			foreach (Panel p in paneleRundy)
 			{
 				p.Dock = DockStyle.Fill;
 				p.Margin = new Padding(0);
@@ -64,7 +64,7 @@ namespace familiada
 			for (int i = 0; i < ustawCzasButton.Count; i++)
 			{
 				Button b = ustawCzasButton[i];
-				panele[1].Controls.Add(b);
+				paneleRundy[1].Controls.Add(b);
 				b.Location = new Point(ustawCzasButtonPozycjaXPoczątek + (ustawCzasButtonOdstępX+ustawCzasButtonSzerokość) * i, ustawCzasButtonPozycjaY);
 				b.Tag = i == 0 ? "15" : "20";
 				b.Text = "ustaw" + (string)(b.Tag);
@@ -91,17 +91,17 @@ namespace familiada
 			pokażEkran.Text = "otwórz ekran główny";
 			pokażEkran.Click += new EventHandler(PokażEkran_Click);
 
-			runda = new Button();
-			runda.Location = new Point(rundaButtonPozycjaX, rundaButtonPozycjaY);
-			runda.Size = new Size(rundaButtonSzerokość, rundaButtonWysokość);
-			runda.Tag = 1;
-			runda.Text = "przełącz do rundy 1";
-			runda.Click += new EventHandler(Runda_Click);
+			rundaButton = new Button();
+			rundaButton.Location = new Point(rundaButtonPozycjaX, rundaButtonPozycjaY);
+			rundaButton.Size = new Size(rundaButtonSzerokość, rundaButtonWysokość);
+			rundaButton.Tag = 1;
+			rundaButton.Text = "przełącz do rundy 1";
+			rundaButton.Click += new EventHandler(Runda_Click);
 
-			punkty = new Label();
-			punkty.Location = new Point(punktyLabelPozycjaX, punktyLabelPozycjaY);
-			punkty.Size = new Size(punktyLabelSzerokość, punktyLabelWysokość);
-			punkty.Text = "0";
+			punktyLabel = new Label();
+			punktyLabel.Location = new Point(punktyLabelPozycjaX, punktyLabelPozycjaY);
+			punktyLabel.Size = new Size(punktyLabelSzerokość, punktyLabelWysokość);
+			punktyLabel.Text = "0";
 
 			start = new Button();
 			start.Location = new Point(startButtonPozycjaX, startButtonPozycjaY);
@@ -115,21 +115,21 @@ namespace familiada
 
 			dodatkowy = new Panel();
 			dodatkowy.BorderStyle = BorderStyle.FixedSingle;
-			dodatkowy.Controls.Add(punkty);
-			dodatkowy.Controls.Add(runda);
+			dodatkowy.Controls.Add(punktyLabel);
+			dodatkowy.Controls.Add(rundaButton);
 			dodatkowy.Controls.Add(pokażEkran);
 			dodatkowy.Location = new Point(dodatkowyPanelPozycjaX, dodatkowyPanelPozycjaY);
 			dodatkowy.Size = new Size(dodatkowyPanelSzerokość, dodatkowyPanelWysokość);
 
 			InitializeComponent();
 
-			panele[0].Controls.Add(poprzedniePytanie);
-			panele[0].Controls.Add(następnePytanie);
-			panele[1].Controls.Add(czas);
-			panele[1].Controls.Add(start);
-			panele.ForEach(p => Controls.Add(p));
+			paneleRundy[0].Controls.Add(poprzedniePytanie);
+			paneleRundy[0].Controls.Add(następnePytanie);
+			paneleRundy[1].Controls.Add(czas);
+			paneleRundy[1].Controls.Add(start);
 			punktyDrużynaLabel.ForEach(l => dodatkowy.Controls.Add(l));
 			Controls.Add(dodatkowy);
+			paneleRundy.ForEach(p => Controls.Add(p));
 		}
 
 		private void Form_Load(object sender, EventArgs e)
@@ -301,15 +301,15 @@ namespace familiada
 
 		public void PokażPanel(int który)
 		{
-			panele[który].Show();
+			paneleRundy[który].Show();
 		}
 		public void UkryjPanel(int który)
 		{
-			panele[który].Hide();
+			paneleRundy[który].Hide();
 		}
 		public void UstawPunktyGłówne(int punkty)
 		{
-			this.punkty.Text = punkty.ToString();
+			this.punktyLabel.Text = punkty.ToString();
 		}
 		public void UstawPunktyDrużyny(int która, int punkty)
 		{

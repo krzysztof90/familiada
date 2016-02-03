@@ -73,9 +73,9 @@ namespace familiada
 		}
 		public void Umieść(Panel panel)
 		{
-			panel.Controls.Add(this.odpowiedźTextBox);
-			panel.Controls.Add(this.punktyTextBox);
-			panel.Controls.Add(this.umieśćButton);
+			panel.Controls.Add(odpowiedźTextBox);
+			panel.Controls.Add(punktyTextBox);
+			panel.Controls.Add(umieśćButton);
 		}
 		private bool Wyświetlony()
 		{
@@ -229,9 +229,9 @@ namespace familiada
 			nazwaLabel.Size = new Size(nazwaLabelSzerokość, nazwaLabelWysokość);
 			nazwaLabel.Text = nazwaPytania;
 
-			panel.Controls.Add(this.nazwaLabel);
-			Global.panelKontroler2.Controls.Add(panel);
+			panel.Controls.Add(nazwaLabel);
 			pytaniaStrona.ForEach(p => p.Umieść(panel));
+			Global.panelKontroler2.Controls.Add(panel);
 		}
 
 		public static void WyświetlPunkty()

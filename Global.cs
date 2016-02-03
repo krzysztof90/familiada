@@ -13,8 +13,8 @@ namespace familiada
 		static Global()
 		{
 			kontroler = new Kontroler();
-			panelKontroler1 = kontroler.panele[0];
-			panelKontroler2 = kontroler.panele[1];
+			panelKontroler1 = kontroler.paneleRundy[0];
+			panelKontroler2 = kontroler.paneleRundy[1];
 			panelKontrolerDodatkowy = kontroler.dodatkowy;
 			główny = new GłównyEkran();
 			formy = new List<IOperatable> { kontroler, główny };
