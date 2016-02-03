@@ -18,7 +18,7 @@ namespace familiada
 
 		private static int punkty;
 		readonly int nrPytania;
-		private int punktyPytania;
+		private int punktyPytania = 0;
 
 		readonly TextBox odpowiedźTextBox = new TextBox();
 		readonly TextBox punktyTextBox = new TextBox();
@@ -127,12 +127,12 @@ namespace familiada
 		private void Odpowiedź_KeyDown(object sender, KeyEventArgs e)
 		{
 			if (e.KeyCode == Keys.Down && nrPytania != 5)
-					Global.pytania2[nrPytania].pytaniaStrona[Tag].odpowiedźTextBox.Focus();
+				Global.pytania2[nrPytania].pytaniaStrona[Tag].odpowiedźTextBox.Focus();
 		}
 		private void Punkty_KeyDown(object sender, KeyEventArgs e)
 		{
 			if (e.KeyCode == Keys.Down && nrPytania != 5)
-					Global.pytania2[nrPytania].pytaniaStrona[Tag].punktyTextBox.Focus();
+				Global.pytania2[nrPytania].pytaniaStrona[Tag].punktyTextBox.Focus();
 		}
 		private void PokażUkryj_Click(object sender, EventArgs e)
 		{
