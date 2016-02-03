@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.Globalization;
 using System.Windows.Forms;
 namespace familiada
 {
@@ -64,7 +65,7 @@ namespace familiada
 		/// </summary>
 		public void UstawTekst(string tekst, int kolumnaPoczątkowa, int rząd, bool wyrównanieDoLewej, int pojemnośćCałkowita, char wypełnienie)
 		{
-			string tekstUpper = tekst.ToUpper();
+			string tekstUpper = tekst.ToUpper(CultureInfo.CurrentUICulture);
 			int długośćTekstu = tekstUpper.Length;
 			if (wyrównanieDoLewej)
 			{

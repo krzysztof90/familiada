@@ -6,8 +6,8 @@ namespace familiada
 {
 	class NrINazwaPytania
 	{
-		public int nrPytania;
-		public string nazwaPytania;
+		public int nrPytania { get; private set; }
+		public string nazwaPytania { get; private set; }
 
 		public NrINazwaPytania(int nr, string nazwa)
 		{

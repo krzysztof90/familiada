@@ -214,7 +214,7 @@ namespace familiada
 		readonly Panel panel = new Panel();
 
 		readonly Label nazwaLabel = new Label();
-		public List<PytanieStrona> pytaniaStrona;
+		public List<PytanieStrona> pytaniaStrona { get; private set; }
 
 		public Pytanie2(string nazwa, int nrPytania)
 		{

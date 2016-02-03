@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Windows.Forms;
 namespace familiada
 {
@@ -65,7 +66,7 @@ namespace familiada
 			{
 				Button b = ustawCzasButton[i];
 				paneleRundy[1].Controls.Add(b);
-				b.Location = new Point(ustawCzasButtonPozycjaXPoczątek + (ustawCzasButtonOdstępX+ustawCzasButtonSzerokość) * i, ustawCzasButtonPozycjaY);
+				b.Location = new Point(ustawCzasButtonPozycjaXPoczątek + (ustawCzasButtonOdstępX + ustawCzasButtonSzerokość) * i, ustawCzasButtonPozycjaY);
 				b.Tag = i == 0 ? "15" : "20";
 				b.Text = "ustaw" + (string)(b.Tag);
 				b.Size = new Size(ustawCzasButtonSzerokość, ustawCzasButtonWysokość);
@@ -108,7 +109,7 @@ namespace familiada
 			start.Size = new Size(startButtonSzerokość, startButtonWysokość);
 			start.Text = "start";
 			start.Click += new EventHandler(this.StartCzas_Click);
-			
+
 			czas = new Label();
 			czas.Location = new Point(czasLabelPozycjaX, czasLabelPozycjaY);
 			czas.Size = new Size(czasLabelSzerokość, czasLabelWysokość);
@@ -145,9 +146,9 @@ namespace familiada
 					string linia = plik.ReadLine().Trim();
 					if (linia.Length != 0)
 					{
-						if (nagłówekPytania(linia) != null)
+						if (NagłówekPytania(linia) != null)
 						{
-							Global.pytania1.Add(new Pytanie1(nagłówekPytania(linia)));
+							Global.pytania1.Add(new Pytanie1(NagłówekPytania(linia)));
 						}
 						else
 						{
@@ -180,16 +181,16 @@ namespace familiada
 				Global.Wyjdź("brak pytań");
 		}
 
-		private static NrINazwaPytania nagłówekPytania(string linia)
+		private static NrINazwaPytania NagłówekPytania(string linia)
 		{
 			try
 			{
 				string[] words = linia.Split(new char[] { ' ', '\t' });
 				int nrPytania = Int32.Parse(words[0]);
-				string nazwaPytania = String.Empty;
+				StringBuilder nazwaPytania = new StringBuilder();
 				for (int i = 1; i < words.Length; i++)
-					nazwaPytania += words[i] + " ";
-				return new NrINazwaPytania(nrPytania, nazwaPytania.TrimEnd());
+					nazwaPytania.Append(words[i]).Append(" ");
+				return new NrINazwaPytania(nrPytania, nazwaPytania.ToString().TrimEnd());
 			}
 			catch (FormatException)
 			{

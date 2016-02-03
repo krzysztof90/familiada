@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
@@ -46,7 +47,7 @@ namespace familiada
 			int pozycjaPrzerwy = linia.LastIndexOfAny(new char[] { ' ', '\t' });
 			if (pozycjaPrzerwy == -1)
 				Global.Wyjdź(String.Format("niepoprawna linia: {0}", linia));
-			odpowiedź = linia.Substring(0, pozycjaPrzerwy).TrimEnd().ToUpper();
+			odpowiedź = linia.Substring(0, pozycjaPrzerwy).TrimEnd().ToUpper(CultureInfo.CurrentUICulture);
 			if (odpowiedź.Length > Global.długośćOdpowiedzi1)
 				Global.Wyjdź(String.Format("za długa odpowiedź: {0}. Dopuszczalna szerokość to {1}", odpowiedź, Global.długośćOdpowiedzi1));
 			for (int i = 0; i < odpowiedź.Length; i++)

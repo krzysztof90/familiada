@@ -21,7 +21,7 @@ namespace familiada
 			pytania1 = new List<Pytanie1>();
 			pytania2 = new Pytanie2[5];
 
-			znaki = new Dictionary<char, Image>()
+			znaki = new Dictionary<char, Image>
 			{
 				{'A', Resources.a},
 				{'B', Resources.b},
