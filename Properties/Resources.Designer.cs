@@ -203,6 +203,16 @@ namespace familiada.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap przecinek {
+            get {
+                object obj = ResourceManager.GetObject("przecinek", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap punktyPuste {
             get {
                 object obj = ResourceManager.GetObject("punktyPuste", resourceCulture);
@@ -216,6 +226,16 @@ namespace familiada.Properties {
         internal static System.Drawing.Bitmap puste {
             get {
                 object obj = ResourceManager.GetObject("puste", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap znakZapytania {
+            get {
+                object obj = ResourceManager.GetObject("znakZapytania", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
