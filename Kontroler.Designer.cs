@@ -63,6 +63,7 @@ namespace familiada
 		private System.Windows.Forms.Label punktyLabel;
 		private System.Windows.Forms.Label czas;
 		private System.Windows.Forms.Button start;
+		private System.Windows.Forms.Button stop;
 		private System.Windows.Forms.Timer timer1;
 	}
 }

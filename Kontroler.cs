@@ -41,10 +41,11 @@ namespace familiada
 		private const int czasLabelPozycjaY = 400;
 		private const int czasLabelSzerokość = 20;
 		private const int czasLabelWysokość = 13;
-		private const int startButtonPozycjaX = 470;
-		private const int startButtonPozycjaY = 350;
-		private const int startButtonSzerokość = 75;
-		private const int startButtonWysokość = 25;
+		private const int czasButtonPozycjaXPoczątek = 400;
+		private const int czasButtonOdstępX = 25;
+		private const int czasButtonPozycjaY = 350;
+		private const int czasButtonSzerokość = 75;
+		private const int czasButtonWysokość = 25;
 
 		public Kontroler()
 		{
@@ -105,10 +106,16 @@ namespace familiada
 			punktyLabel.Text = "0";
 
 			start = new Button();
-			start.Location = new Point(startButtonPozycjaX, startButtonPozycjaY);
-			start.Size = new Size(startButtonSzerokość, startButtonWysokość);
+			start.Location = new Point(czasButtonPozycjaXPoczątek, czasButtonPozycjaY);
+			start.Size = new Size(czasButtonSzerokość, czasButtonWysokość);
 			start.Text = "start";
-			start.Click += new EventHandler(this.StartCzas_Click);
+			start.Click += new EventHandler(StartCzas_Click);
+
+			stop = new Button();
+			stop.Location = new Point(czasButtonPozycjaXPoczątek + czasButtonSzerokość + czasButtonOdstępX, czasButtonPozycjaY);
+			stop.Size = new Size(czasButtonSzerokość, czasButtonWysokość);
+			stop.Text = "pauza";
+			stop.Click += new EventHandler(StopCzas_Click);
 
 			czas = new Label();
 			czas.Location = new Point(czasLabelPozycjaX, czasLabelPozycjaY);
@@ -128,6 +135,7 @@ namespace familiada
 			paneleRundy[0].Controls.Add(następnePytanie);
 			paneleRundy[1].Controls.Add(czas);
 			paneleRundy[1].Controls.Add(start);
+			paneleRundy[1].Controls.Add(stop);
 			punktyDrużynaLabel.ForEach(l => dodatkowy.Controls.Add(l));
 			Controls.Add(dodatkowy);
 			paneleRundy.ForEach(p => Controls.Add(p));
@@ -285,6 +293,10 @@ namespace familiada
 		{
 			if (czas.Text != String.Empty)
 				timer1.Start();
+		}
+		private void StopCzas_Click(object sender, EventArgs e)
+		{
+			timer1.Stop();
 		}
 		private void Timer1_Tick(object sender, EventArgs e)
 		{
