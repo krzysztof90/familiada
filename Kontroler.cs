@@ -28,8 +28,8 @@ namespace familiada
 		private const int rundaButtonWysokość = 25;
 		private const int punktyLabelPozycjaX = 80;
 		private const int punktyLabelPozycjaY = 8;
-		private const int punktyLabelSzerokość = 13;
-		private const int punktyLabelWysokość = 13;
+		private const int punktyLabelSzerokość = 25;
+		private const int punktyLabelWysokość = 15;
 		private const int punktyDrużynaLabelSzerokość = 25;
 		private const int punktyDrużynaLabelWysokość = 15;
 		private const int ustawCzasButtonPozycjaXPoczątek = 400;

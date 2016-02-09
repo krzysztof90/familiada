@@ -14,7 +14,7 @@ namespace familiada
 		private const int panelWysokość = 30;
 		private const int odpowiedźButtoniPunktyButtonOdstępX = 20;
 		private const int operacjeButtonOdstępX = 0;
-		private const int odpowiedźButtonSzerokość = 100;
+		private const int odpowiedźButtonSzerokość = 150;
 		private const int operacjeButtonSzerokość = 30;
 
 		private const int tablicaNumerPytaniaPozycjaX = 4;
