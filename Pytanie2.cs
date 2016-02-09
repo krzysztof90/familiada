@@ -200,9 +200,9 @@ namespace familiada
 
 	class Pytanie2
 	{
-		public const int nazwaLabelSzerokość = 150;
+		public const int nazwaLabelSzerokość = 200;
 		public const int nazwaLabelWysokość = 14;
-		private const int panelPozycjaX = 100;
+		private const int panelPozycjaX = 50;
 		private const int panelPozycjaYPoczątek = 50;
 		private const int panelOdstępY = 20;
 		private const int panelSzerokość = nazwaLabelSzerokość + (PytanieStrona.odpowiedźTextBoxSzerokość + PytanieStrona.punktyTextBoxSzerokość + PytanieStrona.umieśćButtonSzerokość) * 2 + PytanieStrona.ControlOdstępX * 5;
