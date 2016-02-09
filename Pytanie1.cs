@@ -124,6 +124,8 @@ namespace familiada
 	{
 		public const int nazwaPytaniaLabelPozycjaX = 100;
 		public const int nazwaPytaniaLabelPozycjaY = 0;
+		public const int nazwaPytaniaLabelSzerokość = 150;
+		public const int nazwaPytaniaLabelWysokość = 15;
 		public const int dodajOdpowiedźButtonPozycjaX = 450;
 		public const int dodajOdpowiedźButtonPozycjaY = 100;
 		public const int dodajOdpowiedźButtonSzerokość = 135;
@@ -172,6 +174,7 @@ namespace familiada
 
 			nazwaPytaniaLabel = new Label();
 			nazwaPytaniaLabel.Location = new Point(nazwaPytaniaLabelPozycjaX, nazwaPytaniaLabelPozycjaY);
+			nazwaPytaniaLabel.Size = new Size(nazwaPytaniaLabelSzerokość, nazwaPytaniaLabelWysokość);
 			nazwaPytaniaLabel.Text = nrPytania.ToString() + ". " + nazwaPytania;
 			nazwaPytaniaLabel.Hide();
 
