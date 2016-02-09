@@ -39,7 +39,7 @@ namespace familiada
 		private const int ustawCzasButtonWysokość = 25;
 		private const int czasLabelPozycjaX = 520;
 		private const int czasLabelPozycjaY = 400;
-		private const int czasLabelSzerokość = 13;
+		private const int czasLabelSzerokość = 20;
 		private const int czasLabelWysokość = 13;
 		private const int startButtonPozycjaX = 470;
 		private const int startButtonPozycjaY = 350;
