@@ -146,6 +146,7 @@
   <ItemGroup>
     <Content Include="Resources\a.png" />
     <Content Include="Resources\b.png" />
+    <None Include="Resources\slash.png" />
     <None Include="Resources\znakZapytania.png" />
     <None Include="Resources\przecinek.png" />
     <Content Include="Resources\puste.png" />

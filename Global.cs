@@ -68,6 +68,7 @@ namespace familiada
 				{'-', Resources.minus},
 				{',', Resources.przecinek},
 				{'?', Resources.znakZapytania},
+				{'/', Resources.slash},
 				{'.', Resources.kropka},
 				{' ', Resources.puste},
 				{'|', Resources.punktyPuste},
@@ -92,6 +93,7 @@ namespace familiada
 
 		public const string plik1 = "runda1.txt";
 		public const string plik2 = "runda2.txt";
+		public const string plikOdpowiedzi2 = "odpowiedzi2.txt";
 
 		public const int długośćOdpowiedzi1 = 17;
 		public const int długośćOdpowiedzi2 = 10;

@@ -20,8 +20,8 @@ namespace familiada
 		readonly int nrPytania;
 		private int punktyPytania = 0;
 
-		readonly TextBox odpowiedźTextBox = new TextBox();
-		readonly TextBox punktyTextBox = new TextBox();
+		public TextBox odpowiedźTextBox = new TextBox();
+		public TextBox punktyTextBox = new TextBox();
 		readonly Button umieśćButton = new Button();
 
 		protected abstract int Tag { get; }
@@ -95,7 +95,7 @@ namespace familiada
 			for (int i = 0; i < odpowiedź.Length; i++)
 				if (!Global.znaki.ContainsKey(odpowiedź[i]))
 				{
-					MessageBox.Show(String.Format("niepoprawny znak {0}", odpowiedź[i]));
+					MessageBox.Show(String.Format("niepoprawny znak {0}", odpowiedźTextBox.Text[i]));
 					odpowiedźTextBox.Focus();
 					return;
 				}

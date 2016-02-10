@@ -47,11 +47,12 @@ namespace familiada
 			int pozycjaPrzerwy = linia.LastIndexOfAny(new char[] { ' ', '\t' });
 			if (pozycjaPrzerwy == -1)
 				Global.Wyjdź(String.Format("niepoprawna linia: {0}", linia));
-			odpowiedź = linia.Substring(0, pozycjaPrzerwy).TrimEnd().ToUpper(CultureInfo.CurrentUICulture);
+			odpowiedź = linia.Substring(0, pozycjaPrzerwy).TrimEnd();
 			if (odpowiedź.Length > Global.długośćOdpowiedzi1)
 				Global.Wyjdź(String.Format("za długa odpowiedź: {0}. Dopuszczalna szerokość to {1}", odpowiedź, Global.długośćOdpowiedzi1));
+			string odpowiedźUpper = odpowiedź.ToUpper(CultureInfo.CurrentUICulture);
 			for (int i = 0; i < odpowiedź.Length; i++)
-				if (!Global.znaki.ContainsKey(odpowiedź[i]))
+				if (!Global.znaki.ContainsKey(odpowiedźUpper[i]))
 					Global.Wyjdź(String.Format("niepoprawny znak '{0}' w {1}", odpowiedź[i], odpowiedź));
 			try
 			{
@@ -59,7 +60,7 @@ namespace familiada
 			}
 			catch (FormatException)
 			{
-				Global.Wyjdź("niepoprawna liczba punktów");
+				Global.Wyjdź(String.Format("niepoprawna liczba punktów w {0}", linia));
 			}
 
 			panel.Hide();
@@ -208,7 +209,7 @@ namespace familiada
 		private void EdytorOdpowiedzi_Leave(object sender, EventArgs e)
 		{
 			odpowiedź = edytorOdpowiedzi.Text.ToUpper();
-			odpowiedźButton.Text = odpowiedź;
+			odpowiedźButton.Text = edytorOdpowiedzi.Text;
 
 			if (odpowiedź.Length > Global.długośćOdpowiedzi1)
 			{
@@ -220,7 +221,7 @@ namespace familiada
 				for (int i = 0; i < odpowiedź.Length; i++)
 					if (!Global.znaki.ContainsKey(odpowiedź[i]))
 					{
-						MessageBox.Show(String.Format("niepoprawny znak {0}", odpowiedź[i]));
+						MessageBox.Show(String.Format("niepoprawny znak {0}", edytorOdpowiedzi.Text[i]));
 						edytorOdpowiedzi.Focus();
 						return;
 					}

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -187,6 +188,48 @@ namespace familiada
 
 			if (Global.pytania1.Count == 0)
 				Global.Wyjdź("brak pytań");
+
+			if (File.Exists(Global.plikOdpowiedzi2))
+			{
+				StreamReader plik = new StreamReader(Global.plikOdpowiedzi2);
+				try
+				{
+					for (int i = 0; i < 5; i++)
+					{
+						string linia = plik.ReadLine().Trim();
+						int pozycjaOstatniejPrzerwy = linia.LastIndexOfAny(new char[] { ' ', '\t' });
+						int pozycjaPrzedostatniejPrzerwy = linia.LastIndexOfAny(new char[] { ' ', '\t' }, pozycjaOstatniejPrzerwy - 1);
+						if (pozycjaPrzedostatniejPrzerwy == -1)
+							Global.Wyjdź(String.Format("niepoprawna linia: {0}", linia));
+						string odpowiedź = linia.Substring(0, pozycjaPrzedostatniejPrzerwy).TrimEnd();
+						if (odpowiedź.Length > Global.długośćOdpowiedzi2)
+							Global.Wyjdź(String.Format("za długa odpowiedź: {0}. Dopuszczalna szerokość to {1}", odpowiedź, Global.długośćOdpowiedzi2));
+						string odpowiedźUpper = odpowiedź.ToUpper(CultureInfo.CurrentUICulture);
+						for (int j = 0; j < odpowiedź.Length; j++)
+							if (!Global.znaki.ContainsKey(odpowiedźUpper[j]))
+								Global.Wyjdź(String.Format("niepoprawny znak '{0}' w {1}", odpowiedź[j], odpowiedź));
+						try
+						{
+							Int32.Parse(linia.Substring(pozycjaPrzedostatniejPrzerwy + 1, pozycjaOstatniejPrzerwy - pozycjaPrzedostatniejPrzerwy - 1));
+							Int32.Parse(linia.Substring(pozycjaOstatniejPrzerwy + 1));
+						}
+						catch (FormatException)
+						{
+							Global.Wyjdź(String.Format("niepoprawna liczba punktów w {0}", linia));
+						}
+						string punktyL = linia.Substring(pozycjaPrzedostatniejPrzerwy + 1, pozycjaOstatniejPrzerwy - pozycjaPrzedostatniejPrzerwy - 1);
+						string punktyP = linia.Substring(pozycjaOstatniejPrzerwy + 1);
+						Global.pytania2[i].pytaniaStrona[1].odpowiedźTextBox.Text = odpowiedź;
+						Global.pytania2[i].pytaniaStrona[0].punktyTextBox.Text = punktyL;
+						Global.pytania2[i].pytaniaStrona[1].punktyTextBox.Text = punktyP;
+					}
+				}
+				catch (NullReferenceException)
+				{
+					Global.Wyjdź(String.Format("Wstaw 5 odpowiedzi"));
+				}
+				plik.Close();
+			}
 		}
 
 		private static NrINazwaPytania NagłówekPytania(string linia)
