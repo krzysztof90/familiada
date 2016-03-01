@@ -17,9 +17,10 @@ namespace familiada
 		private const int odpowiedźButtonSzerokość = 150;
 		private const int operacjeButtonSzerokość = 30;
 
-		private const int tablicaNumerPytaniaPozycjaX = 4;
-		private const int tablicaOdpowiedźPozycjaX = 6;
-		private const int tablicaPunktyPozycjaX = 24;
+		private const int tablicaOdstępNumerOdpowiedziOdpowiedź = 1;
+		private const int tablicaNumerOdpowiedziPozycjaX = 1;
+		private const int tablicaOdpowiedźPozycjaX = tablicaNumerOdpowiedziPozycjaX + 1 + tablicaOdstępNumerOdpowiedziOdpowiedź;
+		private const int tablicaPunktyPozycjaX = tablicaOdpowiedźPozycjaX + 1 + Global.długośćOdpowiedzi1;
 		public const int tablicaPunktyPozycjaYPoczątek = 2;
 
 		private string odpowiedź;
@@ -268,7 +269,7 @@ namespace familiada
 
 		private void WyświetlNrOdpowiedzi(bool niePuste, char wypełnienie)
 		{
-			Global.tablica1.UstawTekst(niePuste ? nrOdpowiedzi.ToString() : String.Empty, tablicaNumerPytaniaPozycjaX, tablicaPunktyPozycjaYPoczątek - 1 + nrOdpowiedzi, false, 2, wypełnienie);
+			Global.tablica1.UstawTekst(niePuste ? nrOdpowiedzi.ToString() : String.Empty, tablicaNumerOdpowiedziPozycjaX, tablicaPunktyPozycjaYPoczątek - 1 + nrOdpowiedzi, false, 1, wypełnienie);
 		}
 		private void WyświetlOdpowiedź(bool niePuste, char wypełnienie)
 		{

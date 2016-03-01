@@ -99,7 +99,7 @@ namespace familiada
 		public const string plik2 = "runda2.txt";
 		public const string plikOdpowiedzi2 = "odpowiedzi2.txt";
 
-		public const int długośćOdpowiedzi1 = 17;
+		public const int długośćOdpowiedzi1 = 24;
 		public const int długośćOdpowiedzi2 = 10;
 		public const int ilośćOdpowiedzi1 = Tablica.wysokość - Odpowiedź.tablicaPunktyPozycjaYPoczątek;
 

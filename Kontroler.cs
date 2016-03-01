@@ -170,7 +170,7 @@ namespace familiada
 							}
 							catch (ArgumentException exc)
 							{
-								Global.Wyjdź(String.Format("za dużo odpowiedzi w pytaniu {0}", exc.Message));
+								Global.Wyjdź(String.Format("za dużo odpowiedzi w pytaniu: {0}", exc.Message));
 							}
 						}
 					}
