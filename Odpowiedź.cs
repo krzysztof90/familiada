@@ -20,7 +20,7 @@ namespace familiada
 		private const int tablicaNumerPytaniaPozycjaX = 4;
 		private const int tablicaOdpowiedźPozycjaX = 6;
 		private const int tablicaPunktyPozycjaX = 24;
-		private const int tablicaPunktyPozycjaYPoczątek = 2;
+		public const int tablicaPunktyPozycjaYPoczątek = 2;
 
 		private string odpowiedź;
 		private int punkty;
@@ -43,6 +43,8 @@ namespace familiada
 			this.pytanie = pytanie;
 
 			nrOdpowiedzi = pytanie.odpowiedzi.Count + 1;
+			if (nrOdpowiedzi > Global.ilośćOdpowiedzi1)
+				throw new ArgumentException(pytanie.nazwaPytania);
 
 			int pozycjaPrzerwy = linia.LastIndexOfAny(new char[] { ' ', '\t' });
 			if (pozycjaPrzerwy == -1)
@@ -260,6 +262,8 @@ namespace familiada
 		private void Usuń_Click(object sender, EventArgs e)
 		{
 			pytanie.UsuńOdpowiedź(nrOdpowiedzi);
+			if (pytanie.odpowiedzi.Count != Global.ilośćOdpowiedzi1)
+				Pytanie1.dodajOdpowiedźButton.Show();
 		}
 
 		private void WyświetlNrOdpowiedzi(bool niePuste, char wypełnienie)

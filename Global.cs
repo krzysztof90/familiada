@@ -87,7 +87,7 @@ namespace familiada
 				{'ˍ', ZwróćZonkMały(false)},
 			};
 
-			tablica1 = new Tablica(główny.panelRundy, 0, 0, Resources.puste);
+			new Tablica(główny.panelRundy, 0, 0, Resources.puste); // TODO dispose po rundyButton.click
 			tablica1 = new Tablica(główny.panele[0], Tablica.szerokość, Tablica.wysokość, Resources.puste);
 			tablica2 = new Tablica(główny.panele[1], Tablica.szerokość, Tablica.wysokość, Resources.puste);
 			tablicaPunkty = new Tablica(główny.panelPunkty, 3, 1, Resources.puste);
@@ -101,6 +101,7 @@ namespace familiada
 
 		public const int długośćOdpowiedzi1 = 17;
 		public const int długośćOdpowiedzi2 = 10;
+		public const int ilośćOdpowiedzi1 = Tablica.wysokość - Odpowiedź.tablicaPunktyPozycjaYPoczątek;
 
 		public static Kontroler kontroler { get; private set; }
 		public static Panel panelKontroler1 { get; private set; }

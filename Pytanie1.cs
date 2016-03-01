@@ -137,11 +137,11 @@ namespace familiada
 		private const int przypiszButtonWysokość = 25;
 
 		public static int obecnePytanie { get; set; }
-		private static Button dodajOdpowiedźButton = new Button();
+		public static Button dodajOdpowiedźButton = new Button();
 		readonly List<Button> przypiszButton = new List<Button> { new Button(), new Button() };
 
 		readonly int nrPytania;
-		readonly string nazwaPytania;
+		public readonly string nazwaPytania;
 		private int punkty = 0;
 		public Drużyna drużynaZPrzypisanymiPunktami { get; set; }
 
@@ -262,7 +262,7 @@ namespace familiada
 		}
 		public static void PokażPrzyciski()
 		{
-			dodajOdpowiedźButton.Show();
+			dodajOdpowiedźButton.Visible = (ZwróćObecnePytanie().odpowiedzi.Count != Global.ilośćOdpowiedzi1);
 		}
 
 		private static Pytanie1 ZwróćObecnePytanie()
@@ -273,6 +273,8 @@ namespace familiada
 		private static void DodajOdpowiedź_Click(object sender, EventArgs e)
 		{
 			ZwróćObecnePytanie().DodajIPokażOdpowiedź(" 0");
+			if (ZwróćObecnePytanie().odpowiedzi.Count == Global.ilośćOdpowiedzi1)
+				dodajOdpowiedźButton.Hide();
 		}
 		private void Przypisz_Click(object sender, EventArgs e)
 		{

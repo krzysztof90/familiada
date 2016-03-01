@@ -164,7 +164,14 @@ namespace familiada
 						{
 							if (Global.pytania1.Count == 0)
 								Global.Wyjdź("zacznij plik od numeru pytania");
-							Global.pytania1.Last().DodajOdpowiedź(linia);
+							try
+							{
+								Global.pytania1.Last().DodajOdpowiedź(linia);
+							}
+							catch (ArgumentException exc)
+							{
+								Global.Wyjdź(String.Format("za dużo odpowiedzi w pytaniu {0}", exc.Message));
+							}
 						}
 					}
 				}
@@ -288,12 +295,12 @@ namespace familiada
 				Pytanie1.UkryjPytanie();
 			}
 
-			Pytanie1.PokażPrzyciski();
-
 			Pytanie1.obecnePytanie++;
 			Pytanie1.PokażPytanie();
 			if (Pytanie1.OstatniePytanie())
 				następnePytanie.Hide();
+
+			Pytanie1.PokażPrzyciski();
 		}
 		private void PoprzedniePytanie_Click(object sender, EventArgs e)
 		{
@@ -305,6 +312,8 @@ namespace familiada
 
 			if (Pytanie1.obecnePytanie == 0)
 				poprzedniePytanie.Hide();
+
+			Pytanie1.PokażPrzyciski();
 		}
 		private void PokażEkran_Click(object sender, EventArgs e)
 		{
