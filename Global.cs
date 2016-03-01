@@ -181,6 +181,20 @@ namespace familiada
 			formy.ForEach(e => e.UstawPunktyDrużyny(która, punkty));
 		}
 
+		static public void OznaczZaznaczenie(Button B)
+		{
+			B.BackColor = Color.White;
+		}
+		static public void OdznaczZaznaczenie(Button B)
+		{
+			B.BackColor = SystemColors.Control;
+			B.UseVisualStyleBackColor = true;
+		}
+		static public bool Zaznaczony(Button B)
+		{
+			return B.BackColor == Color.White;
+		}
+
 		static public void Wyjdź(string message)
 		{
 			MessageBox.Show(message);

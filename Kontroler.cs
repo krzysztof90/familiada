@@ -48,6 +48,10 @@ namespace familiada
 		private const int czasButtonPozycjaY = 350;
 		private const int czasButtonSzerokość = 75;
 		private const int czasButtonWysokość = 25;
+		private const int ukryjOdpowiedziButtonPozycjaX = 300;
+		private const int ukryjOdpowiedziButtonPozycjaY = 325;
+		private const int ukryjOdpowiedziButtonSzerokość = 75;
+		private const int ukryjOdpowiedziButtonWysokość = 25;
 
 		public Kontroler()
 		{
@@ -123,6 +127,12 @@ namespace familiada
 			czas.Location = new Point(czasLabelPozycjaX, czasLabelPozycjaY);
 			czas.Size = new Size(czasLabelSzerokość, czasLabelWysokość);
 
+			ukryjOdpowiedziButton = new Button();
+			ukryjOdpowiedziButton.Location = new Point(ukryjOdpowiedziButtonPozycjaX, ukryjOdpowiedziButtonPozycjaY);
+			ukryjOdpowiedziButton.Size = new Size(ukryjOdpowiedziButtonSzerokość, ukryjOdpowiedziButtonWysokość);
+			ukryjOdpowiedziButton.Text = "ukryj Odpowiedzi";
+			ukryjOdpowiedziButton.Click += new EventHandler(UkryjOdpowiedzi_Click);
+
 			dodatkowy = new Panel();
 			dodatkowy.BorderStyle = BorderStyle.FixedSingle;
 			dodatkowy.Controls.Add(punktyLabel);
@@ -138,6 +148,7 @@ namespace familiada
 			paneleRundy[1].Controls.Add(czas);
 			paneleRundy[1].Controls.Add(start);
 			paneleRundy[1].Controls.Add(stop);
+			paneleRundy[1].Controls.Add(ukryjOdpowiedziButton);
 			punktyDrużynaLabel.ForEach(l => dodatkowy.Controls.Add(l));
 			Controls.Add(dodatkowy);
 			paneleRundy.ForEach(p => Controls.Add(p));
@@ -350,6 +361,23 @@ namespace familiada
 		private void StopCzas_Click(object sender, EventArgs e)
 		{
 			timer1.Stop();
+		}
+		private void UkryjOdpowiedzi_Click(object sender, EventArgs e)
+		{
+			//TODO global.przełącz zaznaczenie
+			if (!Global.Zaznaczony(ukryjOdpowiedziButton))
+			{
+				Global.OznaczZaznaczenie(ukryjOdpowiedziButton);
+				for (int i = 0; i < 5; i++)
+					if (Global.pytania2[i].pytaniaStrona[0].Wyświetlony())
+						Global.pytania2[i].pytaniaStrona[0].PokażUkryj_Click(new object(), new EventArgs());
+			}
+			else
+			{
+				Global.OdznaczZaznaczenie(ukryjOdpowiedziButton);
+				for (int i = 0; i < 5; i++)
+						Global.pytania2[i].pytaniaStrona[0].PokażUkryj_Click(new object(), new EventArgs());
+			}
 		}
 		private void Timer1_Tick(object sender, EventArgs e)
 		{

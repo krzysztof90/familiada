@@ -77,9 +77,9 @@ namespace familiada
 			panel.Controls.Add(punktyTextBox);
 			panel.Controls.Add(umieśćButton);
 		}
-		private bool Wyświetlony()
+		public bool Wyświetlony()
 		{
-			return umieśćButton.BackColor == Color.White;
+			return Global.Zaznaczony(umieśćButton);
 		}
 
 		private void EdytorOdpowiedzi_Leave(object sender, EventArgs e)
@@ -134,22 +134,25 @@ namespace familiada
 			if (e.KeyCode == Keys.Down && nrPytania != 5)
 				Global.pytania2[nrPytania].pytaniaStrona[Tag].punktyTextBox.Focus();
 		}
-		private void PokażUkryj_Click(object sender, EventArgs e)
+		public void PokażUkryj_Click(object sender, EventArgs e)
 		{
+			//TODO w zależności od przycisku ukryj pytania
 			if (Wyświetlony())
 			{
-				umieśćButton.BackColor = SystemColors.Control;
-				umieśćButton.UseVisualStyleBackColor = true;
+				Global.OdznaczZaznaczenie(umieśćButton);
 
 				UkryjOdpowiedź();
 				DodajPunkty(-Int32.Parse(punktyTextBox.Text));
 			}
 			else
 			{
-				umieśćButton.BackColor = Color.White;
+				if (!Global.Zaznaczony(Global.kontroler.ukryjOdpowiedziButton))
+				{
+					Global.OznaczZaznaczenie(umieśćButton);
 
-				PokażOdpowiedź();
-				DodajPunkty(Int32.Parse(punktyTextBox.Text));
+					PokażOdpowiedź();
+					DodajPunkty(Int32.Parse(punktyTextBox.Text));
+				}
 			}
 		}
 		private void PokażOdpowiedź()

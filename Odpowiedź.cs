@@ -167,15 +167,14 @@ namespace familiada
 		}
 		private bool Zaznaczona()
 		{
-			return odpowiedźButton.BackColor == Color.White;
+			return Global.Zaznaczony(odpowiedźButton);
 		}
 
 		private void ZaznaczOdznacz_Click(object sender, EventArgs e)
 		{
 			if (!Zaznaczona())
 			{
-				odpowiedźButton.BackColor = Color.White;
-
+				Global.OznaczZaznaczenie(odpowiedźButton);
 				PokażOdpowiedź();
 
 				if (pytanie.drużynaZPrzypisanymiPunktami == null)
@@ -183,8 +182,7 @@ namespace familiada
 			}
 			else
 			{
-				odpowiedźButton.BackColor = SystemColors.Control;
-				odpowiedźButton.UseVisualStyleBackColor = true;
+				Global.OdznaczZaznaczenie(odpowiedźButton);
 
 				UkryjOdpowiedź();
 

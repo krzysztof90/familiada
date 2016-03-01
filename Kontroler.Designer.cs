@@ -65,6 +65,7 @@ namespace familiada
 		private System.Windows.Forms.Button start;
 		private System.Windows.Forms.Button stop;
 		private System.Windows.Forms.Timer timer1;
+		public System.Windows.Forms.Button ukryjOdpowiedziButton;
 	}
 }
 

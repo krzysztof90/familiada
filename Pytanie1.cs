@@ -47,15 +47,14 @@ namespace familiada
 		{
 			Button przycisk = (Button)sender;
 			int Tag = (int)(przycisk.Tag);
-			if (przycisk.BackColor == Color.White)
+			if (Global.Zaznaczony(przycisk))
 			{
-				przycisk.BackColor = SystemColors.Control;
-				przycisk.UseVisualStyleBackColor = true;
+				Global.OdznaczZaznaczenie(przycisk);
 				UkryjZonk(Tag);
 			}
 			else
 			{
-				przycisk.BackColor = Color.White;
+				Global.OznaczZaznaczenie(przycisk);
 				WyświetlZonk(Tag);
 			}
 		}
@@ -64,7 +63,7 @@ namespace familiada
 			for (int i = 0; i < 4; i++)
 			{
 				zonkButton[i].Show();
-				if (zonkButton[i].BackColor == Color.White)
+				if (Global.Zaznaczony( zonkButton[i]))
 					WyświetlZonk(i);
 			}
 		}
@@ -280,11 +279,11 @@ namespace familiada
 		{
 			Button przycisk = (Button)sender;
 			int Tag = (int)(przycisk.Tag);
-			if (przycisk.BackColor != Color.White)
+			if (!Global.Zaznaczony( przycisk))
 			{
-				if (przypiszButton[Tag == 0 ? 1 : 0].BackColor != Color.White)
+				if (!Global.Zaznaczony(przypiszButton[Tag == 0 ? 1 : 0]))
 				{
-					przycisk.BackColor = Color.White;
+					Global.OznaczZaznaczenie(					przycisk);
 					ZwróćObecnePytanie().drużynaZPrzypisanymiPunktami = Global.drużyny[Tag];
 
 					Global.drużyny[Tag].DodajPunkty(ZwróćObecnePytanie().punkty);
@@ -292,8 +291,7 @@ namespace familiada
 			}
 			else
 			{
-				przycisk.BackColor = SystemColors.Control;
-				przycisk.UseVisualStyleBackColor = true;
+					Global.OdznaczZaznaczenie(					przycisk);
 				ZwróćObecnePytanie().drużynaZPrzypisanymiPunktami = null;
 
 				Global.drużyny[Tag].DodajPunkty(-ZwróćObecnePytanie().punkty);
