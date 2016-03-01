@@ -87,6 +87,7 @@ namespace familiada
 				{'ˍ', ZwróćZonkMały(false)},
 			};
 
+			tablica1 = new Tablica(główny.panelRundy, 0, 0, Resources.puste);
 			tablica1 = new Tablica(główny.panele[0], Tablica.szerokość, Tablica.wysokość, Resources.puste);
 			tablica2 = new Tablica(główny.panele[1], Tablica.szerokość, Tablica.wysokość, Resources.puste);
 			tablicaPunkty = new Tablica(główny.panelPunkty, 3, 1, Resources.puste);
