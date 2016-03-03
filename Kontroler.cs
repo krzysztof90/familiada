@@ -294,6 +294,9 @@ namespace familiada
 
 				Pytanie2.WyświetlPunkty();
 			}
+
+			//if (Global.tablicaTło != null)
+			//	Global.tablicaTło.Usuń();
 		}
 
 		private void NastępnePytanie_Click(object sender, EventArgs e)
@@ -364,17 +367,15 @@ namespace familiada
 		}
 		private void UkryjOdpowiedzi_Click(object sender, EventArgs e)
 		{
-			//TODO global.przełącz zaznaczenie
-			if (!Global.Zaznaczony(ukryjOdpowiedziButton))
+			Global.PrzełączZaznaczenie(ukryjOdpowiedziButton);
+			if (Global.Zaznaczony(ukryjOdpowiedziButton))
 			{
-				Global.OznaczZaznaczenie(ukryjOdpowiedziButton);
 				for (int i = 0; i < 5; i++)
 					if (Global.pytania2[i].pytaniaStrona[0].Wyświetlony())
 						Global.pytania2[i].pytaniaStrona[0].PokażUkryj_Click(new object(), new EventArgs());
 			}
 			else
 			{
-				Global.OdznaczZaznaczenie(ukryjOdpowiedziButton);
 				for (int i = 0; i < 5; i++)
 						Global.pytania2[i].pytaniaStrona[0].PokażUkryj_Click(new object(), new EventArgs());
 			}

@@ -172,9 +172,9 @@ namespace familiada
 
 		private void ZaznaczOdznacz_Click(object sender, EventArgs e)
 		{
-			if (!Zaznaczona())
+			Global.PrzełączZaznaczenie(odpowiedźButton);
+			if (Zaznaczona())
 			{
-				Global.OznaczZaznaczenie(odpowiedźButton);
 				PokażOdpowiedź();
 
 				if (pytanie.drużynaZPrzypisanymiPunktami == null)
@@ -182,8 +182,6 @@ namespace familiada
 			}
 			else
 			{
-				Global.OdznaczZaznaczenie(odpowiedźButton);
-
 				UkryjOdpowiedź();
 
 				if (pytanie.drużynaZPrzypisanymiPunktami == null)

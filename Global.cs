@@ -87,7 +87,7 @@ namespace familiada
 				{'ˍ', ZwróćZonkMały(false)},
 			};
 
-			new Tablica(główny.panelRundy, 0, 0, Resources.puste); // TODO dispose po rundyButton.click
+			tablicaTło = new Tablica(główny.panelRundy, 0, 0, Resources.puste); // TODO dispose po rundyButton.click
 			tablica1 = new Tablica(główny.panele[0], Tablica.szerokość, Tablica.wysokość, Resources.puste);
 			tablica2 = new Tablica(główny.panele[1], Tablica.szerokość, Tablica.wysokość, Resources.puste);
 			tablicaPunkty = new Tablica(główny.panelPunkty, 3, 1, Resources.puste);
@@ -157,6 +157,7 @@ namespace familiada
 			return Zonk;
 		}
 
+		public static Tablica tablicaTło { get; private set; }
 		public static Tablica tablica1 { get; private set; }
 		public static Tablica tablica2 { get; private set; }
 		public static Tablica tablicaPunkty { get; private set; }
@@ -193,6 +194,13 @@ namespace familiada
 		static public bool Zaznaczony(Button B)
 		{
 			return B.BackColor == Color.White;
+		}
+		static public void PrzełączZaznaczenie(Button B)
+		{
+			if (Zaznaczony(B))
+				OdznaczZaznaczenie(B);
+			else
+				OznaczZaznaczenie(B);
 		}
 
 		static public void Wyjdź(string message)

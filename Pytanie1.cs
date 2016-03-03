@@ -47,23 +47,19 @@ namespace familiada
 		{
 			Button przycisk = (Button)sender;
 			int Tag = (int)(przycisk.Tag);
+
+			Global.PrzełączZaznaczenie(przycisk);
 			if (Global.Zaznaczony(przycisk))
-			{
-				Global.OdznaczZaznaczenie(przycisk);
-				UkryjZonk(Tag);
-			}
-			else
-			{
-				Global.OznaczZaznaczenie(przycisk);
 				WyświetlZonk(Tag);
-			}
+			else
+				UkryjZonk(Tag);
 		}
 		public void Pokaż()
 		{
 			for (int i = 0; i < 4; i++)
 			{
 				zonkButton[i].Show();
-				if (Global.Zaznaczony( zonkButton[i]))
+				if (Global.Zaznaczony(zonkButton[i]))
 					WyświetlZonk(i);
 			}
 		}
@@ -279,23 +275,21 @@ namespace familiada
 		{
 			Button przycisk = (Button)sender;
 			int Tag = (int)(przycisk.Tag);
-			if (!Global.Zaznaczony( przycisk))
+			if (Global.Zaznaczony(przycisk))
 			{
-				if (!Global.Zaznaczony(przypiszButton[Tag == 0 ? 1 : 0]))
-				{
-					Global.OznaczZaznaczenie(					przycisk);
-					ZwróćObecnePytanie().drużynaZPrzypisanymiPunktami = Global.drużyny[Tag];
-
-					Global.drużyny[Tag].DodajPunkty(ZwróćObecnePytanie().punkty);
-				}
-			}
-			else
-			{
-					Global.OdznaczZaznaczenie(					przycisk);
+				Global.OdznaczZaznaczenie(przycisk);
 				ZwróćObecnePytanie().drużynaZPrzypisanymiPunktami = null;
 
 				Global.drużyny[Tag].DodajPunkty(-ZwróćObecnePytanie().punkty);
 			}
+			else
+				if (!Global.Zaznaczony(przypiszButton[Tag == 0 ? 1 : 0])) //przeciwny
+				{
+					Global.OznaczZaznaczenie(przycisk);
+					ZwróćObecnePytanie().drużynaZPrzypisanymiPunktami = Global.drużyny[Tag];
+
+					Global.drużyny[Tag].DodajPunkty(ZwróćObecnePytanie().punkty);
+				}
 		}
 	}
 }

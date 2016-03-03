@@ -136,7 +136,6 @@ namespace familiada
 		}
 		public void PokażUkryj_Click(object sender, EventArgs e)
 		{
-			//TODO w zależności od przycisku ukryj pytania
 			if (Wyświetlony())
 			{
 				Global.OdznaczZaznaczenie(umieśćButton);
