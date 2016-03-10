@@ -68,13 +68,24 @@ namespace familiada
 			punktyDrużynaLabel[0].Dock = DockStyle.Left;
 			punktyDrużynaLabel[1].Dock = DockStyle.Right;
 
-			ustawCzasButton = new List<Button> { new Button(), new Button() };
+			ustawCzasButton = new List<Button> { new Button(), new Button(), new Button() };
 			for (int i = 0; i < ustawCzasButton.Count; i++)
 			{
 				Button b = ustawCzasButton[i];
 				paneleRundy[1].Controls.Add(b);
 				b.Location = new Point(ustawCzasButtonPozycjaXPoczątek + (ustawCzasButtonOdstępX + ustawCzasButtonSzerokość) * i, ustawCzasButtonPozycjaY);
-				b.Tag = i == 0 ? "15" : "20";
+				switch (i)
+				{
+					case 0:
+						b.Tag = "15";
+						break;
+					case 1:
+						b.Tag = "20";
+						break;
+					case 2:
+						b.Tag = "7";
+						break;
+				}
 				b.Text = "ustaw" + (string)(b.Tag);
 				b.Size = new Size(ustawCzasButtonSzerokość, ustawCzasButtonWysokość);
 				b.Click += new EventHandler(UstawCzas_Click);
@@ -377,7 +388,7 @@ namespace familiada
 			else
 			{
 				for (int i = 0; i < 5; i++)
-						Global.pytania2[i].pytaniaStrona[0].PokażUkryj_Click(new object(), new EventArgs());
+					Global.pytania2[i].pytaniaStrona[0].PokażUkryj_Click(new object(), new EventArgs());
 			}
 		}
 		private void Timer1_Tick(object sender, EventArgs e)

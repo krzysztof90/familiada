@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.Globalization;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
-
 
 namespace familiada
 {
@@ -18,7 +14,7 @@ namespace familiada
 		private const int operacjeButtonSzerokość = 30;
 
 		private const int tablicaOdstępNumerOdpowiedziOdpowiedź = 1;
-		private const int tablicaNumerOdpowiedziPozycjaX = 1;
+		private const int tablicaNumerOdpowiedziPozycjaX = 3;
 		private const int tablicaOdpowiedźPozycjaX = tablicaNumerOdpowiedziPozycjaX + 1 + tablicaOdstępNumerOdpowiedziOdpowiedź;
 		private const int tablicaPunktyPozycjaX = tablicaOdpowiedźPozycjaX + 1 + Global.długośćOdpowiedzi1;
 		public const int tablicaPunktyPozycjaYPoczątek = 2;

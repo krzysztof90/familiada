@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Windows.Forms;
+
 namespace familiada
 {
 	public partial class GłównyEkran : Form, IOperatable

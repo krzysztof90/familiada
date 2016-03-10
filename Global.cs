@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using familiada.Properties;
 
@@ -99,7 +97,7 @@ namespace familiada
 		public const string plik2 = "runda2.txt";
 		public const string plikOdpowiedzi2 = "odpowiedzi2.txt";
 
-		public const int długośćOdpowiedzi1 = 24;
+		public const int długośćOdpowiedzi1 = 19;
 		public const int długośćOdpowiedzi2 = 10;
 		public const int ilośćOdpowiedzi1 = Tablica.wysokość - Odpowiedź.tablicaPunktyPozycjaYPoczątek;
 
