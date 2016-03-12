@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.Globalization;
 using System.Windows.Forms;
+
 namespace familiada
 {
 	class Tablica
@@ -85,6 +86,12 @@ namespace familiada
 		private void Wstaw(char znak, int kolumna, int rząd)
 		{
 			znakiPictureBox[kolumna, rząd].Image = Global.znaki[znak];
+		}
+		public void Usuń()
+		{
+			panel.Dispose();
+			foreach(PictureBox znak in znakiPictureBox)
+				znak.Dispose();
 		}
 	}
 }

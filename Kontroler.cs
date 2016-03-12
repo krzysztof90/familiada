@@ -305,8 +305,7 @@ namespace familiada
 				Pytanie2.WyświetlPunkty();
 			}
 
-			//if (Global.tablicaTło != null)
-			//	Global.tablicaTło.Usuń();
+			Global.tablicaTło.Usuń();
 		}
 
 		private void NastępnePytanie_Click(object sender, EventArgs e)
