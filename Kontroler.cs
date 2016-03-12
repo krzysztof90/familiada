@@ -167,8 +167,7 @@ namespace familiada
 
 		private void Form_Load(object sender, EventArgs e)
 		{
-			// TODO usunąć
-			//PokażEkran_Click(this, new EventArgs());
+			// TODO jeden plik runda2 - opcjonalny
 
 			try
 			{

@@ -223,6 +223,7 @@ namespace familiada
 				if (Zaznaczona())
 					WyświetlOdpowiedź(true, '.');
 				edytorOdpowiedzi.Hide();
+				odpowiedźButton.Focus();
 			}
 		}
 		private void EdytorPunktów_Leave(object sender, EventArgs e)
