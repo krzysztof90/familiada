@@ -95,7 +95,6 @@ namespace familiada
 
 		public const string plik1 = "runda1.txt";
 		public const string plik2 = "runda2.txt";
-		public const string plikOdpowiedzi2 = "odpowiedzi2.txt";
 
 		public const int długośćOdpowiedzi1 = 19;
 		public const int długośćOdpowiedzi2 = 10;

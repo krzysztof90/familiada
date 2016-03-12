@@ -2,17 +2,18 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
+
 namespace familiada
 {
-	class NrINazwaPytania
+	class NrINazwaPytania1
 	{
-		public int nrPytania { get; private set; }
-		public string nazwaPytania { get; private set; }
+		public int numer { get; private set; }
+		public string nazwa { get; private set; }
 
-		public NrINazwaPytania(int nr, string nazwa)
+		public NrINazwaPytania1(int _numer, string _nazwa)
 		{
-			nrPytania = nr;
-			nazwaPytania = nazwa;
+			numer = _numer;
+			nazwa = _nazwa;
 		}
 	}
 
@@ -135,8 +136,8 @@ namespace familiada
 		public static Button dodajOdpowiedźButton = new Button();
 		readonly List<Button> przypiszButton = new List<Button> { new Button(), new Button() };
 
-		readonly int nrPytania;
-		public readonly string nazwaPytania;
+		readonly int numer;
+		public readonly string nazwa;
 		private int punkty = 0;
 		public Drużyna drużynaZPrzypisanymiPunktami { get; set; }
 
@@ -159,18 +160,18 @@ namespace familiada
 			Global.panelKontroler1.Controls.Add(dodajOdpowiedźButton);
 		}
 
-		public Pytanie1(NrINazwaPytania pytanie)
+		public Pytanie1(NrINazwaPytania1 pytanie)
 		{
 			drużynaZPrzypisanymiPunktami = null;
 			odpowiedzi = new List<Odpowiedź>();
 
-			nrPytania = pytanie.nrPytania;
-			nazwaPytania = pytanie.nazwaPytania;
+			numer = pytanie.numer;
+			nazwa = pytanie.nazwa;
 
 			nazwaPytaniaLabel = new Label();
 			nazwaPytaniaLabel.Location = new Point(nazwaPytaniaLabelPozycjaX, nazwaPytaniaLabelPozycjaY);
 			nazwaPytaniaLabel.Size = new Size(nazwaPytaniaLabelSzerokość, nazwaPytaniaLabelWysokość);
-			nazwaPytaniaLabel.Text = nrPytania.ToString() + ". " + nazwaPytania;
+			nazwaPytaniaLabel.Text = numer.ToString() + ". " + nazwa;
 			nazwaPytaniaLabel.Hide();
 
 			for (int i = 0; i < 2; i++)

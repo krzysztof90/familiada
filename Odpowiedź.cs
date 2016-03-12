@@ -41,7 +41,7 @@ namespace familiada
 
 			nrOdpowiedzi = pytanie.odpowiedzi.Count + 1;
 			if (nrOdpowiedzi > Global.ilośćOdpowiedzi1)
-				throw new ArgumentException(pytanie.nazwaPytania);
+				throw new ArgumentException(pytanie.nazwa);
 
 			int pozycjaPrzerwy = linia.LastIndexOfAny(new char[] { ' ', '\t' });
 			if (pozycjaPrzerwy == -1)

@@ -167,8 +167,11 @@ namespace familiada
 
 		private void Form_Load(object sender, EventArgs e)
 		{
-			// TODO jeden plik runda2 - opcjonalny
+			ZaładujZPlików();
+		}
 
+		private void ZaładujZPlików()
+		{
 			try
 			{
 				StreamReader plik = new StreamReader(Global.plik1);
@@ -177,9 +180,10 @@ namespace familiada
 					string linia = plik.ReadLine().Trim();
 					if (linia.Length != 0)
 					{
-						if (NagłówekPytania(linia) != null)
+						NrINazwaPytania1 nagłówek = NagłówekPytania1(linia);
+						if (nagłówek != null)
 						{
-							Global.pytania1.Add(new Pytanie1(NagłówekPytania(linia)));
+							Global.pytania1.Add(new Pytanie1(nagłówek));
 						}
 						else
 						{
@@ -197,71 +201,61 @@ namespace familiada
 					}
 				}
 				plik.Close();
-
-				plik = new StreamReader(Global.plik2);
-				for (int i = 0; i < 5; i++)
-				{
-					string linia = plik.ReadLine().Trim();
-					Global.pytania2[i] = new Pytanie2(linia, i + 1);
-				}
-				plik.Close();
 			}
 			catch (FileNotFoundException exc)
 			{
 				Global.Wyjdź(String.Format("brakuje pliku {0}", exc.FileName));
 			}
-			catch (NullReferenceException)
-			{
-				Global.Wyjdź(String.Format("Wstaw 5 pytań"));
-			}
 
 			if (Global.pytania1.Count == 0)
 				Global.Wyjdź("brak pytań");
 
-			if (File.Exists(Global.plikOdpowiedzi2))
+			string[] pytania = new string[10];
+			Odpowiedź2[] odpowiedzi = new Odpowiedź2[10];
+			if (File.Exists(Global.plik2))
 			{
-				StreamReader plik = new StreamReader(Global.plikOdpowiedzi2);
-				try
+				StreamReader plik = new StreamReader(Global.plik2);
+				for (int i = 0; i < 10 && !plik.EndOfStream; i++)
 				{
-					for (int i = 0; i < 5; i++)
+					string linia = plik.ReadLine().Trim();
+					if (linia.Equals(String.Empty))
 					{
-						string linia = plik.ReadLine().Trim();
-						int pozycjaOstatniejPrzerwy = linia.LastIndexOfAny(new char[] { ' ', '\t' });
-						int pozycjaPrzedostatniejPrzerwy = linia.LastIndexOfAny(new char[] { ' ', '\t' }, pozycjaOstatniejPrzerwy - 1);
-						if (pozycjaPrzedostatniejPrzerwy == -1)
-							Global.Wyjdź(String.Format("niepoprawna linia: {0}", linia));
-						string odpowiedź = linia.Substring(0, pozycjaPrzedostatniejPrzerwy).TrimEnd();
-						if (odpowiedź.Length > Global.długośćOdpowiedzi2)
-							Global.Wyjdź(String.Format("za długa odpowiedź: {0}. Dopuszczalna szerokość to {1}", odpowiedź, Global.długośćOdpowiedzi2));
-						string odpowiedźUpper = odpowiedź.ToUpper(CultureInfo.CurrentUICulture);
-						for (int j = 0; j < odpowiedź.Length; j++)
-							if (!Global.znaki.ContainsKey(odpowiedźUpper[j]))
-								Global.Wyjdź(String.Format("niepoprawny znak '{0}' w {1}", odpowiedź[j], odpowiedź));
-						try
-						{
-							Int32.Parse(linia.Substring(pozycjaPrzedostatniejPrzerwy + 1, pozycjaOstatniejPrzerwy - pozycjaPrzedostatniejPrzerwy - 1));
-							Int32.Parse(linia.Substring(pozycjaOstatniejPrzerwy + 1));
-						}
-						catch (FormatException)
-						{
-							Global.Wyjdź(String.Format("niepoprawna liczba punktów w {0}", linia));
-						}
-						string punktyL = linia.Substring(pozycjaPrzedostatniejPrzerwy + 1, pozycjaOstatniejPrzerwy - pozycjaPrzedostatniejPrzerwy - 1);
-						string punktyP = linia.Substring(pozycjaOstatniejPrzerwy + 1);
-						Global.pytania2[i].pytaniaStrona[1].odpowiedźTextBox.Text = odpowiedź;
-						Global.pytania2[i].pytaniaStrona[0].punktyTextBox.Text = punktyL;
-						Global.pytania2[i].pytaniaStrona[1].punktyTextBox.Text = punktyP;
+						i--;
+						continue;
 					}
-				}
-				catch (NullReferenceException)
-				{
-					Global.Wyjdź(String.Format("Wstaw 5 odpowiedzi"));
+					pytania[i] = linia;
+					odpowiedzi[i] = odpowiedźPytania2(linia);
 				}
 				plik.Close();
+
+				int ostatniaOdpowiedź = 0;
+				for (int i = 1; i < 10 && wystarczającaIlośćPytań(pytania); i++) //0 powinno być pytaniem
+					if (odpowiedzi[i] != null)
+					{
+						pytania[i] = null; //oznaczenie dla liczenia ilości pytań, że tu jest odpowiedź
+						ostatniaOdpowiedź = i;
+						if (i != 9)
+							odpowiedzi[i + 1] = null;
+					}
+				for (int i = ostatniaOdpowiedź + 1; i < 10; i++)
+					odpowiedzi[i] = null;
+			}
+			int pozycjaPytania = 0;
+			for (int i = 0; i < 5; i++)
+			{
+				Global.pytania2[i] = new Pytanie2(pytania[pozycjaPytania], i + 1);
+				if (odpowiedzi[pozycjaPytania + 1] != null)
+				{
+					pozycjaPytania++;
+					Global.pytania2[i].pytaniaStrona[1].odpowiedźTextBox.Text = odpowiedzi[pozycjaPytania].odpowiedź;
+					Global.pytania2[i].pytaniaStrona[0].punktyTextBox.Text = odpowiedzi[pozycjaPytania].punktyL;
+					Global.pytania2[i].pytaniaStrona[1].punktyTextBox.Text = odpowiedzi[pozycjaPytania].punktyP;
+				}
+				pozycjaPytania++;
 			}
 		}
 
-		private static NrINazwaPytania NagłówekPytania(string linia)
+		private static NrINazwaPytania1 NagłówekPytania1(string linia)
 		{
 			try
 			{
@@ -270,12 +264,52 @@ namespace familiada
 				StringBuilder nazwaPytania = new StringBuilder();
 				for (int i = 1; i < words.Length; i++)
 					nazwaPytania.Append(words[i]).Append(" ");
-				return new NrINazwaPytania(nrPytania, nazwaPytania.ToString().TrimEnd());
+				return new NrINazwaPytania1(nrPytania, nazwaPytania.ToString().TrimEnd());
 			}
 			catch (FormatException)
 			{
 				return null;
 			}
+		}
+
+		private static Odpowiedź2 odpowiedźPytania2(string linia)
+		{
+			string odpowiedź;
+			int pozycjaOstatniejPrzerwy = linia.LastIndexOfAny(new char[] { ' ', '\t' });
+			if (pozycjaOstatniejPrzerwy == -1)
+				return null;
+			int pozycjaPrzedostatniejPrzerwy = linia.LastIndexOfAny(new char[] { ' ', '\t' }, pozycjaOstatniejPrzerwy - 1);
+			if (pozycjaPrzedostatniejPrzerwy == -1)
+				odpowiedź = "";
+			else
+				odpowiedź = linia.Substring(0, pozycjaPrzedostatniejPrzerwy).TrimEnd();
+			string punktyL = linia.Substring(pozycjaPrzedostatniejPrzerwy + 1, pozycjaOstatniejPrzerwy - pozycjaPrzedostatniejPrzerwy - 1);
+			string punktyP = linia.Substring(pozycjaOstatniejPrzerwy + 1);
+			try
+			{
+				Int32.Parse(punktyL);
+				Int32.Parse(punktyP);
+			}
+			catch (FormatException)
+			{
+				return null;
+			}
+			if (odpowiedź.Length > Global.długośćOdpowiedzi2)
+				Global.Wyjdź(String.Format("za długa odpowiedź: {0}. Dopuszczalna szerokość to {1}", odpowiedź, Global.długośćOdpowiedzi2));
+			string odpowiedźUpper = odpowiedź.ToUpper(CultureInfo.CurrentUICulture);
+			for (int j = 0; j < odpowiedź.Length; j++)
+				if (!Global.znaki.ContainsKey(odpowiedźUpper[j]))
+					Global.Wyjdź(String.Format("niepoprawny znak '{0}' w {1}", odpowiedź[j], odpowiedź));
+			return new Odpowiedź2(odpowiedź, punktyL, punktyP);
+		}
+
+		private static bool wystarczającaIlośćPytań(string[] pytania)
+		{
+			int ilość=0;
+			foreach(string pytanie in pytania)
+				if(pytanie!=null)
+					ilość++;
+			return ilość>5;
 		}
 
 		private void Runda_Click(object sender, EventArgs e)

@@ -2,8 +2,23 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
+
 namespace familiada
 {
+	class Odpowiedź2
+	{
+		public string odpowiedź;
+		public string punktyL;
+		public string punktyP;
+
+		public Odpowiedź2(string _odpowiedź, string _punktyL, string _punktyP)
+		{
+			odpowiedź = _odpowiedź;
+			punktyL = _punktyL;
+			punktyP = _punktyP;
+		}
+	}
+
 	abstract class PytanieStrona
 	{
 		public const int ControlOdstępX = 0;
@@ -210,26 +225,26 @@ namespace familiada
 		private const int panelSzerokość = nazwaLabelSzerokość + (PytanieStrona.odpowiedźTextBoxSzerokość + PytanieStrona.punktyTextBoxSzerokość + PytanieStrona.umieśćButtonSzerokość) * 2 + PytanieStrona.ControlOdstępX * 5;
 		public const int panelWysokość = 30;
 
-		readonly string nazwaPytania;
-		readonly int nrPytania;
+		readonly string nazwa;
+		readonly int numer;
 
 		readonly Panel panel = new Panel();
 
 		readonly Label nazwaLabel = new Label();
 		public List<PytanieStrona> pytaniaStrona { get; private set; }
 
-		public Pytanie2(string nazwa, int nrPytania)
+		public Pytanie2(string _nazwa, int _numer)
 		{
-			nazwaPytania = nazwa;
-			this.nrPytania = nrPytania;
-			pytaniaStrona = new List<PytanieStrona> { new PytanieL(nrPytania), new PytanieP(nrPytania) };
+			nazwa = _nazwa;
+			numer = _numer;
+			pytaniaStrona = new List<PytanieStrona> { new PytanieL(_numer), new PytanieP(_numer) };
 
-			panel.Location = new Point(panelPozycjaX, panelPozycjaYPoczątek + (panelWysokość + panelOdstępY) * (nrPytania - 1));
+			panel.Location = new Point(panelPozycjaX, panelPozycjaYPoczątek + (panelWysokość + panelOdstępY) * (_numer - 1));
 			panel.Size = new Size(panelSzerokość, panelWysokość);
 
 			nazwaLabel.Location = new Point(0, (panelWysokość - nazwaLabelWysokość) / 2);
 			nazwaLabel.Size = new Size(nazwaLabelSzerokość, nazwaLabelWysokość);
-			nazwaLabel.Text = nazwaPytania;
+			nazwaLabel.Text = nazwa;
 
 			panel.Controls.Add(nazwaLabel);
 			pytaniaStrona.ForEach(p => p.Umieść(panel));
