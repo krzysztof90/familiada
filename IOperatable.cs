@@ -2,9 +2,9 @@
 {
 	interface IOperatable
 	{
-		void PokażPanel(int który);
-		void UkryjPanel(int który);
-		void UstawPunktyGłówne(int punkty);
-		void UstawPunktyDrużyny(int która, int punkty);
+		void ShowPanel(int który);
+		void HidePanel(int który);
+		void SetMainPoints(int punkty);
+		void SetTeamPoints(int która, int punkty);
 	}
 }

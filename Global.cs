@@ -10,22 +10,25 @@ namespace familiada
 	{
 		static Global()
 		{
-			kontroler = new Kontroler();
-			panelKontroler1 = kontroler.paneleRundy[0];
-			panelKontroler2 = kontroler.paneleRundy[1];
-			panelKontrolerDodatkowy = kontroler.dodatkowy;
-			główny = new GłównyEkran();
-			formy = new List<IOperatable> { kontroler, główny };
-			pytania1 = new List<Pytanie1>();
-			pytania2 = new Pytanie2[5];
+			controller = new Controller();
+			panelController1 = controller.roundPanels[0];
+			panelController2 = controller.roundPanels[1];
+			panelControllerAccessory = controller.accessory;
+			main = new MainScreen();
+			forms = new List<IOperatable> { controller, main };
+			questions1 = new List<Question1>();
+			questions2 = new Question2[5];
 
-			znaki = new Dictionary<char, Image>
+			characters = new Dictionary<char, Image>
 			{
 				{'A', Resources.A},
+				{'Ą', Resources.Ą},
 				{'B', Resources.B},
 				{'C', Resources.C},
+				{'Ć', Resources.Ć},
 				{'D', Resources.D},
 				{'E', Resources.E},
+				{'Ę', Resources.Ę},
 				{'F', Resources.F},
 				{'G', Resources.G},
 				{'H', Resources.H},
@@ -33,13 +36,17 @@ namespace familiada
 				{'J', Resources.J},
 				{'K', Resources.K},
 				{'L', Resources.L},
+				{'Ł', Resources.Ł},
 				{'M', Resources.M},
 				{'N', Resources.N},
+				{'Ń', Resources.Ń},
 				{'O', Resources.O},
+				{'Ó', Resources.Ó},
 				{'P', Resources.P},
 				{'Q', Resources.Q},
 				{'R', Resources.R},
 				{'S', Resources.S},
+				{'Ś', Resources.Ś},
 				{'T', Resources.T},
 				{'U', Resources.U},
 				{'V', Resources.V},
@@ -47,13 +54,6 @@ namespace familiada
 				{'X', Resources.X},
 				{'Y', Resources.Y},
 				{'Z', Resources.Z},
-				{'Ą', Resources.Ą},
-				{'Ć', Resources.Ć},
-				{'Ę', Resources.Ę},
-				{'Ł', Resources.Ł},
-				{'Ń', Resources.Ń},
-				{'Ó', Resources.Ó},
-				{'Ś', Resources.Ś},
 				{'Ź', Resources.Ź},
 				{'Ż', Resources.Ż},
 				{'0', Resources.c0},
@@ -73,134 +73,134 @@ namespace familiada
 				{'.', Resources.kropka},
 				{' ', Resources.puste},
 				{'|', Resources.punktyPuste},
-				{'˹', ZwróćZonkDuży(true, true)},
-				{'˺', ZwróćZonkDuży(true, false)},
-				{'˻', ZwróćZonkDuży(false, true)},
-				{'˼', ZwróćZonkDuży(false, false)},
-				{'┘', ZwróćZonkMały(true, true)},
-				{'└', ZwróćZonkMały(true, false)},
-				{'┐', ZwróćZonkMały(false, true)},
-				{'┌', ZwróćZonkMały(false, false)},
-				{'ˉ', ZwróćZonkMały(true)},
-				{'ˍ', ZwróćZonkMały(false)},
+				{'˹', GetZonkBig(true, true)},
+				{'˺', GetZonkBig(true, false)},
+				{'˻', GetZonkBig(false, true)},
+				{'˼', GetZonkBig(false, false)},
+				{'┘', GetZonkSmall(true, true)},
+				{'└', GetZonkSmall(true, false)},
+				{'┐', GetZonkSmall(false, true)},
+				{'┌', GetZonkSmall(false, false)},
+				{'ˉ', GetZonkSmall(true)},
+				{'ˍ', GetZonkSmall(false)},
 			};
 
-			tablicaTło = new Tablica(główny.panelRundy, 0, 0, Resources.puste);
-			tablica1 = new Tablica(główny.panele[0], Tablica.szerokość, Tablica.wysokość, Resources.puste);
-			tablica2 = new Tablica(główny.panele[1], Tablica.szerokość, Tablica.wysokość, Resources.puste);
-			tablicaPunkty = new Tablica(główny.panelPunkty, 3, 1, Resources.puste);
-			tablicaPunktyDrużyny = new List<Tablica> { new Tablica(główny.panelPunktyL, 3, 1, Resources.puste), new Tablica(główny.panelPunktyP, 3, 1, Resources.puste) };
-			drużyny = new List<Drużyna> { new DrużynaL(), new DrużynaP() };
+			tableBackground = new Table(main.roundPanel, 0, 0, Resources.puste);
+			table1 = new Table(main.panels[0], Table.width, Table.height, Resources.puste);
+			table2 = new Table(main.panels[1], Table.width, Table.height, Resources.puste);
+			tablePoints = new Table(main.pointsPanel, 3, 1, Resources.puste);
+			tableTeamPoints = new List<Table> { new Table(main.pointsLeftPanel, 3, 1, Resources.puste), new Table(main.pointsRightPanel, 3, 1, Resources.puste) };
+			teams = new List<Team> { new TeamLeft(), new TeamRight() };
 		}
 
-		public const string plik1 = "runda1.txt";
-		public const string plik2 = "runda2.txt";
+		public const string file1 = "runda1.txt";
+		public const string file2 = "runda2.txt";
 
-		public const int długośćOdpowiedzi1 = 19;
-		public const int długośćOdpowiedzi2 = 10;
-		public const int ilośćOdpowiedzi1 = Tablica.wysokość - Odpowiedź.tablicaPunktyPozycjaYPoczątek;
+		public const int lengthAnswer1 = 19;
+		public const int lengthAnswer2 = 10;
+		public const int countAnswer1 = Table.height - Answer1.tablePointsYStart;
 
-		public static Kontroler kontroler { get; private set; }
-		public static Panel panelKontroler1 { get; private set; }
-		public static Panel panelKontroler2 { get; private set; }
-		public static Panel panelKontrolerDodatkowy { get; private set; }
-		public static GłównyEkran główny { get; private set; }
-		private static List<IOperatable> formy;
+		public static Controller controller { get; private set; }
+		public static Panel panelController1 { get; private set; }
+		public static Panel panelController2 { get; private set; }
+		public static Panel panelControllerAccessory { get; private set; }
+		public static MainScreen main { get; private set; }
+		private static List<IOperatable> forms;
 
-		public static List<Pytanie1> pytania1 { get; private set; }
-		public static Pytanie2[] pytania2 { get; private set; }
+		public static List<Question1> questions1 { get; private set; }
+		public static Question2[] questions2 { get; private set; }
 
-		public static Dictionary<char, Image> znaki { get; private set; }
+		public static Dictionary<char, Image> characters { get; private set; }
 
-		private static Bitmap ZwróćZonkDuży(bool góra, bool lewo)
+		private static Bitmap GetZonkBig(bool up, bool left)
 		{
 			Bitmap Zonk = (Bitmap)(Resources.zonkDużyGL.Clone());
-			if (góra)
+			if (up)
 			{
-				if (!lewo)
+				if (!left)
 					Zonk.RotateFlip(RotateFlipType.RotateNoneFlipX);
 			}
 			else
 			{
-				if (lewo)
+				if (left)
 					Zonk.RotateFlip(RotateFlipType.RotateNoneFlipY);
 				else
 					Zonk.RotateFlip(RotateFlipType.Rotate180FlipNone);
 			}
 			return Zonk;
 		}
-		private static Bitmap ZwróćZonkMały(bool góra, bool lewo)
+		private static Bitmap GetZonkSmall(bool up, bool left)
 		{
 			Bitmap Zonk = (Bitmap)(Resources.zonkMałyGL.Clone());
-			if (góra)
+			if (up)
 			{
-				if (!lewo)
+				if (!left)
 					Zonk.RotateFlip(RotateFlipType.RotateNoneFlipX);
 			}
 			else
 			{
-				if (lewo)
+				if (left)
 					Zonk.RotateFlip(RotateFlipType.RotateNoneFlipY);
 				else
 					Zonk.RotateFlip(RotateFlipType.Rotate180FlipNone);
 			}
 			return Zonk;
 		}
-		private static Bitmap ZwróćZonkMały(bool góra)
+		private static Bitmap GetZonkSmall(bool up)
 		{
 			Bitmap Zonk = (Bitmap)(Resources.zonkMałyG.Clone());
-			if (góra)
+			if (up)
 				Zonk.RotateFlip(RotateFlipType.RotateNoneFlipY);
 			return Zonk;
 		}
 
-		public static Tablica tablicaTło { get; private set; }
-		public static Tablica tablica1 { get; private set; }
-		public static Tablica tablica2 { get; private set; }
-		public static Tablica tablicaPunkty { get; private set; }
-		public static List<Tablica> tablicaPunktyDrużyny { get; private set; }
+		public static Table tableBackground { get; private set; }
+		public static Table table1 { get; private set; }
+		public static Table table2 { get; private set; }
+		public static Table tablePoints { get; private set; }
+		public static List<Table> tableTeamPoints { get; private set; }
 
-		public static List<Drużyna> drużyny { get; private set; }
+		public static List<Team> teams { get; private set; }
 
-		static public void PokażPanel(int który)
+		static public void ShowPanel(int which)
 		{
-			formy.ForEach(e => e.PokażPanel(który));
+			forms.ForEach(e => e.ShowPanel(which));
 		}
-		static public void UkryjPanel(int który)
+		static public void HidePanel(int which)
 		{
-			formy.ForEach(e => e.UkryjPanel(który));
+			forms.ForEach(e => e.HidePanel(which));
 		}
-		static public void UstawPunktyGłówne(int punkty)
+		static public void SetMainPoints(int points)
 		{
-			formy.ForEach(e => e.UstawPunktyGłówne(punkty));
+			forms.ForEach(e => e.SetMainPoints(points));
 		}
-		static public void UstawPunktyDrużyny(int która, int punkty)
+		static public void SetTeamPoints(int which, int points)
 		{
-			formy.ForEach(e => e.UstawPunktyDrużyny(która, punkty));
+			forms.ForEach(e => e.SetTeamPoints(which, points));
 		}
 
-		static public void OznaczZaznaczenie(Button B)
+		static public void MarkButtonSelection(Button B)
 		{
 			B.BackColor = Color.White;
 		}
-		static public void OdznaczZaznaczenie(Button B)
+		static public void UnmarkButtonSelection(Button B)
 		{
 			B.BackColor = SystemColors.Control;
 			B.UseVisualStyleBackColor = true;
 		}
-		static public bool Zaznaczony(Button B)
+		static public void SwitchButtonSelection(Button B)
+		{
+			if (ButtonSelected(B))
+				UnmarkButtonSelection(B);
+			else
+				MarkButtonSelection(B);
+		}
+		static public bool ButtonSelected(Button B)
 		{
 			return B.BackColor == Color.White;
 		}
-		static public void PrzełączZaznaczenie(Button B)
-		{
-			if (Zaznaczony(B))
-				OdznaczZaznaczenie(B);
-			else
-				OznaczZaznaczenie(B);
-		}
 
-		static public void Wyjdź(string message)
+		static public void Exit(string message)
 		{
 			MessageBox.Show(message);
 			Environment.Exit(0);

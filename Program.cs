@@ -11,7 +11,7 @@ namespace familiada
 		static void Main()
 		{
 			Application.EnableVisualStyles();
-			Application.Run(Global.kontroler);
+			Application.Run(Global.controller);
 		}
 	}
 }
