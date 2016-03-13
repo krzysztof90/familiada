@@ -74,18 +74,12 @@ namespace familiada
 				Button b = ustawCzasButton[i];
 				paneleRundy[1].Controls.Add(b);
 				b.Location = new Point(ustawCzasButtonPozycjaXPoczątek + (ustawCzasButtonOdstępX + ustawCzasButtonSzerokość) * i, ustawCzasButtonPozycjaY);
-				switch (i)
-				{
-					case 0:
-						b.Tag = "15";
-						break;
-					case 1:
-						b.Tag = "20";
-						break;
-					case 2:
-						b.Tag = "7";
-						break;
-				}
+				if (i == 0)
+					b.Tag = "15";
+				else if (i == 1)
+					b.Tag = "20";
+				else
+					b.Tag = "7";
 				b.Text = "ustaw" + (string)(b.Tag);
 				b.Size = new Size(ustawCzasButtonSzerokość, ustawCzasButtonWysokość);
 				b.Click += new EventHandler(UstawCzas_Click);
@@ -172,6 +166,12 @@ namespace familiada
 
 		private void ZaładujZPlików()
 		{
+			ZaładujZPliku1();
+			ZaładujZPliku2();
+		}
+
+		private void ZaładujZPliku1()
+		{
 			try
 			{
 				StreamReader plik = new StreamReader(Global.plik1);
@@ -209,30 +209,35 @@ namespace familiada
 
 			if (Global.pytania1.Count == 0)
 				Global.Wyjdź("brak pytań");
+		}
 
+		private void ZaładujZPliku2()
+		{
 			string[] pytania = new string[10];
 			Odpowiedź2[] odpowiedzi = new Odpowiedź2[10];
+
 			if (File.Exists(Global.plik2))
 			{
 				StreamReader plik = new StreamReader(Global.plik2);
-				for (int i = 0; i < 10 && !plik.EndOfStream; i++)
+				int numerLinii = 0;
+				while (!plik.EndOfStream && numerLinii < 10)
 				{
 					string linia = plik.ReadLine().Trim();
-					if (linia.Equals(String.Empty))
+					if (!linia.Equals(String.Empty, StringComparison.CurrentCulture))
 					{
-						i--;
-						continue;
+						pytania[numerLinii] = linia;
+						odpowiedzi[numerLinii] = OdpowiedźPytania2(linia);
+						numerLinii++;
 					}
-					pytania[i] = linia;
-					odpowiedzi[i] = odpowiedźPytania2(linia);
 				}
 				plik.Close();
 
+				odpowiedzi[0] = null;
 				int ostatniaOdpowiedź = 0;
-				for (int i = 1; i < 10 && wystarczającaIlośćPytań(pytania); i++) //0 powinno być pytaniem
+				for (int i = 1; i < 10 && IlośćPytań(pytania) > 5; i++)
 					if (odpowiedzi[i] != null)
 					{
-						pytania[i] = null; //oznaczenie dla liczenia ilości pytań, że tu jest odpowiedź
+						pytania[i] = null;
 						ostatniaOdpowiedź = i;
 						if (i != 9)
 							odpowiedzi[i + 1] = null;
@@ -240,6 +245,7 @@ namespace familiada
 				for (int i = ostatniaOdpowiedź + 1; i < 10; i++)
 					odpowiedzi[i] = null;
 			}
+
 			int pozycjaPytania = 0;
 			for (int i = 0; i < 5; i++)
 			{
@@ -272,17 +278,14 @@ namespace familiada
 			}
 		}
 
-		private static Odpowiedź2 odpowiedźPytania2(string linia)
+		private static Odpowiedź2 OdpowiedźPytania2(string linia)
 		{
-			string odpowiedź;
 			int pozycjaOstatniejPrzerwy = linia.LastIndexOfAny(new char[] { ' ', '\t' });
 			if (pozycjaOstatniejPrzerwy == -1)
 				return null;
 			int pozycjaPrzedostatniejPrzerwy = linia.LastIndexOfAny(new char[] { ' ', '\t' }, pozycjaOstatniejPrzerwy - 1);
-			if (pozycjaPrzedostatniejPrzerwy == -1)
-				odpowiedź = "";
-			else
-				odpowiedź = linia.Substring(0, pozycjaPrzedostatniejPrzerwy).TrimEnd();
+
+			string odpowiedź = (pozycjaPrzedostatniejPrzerwy == -1 ? "" : linia.Substring(0, pozycjaPrzedostatniejPrzerwy).TrimEnd());
 			string punktyL = linia.Substring(pozycjaPrzedostatniejPrzerwy + 1, pozycjaOstatniejPrzerwy - pozycjaPrzedostatniejPrzerwy - 1);
 			string punktyP = linia.Substring(pozycjaOstatniejPrzerwy + 1);
 			try
@@ -294,6 +297,7 @@ namespace familiada
 			{
 				return null;
 			}
+
 			if (odpowiedź.Length > Global.długośćOdpowiedzi2)
 				Global.Wyjdź(String.Format("za długa odpowiedź: {0}. Dopuszczalna szerokość to {1}", odpowiedź, Global.długośćOdpowiedzi2));
 			string odpowiedźUpper = odpowiedź.ToUpper(CultureInfo.CurrentUICulture);
@@ -303,13 +307,13 @@ namespace familiada
 			return new Odpowiedź2(odpowiedź, punktyL, punktyP);
 		}
 
-		private static bool wystarczającaIlośćPytań(string[] pytania)
+		private static int IlośćPytań(string[] pytania)
 		{
-			int ilość=0;
-			foreach(string pytanie in pytania)
-				if(pytanie!=null)
+			int ilość = 0;
+			foreach (string pytanie in pytania)
+				if (pytanie != null)
 					ilość++;
-			return ilość>5;
+			return ilość;
 		}
 
 		private void Runda_Click(object sender, EventArgs e)

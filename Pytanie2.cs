@@ -7,9 +7,9 @@ namespace familiada
 {
 	class Odpowiedź2
 	{
-		public string odpowiedź;
-		public string punktyL;
-		public string punktyP;
+		public string odpowiedź { get; private set; }
+		public string punktyL { get; private set; }
+		public string punktyP { get; private set; }
 
 		public Odpowiedź2(string _odpowiedź, string _punktyL, string _punktyP)
 		{
@@ -35,8 +35,8 @@ namespace familiada
 		readonly int nrPytania;
 		private int punktyPytania = 0;
 
-		public TextBox odpowiedźTextBox = new TextBox();
-		public TextBox punktyTextBox = new TextBox();
+		public TextBox odpowiedźTextBox { get; private set; }
+		public TextBox punktyTextBox { get; private set; }
 		readonly Button umieśćButton = new Button();
 
 		protected abstract int Tag { get; }
@@ -53,6 +53,9 @@ namespace familiada
 
 		public PytanieStrona(int nrPytania)
 		{
+			odpowiedźTextBox = new TextBox();
+			punktyTextBox = new TextBox();
+
 			this.nrPytania = nrPytania;
 
 			odpowiedźTextBox.Location = new Point(odpowiedźTextBoxPozycjaX, (Pytanie2.panelWysokość - odpowiedźTextBoxWysokość) / 2);
