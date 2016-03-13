@@ -82,7 +82,7 @@ namespace familiada
 					b.Tag = "7";
 				b.Text = "ustaw" + (string)(b.Tag);
 				b.Size = new Size(setTimeButtonWidth, setTimeButtonHeight);
-				b.Click += new EventHandler(setTime_Click);
+				b.Click += new EventHandler(SetTime_Click);
 			}
 
 			previousQuestion = new Button();
@@ -397,7 +397,7 @@ namespace familiada
 			showMainScreenButton.Hide();
 		}
 
-		private void setTime_Click(object sender, System.EventArgs e)
+		private void SetTime_Click(object sender, System.EventArgs e)
 		{
 			string timeString = (string)(((Button)sender).Tag);
 			timeLabel.Text = timeString;

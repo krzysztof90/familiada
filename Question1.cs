@@ -230,14 +230,14 @@ namespace familiada
 			answers[firstAnswerNumber - 1] = answers[firstAnswerNumber];
 			answers[firstAnswerNumber] = firstAnswer;
 		}
-		public void DeleteAnswer(int number)
+		public void DeleteAnswer(int which)
 		{
-			Answer1 answer = answers[number - 1];
+			Answer1 answer = answers[which - 1];
 			answer.HideAnswersControls();
-			for (int i = number; i < answers.Count; i++)
+			for (int i = which; i < answers.Count; i++)
 				answers[i].Move(i, true);
 
-			answers.RemoveAt(number - 1);
+			answers.RemoveAt(which - 1);
 		}
 
 		public void AddPoints(int added)

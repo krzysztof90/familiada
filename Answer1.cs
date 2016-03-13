@@ -154,11 +154,11 @@ namespace familiada
 			Print(false, '.');
 			PrintPoints(false, '|');
 		}
-		public void Move(int number, bool delete)
+		public void Move(int which, bool delete)
 		{
 			if (delete)
 				HideAnswersControls();
-			this.number = number;
+			this.number = which;
 			ShowAnswersControls();
 		}
 		private bool Selected()
